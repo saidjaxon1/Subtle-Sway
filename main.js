@@ -63,7 +63,7 @@
       el("p", null, [message])
     ];
     if (withHomeLink) {
-      children.push(el("a", { href: "./index.html", class: "text-link" }, ["Back to the shop"]));
+      children.push(el("a", { href: "./shop.html", class: "text-link" }, ["Back to the shop"]));
     }
     container.appendChild(el("div", { class: "status" }, children));
   }
@@ -75,6 +75,27 @@
       "We couldn't load the content just now. Please refresh the page or try again in a moment.",
       true
     );
+  }
+
+  /* ---------- Product display helpers ---------- */
+
+  function isDigital(product) {
+    return (product.type || "").toLowerCase() === "digital";
+  }
+
+  // Small uppercase label above a product name (category, with fallbacks).
+  function eyebrowText(product) {
+    if (product.category) return product.category;
+    return isDigital(product) ? "Digital" : "Objects";
+  }
+
+  // Price line on cards: price is optional, digital products are marked.
+  // "$19 · Digital", "$45", or just "Digital" when there is no price.
+  function priceLineText(product) {
+    var parts = [];
+    if (product.price) parts.push(product.price);
+    if (isDigital(product)) parts.push("Digital");
+    return parts.join(" · ");
   }
 
   /* ---------- Shared render pieces ---------- */
@@ -93,8 +114,39 @@
     );
   }
 
+  // Quiet affiliate disclosure shown next to every Buy Now button.
+  function affiliateNote(short) {
+    var text = short
+      ? "Affiliate link — we may earn a small commission."
+      : "As an affiliate partner, we may earn a small commission when you buy through this link — at no extra cost to you.";
+    return el("p", { class: "affiliate-note" }, [text]);
+  }
+
+  // Prominent-but-quiet tag shown on digital products.
+  function digitalBadge() {
+    return el("span", { class: "badge-digital" }, ["Digital product · Instant online delivery"]);
+  }
+
+  // Product card used by the shop grid and the home page.
+  function productCard(product) {
+    var priceLine = priceLineText(product);
+    return el("li", { class: "product-card" }, [
+      el("a", { href: "./product.html?slug=" + encodeURIComponent(product.slug) }, [
+        el("figure", null, [
+          el("img", { src: product.image, alt: product.name, loading: "lazy" })
+        ]),
+        el("span", { class: "eyebrow" }, [eyebrowText(product)]),
+        el("h2", null, [product.name]),
+        priceLine ? el("span", { class: "price" }, [priceLine]) : null
+      ])
+    ]);
+  }
+
   // Compact product card embedded inside a blog post.
   function embeddedProductCard(product) {
+    var metaParts = [];
+    if (product.price) metaParts.push(product.price);
+    if (isDigital(product)) metaParts.push("Digital product");
     return el("aside", { class: "embed-product" }, [
       el("figure", null, [
         el("img", { src: product.image, alt: product.name, loading: "lazy" })
@@ -104,31 +156,99 @@
         el("h3", null, [
           el("a", { href: "./product.html?slug=" + encodeURIComponent(product.slug) }, [product.name])
         ]),
-        el("span", { class: "price" }, [product.price]),
-        buyButton(product)
+        metaParts.length ? el("span", { class: "price" }, [metaParts.join(" · ")]) : null,
+        buyButton(product),
+        affiliateNote(true)
       ])
     ]);
   }
 
-  /* ---------- Page: home (product grid) ---------- */
+  // Journal card used by the blog list and the home page preview.
+  function postCard(post) {
+    return el("li", { class: "post-card" }, [
+      el("a", { href: "./post.html?slug=" + encodeURIComponent(post.slug) }, [
+        el("figure", null, [
+          el("img", { src: post.cover, alt: post.title, loading: "lazy" })
+        ]),
+        el("span", { class: "eyebrow" }, [formatDate(post.date)]),
+        el("h2", null, [post.title]),
+        el("p", { class: "excerpt" }, [post.excerpt])
+      ])
+    ]);
+  }
+
+  function sortNewestFirst(posts) {
+    // ISO dates sort correctly as strings.
+    return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  }
+
+  /* ---------- Scroll reveal (home page) ---------- */
+
+  function initReveal() {
+    var targets = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+    if (!targets.length) return;
+
+    function showAll() {
+      targets.forEach(function (target) { target.classList.add("visible"); });
+    }
+
+    if (!("IntersectionObserver" in window)) { showAll(); return; }
+
+    var observerReported = false;
+    var observer = new IntersectionObserver(function (entries) {
+      observerReported = true;
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(function (target) { observer.observe(target); });
+
+    // Safety net: the observer normally reports immediately for every
+    // observed element. If it stays silent (throttled embeds, odd browsers),
+    // reveal everything rather than leaving sections hidden.
+    setTimeout(function () {
+      if (!observerReported) {
+        observer.disconnect();
+        showAll();
+      }
+    }, 2000);
+  }
+
+  /* ---------- Page: home (landing) ---------- */
 
   function initHome() {
+    initReveal();
+
+    loadJSON("./products.json")
+      .then(function (products) {
+        var grid = document.getElementById("featured-grid");
+        products.slice(0, 3).forEach(function (product) {
+          grid.appendChild(productCard(product));
+        });
+      })
+      .catch(function (error) { console.error(error); });
+
+    loadJSON("./posts.json")
+      .then(function (posts) {
+        var list = document.getElementById("journal-preview");
+        sortNewestFirst(posts).slice(0, 2).forEach(function (post) {
+          list.appendChild(postCard(post));
+        });
+      })
+      .catch(function (error) { console.error(error); });
+  }
+
+  /* ---------- Page: shop (full product grid) ---------- */
+
+  function initShop() {
     var grid = document.getElementById("product-grid");
     loadJSON("./products.json")
       .then(function (products) {
         products.forEach(function (product) {
-          grid.appendChild(
-            el("li", { class: "product-card" }, [
-              el("a", { href: "./product.html?slug=" + encodeURIComponent(product.slug) }, [
-                el("figure", null, [
-                  el("img", { src: product.image, alt: product.name, loading: "lazy" })
-                ]),
-                el("span", { class: "eyebrow" }, ["Interior"]),
-                el("h2", null, [product.name]),
-                el("span", { class: "price" }, [product.price])
-              ])
-            ])
-          );
+          grid.appendChild(productCard(product));
         });
       })
       .catch(function (error) {
@@ -159,35 +279,45 @@
         }
 
         document.title = product.name + " — " + SITE_NAME;
+
+        var info = el("div", { class: "info" }, [
+          el("span", { class: "eyebrow" }, [eyebrowText(product)]),
+          el("h1", null, [product.name]),
+          product.price ? el("span", { class: "price" }, [product.price]) : null,
+          isDigital(product) ? digitalBadge() : null,
+          el("p", { class: "description" }, [product.description])
+        ]);
+
+        // Colour swatches only when the product defines colours.
+        if (product.colors && product.colors.length) {
+          info.appendChild(el("div", { class: "swatches" }, [
+            el("span", { class: "eyebrow" }, ["Colourways"]),
+            el(
+              "div",
+              { class: "swatch-row" },
+              product.colors.map(function (hex) {
+                var swatch = el("span", {
+                  class: "swatch",
+                  role: "img",
+                  "aria-label": "Colour " + hex
+                });
+                swatch.style.backgroundColor = hex;
+                return swatch;
+              })
+            )
+          ]));
+        }
+
+        info.appendChild(buyButton(product));
+        info.appendChild(affiliateNote(false));
+
         main.textContent = "";
         main.appendChild(
           el("article", { class: "product-detail" }, [
             el("figure", null, [
               el("img", { src: product.image, alt: product.name })
             ]),
-            el("div", { class: "info" }, [
-              el("span", { class: "eyebrow" }, ["Interior"]),
-              el("h1", null, [product.name]),
-              el("span", { class: "price" }, [product.price]),
-              el("p", { class: "description" }, [product.description]),
-              el("div", { class: "swatches" }, [
-                el("span", { class: "eyebrow" }, ["Colourways"]),
-                el(
-                  "div",
-                  { class: "swatch-row" },
-                  (product.colors || []).map(function (hex) {
-                    var swatch = el("span", {
-                      class: "swatch",
-                      role: "img",
-                      "aria-label": "Colour " + hex
-                    });
-                    swatch.style.backgroundColor = hex;
-                    return swatch;
-                  })
-                )
-              ]),
-              buyButton(product)
-            ])
+            info
           ])
         );
       })
@@ -203,24 +333,9 @@
     var list = document.getElementById("blog-list");
     loadJSON("./posts.json")
       .then(function (posts) {
-        // Newest first — ISO dates sort correctly as strings.
-        posts
-          .slice()
-          .sort(function (a, b) { return a.date < b.date ? 1 : -1; })
-          .forEach(function (post) {
-            list.appendChild(
-              el("li", { class: "post-card" }, [
-                el("a", { href: "./post.html?slug=" + encodeURIComponent(post.slug) }, [
-                  el("figure", null, [
-                    el("img", { src: post.cover, alt: post.title, loading: "lazy" })
-                  ]),
-                  el("span", { class: "eyebrow" }, [formatDate(post.date)]),
-                  el("h2", null, [post.title]),
-                  el("p", { class: "excerpt" }, [post.excerpt])
-                ])
-              ])
-            );
-          });
+        sortNewestFirst(posts).forEach(function (post) {
+          list.appendChild(postCard(post));
+        });
       })
       .catch(function (error) {
         console.error(error);
@@ -298,6 +413,7 @@
   var page = document.body.getAttribute("data-page");
   var init = {
     home: initHome,
+    shop: initShop,
     product: initProduct,
     blog: initBlog,
     post: initPost

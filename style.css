@@ -156,15 +156,13 @@ main.wrap {
   border-bottom-color: var(--ink);
 }
 
-/* ---------- Hero (homepage) ---------- */
+/* ---------- Home (landing) ---------- */
 
-.hero {
-  padding: 4.5rem 0 4rem;
-  border-bottom: 1px solid var(--hairline);
-  margin-bottom: 3.5rem;
+.hero-home {
+  padding: 4.5rem 0 3.5rem;
 }
 
-.hero h1 {
+.hero-home h1 {
   font-family: var(--serif);
   font-optical-sizing: auto;
   font-weight: 500;
@@ -174,10 +172,117 @@ main.wrap {
   max-width: 14em;
 }
 
-.hero p {
+.hero-home p {
   margin-top: 1.25rem;
   color: var(--muted);
-  max-width: 34em;
+  max-width: 36em;
+}
+
+.hero-actions {
+  margin-top: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.hero-image {
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--panel);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-section {
+  margin-top: 5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-head .eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.section-head h2 {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.6rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.home-statement {
+  margin: 5.5rem auto;
+  max-width: 30em;
+  text-align: center;
+}
+
+.statement-rule {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--brass);
+  margin-bottom: 1.5rem;
+}
+
+.home-statement p {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+.home-journal {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 2rem;
+}
+
+/* Gentle entrance animations — motion only when the visitor allows it */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-home > * {
+    animation: page-in 0.7s var(--ease-slow) both;
+  }
+  .hero-home > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero-home > *:nth-child(3) { animation-delay: 0.2s; }
+  .hero-home > *:nth-child(4) { animation-delay: 0.3s; }
+
+  .hero-image img {
+    animation: image-in 1.6s var(--ease-slow) both;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes image-in {
+    from { opacity: 0; transform: scale(1.04); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* Sections fade up as they scroll into view (class added by main.js) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--ease-slow), transform 0.7s var(--ease-slow);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ---------- Product grid ---------- */
@@ -261,6 +366,29 @@ main.wrap {
 
 .btn:hover {
   background: var(--moss);
+}
+
+/* Quiet affiliate disclosure next to Buy Now buttons */
+.affiliate-note {
+  margin-top: 0.85rem;
+  font-size: var(--text-caption);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 30em;
+}
+
+/* Tag shown on digital products — noticeable, never loud */
+.badge-digital {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--moss);
+  border-radius: 2px;
+  color: var(--moss);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* Quiet text link (used in error states, back links) */
@@ -544,6 +672,10 @@ main.wrap {
   padding: 0.75rem 1.75rem;
 }
 
+.embed-product .affiliate-note {
+  margin-top: 0.7rem;
+}
+
 /* ---------- Status / error messages ---------- */
 
 .status {
@@ -600,8 +732,17 @@ main.wrap {
     gap: 2.5rem;
   }
 
-  .hero {
-    padding: 3.25rem 0 3rem;
+  .hero-home {
+    padding: 3.25rem 0 2.75rem;
+  }
+
+  .hero-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-journal {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 }
 
@@ -629,13 +770,25 @@ main.wrap {
     gap: 1.25rem;
   }
 
-  .hero {
-    padding: 2.75rem 0 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-
   .blog-list {
     gap: 3.5rem;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .home-section {
+    margin-top: 3.5rem;
+  }
+
+  .home-statement {
+    margin: 4rem auto;
+  }
+
+  .home-statement p {
+    font-size: 1.25rem;
   }
 
   .embed-product {

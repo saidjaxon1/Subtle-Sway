@@ -20,6 +20,8 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
   "slug": "my-new-lamp",
   "name": "My New Lamp",
   "price": "$129",
+  "type": "physical",
+  "category": "Home Decor",
   "image": "https://link-to-the-product-photo.jpg",
   "affiliateLink": "https://your-affiliate-link-here",
   "description": "One short paragraph about the product.",
@@ -29,10 +31,12 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
 
 Rules:
 - `slug` must be **unique** and use only lowercase letters, numbers, and dashes. It becomes the URL: `product.html?slug=my-new-lamp`.
-- `price` is plain text, so write it exactly how you want it shown (e.g. `"$1,249"`).
-- `colors` is 3–4 hex color codes shown as small circles on the product page.
+- `type` is `"physical"` or `"digital"`. Digital products (ebooks, printables, courses…) get a clear "Digital product · Instant online delivery" tag on their page and a small "Digital" note on cards.
+- `category` is **optional** — the small label above the product name (e.g. `"Home Decor"`, `"Apparel"`, `"Digital"`).
+- `price` is **optional** plain text — write it exactly how you want it shown (e.g. `"$1,249"`), or leave it `""` to show the product without a price.
+- `colors` is **optional** — 3–4 hex color codes shown as small circles on the product page. Use `[]` for none (e.g. digital products).
 
-Save the file — the product appears on the homepage automatically.
+Save the file — the product appears in the shop automatically.
 
 ## How to add a new blog post
 
@@ -91,7 +95,8 @@ The token is stored only in your browser (localStorage) — never on a server. A
 | File | Purpose |
 |---|---|
 | `products.json` / `posts.json` | **All content — the only files you edit** |
-| `index.html` | Homepage (shop grid) |
+| `index.html` | Home — animated editorial landing page |
+| `shop.html` | Shop (full product grid) |
 | `product.html` | Product page template (`?slug=...`) |
 | `blog.html` | Journal (blog list) |
 | `post.html` | Post page template (`?slug=...`) |

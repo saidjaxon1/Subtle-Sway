@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product — Subtle Sway</title>
+  <title>Shop — Subtle Sway</title>
+  <meta name="description" content="Every piece in the Subtle Sway edit — home objects, digital guides and apparel.">
 
   <!-- Fonts: Fraunces (display) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,21 +14,28 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./main.js" defer></script>
 </head>
-<body data-page="product">
+<body data-page="shop">
 
   <header class="site-header">
     <div class="wrap">
       <a class="site-name" href="./index.html">Subtle Sway</a>
       <nav class="site-nav" aria-label="Main">
         <a href="./index.html">Home</a>
-        <a href="./shop.html">Shop</a>
+        <a href="./shop.html" aria-current="page">Shop</a>
         <a href="./blog.html">Journal</a>
       </nav>
     </div>
   </header>
 
-  <!-- Product detail is rendered here from products.json (?slug=...) by main.js -->
-  <main class="wrap"></main>
+  <main class="wrap">
+    <span class="eyebrow">The Shop</span>
+    <h1 class="page-title">Every piece, in one place.</h1>
+
+    <!-- Product grid — populated from products.json by main.js -->
+    <section aria-label="Products">
+      <ul class="product-grid" id="product-grid"></ul>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="wrap">

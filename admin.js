@@ -182,7 +182,12 @@
         el("img", { src: isProduct ? item.image : item.cover, alt: "" }),
         el("div", { class: "item-info" }, [
           el("span", { class: "item-name" }, [isProduct ? item.name : item.title]),
-          el("span", { class: "item-meta" }, [isProduct ? (item.price + "  ·  " + item.slug) : (item.date + "  ·  " + item.slug)])
+          el("span", { class: "item-meta" }, [
+            isProduct
+              ? [item.price || "no price", (item.type || "physical") === "digital" ? "digital" : null, item.slug]
+                  .filter(Boolean).join("  ·  ")
+              : item.date + "  ·  " + item.slug
+          ])
         ]),
         el("div", { class: "item-actions" }, [editBtn, deleteBtn])
       ]));
@@ -228,14 +233,22 @@
   /* ---------- Product form ---------- */
 
   function productForm(product) {
+    var typeSelect = el("select", { id: "f-type" }, [
+      el("option", { value: "physical" }, ["Physical — a shipped item (furniture, apparel…)"]),
+      el("option", { value: "digital" }, ["Digital — delivered online (ebook, printable…)"])
+    ]);
+    typeSelect.value = (product.type || "physical").toLowerCase() === "digital" ? "digital" : "physical";
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Slug", textInput("f-slug", product.slug, "e.g. walnut-coffee-table"), "Unique, lowercase-with-dashes. Becomes the URL."),
       field("Name", textInput("f-name", product.name, "e.g. Walnut Coffee Table")),
-      field("Price", textInput("f-price", product.price, "e.g. $249"), "Plain text, shown exactly as written."),
+      field("Type", typeSelect, "Digital products get a clear “Digital product” tag on the site."),
+      field("Category", textInput("f-cat", product.category, "e.g. Home Decor, Apparel, Digital"), "Optional — the small label above the product name."),
+      field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show the product without a price."),
       field("Image URL", textInput("f-image", product.image, "https://…")),
       field("Affiliate link", textInput("f-link", product.affiliateLink, "https://…"), "Opens from the Buy Now button."),
       field("Description", el("textarea", { id: "f-desc" }, [product.description || ""])),
-      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F, #23211D"), "3–4 hex codes separated by commas.")
+      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F, #23211D"), "Optional — 3–4 hex codes separated by commas.")
     ]);
 
     form.appendChild(formButtons(form, function () {
@@ -244,6 +257,8 @@
         slug: slug,
         name: $("f-name").value.trim(),
         price: $("f-price").value.trim(),
+        type: $("f-type").value,
+        category: $("f-cat").value.trim(),
         image: $("f-image").value.trim(),
         affiliateLink: $("f-link").value.trim(),
         description: $("f-desc").value.trim(),
@@ -297,7 +312,7 @@
       body.appendChild(alt);
     } else if (block.type === "product") {
       var select = el("select", null, state.products.data.map(function (p) {
-        var option = el("option", { value: p.slug }, [p.name + " (" + p.price + ")"]);
+        var option = el("option", { value: p.slug }, [p.name + (p.price ? " (" + p.price + ")" : "")]);
         if (p.slug === block.slug) option.setAttribute("selected", "");
         return option;
       }));
@@ -417,7 +432,7 @@
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct
-      ? { slug: "", name: "", price: "", image: "", affiliateLink: "", description: "", colors: [] }
+      ? { slug: "", name: "", price: "", type: "physical", category: "", image: "", affiliateLink: "", description: "", colors: [] }
       : { slug: "", title: "", date: "", cover: "", excerpt: "", content: [] };
     var item = index === -1 ? blank : state[state.tab].data[index];
 
