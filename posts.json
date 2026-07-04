@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "the-quiet-living-room",
+    "title": "The Quiet Living Room: Five Principles",
+    "date": "2026-07-01",
+    "cover": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A calm room is not an empty room. Five principles for a living space that feels considered rather than decorated.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "There is a particular kind of living room that photographs poorly and lives beautifully. Nothing in it shouts. The palette stays within a handful of tones, the furniture sits low, and the eye is allowed to rest. Achieving that calm is less about buying the right things and more about refusing the wrong ones."
+      },
+      {
+        "type": "heading",
+        "text": "Begin with the largest surface"
+      },
+      {
+        "type": "paragraph",
+        "text": "The sofa sets the temperature of the whole room. Choose something with quiet proportions and an honest material — linen, wool, leather that will age — and let everything else defer to it. A sofa in a loud colour makes every future decision harder."
+      },
+      {
+        "type": "product",
+        "slug": "arden-sofa"
+      },
+      {
+        "type": "heading",
+        "text": "Let the light do the decorating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Overhead light flattens a room; lamps build it. Two or three warm sources at different heights will do more for the atmosphere than any object you could place on a shelf. Aim for pools of light, not coverage."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A softly lit living room corner with layered warm lamplight"
+      },
+      {
+        "type": "heading",
+        "text": "Subtract before you add"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before anything new comes in, something should earn its place by surviving a simple question: would the room be worse without it? Most rooms are one careful subtraction away from feeling twice as expensive. Start there — it costs nothing."
+      }
+    ]
+  },
+  {
+    "slug": "light-and-linen",
+    "title": "Light and Linen: A Summer Reset",
+    "date": "2026-06-18",
+    "cover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Swapping heavy textures for breathable ones is the cheapest renovation there is. A short guide to resetting a room for the warm months.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Every summer the same instinct returns: strip the room back. Fold away the wool throws, roll up the heavier rug, and let the floorboards and the linen do the talking. It is the cheapest renovation there is, and it takes an afternoon."
+      },
+      {
+        "type": "heading",
+        "text": "Texture over colour"
+      },
+      {
+        "type": "paragraph",
+        "text": "A summer room does not need a new palette — it needs lighter textures in the palette it already has. Stonewashed linen, paper cord, unglazed ceramic, raw oak. Keep the tones close together and let the materials provide the variation."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A bright, pared-back interior with linen upholstery and natural oak"
+      },
+      {
+        "type": "heading",
+        "text": "One honest material per corner"
+      },
+      {
+        "type": "paragraph",
+        "text": "Resist the urge to style every surface. Give each corner of the room one material to speak with — oak in one, linen in another, a single brass detail near the window — and stop. Restraint, repeated four times, reads as intention."
+      }
+    ]
+  }
+]

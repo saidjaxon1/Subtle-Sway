@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subtle Sway — Considered pieces for quiet interiors</title>
+  <meta name="description" content="A small, considered edit of furniture and objects for quiet interiors.">
+
+  <!-- Fonts: Fraunces (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./main.js" defer></script>
+</head>
+<body data-page="home">
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="./index.html">Subtle Sway</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html" aria-current="page">Shop</a>
+        <a href="./blog.html">Journal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Editorial hero -->
+    <section class="hero">
+      <span class="eyebrow">A considered edit</span>
+      <h1>Quiet pieces for rooms that don't try too hard.</h1>
+      <p>Furniture and objects chosen slowly — honest materials, calm proportions, nothing that shouts.</p>
+    </section>
+
+    <!-- Product grid — populated from products.json by main.js -->
+    <section aria-label="Products">
+      <ul class="product-grid" id="product-grid"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; 2026 Subtle Sway. All rights reserved.</p>
+      <p>As an affiliate, we may earn from qualifying purchases.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
