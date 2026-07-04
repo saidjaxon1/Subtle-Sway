@@ -68,6 +68,19 @@ Rules:
 
 Save the file — the post appears in the Journal automatically.
 
+## Admin panel (edit the site from the browser)
+
+Open `admin.html` on your live site (e.g. `https://your-domain/admin.html`). It lets you add, edit, and delete products and posts without touching any files — every save is committed to GitHub automatically and goes live in about a minute.
+
+First-time setup (once per browser):
+
+1. On GitHub go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+2. Repository access: **Only select repositories** → choose **Subtle-Sway**.
+3. Permissions: **Contents → Read and write**. Generate the token and copy it.
+4. Open `admin.html`, paste the token, press **Connect**.
+
+The token is stored only in your browser (localStorage) — never on a server. Anyone else who opens `admin.html` sees only the connect screen and can change nothing without a valid token. Use **Disconnect** to remove the token from a shared computer. When the token expires, generate a new one the same way.
+
 ## Tips
 
 - **Validate your JSON** after editing: paste the file into https://jsonlint.com. A missing comma or quote is the only thing that can break the site.
@@ -84,6 +97,7 @@ Save the file — the post appears in the Journal automatically.
 | `post.html` | Post page template (`?slug=...`) |
 | `style.css` | All styling |
 | `main.js` | Loads the JSON and renders the pages |
+| `admin.html` / `admin.js` / `admin.css` | Browser admin panel — edits the JSON via the GitHub API |
 | `CNAME` | Your custom domain for GitHub Pages — replace `example.com` with your real domain |
 
 ## Running locally

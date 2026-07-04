@@ -1,0 +1,346 @@
+/* ============================================================
+   Subtle Sway — admin panel styles (loaded only on admin.html)
+   ============================================================ */
+
+.admin-badge {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  vertical-align: middle;
+  margin-left: 0.35rem;
+}
+
+.admin-title {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.admin-lead {
+  color: var(--muted);
+  max-width: 44em;
+  margin-bottom: 1.5rem;
+}
+
+.admin-steps {
+  margin: 0 0 2rem 1.2rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 44em;
+}
+
+/* ---------- Inputs ---------- */
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+  font-family: var(--sans);
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  padding: 0.7rem 0.9rem;
+  width: 100%;
+}
+
+textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 1.5px solid var(--moss);
+  outline-offset: 1px;
+}
+
+.auth-row {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 34rem;
+}
+
+.auth-row input {
+  flex: 1;
+}
+
+/* ---------- Toolbar / tabs ---------- */
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 1rem;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.admin-status {
+  font-size: var(--text-caption);
+  color: var(--moss);
+}
+
+.admin-status.error {
+  color: #8a3b2e;
+}
+
+/* Small quiet button (edit / delete / disconnect) */
+.ghost-btn {
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.45rem 0.9rem;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.ghost-btn:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.ghost-btn.danger:hover {
+  color: #8a3b2e;
+  border-color: #8a3b2e;
+}
+
+/* ---------- Item list ---------- */
+
+.list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.list-head .admin-title {
+  margin-bottom: 0;
+}
+
+.admin-list {
+  list-style: none;
+  border-top: 1px solid var(--hairline);
+}
+
+.admin-list li {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 0.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.admin-list img {
+  width: 52px;
+  height: 65px;
+  object-fit: cover;
+  border: 1px solid var(--hairline);
+  flex-shrink: 0;
+}
+
+.admin-list .item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-list .item-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.05rem;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-list .item-meta {
+  font-size: var(--text-caption);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.admin-list .item-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.admin-empty {
+  color: var(--muted);
+  padding: 2rem 0;
+}
+
+/* ---------- Forms ---------- */
+
+.admin-form {
+  max-width: 44rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field-hint {
+  font-size: var(--text-caption);
+  color: var(--muted);
+}
+
+.form-error {
+  color: #8a3b2e;
+  font-size: var(--text-body);
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+/* ---------- Post block editor ---------- */
+
+.blocks-editor {
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--panel);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.block-row {
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--bone);
+  padding: 0.85rem;
+}
+
+.block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.block-type {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.block-tools {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.block-tools button {
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.3rem 0.55rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.block-tools button:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.block-row .stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.add-block-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-loading {
+  color: var(--muted);
+  padding: 3rem 0;
+}
+
+@media (max-width: 540px) {
+  .auth-row {
+    flex-direction: column;
+  }
+
+  .admin-list li {
+    flex-wrap: wrap;
+  }
+}

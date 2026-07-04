@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Subtle Sway</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts: Fraunces (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./admin.css">
+  <script src="./admin.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="./index.html">Subtle Sway <span class="admin-badge">Admin</span></a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html">View site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Step 1: connect with a GitHub token (stored only in this browser) -->
+    <section id="auth-screen" hidden>
+      <span class="eyebrow">Admin access</span>
+      <h1 class="admin-title">Connect to GitHub</h1>
+      <p class="admin-lead">
+        This panel saves your changes straight to the GitHub repository, so it needs a
+        personal access token. The token is stored only in this browser — never on any server.
+      </p>
+      <ol class="admin-steps">
+        <li>On GitHub go to <strong>Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; Fine-grained tokens &rarr; Generate new token</strong>.</li>
+        <li>Repository access: <strong>Only select repositories</strong> &rarr; choose <strong>Subtle-Sway</strong>.</li>
+        <li>Permissions: <strong>Contents &rarr; Read and write</strong>. Generate and copy the token.</li>
+        <li>Paste it below and press Connect.</li>
+      </ol>
+      <div class="auth-row">
+        <input type="password" id="token-input" placeholder="github_pat_..." autocomplete="off">
+        <button class="btn" id="token-connect">Connect</button>
+      </div>
+      <p class="form-error" id="auth-error" role="alert"></p>
+    </section>
+
+    <!-- Step 2: the panel itself (rendered by admin.js) -->
+    <section id="panel" hidden>
+      <div class="admin-toolbar">
+        <div class="admin-tabs" role="tablist">
+          <button class="tab" id="tab-products" role="tab">Products</button>
+          <button class="tab" id="tab-posts" role="tab">Posts</button>
+        </div>
+        <div class="admin-actions">
+          <span class="admin-status" id="status" role="status"></span>
+          <button class="ghost-btn" id="logout">Disconnect</button>
+        </div>
+      </div>
+
+      <div id="list-view">
+        <div class="list-head">
+          <h1 class="admin-title" id="list-title">Products</h1>
+          <button class="btn" id="add-item">Add new</button>
+        </div>
+        <ul class="admin-list" id="item-list"></ul>
+      </div>
+
+      <div id="form-view" hidden></div>
+    </section>
+
+    <p class="admin-loading" id="loading" hidden>Loading content&hellip;</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Changes are committed to GitHub and go live on the site in about a minute.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
