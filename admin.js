@@ -184,7 +184,10 @@
           el("span", { class: "item-name" }, [isProduct ? item.name : item.title]),
           el("span", { class: "item-meta" }, [
             isProduct
-              ? [item.price || "no price", (item.type || "physical") === "digital" ? "digital" : null, item.slug]
+              ? [item.price || "no price",
+                 (item.type || "") === "digital" ? "digital" : null,
+                 (item.source || "") === "own" ? "my product" : null,
+                 item.slug]
                   .filter(Boolean).join("  ·  ")
               : item.date + "  ·  " + item.slug
           ])
@@ -241,9 +244,16 @@
     var currentType = (product.type || "").toLowerCase();
     typeSelect.value = currentType === "digital" || currentType === "physical" ? currentType : "";
 
+    var sourceSelect = el("select", { id: "f-source" }, [
+      el("option", { value: "affiliate" }, ["Affiliate link — shows the affiliate notes"]),
+      el("option", { value: "own" }, ["My product — no affiliate notes anywhere"])
+    ]);
+    sourceSelect.value = (product.source || "").toLowerCase() === "own" ? "own" : "affiliate";
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Slug", textInput("f-slug", product.slug, "e.g. walnut-coffee-table"), "Unique, lowercase-with-dashes. Becomes the URL."),
       field("Name", textInput("f-name", product.name, "e.g. Walnut Coffee Table")),
+      field("Link type", sourceSelect, "Affiliate shows the disclosure next to Buy Now; My product hides it completely."),
       field("Type", typeSelect, "Shown on the product page as a Digital product or Physical product tag. Not set = no tag."),
       field("Category", textInput("f-cat", product.category, "e.g. Home Decor, Fashion, Digital"), "Top-level group — the filter tabs in the shop."),
       field("Subcategory", textInput("f-sub", product.subcategory, "e.g. Living Room, Lighting, T-Shirts"), "Optional — the second filter row inside a category, and the small label on the card."),
@@ -261,6 +271,7 @@
         name: $("f-name").value.trim(),
         price: $("f-price").value.trim(),
         type: $("f-type").value,
+        source: $("f-source").value,
         category: $("f-cat").value.trim(),
         subcategory: $("f-sub").value.trim(),
         image: $("f-image").value.trim(),
@@ -436,7 +447,7 @@
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct
-      ? { slug: "", name: "", price: "", type: "physical", category: "", subcategory: "", image: "", affiliateLink: "", description: "", colors: [] }
+      ? { slug: "", name: "", price: "", type: "physical", source: "affiliate", category: "", subcategory: "", image: "", affiliateLink: "", description: "", colors: [] }
       : { slug: "", title: "", date: "", cover: "", excerpt: "", content: [] };
     var item = index === -1 ? blank : state[state.tab].data[index];
 

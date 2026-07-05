@@ -15,7 +15,8 @@
   --ink: #EDE6D9;       /* primary text — warm bone */
   --muted: #A69B89;     /* secondary text */
   --moss: #8A9479;      /* sage — focus rings, quiet success */
-  --brass: #C6A15B;     /* prices, accents, hovers */
+  --brass: #C6A15B;     /* prices, primary accent, hovers */
+  --clay: #C08768;      /* warm secondary accent — dates, small details */
   --hairline: #383129;  /* precise 1px borders */
 
   /* Type */
@@ -169,7 +170,54 @@ main.wrap {
 /* ---------- Home (landing) ---------- */
 
 .hero-home {
+  position: relative;
   padding: 4.5rem 0 3.5rem;
+}
+
+/* Two soft washes of light behind the hero type — barely there.
+   overflow:hidden keeps the washes from widening the page. */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-glow::before,
+.hero-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hero-glow::before {
+  width: 560px;
+  height: 560px;
+  left: -12%;
+  top: -45%;
+  background: radial-gradient(circle, rgba(198, 161, 91, 0.13), transparent 65%);
+}
+
+.hero-glow::after {
+  width: 480px;
+  height: 480px;
+  right: -6%;
+  top: -15%;
+  background: radial-gradient(circle, rgba(138, 148, 121, 0.10), transparent 65%);
+}
+
+.hero-home > *:not(.hero-glow) {
+  position: relative;
+}
+
+/* Accented phrase in the headline — brass-to-clay gradient, italic */
+.hero-home h1 em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--brass) 20%, var(--clay) 50%, var(--brass) 80%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero-home h1 {
@@ -208,6 +256,39 @@ main.wrap {
   object-fit: cover;
 }
 
+/* Slow editorial ticker under the hero image */
+.marquee {
+  margin-top: 3.5rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  padding-right: 2.25rem;
+  white-space: nowrap;
+}
+
+.marquee-group span {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.marquee-group .dot {
+  color: var(--clay);
+}
+
 .home-section {
   margin-top: 5rem;
 }
@@ -244,6 +325,15 @@ main.wrap {
 .category-card a {
   display: block;
   text-decoration: none;
+}
+
+.category-card .num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--brass);
+  margin-bottom: 0.6rem;
 }
 
 .category-card figure {
@@ -299,7 +389,7 @@ main.wrap {
   display: inline-block;
   width: 2.5rem;
   height: 1px;
-  background: var(--brass);
+  background: linear-gradient(90deg, var(--brass), var(--clay));
   margin-bottom: 1.5rem;
 }
 
@@ -321,12 +411,44 @@ main.wrap {
 
 /* Gentle entrance animations — motion only when the visitor allows it */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-home > * {
+  .hero-home > *:not(.hero-glow) {
     animation: page-in 0.7s var(--ease-slow) both;
   }
-  .hero-home > *:nth-child(2) { animation-delay: 0.1s; }
-  .hero-home > *:nth-child(3) { animation-delay: 0.2s; }
-  .hero-home > *:nth-child(4) { animation-delay: 0.3s; }
+  .hero-home > *:nth-child(3) { animation-delay: 0.1s; }
+  .hero-home > *:nth-child(4) { animation-delay: 0.2s; }
+  .hero-home > *:nth-child(5) { animation-delay: 0.3s; }
+
+  /* Light washes drift almost imperceptibly */
+  .hero-glow::before {
+    animation: glow-drift 14s ease-in-out infinite alternate;
+  }
+
+  .hero-glow::after {
+    animation: glow-drift 18s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes glow-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(48px, 28px, 0); }
+  }
+
+  /* Headline gradient breathes slowly */
+  .hero-home h1 em {
+    animation: shimmer 9s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to { background-position: 200% 0; }
+  }
+
+  /* Ticker loops seamlessly (two identical groups, -50% shift) */
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
 
   .hero-image img {
     animation: image-in 1.6s var(--ease-slow) both;
@@ -630,6 +752,7 @@ main.wrap {
 
 .post-card .eyebrow {
   margin: 1.4rem 0 0.5rem;
+  color: var(--clay);
 }
 
 .post-card h2 {

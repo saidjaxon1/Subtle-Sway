@@ -84,6 +84,11 @@
     return type === "digital" || type === "physical" ? type : "";
   }
 
+  // "own" products are the site's own goods — no affiliate wording for them.
+  function isOwnProduct(product) {
+    return (product.source || "").toLowerCase() === "own";
+  }
+
   // Small uppercase label above a product name.
   function eyebrowText(product) {
     return product.subcategory || product.category || "Objects";
@@ -100,7 +105,8 @@
 
   /* ---------- Shared render pieces ---------- */
 
-  // "Buy Now" affiliate button (new tab, nofollow sponsored).
+  // "Buy Now" button. Affiliate links carry nofollow/sponsored;
+  // the site's own products get a plain link.
   function buyButton(product) {
     return el(
       "a",
@@ -108,17 +114,19 @@
         class: "btn",
         href: product.affiliateLink,
         target: "_blank",
-        rel: "nofollow sponsored noopener"
+        rel: isOwnProduct(product) ? "noopener" : "nofollow sponsored noopener"
       },
       ["Buy Now"]
     );
   }
 
-  // Quiet affiliate disclosure shown next to every Buy Now button.
-  function affiliateNote(short) {
+  // Quiet affiliate disclosure next to Buy Now buttons.
+  // Own products get no note at all.
+  function affiliateNote(product, short) {
+    if (isOwnProduct(product)) return null;
     var text = short
-      ? "Affiliate link — we may earn a small commission."
-      : "As an affiliate partner, we may earn a small commission when you buy through this link — at no extra cost to you.";
+      ? "Affiliate link — we may earn a commission."
+      : "As an affiliate partner, we may earn a commission when you buy through this link — at no extra cost to you.";
     return el("p", { class: "affiliate-note" }, [text]);
   }
 
@@ -165,7 +173,7 @@
         ]),
         metaParts.length ? el("span", { class: "price" }, [metaParts.join(" · ")]) : null,
         buyButton(product),
-        affiliateNote(true)
+        affiliateNote(product, true)
       ])
     ]);
   }
@@ -244,12 +252,13 @@
         // Shop-by-category cards: one per top-level category, using the
         // first product in that category as the card image.
         var categoryGrid = document.getElementById("category-grid");
-        uniqueValues(products, function (p) { return p.category; }).forEach(function (category) {
+        uniqueValues(products, function (p) { return p.category; }).forEach(function (category, index) {
           var inCategory = products.filter(function (p) { return p.category === category; });
           var count = inCategory.length;
           categoryGrid.appendChild(
             el("li", { class: "category-card" }, [
               el("a", { href: "./shop.html?category=" + encodeURIComponent(category) }, [
+                el("span", { class: "num", "aria-hidden": "true" }, ["0" + (index + 1)]),
                 el("figure", null, [
                   el("img", { src: inCategory[0].image, alt: category, loading: "lazy" })
                 ]),
@@ -326,7 +335,8 @@
             }));
           });
 
-          // Subcategory chips — only when the chosen category has them.
+          // Subcategory chips — shown for every chosen category, starting
+          // with an "All <category>" chip.
           var inCategory = state.category
             ? products.filter(function (p) { return p.category === state.category; })
             : products;
@@ -335,7 +345,7 @@
             : [];
 
           subRow.textContent = "";
-          subRow.hidden = subs.length < 2;
+          subRow.hidden = !state.category || subs.length === 0;
           if (!subRow.hidden) {
             if (subs.indexOf(state.sub) === -1) state.sub = null;
             subRow.appendChild(chip("All " + state.category, !state.sub, function () {
@@ -426,7 +436,8 @@
         }
 
         info.appendChild(buyButton(product));
-        info.appendChild(affiliateNote(false));
+        var note = affiliateNote(product, false);
+        if (note) info.appendChild(note);
 
         main.textContent = "";
         main.appendChild(

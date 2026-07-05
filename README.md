@@ -21,6 +21,7 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
   "name": "My New Lamp",
   "price": "$129",
   "type": "physical",
+  "source": "affiliate",
   "category": "Home Decor",
   "subcategory": "Lighting",
   "image": "https://link-to-the-product-photo.jpg",
@@ -33,6 +34,7 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
 Rules:
 - `slug` must be **unique** and use only lowercase letters, numbers, and dashes. It becomes the URL: `product.html?slug=my-new-lamp`.
 - `type` is `"physical"`, `"digital"`, or `""`. If set, the product page shows a "Digital product" or "Physical product" tag (digital items also get a small "Digital" note on cards). If left `""`, no tag is shown.
+- `source` is `"affiliate"` or `"own"`. Affiliate products show the disclosure line next to the Buy Now button; `"own"` (your own product) shows no affiliate wording anywhere and uses a plain link.
 - `category` is the top-level group (e.g. `"Home Decor"`, `"Fashion"`, `"Digital"`). Categories become the filter tabs in the shop and the category cards on the home page — automatically, based on whatever categories your products use.
 - `subcategory` is **optional** (e.g. `"Living Room"`, `"Lighting"`, `"T-Shirts"`). Subcategories become the second filter row inside a category, and the small label above the product name.
 - `price` is **optional** plain text — write it exactly how you want it shown (e.g. `"$1,249"`), or leave it `""` to show the product without a price.

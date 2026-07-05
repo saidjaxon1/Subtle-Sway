@@ -17,7 +17,7 @@
   <!-- Fonts: Fraunces (display) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./style.css">
   <script src="./main.js" defer></script>
@@ -37,10 +37,12 @@
 
   <main class="wrap">
 
-    <!-- Editorial hero — children fade up in a gentle stagger on load -->
+    <!-- Editorial hero — children fade up in a gentle stagger on load,
+         with two soft light washes drifting slowly behind the type -->
     <section class="hero-home">
+      <div class="hero-glow" aria-hidden="true"></div>
       <span class="eyebrow">A considered edit</span>
-      <h1>Quiet pieces and ideas for rooms that don't try too hard.</h1>
+      <h1>Quiet pieces and ideas for rooms that <em>don't try too hard.</em></h1>
       <p>Home objects, digital guides and everyday apparel — chosen slowly, with honest materials and calm intent.</p>
       <div class="hero-actions">
         <a class="btn" href="./shop.html">Browse the shop</a>
@@ -51,6 +53,26 @@
     <figure class="hero-image">
       <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=2000&q=80" alt="A calm, light-filled living room with linen upholstery">
     </figure>
+
+    <!-- Slow editorial ticker — two identical groups loop seamlessly -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Quiet interiors</span><span class="dot">·</span>
+          <span>Considered objects</span><span class="dot">·</span>
+          <span>Room guides</span><span class="dot">·</span>
+          <span>Honest materials</span><span class="dot">·</span>
+          <span>Calm living</span><span class="dot">·</span>
+        </div>
+        <div class="marquee-group">
+          <span>Quiet interiors</span><span class="dot">·</span>
+          <span>Considered objects</span><span class="dot">·</span>
+          <span>Room guides</span><span class="dot">·</span>
+          <span>Honest materials</span><span class="dot">·</span>
+          <span>Calm living</span><span class="dot">·</span>
+        </div>
+      </div>
+    </div>
 
     <!-- Shop by category — cards built from products.json by main.js -->
     <section class="home-section reveal" aria-label="Shop by category">
