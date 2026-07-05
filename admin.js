@@ -150,11 +150,23 @@
 
   /* ---------- List view ---------- */
 
+  // Ordered unique values of a product field ("category" / "subcategory").
+  function uniqueProductValues(products, key) {
+    var seen = [];
+    products.forEach(function (p) {
+      var value = (p[key] || "").trim();
+      if (value && seen.indexOf(value) === -1) seen.push(value);
+    });
+    return seen;
+  }
+
   function selectTab(tab) {
     state.tab = tab;
     $("tab-products").setAttribute("aria-selected", tab === "products");
     $("tab-posts").setAttribute("aria-selected", tab === "posts");
-    $("list-title").textContent = tab === "products" ? "Products" : "Posts";
+    $("tab-categories").setAttribute("aria-selected", tab === "categories");
+    $("list-title").textContent = { products: "Products", posts: "Posts", categories: "Categories" }[tab];
+    $("add-item").hidden = tab === "categories";
     $("form-view").hidden = true;
     $("list-view").hidden = false;
     renderList();
@@ -163,6 +175,12 @@
   function renderList() {
     var list = $("item-list");
     list.textContent = "";
+
+    if (state.tab === "categories") {
+      renderCategories(list);
+      return;
+    }
+
     var items = state[state.tab].data;
 
     if (!items.length) {
@@ -194,6 +212,78 @@
         ]),
         el("div", { class: "item-actions" }, [editBtn, deleteBtn])
       ]));
+    });
+  }
+
+  /* ---------- Categories view (rename everywhere in one step) ---------- */
+
+  function renameEverywhere(label, key, oldName, filter) {
+    var next = window.prompt(
+      "New name for " + label + " “" + oldName + "”.\nEvery product in it will be updated.",
+      oldName
+    );
+    if (next === null) return;
+    next = next.trim();
+    if (!next || next === oldName) return;
+
+    state.products.data.forEach(function (p) {
+      if ((p[key] || "").trim() === oldName && (!filter || filter(p))) p[key] = next;
+    });
+    saveFile("products", "admin: rename " + label + " “" + oldName + "” to “" + next + "”")
+      .then(renderList)
+      .catch(function (error) { setStatus(error.message, true); renderList(); });
+  }
+
+  function renderCategories(list) {
+    var products = state.products.data;
+    var categories = uniqueProductValues(products, "category");
+
+    if (!categories.length) {
+      list.appendChild(el("li", { class: "admin-empty" }, [
+        "No categories yet. Categories are created from products — give a product a category name and it appears here."
+      ]));
+      return;
+    }
+
+    list.appendChild(el("li", { class: "admin-hint" }, [
+      "Categories come from your products: type a new name on any product to create one; empty categories disappear on their own. Renaming here updates every product in one step."
+    ]));
+
+    categories.forEach(function (category) {
+      var inCategory = products.filter(function (p) { return (p.category || "").trim() === category; });
+
+      var renameBtn = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
+      renameBtn.addEventListener("click", function () {
+        renameEverywhere("category", "category", category);
+      });
+
+      list.appendChild(el("li", null, [
+        el("div", { class: "item-info" }, [
+          el("span", { class: "item-name" }, [category]),
+          el("span", { class: "item-meta" }, [inCategory.length + (inCategory.length === 1 ? " product" : " products")])
+        ]),
+        el("div", { class: "item-actions" }, [renameBtn])
+      ]));
+
+      uniqueProductValues(inCategory, "subcategory").forEach(function (sub) {
+        var subCount = inCategory.filter(function (p) { return (p.subcategory || "").trim() === sub; }).length;
+        var subRename = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
+        subRename.addEventListener("click", function () {
+          // Scope the rename to this category so a same-named subcategory
+          // elsewhere is left untouched.
+          renameEverywhere("subcategory", "subcategory", sub, function (p) {
+            return (p.category || "").trim() === category;
+          });
+        });
+
+        list.appendChild(el("li", { class: "sub" }, [
+          el("div", { class: "item-info" }, [
+            el("span", { class: "item-name sub-name" }, ["↳  " + sub]),
+            el("span", { class: "item-meta" }, [subCount + (subCount === 1 ? " product" : " products")])
+          ]),
+          el("div", { class: "item-actions" }, [subRename])
+        ]));
+      });
     });
   }
 
@@ -250,13 +340,24 @@
     ]);
     sourceSelect.value = (product.source || "").toLowerCase() === "own" ? "own" : "affiliate";
 
+    // Existing category/subcategory names appear as typing suggestions,
+    // so a typo can't accidentally create a new category.
+    var catInput = textInput("f-cat", product.category, "e.g. Home Decor, Fashion, Digital");
+    catInput.setAttribute("list", "dl-categories");
+    var subInput = textInput("f-sub", product.subcategory, "e.g. Living Room, Lighting, T-Shirts");
+    subInput.setAttribute("list", "dl-subcategories");
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
+      el("datalist", { id: "dl-categories" },
+        uniqueProductValues(state.products.data, "category").map(function (c) { return el("option", { value: c }); })),
+      el("datalist", { id: "dl-subcategories" },
+        uniqueProductValues(state.products.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
       field("Slug", textInput("f-slug", product.slug, "e.g. walnut-coffee-table"), "Unique, lowercase-with-dashes. Becomes the URL."),
       field("Name", textInput("f-name", product.name, "e.g. Walnut Coffee Table")),
       field("Link type", sourceSelect, "Affiliate shows the disclosure next to Buy Now; My product hides it completely."),
       field("Type", typeSelect, "Shown on the product page as a Digital product or Physical product tag. Not set = no tag."),
-      field("Category", textInput("f-cat", product.category, "e.g. Home Decor, Fashion, Digital"), "Top-level group — the filter tabs in the shop."),
-      field("Subcategory", textInput("f-sub", product.subcategory, "e.g. Living Room, Lighting, T-Shirts"), "Optional — the second filter row inside a category, and the small label on the card."),
+      field("Category", catInput, "Top-level group — the filter tabs in the shop. Pick an existing one or type a new name."),
+      field("Subcategory", subInput, "Optional — the second filter row inside a category, and the small label on the card."),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show the product without a price."),
       field("Image URL", textInput("f-image", product.image, "https://…")),
       field("Affiliate link", textInput("f-link", product.affiliateLink, "https://…"), "Opens from the Buy Now button."),
@@ -476,6 +577,7 @@
 
     $("tab-products").addEventListener("click", function () { selectTab("products"); });
     $("tab-posts").addEventListener("click", function () { selectTab("posts"); });
+    $("tab-categories").addEventListener("click", function () { selectTab("categories"); });
     $("add-item").addEventListener("click", function () { openForm(-1); });
     $("logout").addEventListener("click", function () {
       localStorage.removeItem(TOKEN_KEY);

@@ -222,6 +222,25 @@ select:focus-visible {
   padding: 2rem 0;
 }
 
+/* Categories tab */
+.admin-hint {
+  color: var(--muted);
+  font-size: var(--text-caption);
+  line-height: 1.6;
+  padding: 0.9rem 0.25rem !important;
+  max-width: 44em;
+}
+
+.admin-list li.sub {
+  padding-left: 2.25rem;
+}
+
+.sub-name {
+  font-family: var(--sans) !important;
+  font-size: 0.95rem !important;
+  color: var(--muted);
+}
+
 /* ---------- Forms ---------- */
 
 .admin-form {

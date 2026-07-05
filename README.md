@@ -80,6 +80,8 @@ Save the file — the post appears in the Journal automatically.
 
 Open `admin.html` on your live site (e.g. `https://your-domain/admin.html`). It lets you add, edit, and delete products and posts without touching any files — every save is committed to GitHub automatically and goes live in about a minute.
 
+The **Categories** tab shows every category and subcategory with product counts, and can rename one everywhere in a single step. Categories are created simply by typing a new name on a product (existing names appear as suggestions while typing), and a category disappears on its own when no product uses it.
+
 First-time setup (once per browser):
 
 1. On GitHub go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
