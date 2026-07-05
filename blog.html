@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./style.css?v=3">
-  <script src="./main.js?v=3" defer></script>
+  <link rel="stylesheet" href="./style.css?v=5">
+  <script src="./main.js?v=5" defer></script>
 </head>
 <body data-page="blog">
 
@@ -31,12 +31,22 @@
     <span class="eyebrow">The Journal</span>
     <h1 class="page-title">Notes on quiet living.</h1>
 
+    <!-- Search + category filters — built from posts.json by main.js -->
+    <div class="filter-bar" aria-label="Search and filter">
+      <div class="search-row">
+        <input type="search" id="post-search" placeholder="Search the journal…" aria-label="Search articles" autocomplete="off">
+      </div>
+      <div class="filter-row" id="post-category-row"></div>
+      <div class="filter-row sub" id="post-subcategory-row" hidden></div>
+    </div>
+
     <!-- Post list — populated from posts.json (newest first) by main.js -->
     <ul class="blog-list" id="blog-list"></ul>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
+      <p class="footer-contact" id="footer-contact" hidden></p>
       <p>&copy; 2026 Subtle Sway. All rights reserved.</p>
       <p>As an affiliate, we may earn from qualifying purchases.</p>
     </div>

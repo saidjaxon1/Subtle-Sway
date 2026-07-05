@@ -187,12 +187,17 @@
   }
 
   // Journal card used by the blog list and the home page preview.
+  // Posts without a cover photo get a clean typographic card instead
+  // of a broken image.
   function postCard(post) {
-    return el("li", { class: "post-card" }, [
+    var hasCover = !!(post.cover || "").trim();
+    return el("li", { class: "post-card" + (hasCover ? "" : " no-cover") }, [
       el("a", { href: "./post.html?slug=" + encodeURIComponent(post.slug) }, [
-        el("figure", null, [
-          el("img", { src: post.cover, alt: post.title, loading: "lazy" })
-        ]),
+        hasCover
+          ? el("figure", null, [
+              el("img", { src: post.cover, alt: post.title, loading: "lazy" })
+            ])
+          : null,
         el("span", { class: "eyebrow" }, [formatDate(post.date)]),
         el("h2", null, [post.title]),
         el("p", { class: "excerpt" }, [post.excerpt])
@@ -203,6 +208,56 @@
   function sortNewestFirst(posts) {
     // ISO dates sort correctly as strings.
     return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  }
+
+  // True when the query appears in any of the given strings.
+  function matchesQuery(query, parts) {
+    var q = norm(query);
+    if (!q) return true;
+    return parts.some(function (part) { return norm(part).indexOf(q) !== -1; });
+  }
+
+  /* ---------- Footer contact (edited from the admin panel) ---------- */
+
+  function initFooterContact() {
+    var slot = document.getElementById("footer-contact");
+    if (!slot) return;
+    loadJSON("./site.json")
+      .then(function (site) {
+        var c = (site && site.contact) || {};
+        if (!c.email && !c.text && !c.pinterest && !c.instagram) return;
+        slot.hidden = false;
+        slot.appendChild(el("span", { class: "contact-label" }, ["Contact us"]));
+        if (c.text) slot.appendChild(document.createTextNode(" — " + c.text));
+        if (c.email) {
+          slot.appendChild(document.createTextNode(" "));
+          slot.appendChild(el("a", { class: "text-link", href: "mailto:" + c.email }, [c.email]));
+        }
+        if (c.pinterest) {
+          slot.appendChild(document.createTextNode("  ·  "));
+          slot.appendChild(el("a", { class: "text-link", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
+        }
+        if (c.instagram) {
+          slot.appendChild(document.createTextNode("  ·  "));
+          slot.appendChild(el("a", { class: "text-link", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
+        }
+      })
+      .catch(function () { /* footer simply stays without a contact line */ });
+  }
+
+  /* ---------- Reading progress line (article pages) ---------- */
+
+  function initReadingProgress() {
+    var bar = el("div", { class: "read-progress", "aria-hidden": "true" });
+    document.body.appendChild(bar);
+    function update() {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var ratio = max > 0 ? doc.scrollTop / max : 0;
+      bar.style.transform = "scaleX(" + Math.min(1, Math.max(0, ratio)) + ")";
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
   }
 
   // Ordered list of unique display values, deduplicated case- and
@@ -257,10 +312,51 @@
     }, 2000);
   }
 
+  /* ---------- Related-content strips (shared) ---------- */
+
+  // A small linked section: eyebrow + heading + a grid of cards.
+  function relatedSection(eyebrow, heading, listClass, cards) {
+    if (!cards.length) return null;
+    return el("section", { class: "related-section" }, [
+      el("div", { class: "section-head" }, [
+        el("div", null, [
+          el("span", { class: "eyebrow" }, [eyebrow]),
+          el("h2", null, [heading])
+        ])
+      ]),
+      el("ul", { class: listClass }, cards)
+    ]);
+  }
+
+  function postsInCategory(posts, category, excludeSlug, limit) {
+    return sortNewestFirst(posts)
+      .filter(function (p) {
+        return (!category || norm(p.category) === norm(category)) && p.slug !== excludeSlug;
+      })
+      .slice(0, limit);
+  }
+
+  function productsInCategory(products, category, excludeSlug, limit) {
+    return products
+      .filter(function (p) {
+        return (!category || norm(p.category) === norm(category)) && p.slug !== excludeSlug;
+      })
+      .slice(0, limit);
+  }
+
   /* ---------- Page: home (landing) ---------- */
 
   function initHome() {
     initReveal();
+
+    loadJSON("./posts.json")
+      .then(function (posts) {
+        var list = document.getElementById("journal-preview");
+        sortNewestFirst(posts).slice(0, 3).forEach(function (post) {
+          list.appendChild(postCard(post));
+        });
+      })
+      .catch(function (error) { console.error(error); });
 
     loadJSON("./products.json")
       .then(function (products) {
@@ -290,15 +386,6 @@
         });
       })
       .catch(function (error) { console.error(error); });
-
-    loadJSON("./posts.json")
-      .then(function (posts) {
-        var list = document.getElementById("journal-preview");
-        sortNewestFirst(posts).slice(0, 2).forEach(function (post) {
-          list.appendChild(postCard(post));
-        });
-      })
-      .catch(function (error) { console.error(error); });
   }
 
   /* ---------- Page: shop (grid with two-level category filter) ---------- */
@@ -307,9 +394,14 @@
     var grid = document.getElementById("product-grid");
     var catRow = document.getElementById("category-row");
     var subRow = document.getElementById("subcategory-row");
+    var searchInput = document.getElementById("product-search");
+    var relatedSlot = el("div");
+    document.querySelector("main").appendChild(relatedSlot);
 
-    loadJSON("./products.json")
-      .then(function (products) {
+    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json").catch(function () { return []; })])
+      .then(function (results) {
+        var products = results[0];
+        var allPosts = results[1];
         var categories = uniqueValues(products, function (p) { return p.category; });
 
         // Resolve a raw value (e.g. from the URL) to its canonical spelling.
@@ -320,8 +412,16 @@
 
         var state = {
           category: canonical(categories, getParam("category")),
-          sub: getParam("sub")
+          sub: getParam("sub"),
+          query: ""
         };
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            state.query = searchInput.value;
+            render();
+          });
+        }
 
         function chip(label, pressed, onClick) {
           var button = el("button", { class: "chip", type: "button", "aria-pressed": String(pressed) }, [label]);
@@ -382,18 +482,31 @@
             state.sub = null;
           }
 
-          // The grid itself.
+          // The grid itself: category filter, then subcategory, then search.
           grid.textContent = "";
           var visible = inCategory.filter(function (p) {
-            return !state.sub || norm(p.subcategory) === norm(state.sub);
+            return (!state.sub || norm(p.subcategory) === norm(state.sub)) &&
+              matchesQuery(state.query, [p.name, p.description, p.category, p.subcategory]);
           });
           if (!visible.length) {
-            grid.appendChild(el("li", { class: "grid-empty" }, ["Nothing in this category yet."]));
-            return;
+            grid.appendChild(el("li", { class: "grid-empty" }, [
+              norm(state.query) ? "Nothing matches that search." : "Nothing in this category yet."
+            ]));
+          } else {
+            visible.forEach(function (product) {
+              grid.appendChild(productCard(product));
+            });
           }
-          visible.forEach(function (product) {
-            grid.appendChild(productCard(product));
-          });
+
+          // Reading suggestions that follow the chosen category.
+          relatedSlot.textContent = "";
+          var section = relatedSection(
+            "The Journal",
+            state.category ? "Notes on " + state.category : "From the journal",
+            "related-journal",
+            postsInCategory(allPosts, state.category, null, 3).map(postCard)
+          );
+          if (section) relatedSlot.appendChild(section);
         }
 
         render();
@@ -410,8 +523,10 @@
     var main = document.querySelector("main");
     var slug = getParam("slug");
 
-    loadJSON("./products.json")
-      .then(function (products) {
+    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json").catch(function () { return []; })])
+      .then(function (results) {
+        var products = results[0];
+        var allPosts = results[1];
         var product = products.find(function (p) { return p.slug === slug; });
 
         if (!product) {
@@ -459,15 +574,41 @@
         var note = affiliateNote(product, false);
         if (note) info.appendChild(note);
 
+        // Main photo plus any extra photos, stacked in a quiet column.
+        var media = el("div", { class: "media" }, [
+          el("figure", null, [
+            el("img", { src: product.image, alt: product.name })
+          ])
+        ]);
+        (product.images || []).forEach(function (src) {
+          if (!(src || "").trim()) return;
+          media.appendChild(el("figure", null, [
+            el("img", { src: src, alt: product.name, loading: "lazy" })
+          ]));
+        });
+
         main.textContent = "";
         main.appendChild(
-          el("article", { class: "product-detail" }, [
-            el("figure", null, [
-              el("img", { src: product.image, alt: product.name })
-            ]),
-            info
-          ])
+          el("article", { class: "product-detail" }, [media, info])
         );
+
+        // Below the product: more pieces from the same category, then
+        // journal notes about it.
+        var moreSection = relatedSection(
+          "The Shop",
+          "You may also like",
+          "product-grid",
+          productsInCategory(products, product.category, product.slug, 3).map(productCard)
+        );
+        if (moreSection) main.appendChild(moreSection);
+
+        var notesSection = relatedSection(
+          "The Journal",
+          product.category ? "Notes on " + product.category : "From the journal",
+          "related-journal",
+          postsInCategory(allPosts, product.category, null, 3).map(postCard)
+        );
+        if (notesSection) main.appendChild(notesSection);
       })
       .catch(function (error) {
         console.error(error);
@@ -479,11 +620,118 @@
 
   function initBlog() {
     var list = document.getElementById("blog-list");
-    loadJSON("./posts.json")
-      .then(function (posts) {
-        sortNewestFirst(posts).forEach(function (post) {
-          list.appendChild(postCard(post));
-        });
+    var catRow = document.getElementById("post-category-row");
+    var subRow = document.getElementById("post-subcategory-row");
+    var searchInput = document.getElementById("post-search");
+    var relatedSlot = el("div");
+    document.querySelector("main").appendChild(relatedSlot);
+
+    Promise.all([loadJSON("./posts.json"), loadJSON("./products.json").catch(function () { return []; })])
+      .then(function (results) {
+        var sorted = sortNewestFirst(results[0]);
+        var allProducts = results[1];
+        var categories = uniqueValues(sorted, function (p) { return p.category; });
+
+        function canonical(listValues, value) {
+          if (!value) return null;
+          return listValues.find(function (item) { return norm(item) === norm(value); }) || null;
+        }
+
+        var state = {
+          category: canonical(categories, getParam("category")),
+          sub: getParam("sub"),
+          query: ""
+        };
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            state.query = searchInput.value;
+            render();
+          });
+        }
+
+        function chip(label, pressed, onClick) {
+          var button = el("button", { class: "chip", type: "button", "aria-pressed": String(pressed) }, [label]);
+          button.addEventListener("click", onClick);
+          return button;
+        }
+
+        function syncUrl() {
+          var params = new URLSearchParams();
+          if (state.category) params.set("category", state.category);
+          if (state.sub) params.set("sub", state.sub);
+          var query = params.toString();
+          history.replaceState(null, "", "./blog.html" + (query ? "?" + query : ""));
+        }
+
+        function render() {
+          syncUrl();
+
+          catRow.textContent = "";
+          catRow.appendChild(chip("All", !state.category, function () {
+            state.category = null;
+            state.sub = null;
+            render();
+          }));
+          categories.forEach(function (category) {
+            catRow.appendChild(chip(category, state.category === category, function () {
+              state.category = category;
+              state.sub = null;
+              render();
+            }));
+          });
+
+          var inCategory = state.category
+            ? sorted.filter(function (p) { return norm(p.category) === norm(state.category); })
+            : sorted;
+          var subs = state.category
+            ? uniqueValues(inCategory, function (p) { return p.subcategory; })
+            : [];
+
+          subRow.textContent = "";
+          subRow.hidden = !state.category || subs.length === 0;
+          if (!subRow.hidden) {
+            state.sub = canonical(subs, state.sub);
+            subRow.appendChild(chip("All " + state.category, !state.sub, function () {
+              state.sub = null;
+              render();
+            }));
+            subs.forEach(function (sub) {
+              subRow.appendChild(chip(sub, state.sub === sub, function () {
+                state.sub = sub;
+                render();
+              }));
+            });
+          } else {
+            state.sub = null;
+          }
+
+          list.textContent = "";
+          var visible = inCategory.filter(function (post) {
+            var blockText = (post.content || []).map(function (b) { return b.text || ""; }).join(" ");
+            return (!state.sub || norm(post.subcategory) === norm(state.sub)) &&
+              matchesQuery(state.query, [post.title, post.excerpt, blockText, post.category, post.subcategory]);
+          });
+          if (!visible.length) {
+            list.appendChild(el("li", { class: "grid-empty" }, [
+              norm(state.query) ? "Nothing matches that search." : "Nothing in this category yet."
+            ]));
+          } else {
+            visible.forEach(function (post) { list.appendChild(postCard(post)); });
+          }
+
+          // Product suggestions that follow the chosen category.
+          relatedSlot.textContent = "";
+          var section = relatedSection(
+            "The Shop",
+            state.category ? "Shop " + state.category : "From the shop",
+            "product-grid",
+            productsInCategory(allProducts, state.category, null, 3).map(productCard)
+          );
+          if (section) relatedSlot.appendChild(section);
+        }
+
+        render();
       })
       .catch(function (error) {
         console.error(error);
@@ -529,6 +777,19 @@
                 el("img", { src: block.src, alt: block.alt || "", loading: "lazy" })
               ])
             );
+          } else if (block.type === "gallery") {
+            // Several photos side by side; two or three columns by count.
+            var images = (block.images || []).filter(function (img) { return (img.src || "").trim(); });
+            if (images.length) {
+              body.appendChild(
+                el("div", { class: "gallery cols-" + Math.min(images.length, 3) },
+                  images.map(function (img) {
+                    return el("figure", null, [
+                      el("img", { src: img.src, alt: img.alt || "", loading: "lazy" })
+                    ]);
+                  }))
+              );
+            }
           } else if (block.type === "product") {
             var product = products.find(function (p) { return p.slug === block.slug; });
             if (product) body.appendChild(embeddedProductCard(product));
@@ -543,12 +804,44 @@
               el("span", { class: "eyebrow" }, [formatDate(post.date)]),
               el("h1", null, [post.title])
             ]),
-            el("figure", { class: "article-cover" }, [
-              el("img", { src: post.cover, alt: post.title })
-            ]),
+            // The cover is optional — articles read just as well without one.
+            (post.cover || "").trim()
+              ? el("figure", { class: "article-cover" }, [
+                  el("img", { src: post.cover, alt: post.title })
+                ])
+              : null,
             body
           ])
         );
+
+        // Below the article: products from the same category that the
+        // article didn't already feature, then more reading.
+        var embeddedSlugs = (post.content || [])
+          .filter(function (b) { return b.type === "product"; })
+          .map(function (b) { return b.slug; });
+        var relatedProducts = products
+          .filter(function (p) {
+            return (!post.category || norm(p.category) === norm(post.category)) &&
+              embeddedSlugs.indexOf(p.slug) === -1;
+          })
+          .slice(0, 3);
+        var shopSection = relatedSection(
+          "The Shop",
+          post.category ? "Shop " + post.category : "Shop the edit",
+          "product-grid",
+          relatedProducts.map(productCard)
+        );
+        if (shopSection) main.appendChild(shopSection);
+
+        var readingSection = relatedSection(
+          "Keep reading",
+          "More like this",
+          "related-journal",
+          postsInCategory(posts, post.category, post.slug, 3).map(postCard)
+        );
+        if (readingSection) main.appendChild(readingSection);
+
+        initReadingProgress();
       })
       .catch(function (error) {
         console.error(error);
@@ -567,7 +860,8 @@
     post: initPost
   }[page];
 
-  if (init) {
-    document.addEventListener("DOMContentLoaded", init);
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    if (init) init();
+    initFooterContact();
+  });
 })();

@@ -1,8 +1,102 @@
 [
   {
+    "slug": "home-decor-starter-kit",
+    "title": "The Home Decor Starter Kit: What to Buy First",
+    "date": "2026-07-05",
+    "category": "Home Decor",
+    "subcategory": "Foundations",
+    "cover": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Six pieces that carry a whole home — in the order worth buying them, and what to look for in each.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Furnishing a home from scratch is mostly a question of order. Buy the quiet, foundational pieces first and every later purchase has something to belong to; buy the decorative things first and the room never quite settles. This is the buying order we recommend, with what to look for at each step."
+      },
+      {
+        "type": "heading",
+        "text": "First: the seat you will live in"
+      },
+      {
+        "type": "paragraph",
+        "text": "The sofa takes the largest share of the budget because it takes the largest share of your hours. Look for a hardwood frame, feather-wrapped or high-resilience cushions, and a cover in linen or wool. Neutral is not boring here — it is what lets the next five purchases be easy."
+      },
+      {
+        "type": "product",
+        "slug": "arden-sofa"
+      },
+      {
+        "type": "heading",
+        "text": "Second: light you can lower"
+      },
+      {
+        "type": "paragraph",
+        "text": "One warm floor lamp beside the seating changes a room more than any object on a shelf. Look for a shade that hides the bulb from seated eye level, and always choose warm bulbs — 2700 kelvin or below."
+      },
+      {
+        "type": "product",
+        "slug": "haze-floor-lamp"
+      },
+      {
+        "type": "heading",
+        "text": "Third: a surface within reach"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every seat needs somewhere to put a cup down. A solid-wood side table ages into character rather than damage — check that the top is real timber, not veneer over board."
+      },
+      {
+        "type": "product",
+        "slug": "loam-side-table"
+      },
+      {
+        "type": "heading",
+        "text": "Fourth: the bed you already own, dressed properly"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before replacing furniture in the bedroom, replace the textiles. Washed linen or cotton percale bedding is the single most felt upgrade in the entire home — you spend a third of your life inside it."
+      },
+      {
+        "type": "product",
+        "slug": "ren-linen-bedding"
+      },
+      {
+        "type": "heading",
+        "text": "Fifth: one object with presence"
+      },
+      {
+        "type": "paragraph",
+        "text": "Only now does decoration begin. One handmade vessel on a console does more than a shelf of small things — buy fewer, larger, and calmer."
+      },
+      {
+        "type": "product",
+        "slug": "sana-stoneware-vase"
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A composed living room built from a neutral sofa, layered textures and a single gallery wall"
+      },
+      {
+        "type": "heading",
+        "text": "And throughout: a plan"
+      },
+      {
+        "type": "paragraph",
+        "text": "The pieces above work in any home because they follow the same quiet rules — one palette, honest materials, light in layers. If you want the full method before you spend anything, start with the guide."
+      },
+      {
+        "type": "product",
+        "slug": "calm-interior-guide"
+      }
+    ]
+  },
+  {
     "slug": "home-decor-the-quiet-way",
     "title": "Home Decor, the Quiet Way: A Complete Foundation",
     "date": "2026-07-04",
+    "category": "Home Decor",
+    "subcategory": "Foundations",
     "cover": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "Palette, texture, light, and negative space — the four decisions that shape every calm room, explained from the ground up.",
     "content": [
@@ -58,9 +152,191 @@
     ]
   },
   {
+    "slug": "japandi-explained",
+    "title": "Japandi, Explained: Warm Minimalism for Every Room",
+    "date": "2026-07-03",
+    "category": "Home Decor",
+    "subcategory": "Japandi",
+    "cover": "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Where Japanese restraint meets Scandinavian warmth. The principles of Japandi, and how to bring it home without buying a single cliché.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Japandi is what happens when two design cultures that already agree — Japanese restraint and Scandinavian warmth — sit down at the same low table. Both prize natural materials, handcraft, and empty space; one contributes stillness, the other cosiness. The result is minimalism you can actually live in."
+      },
+      {
+        "type": "heading",
+        "text": "The principles, in short"
+      },
+      {
+        "type": "paragraph",
+        "text": "Low furniture, so the room feels taller and calmer. Wood in two tones at most — pale oak or ash against something smoked or espresso-dark. Craft over decoration: a hand-thrown bowl earns its shelf, a mass-produced ornament does not. And wabi-sabi, the acceptance of imperfection: the knot in the timber and the uneven glaze are the point, not the flaw."
+      },
+      {
+        "type": "heading",
+        "text": "The palette"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bone, sand, and clay for warmth; charcoal and deep espresso for weight; one muted green — sage or moss — as the only colour. Nothing glossy. Matte walls, oiled wood, raw ceramics and paper shades hold light softly instead of bouncing it."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A warm minimal living room with a tan sofa, arched mirror and a single plant"
+      },
+      {
+        "type": "heading",
+        "text": "What to actually buy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with seating in natural materials and honest joinery — paper cord, solid oak, linen. One sculptural chair does more for a Japandi room than a set of anything."
+      },
+      {
+        "type": "product",
+        "slug": "noma-lounge-chair"
+      },
+      {
+        "type": "paragraph",
+        "text": "Then surfaces: low, solid, and few. A single oak side table beside the seat, holding one cup and nothing else, is Japandi in a sentence."
+      },
+      {
+        "type": "product",
+        "slug": "loam-side-table"
+      },
+      {
+        "type": "heading",
+        "text": "What to leave out"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anything that shines, anything in a set of three, anything bought to fill a corner. Japandi rooms are finished when there is nothing left to remove — which makes it the least expensive style to maintain and the hardest one to fake."
+      }
+    ]
+  },
+  {
+    "slug": "the-modern-home",
+    "title": "The Modern Home: Inspiration Without the Chill",
+    "date": "2026-06-30",
+    "category": "Home Decor",
+    "subcategory": "Modern Home",
+    "cover": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Modern doesn't have to mean cold. Clean lines, warm materials, and the five moves that make a contemporary home feel lived in.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Modern interiors have a reputation problem: too many of them photograph like showrooms and live like waiting rooms. But the chill is not in the style — it is in the execution. Clean lines and open space only turn cold when every surface is hard and every colour is grey. Keep the geometry, warm the materials, and the modern home becomes the most comfortable kind there is."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the lines, soften the surfaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "The modern silhouette — straight arms, low profiles, visible legs — stays. What changes is what it's made of: linen instead of microfibre, leather that ages instead of vinyl that peels, wool underfoot instead of polyester shine. A sofa can be perfectly rectilinear and still feel like an invitation."
+      },
+      {
+        "type": "product",
+        "slug": "arden-sofa"
+      },
+      {
+        "type": "heading",
+        "text": "One gallery wall, hung tight"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modern rooms carry art better than any other style because the walls are quiet. Hang one disciplined grid — same frames, tight spacing, one wall only — and leave every other wall bare. The contrast between the dense grid and the empty plaster is the whole effect."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A bright modern living room with clean-lined grey sofas and a row of tall windows"
+      },
+      {
+        "type": "heading",
+        "text": "Warm metal, warm light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Swap chrome for brass or blackened steel, and swap the cool-white bulbs for warm ones — this alone removes most of the chill from a modern room. A single sculptural lamp at seating height gives the geometry something to glow against."
+      },
+      {
+        "type": "product",
+        "slug": "haze-floor-lamp"
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1615971677499-5467cbab01c0?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A deep blue living room with warm brass lighting and a caramel leather sofa"
+      },
+      {
+        "type": "heading",
+        "text": "The five moves, summarised"
+      },
+      {
+        "type": "paragraph",
+        "text": "Straight lines in soft materials. One tight gallery wall. Brass instead of chrome. Bulbs at 2700 kelvin. And one imperfect, handmade object per room to remind the geometry that people live here. Modern, warm, done."
+      }
+    ]
+  },
+  {
+    "slug": "the-modern-bedroom",
+    "title": "The Modern Bedroom: Soft Minimalism After Dark",
+    "date": "2026-06-27",
+    "category": "Home Decor",
+    "subcategory": "Modern Home",
+    "cover": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "How to keep a bedroom modern without making it feel like a hotel you're visiting — structure from the style, softness from the textiles.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The modern bedroom fails in a specific way: it becomes a beautiful hotel room that never quite becomes yours. The cure is a clean split of responsibilities — let the architecture and furniture be modern, and let everything you touch be soft. Structure from the style, comfort from the textiles."
+      },
+      {
+        "type": "heading",
+        "text": "A low bed, a quiet wall"
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep the bed frame low and simple — upholstered or pale timber, no tall ornate headboard. Centre it on the calmest wall and resist the urge to decorate above it; in a modern bedroom, the empty wall is the headboard."
+      },
+      {
+        "type": "heading",
+        "text": "Textiles carry all the warmth"
+      },
+      {
+        "type": "paragraph",
+        "text": "With the lines this clean, the bedding does the emotional work. Washed linen in two close tones, a wool layer folded at the foot, and real pillows in generous sizes. Crisp geometry plus soft cloth is the entire formula — remove either half and the room tips into showroom or into clutter."
+      },
+      {
+        "type": "product",
+        "slug": "ren-linen-bedding"
+      },
+      {
+        "type": "heading",
+        "text": "Two lamps, no big light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Symmetry suits modern bedrooms: matching low lamps on both sides, warm bulbs, and the ceiling light reserved for cleaning day. If the room has a chair, give it its own small pool of light and it becomes a reading corner instead of a clothes rack."
+      },
+      {
+        "type": "heading",
+        "text": "The one-surface rule"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nightstands hold three things: light, water, and the book. The dresser top holds one object you like. That is the entire styling budget of a modern bedroom — spend it well and stop. Minimalism you can fall asleep inside of."
+      }
+    ]
+  },
+  {
     "slug": "the-living-room-edited",
     "title": "The Living Room, Edited",
     "date": "2026-07-02",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "The living room carries more furniture, more traffic and more decisions than any other space. A complete guide to editing it down to what matters.",
     "content": [
@@ -115,6 +391,8 @@
     "slug": "a-calmer-dining-room",
     "title": "A Calmer Dining Room",
     "date": "2026-06-29",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "A dining room needs exactly three things done well: a table that ages, chairs that invite, and light that flatters. Everything else is styling.",
     "content": [
@@ -169,6 +447,8 @@
     "slug": "the-restful-bedroom",
     "title": "The Restful Bedroom",
     "date": "2026-06-25",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "A bedroom has one job. A guide to designing for rest — bed, textiles, light and the discipline of what stays out.",
     "content": [
@@ -223,6 +503,8 @@
     "slug": "the-bathroom-reconsidered",
     "title": "The Bathroom, Reconsidered",
     "date": "2026-06-22",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "The smallest room rewards restraint more than any other. Surfaces, storage and softness — how to make a bathroom feel composed.",
     "content": [
@@ -274,9 +556,67 @@
     ]
   },
   {
+    "slug": "casual-outfits-the-quiet-way",
+    "title": "Casual Outfits, the Quiet Way",
+    "date": "2026-06-19",
+    "category": "Fashion",
+    "subcategory": "Casual Outfits",
+    "cover": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The same rules that calm a room calm a wardrobe: one palette, honest fabrics, and fewer, better pieces that work in any combination.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A wardrobe is a small interior. The same decisions that calm a room — one palette, honest materials, fewer and better things — produce the kind of casual dressing that looks effortless precisely because most of the decisions were made in advance, once."
+      },
+      {
+        "type": "heading",
+        "text": "Choose a palette, not outfits"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pick four or five tones you actually wear — for most people that is bone, sand, olive or navy, and two depths of a dark anchor — and buy only inside them. When every piece shares a palette, every combination works, and getting dressed becomes assembly rather than decision-making."
+      },
+      {
+        "type": "heading",
+        "text": "Fabric first, always"
+      },
+      {
+        "type": "paragraph",
+        "text": "Casual clothes live close to the skin and get washed constantly, so the fabric is the product. Heavyweight cotton that softens with wear, linen that creases honestly, wool that shrugs off a season. If the label reads like a chemistry exam, put it back."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A row of sage green t-shirts on wooden hangers"
+      },
+      {
+        "type": "heading",
+        "text": "The workhorse: a proper tee"
+      },
+      {
+        "type": "paragraph",
+        "text": "The t-shirt is the sofa of the wardrobe — the piece everything else leans on, and the worst place to economise. Boxy rather than clingy, heavyweight rather than sheer, and in a tone from your palette. Buy two of the one you love; you will wear them more than anything else you own."
+      },
+      {
+        "type": "product",
+        "slug": "studio-heavyweight-tee"
+      },
+      {
+        "type": "heading",
+        "text": "The quiet-outfit formula"
+      },
+      {
+        "type": "paragraph",
+        "text": "One relaxed layer, one structured piece, one texture that stands out — linen against denim, wool against cotton. Keep the shoes simple and the colours within the palette, and the outfit reads as considered from ten metres away. Like a good room, a good casual outfit is finished when there is nothing left to take off the shelf."
+      }
+    ]
+  },
+  {
     "slug": "light-and-linen",
     "title": "Light and Linen: A Summer Reset",
     "date": "2026-06-18",
+    "category": "Home Decor",
+    "subcategory": "Seasonal",
     "cover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "Swapping heavy textures for breathable ones is the cheapest renovation there is. A short guide to resetting a room for the warm months.",
     "content": [
@@ -319,6 +659,8 @@
     "slug": "the-calm-kitchen",
     "title": "The Kitchen: Calm in the Busiest Room",
     "date": "2026-06-15",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "The kitchen works harder than any room in the home. How to keep it composed without hiding the fact that someone cooks here.",
     "content": [
@@ -373,6 +715,8 @@
     "slug": "the-considered-entryway",
     "title": "The Entryway: A Considered Welcome",
     "date": "2026-06-11",
+    "category": "Home Decor",
+    "subcategory": "Room Guides",
     "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "The first three steps into a home decide how the whole of it feels. A guide to the most overlooked space you own.",
     "content": [

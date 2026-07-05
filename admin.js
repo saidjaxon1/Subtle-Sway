@@ -23,9 +23,11 @@
     token: null,
     products: { data: [], sha: null },
     posts: { data: [], sha: null },
+    site: { data: { contact: { text: "", email: "", pinterest: "", instagram: "" } }, sha: null },
     tab: "products",     // which tab is active
     editIndex: -1,       // -1 = adding a new item
-    blocks: []           // working copy of a post's content blocks while editing
+    blocks: [],          // working copy of a post's content blocks while editing
+    extraImages: []      // working copy of a product's extra photos while editing
   };
 
   /* ---------- DOM helpers ---------- */
@@ -97,15 +99,16 @@
 
   function saveFile(name, message) {
     setStatus("Saving…");
+    var payload = {
+      message: message,
+      content: b64encode(JSON.stringify(state[name].data, null, 2) + "\n"),
+      branch: CONFIG.branch
+    };
+    if (state[name].sha) payload.sha = state[name].sha; // no sha = create the file
     return fetch(API_BASE + name + ".json", {
       method: "PUT",
       headers: apiHeaders(),
-      body: JSON.stringify({
-        message: message,
-        content: b64encode(JSON.stringify(state[name].data, null, 2) + "\n"),
-        sha: state[name].sha,
-        branch: CONFIG.branch
-      })
+      body: JSON.stringify(payload)
     }).then(function (response) {
       if (response.status === 409) {
         // The file changed on GitHub since we loaded it — reload and ask to retry.
@@ -134,7 +137,11 @@
     state.token = token;
     $("auth-screen").hidden = true;
     $("loading").hidden = false;
-    Promise.all([fetchFile("products"), fetchFile("posts")])
+    // site.json may not exist yet — fall back to defaults and create it on first save.
+    var fetchSite = fetchFile("site").catch(function () {
+      state.site = { data: { contact: { text: "", email: "", pinterest: "", instagram: "" } }, sha: null };
+    });
+    Promise.all([fetchFile("products"), fetchFile("posts"), fetchSite])
       .then(function () {
         localStorage.setItem(TOKEN_KEY, token);
         $("loading").hidden = true;
@@ -174,14 +181,65 @@
 
   function selectTab(tab) {
     state.tab = tab;
-    $("tab-products").setAttribute("aria-selected", tab === "products");
-    $("tab-posts").setAttribute("aria-selected", tab === "posts");
-    $("tab-categories").setAttribute("aria-selected", tab === "categories");
+    ["products", "posts", "categories", "contact"].forEach(function (name) {
+      $("tab-" + name).setAttribute("aria-selected", tab === name);
+    });
+    $("add-item").hidden = tab === "categories" || tab === "contact";
+
+    if (tab === "contact") {
+      $("list-view").hidden = true;
+      openContactForm();
+      return;
+    }
+
     $("list-title").textContent = { products: "Products", posts: "Articles", categories: "Categories" }[tab];
-    $("add-item").hidden = tab === "categories";
     $("form-view").hidden = true;
     $("list-view").hidden = false;
     renderList();
+  }
+
+  /* ---------- Contact form (footer contact line, stored in site.json) ---------- */
+
+  function openContactForm() {
+    var contact = (state.site.data && state.site.data.contact) || {};
+    var view = $("form-view");
+    view.textContent = "";
+    view.appendChild(el("h1", { class: "admin-title" }, ["Contact"]));
+    view.appendChild(el("p", { class: "admin-hint" }, [
+      "Shown as a small “Contact us” line at the bottom of every page. Leave a field empty to hide that part."
+    ]));
+
+    var form = el("form", { class: "admin-form", novalidate: "" }, [
+      field("Short line", textInput("c-text", contact.text, "e.g. Questions or collaborations — write to us."), "Optional — a few friendly words before the email."),
+      field("Email", textInput("c-email", contact.email, "hello@example.com")),
+      field("Pinterest link", textInput("c-pinterest", contact.pinterest, "https://pinterest.com/…"), "Optional."),
+      field("Instagram link", textInput("c-instagram", contact.instagram, "https://instagram.com/…"), "Optional.")
+    ]);
+
+    var error = el("p", { class: "form-error", role: "alert" }, []);
+    var save = el("button", { class: "btn", type: "submit" }, ["Save"]);
+    form.appendChild(el("div", null, [error, el("div", { class: "form-buttons" }, [save])]));
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      error.textContent = "";
+      state.site.data = { contact: {
+        text: $("c-text").value.trim(),
+        email: $("c-email").value.trim(),
+        pinterest: $("c-pinterest").value.trim(),
+        instagram: $("c-instagram").value.trim()
+      } };
+      save.disabled = true;
+      saveFile("site", "admin: update contact details")
+        .then(function () { save.disabled = false; })
+        .catch(function (saveError) {
+          save.disabled = false;
+          error.textContent = saveError.message;
+        });
+    });
+
+    view.appendChild(form);
+    view.hidden = false;
   }
 
   function renderList() {
@@ -208,8 +266,9 @@
       editBtn.addEventListener("click", function () { openForm(index); });
       deleteBtn.addEventListener("click", function () { deleteItem(index); });
 
+      var thumbSrc = isProduct ? item.image : item.cover;
       list.appendChild(el("li", null, [
-        el("img", { src: isProduct ? item.image : item.cover, alt: "" }),
+        thumbSrc ? el("img", { src: thumbSrc, alt: "" }) : el("span", { class: "thumb-empty" }),
         el("div", { class: "item-info" }, [
           el("span", { class: "item-name" }, [isProduct ? item.name : item.title]),
           el("span", { class: "item-meta" }, [
@@ -219,7 +278,7 @@
                  (item.source || "") === "own" ? "my product" : null,
                  item.slug]
                   .filter(Boolean).join("  ·  ")
-              : item.date + "  ·  " + item.slug
+              : [item.date, item.category || null, item.slug].filter(Boolean).join("  ·  ")
           ])
         ]),
         el("div", { class: "item-actions" }, [editBtn, deleteBtn])
@@ -229,50 +288,51 @@
 
   /* ---------- Categories view (rename everywhere in one step) ---------- */
 
-  function renameEverywhere(label, key, oldName, filter) {
+  // Rename a category/subcategory across every item in one file
+  // ("products" or "posts") and save.
+  function renameEverywhere(fileName, noun, key, oldName, filter) {
     var next = window.prompt(
-      "New name for " + label + " “" + oldName + "”.\nEvery product in it will be updated.",
+      "New name for " + key + " “" + oldName + "”.\nEvery " + noun + " in it will be updated.",
       oldName
     );
     if (next === null) return;
     next = next.trim();
     if (!next || next === oldName) return;
 
-    state.products.data.forEach(function (p) {
-      if (norm(p[key]) === norm(oldName) && (!filter || filter(p))) p[key] = next;
+    state[fileName].data.forEach(function (item) {
+      if (norm(item[key]) === norm(oldName) && (!filter || filter(item))) item[key] = next;
     });
-    saveFile("products", "admin: rename " + label + " “" + oldName + "” to “" + next + "”")
+    saveFile(fileName, "admin: rename " + key + " “" + oldName + "” to “" + next + "”")
       .then(renderList)
       .catch(function (error) { setStatus(error.message, true); renderList(); });
   }
 
-  function renderCategories(list) {
-    var products = state.products.data;
-    var categories = uniqueProductValues(products, "category");
+  // One group of category rows (used for products and for articles).
+  function renderCategoryGroup(list, fileName, groupLabel, noun) {
+    var items = state[fileName].data;
+    var categories = uniqueProductValues(items, "category");
+
+    list.appendChild(el("li", { class: "group-head" }, [groupLabel]));
 
     if (!categories.length) {
       list.appendChild(el("li", { class: "admin-empty" }, [
-        "No categories yet. Categories are created from products — give a product a category name and it appears here."
+        "Nothing yet — give a " + noun + " a category name and it appears here."
       ]));
       return;
     }
 
-    list.appendChild(el("li", { class: "admin-hint" }, [
-      "Categories come from your products: type a new name on any product to create one; empty categories disappear on their own. Renaming here updates every product in one step."
-    ]));
-
     categories.forEach(function (category) {
-      var inCategory = products.filter(function (p) { return norm(p.category) === norm(category); });
+      var inCategory = items.filter(function (p) { return norm(p.category) === norm(category); });
 
       var renameBtn = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
       renameBtn.addEventListener("click", function () {
-        renameEverywhere("category", "category", category);
+        renameEverywhere(fileName, noun, "category", category);
       });
 
       list.appendChild(el("li", null, [
         el("div", { class: "item-info" }, [
           el("span", { class: "item-name" }, [category]),
-          el("span", { class: "item-meta" }, [inCategory.length + (inCategory.length === 1 ? " product" : " products")])
+          el("span", { class: "item-meta" }, [inCategory.length + " " + noun + (inCategory.length === 1 ? "" : "s")])
         ]),
         el("div", { class: "item-actions" }, [renameBtn])
       ]));
@@ -283,7 +343,7 @@
         subRename.addEventListener("click", function () {
           // Scope the rename to this category so a same-named subcategory
           // elsewhere is left untouched.
-          renameEverywhere("subcategory", "subcategory", sub, function (p) {
+          renameEverywhere(fileName, noun, "subcategory", sub, function (p) {
             return norm(p.category) === norm(category);
           });
         });
@@ -291,12 +351,20 @@
         list.appendChild(el("li", { class: "sub" }, [
           el("div", { class: "item-info" }, [
             el("span", { class: "item-name sub-name" }, ["↳  " + sub]),
-            el("span", { class: "item-meta" }, [subCount + (subCount === 1 ? " product" : " products")])
+            el("span", { class: "item-meta" }, [subCount + " " + noun + (subCount === 1 ? "" : "s")])
           ]),
           el("div", { class: "item-actions" }, [subRename])
         ]));
       });
     });
+  }
+
+  function renderCategories(list) {
+    list.appendChild(el("li", { class: "admin-hint" }, [
+      "Categories come from your products and articles: type a new name on any of them to create one; empty categories disappear on their own. Renaming here updates every item in one step."
+    ]));
+    renderCategoryGroup(list, "products", "Product categories", "product");
+    renderCategoryGroup(list, "posts", "Article categories", "article");
   }
 
   function deleteItem(index) {
@@ -378,6 +446,35 @@
     reader.readAsDataURL(file);
   }
 
+  // Reusable Upload control: returns a button, hidden file input and a
+  // status span; calls applyUrl(url) when the upload finishes.
+  function makeUploader(applyUrl) {
+    var fileInput = el("input", { type: "file", accept: "image/*", hidden: "" });
+    var btn = el("button", { type: "button", class: "ghost-btn" }, ["Upload"]);
+    var status = el("span", { class: "field-hint" }, []);
+    btn.addEventListener("click", function () { fileInput.click(); });
+    fileInput.addEventListener("change", function () {
+      var file = fileInput.files[0];
+      if (!file) return;
+      if (file.size > 8 * 1024 * 1024) {
+        status.textContent = "That image is over 8 MB — please use a smaller one.";
+        return;
+      }
+      btn.disabled = true;
+      status.textContent = "Uploading…";
+      uploadImage(file, function (url) {
+        btn.disabled = false;
+        status.textContent = "Uploaded ✓";
+        fileInput.value = "";
+        applyUrl(url);
+      }, function (error) {
+        btn.disabled = false;
+        status.textContent = error.message;
+      });
+    });
+    return { btn: btn, fileInput: fileInput, status: status };
+  }
+
   // A photo field: paste a link, or press Upload to use a file from this
   // computer — the link fills itself in. Shows a small live preview.
   function imageField(labelText, inputId, value, hint) {
@@ -451,6 +548,36 @@
     var nameInput = textInput("f-name", product.name, "e.g. Walnut Coffee Table");
     nameInput.classList.add("big");
 
+    // Optional extra photos, shown stacked under the main photo on the
+    // product page.
+    state.extraImages = (product.images || []).slice();
+    var extraWrap = el("div", { class: "stack" }, []);
+    function renderExtraPhotos() {
+      extraWrap.textContent = "";
+      state.extraImages.forEach(function (src, i) {
+        var input = el("input", { type: "text", value: src || "", placeholder: "Photo link — or press Upload" });
+        input.addEventListener("input", function () { state.extraImages[i] = input.value; });
+        var uploader = makeUploader(function (url) { input.value = url; state.extraImages[i] = url; });
+        var removeBtn = el("button", { type: "button", class: "ghost-btn danger", title: "Remove this photo" }, ["×"]);
+        removeBtn.addEventListener("click", function () {
+          state.extraImages.splice(i, 1);
+          renderExtraPhotos();
+        });
+        extraWrap.appendChild(el("div", { class: "gallery-item" }, [
+          el("div", { class: "img-row" }, [input, uploader.btn, removeBtn]),
+          uploader.fileInput,
+          uploader.status
+        ]));
+      });
+      var addBtn = el("button", { type: "button", class: "ghost-btn" }, ["+ Add photo"]);
+      addBtn.addEventListener("click", function () {
+        state.extraImages.push("");
+        renderExtraPhotos();
+      });
+      extraWrap.appendChild(addBtn);
+    }
+    renderExtraPhotos();
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       el("datalist", { id: "dl-categories" },
         uniqueProductValues(state.products.data, "category").map(function (c) { return el("option", { value: c }); })),
@@ -458,6 +585,11 @@
         uniqueProductValues(state.products.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
       field("Name", nameInput),
       imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
+      el("div", { class: "field" }, [
+        el("span", { class: "field-label" }, ["More photos"]),
+        el("span", { class: "field-hint" }, ["Optional — extra photos shown under the main one on the product page."]),
+        extraWrap
+      ]),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show no price."),
       field("Buy Now link", textInput("f-link", product.affiliateLink, "https://…"), "Where the Buy Now button sends the visitor."),
       field("Link type", sourceSelect),
@@ -480,6 +612,7 @@
         category: $("f-cat").value.trim(),
         subcategory: $("f-sub").value.trim(),
         image: $("f-image").value.trim(),
+        images: state.extraImages.map(function (s) { return (s || "").trim(); }).filter(Boolean),
         affiliateLink: $("f-link").value.trim(),
         description: $("f-desc").value.trim(),
         colors: $("f-colors").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean)
@@ -490,7 +623,7 @@
 
   /* ---------- Post form (with content block editor) ---------- */
 
-  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", product: "Product" };
+  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", gallery: "Gallery", product: "Product" };
 
   function blockRow(block, index) {
     var tools = el("div", { class: "block-tools" }, []);
@@ -526,36 +659,38 @@
       var alt = el("input", { type: "text", value: block.alt || "", placeholder: "A few words describing the photo" });
       src.addEventListener("input", function () { block.src = src.value; });
       alt.addEventListener("input", function () { block.alt = alt.value; });
-
-      var fileInput = el("input", { type: "file", accept: "image/*", hidden: "" });
-      var uploadBtn = el("button", { type: "button", class: "ghost-btn" }, ["Upload"]);
-      var uploadStatus = el("span", { class: "field-hint" }, []);
-      uploadBtn.addEventListener("click", function () { fileInput.click(); });
-      fileInput.addEventListener("change", function () {
-        var file = fileInput.files[0];
-        if (!file) return;
-        if (file.size > 8 * 1024 * 1024) {
-          uploadStatus.textContent = "That image is over 8 MB — please use a smaller one.";
-          return;
-        }
-        uploadBtn.disabled = true;
-        uploadStatus.textContent = "Uploading…";
-        uploadImage(file, function (url) {
-          src.value = url;
-          block.src = url;
-          uploadBtn.disabled = false;
-          uploadStatus.textContent = "Uploaded ✓";
-          fileInput.value = "";
-        }, function (error) {
-          uploadBtn.disabled = false;
-          uploadStatus.textContent = error.message;
-        });
-      });
-
-      body.appendChild(el("div", { class: "img-row" }, [src, uploadBtn]));
-      body.appendChild(fileInput);
-      body.appendChild(uploadStatus);
+      var uploader = makeUploader(function (url) { src.value = url; block.src = url; });
+      body.appendChild(el("div", { class: "img-row" }, [src, uploader.btn]));
+      body.appendChild(uploader.fileInput);
+      body.appendChild(uploader.status);
       body.appendChild(alt);
+    } else if (block.type === "gallery") {
+      // Several photos shown side by side in the article.
+      if (!block.images) block.images = [];
+      block.images.forEach(function (img, imgIndex) {
+        var srcIn = el("input", { type: "text", value: img.src || "", placeholder: "Photo link — or press Upload" });
+        srcIn.addEventListener("input", function () { img.src = srcIn.value; });
+        var altIn = el("input", { type: "text", value: img.alt || "", placeholder: "A few words describing the photo" });
+        altIn.addEventListener("input", function () { img.alt = altIn.value; });
+        var uploader = makeUploader(function (url) { srcIn.value = url; img.src = url; });
+        var removeBtn = el("button", { type: "button", class: "ghost-btn danger", title: "Remove this photo" }, ["×"]);
+        removeBtn.addEventListener("click", function () {
+          block.images.splice(imgIndex, 1);
+          renderBlocks();
+        });
+        body.appendChild(el("div", { class: "gallery-item" }, [
+          el("div", { class: "img-row" }, [srcIn, uploader.btn, removeBtn]),
+          uploader.fileInput,
+          uploader.status,
+          altIn
+        ]));
+      });
+      var addPhotoBtn = el("button", { type: "button", class: "ghost-btn" }, ["+ Photo"]);
+      addPhotoBtn.addEventListener("click", function () {
+        block.images.push({ src: "", alt: "" });
+        renderBlocks();
+      });
+      body.appendChild(addPhotoBtn);
     } else if (block.type === "product") {
       var select = el("select", null, state.products.data.map(function (p) {
         var option = el("option", { value: p.slug }, [p.name + (p.price ? " (" + p.price + ")" : "")]);
@@ -596,27 +731,59 @@
     Object.keys(BLOCK_LABELS).forEach(function (type) {
       var btn = el("button", { type: "button", class: "ghost-btn" }, ["+ " + BLOCK_LABELS[type]]);
       btn.addEventListener("click", function () {
-        state.blocks.push(type === "image" ? { type: type, src: "", alt: "" } :
-                          type === "product" ? { type: type, slug: "" } :
-                          { type: type, text: "" });
+        state.blocks.push(
+          type === "image" ? { type: type, src: "", alt: "" } :
+          type === "gallery" ? { type: type, images: [{ src: "", alt: "" }, { src: "", alt: "" }] } :
+          type === "product" ? { type: type, slug: "" } :
+          { type: type, text: "" }
+        );
         renderBlocks();
       });
       addRow.appendChild(btn);
     });
 
+    // One-tap product picker: tap a product below to drop its card
+    // (photo, price, Buy Now) into the article.
+    var picker = el("div", { class: "product-picker" },
+      state.products.data.map(function (p) {
+        var pickBtn = el("button", { type: "button", class: "picker-item", title: "Insert " + p.name }, [
+          p.image ? el("img", { src: p.image, alt: "" }) : null,
+          el("span", null, [p.name])
+        ]);
+        pickBtn.addEventListener("click", function () {
+          state.blocks.push({ type: "product", slug: p.slug });
+          renderBlocks();
+        });
+        return pickBtn;
+      }));
+
     var titleInput = textInput("f-title", post.title, "Article title…");
     titleInput.classList.add("big");
 
+    // Existing article category/subcategory names appear as suggestions.
+    var catInput = textInput("f-post-cat", post.category, "e.g. Home Decor, Fashion");
+    catInput.setAttribute("list", "dl-post-categories");
+    var subInput = textInput("f-post-sub", post.subcategory, "e.g. Japandi, Modern Home, Casual Outfits");
+    subInput.setAttribute("list", "dl-post-subcategories");
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
+      el("datalist", { id: "dl-post-categories" },
+        uniqueProductValues(state.posts.data, "category").map(function (c) { return el("option", { value: c }); })),
+      el("datalist", { id: "dl-post-subcategories" },
+        uniqueProductValues(state.posts.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
       field("Title", titleInput),
-      imageField("Cover photo", "f-cover", post.cover, "The large photo at the top of the article and in the journal list."),
+      field("Category", catInput, "The journal filter group — also connects the article to matching products. Pick an existing one or type a new name."),
+      field("Subcategory", subInput, "Optional — the finer filter inside a category (e.g. Japandi, Modern Home)."),
+      imageField("Cover photo", "f-cover", post.cover, "Optional — the large photo at the top of the article and in the journal list. Articles look good without one too."),
       field("Date", el("input", { type: "date", id: "f-date", value: post.date || new Date().toISOString().slice(0, 10) }), "Newest date shows first in the journal."),
       field("Short summary", el("textarea", { id: "f-excerpt" }, [post.excerpt || ""]), "1–2 sentences shown in the journal list."),
       el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["Article"]),
-        el("span", { class: "field-hint" }, ["Build the article from blocks. Use the buttons below to add text, headings, photos, or a product with its Buy Now button."]),
+        el("span", { class: "field-hint" }, ["Build the article from blocks: text, headings, single photos, a gallery (photos side by side), or products. Reorder with the arrows."]),
         el("div", { class: "blocks-editor", id: "blocks-editor" }),
-        addRow
+        addRow,
+        el("span", { class: "field-hint" }, ["Or tap a product to insert it straight into the article:"]),
+        picker
       ])
     ]);
 
@@ -628,6 +795,8 @@
         slug: resolveSlug(title),
         title: title,
         date: $("f-date").value,
+        category: $("f-post-cat").value.trim(),
+        subcategory: $("f-post-sub").value.trim(),
         cover: $("f-cover").value.trim(),
         excerpt: $("f-excerpt").value.trim(),
         content: state.blocks
@@ -677,8 +846,8 @@
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct
-      ? { slug: "", name: "", price: "", type: "physical", source: "affiliate", category: "", subcategory: "", image: "", affiliateLink: "", description: "", colors: [] }
-      : { slug: "", title: "", date: "", cover: "", excerpt: "", content: [] };
+      ? { slug: "", name: "", price: "", type: "physical", source: "affiliate", category: "", subcategory: "", image: "", images: [], affiliateLink: "", description: "", colors: [] }
+      : { slug: "", title: "", date: "", category: "", subcategory: "", cover: "", excerpt: "", content: [] };
     var item = index === -1 ? blank : state[state.tab].data[index];
 
     var view = $("form-view");
@@ -707,6 +876,7 @@
     $("tab-products").addEventListener("click", function () { selectTab("products"); });
     $("tab-posts").addEventListener("click", function () { selectTab("posts"); });
     $("tab-categories").addEventListener("click", function () { selectTab("categories"); });
+    $("tab-contact").addEventListener("click", function () { selectTab("contact"); });
     $("add-item").addEventListener("click", function () { openForm(-1); });
     $("logout").addEventListener("click", function () {
       localStorage.removeItem(TOKEN_KEY);

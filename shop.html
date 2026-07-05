@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./style.css?v=3">
-  <script src="./main.js?v=3" defer></script>
+  <link rel="stylesheet" href="./style.css?v=5">
+  <script src="./main.js?v=5" defer></script>
 </head>
 <body data-page="shop">
 
@@ -31,8 +31,11 @@
     <span class="eyebrow">The Shop</span>
     <h1 class="page-title">Every piece, in one place.</h1>
 
-    <!-- Category filters — chips built from products.json by main.js -->
-    <div class="filter-bar" aria-label="Filter by category">
+    <!-- Search + category filters — built from products.json by main.js -->
+    <div class="filter-bar" aria-label="Search and filter">
+      <div class="search-row">
+        <input type="search" id="product-search" placeholder="Search the shop…" aria-label="Search products" autocomplete="off">
+      </div>
       <div class="filter-row" id="category-row"></div>
       <div class="filter-row sub" id="subcategory-row" hidden></div>
     </div>
@@ -45,6 +48,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
+      <p class="footer-contact" id="footer-contact" hidden></p>
       <p>&copy; 2026 Subtle Sway. All rights reserved.</p>
       <p>As an affiliate, we may earn from qualifying purchases.</p>
     </div>
