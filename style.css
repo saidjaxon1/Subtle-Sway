@@ -202,15 +202,19 @@ main > .eyebrow::before,
   text-transform: uppercase;
   text-decoration: none;
   color: var(--muted);
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  padding-bottom: 4px;
+  /* Gradient underline grows in from the left on hover */
+  background-image: linear-gradient(90deg, var(--brass), var(--clay));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color 0.25s ease, background-size 0.4s var(--ease-slow);
 }
 
 .site-nav a:hover,
 .site-nav a[aria-current="page"] {
   color: var(--ink);
-  border-bottom-color: var(--brass);
+  background-size: 100% 1px;
 }
 
 /* ---------- Home (landing) ---------- */
@@ -252,6 +256,29 @@ main > .eyebrow::before,
   display: flex;
   align-items: center;
   gap: 1.75rem;
+}
+
+/* Scroll cue — a thin light line pouring downward */
+.scroll-cue {
+  margin-top: 3.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.scroll-cue span {
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.scroll-cue i {
+  display: block;
+  width: 1px;
+  height: 3.2rem;
+  background: linear-gradient(180deg, var(--brass), transparent);
 }
 
 .hero-image {
@@ -325,6 +352,11 @@ main > .eyebrow::before,
 
 .marquee-group .dot {
   color: var(--clay);
+}
+
+/* The ticker rests politely under the cursor */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 .home-section {
@@ -517,6 +549,20 @@ main > .eyebrow::before,
   .hero-home > *:nth-child(2) { animation-delay: 0.1s; }
   .hero-home > *:nth-child(3) { animation-delay: 0.2s; }
   .hero-home > *:nth-child(4) { animation-delay: 0.3s; }
+  .hero-home > *:nth-child(5) { animation-delay: 0.45s; }
+
+  /* The scroll line pours downward, pauses, and fades — endlessly calm */
+  .scroll-cue i {
+    transform-origin: top;
+    animation: cue-pour 2.6s var(--ease-slow) infinite;
+  }
+
+  @keyframes cue-pour {
+    0%   { transform: scaleY(0); opacity: 0; }
+    30%  { opacity: 1; }
+    65%  { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
 
   /* Ambient washes drift almost imperceptibly */
   body::before {
@@ -820,17 +866,23 @@ main > .eyebrow::before,
   color: var(--brass);
 }
 
-/* Quiet text link (used in error states, back links) */
+/* Quiet text link: a faint hairline underline that a brass–clay
+   gradient sweeps over from the left on hover */
 .text-link {
   color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--hairline);
-  transition: text-decoration-color 0.25s ease;
+  text-decoration: none;
+  padding-bottom: 2px;
+  background-image:
+    linear-gradient(90deg, var(--brass), var(--clay)),
+    linear-gradient(90deg, var(--hairline), var(--hairline));
+  background-size: 0% 1px, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%, 0 100%;
+  transition: background-size 0.4s var(--ease-slow);
 }
 
 .text-link:hover {
-  text-decoration-color: var(--brass);
+  background-size: 100% 1px, 100% 1px;
 }
 
 /* ---------- Product detail page ---------- */
@@ -847,6 +899,47 @@ main > .eyebrow::before,
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* Framing marks on the main product photo, like the hero */
+.product-detail .media figure:first-child {
+  position: relative;
+}
+
+.product-detail .media figure:first-child::before,
+.product-detail .media figure:first-child::after {
+  content: "+";
+  position: absolute;
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #fff;
+  mix-blend-mode: difference;
+  opacity: 0.85;
+}
+
+.product-detail .media figure:first-child::before {
+  top: 0.75rem;
+  left: 0.85rem;
+}
+
+.product-detail .media figure:first-child::after {
+  bottom: 0.75rem;
+  right: 0.85rem;
+}
+
+/* A fine vertical hairline between the photos and the details */
+@media (min-width: 861px) {
+  .product-detail {
+    gap: 2.75rem;
+  }
+
+  .product-detail .info {
+    padding-left: 2.75rem;
+    border-left: 1px solid var(--hairline);
+  }
 }
 
 .product-detail figure {
@@ -1075,6 +1168,16 @@ main > .eyebrow::before,
   letter-spacing: -0.015em;
   line-height: 1.3;
   margin: 3rem 0 1rem;
+}
+
+/* A short brass rule above each section heading — editorial rhythm */
+.article-body h2::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  margin-bottom: 0.85rem;
+  background: linear-gradient(90deg, var(--brass), transparent);
 }
 
 .article-body figure {
