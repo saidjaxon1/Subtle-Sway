@@ -58,6 +58,20 @@ body {
   flex-direction: column;
 }
 
+/* Ambient light washes behind every page — fixed layer, so nothing is
+   clipped and the page can never scroll sideways because of it. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(56rem 32rem at 12% -12%, rgba(198, 161, 91, 0.10), transparent 65%),
+    radial-gradient(46rem 28rem at 90% -6%, rgba(138, 148, 121, 0.08), transparent 65%),
+    radial-gradient(44rem 30rem at 50% 115%, rgba(192, 135, 104, 0.05), transparent 70%);
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -170,51 +184,16 @@ main.wrap {
 /* ---------- Home (landing) ---------- */
 
 .hero-home {
-  position: relative;
   padding: 4.5rem 0 3.5rem;
 }
 
-/* Two soft washes of light behind the hero type — barely there.
-   overflow:hidden keeps the washes from widening the page. */
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.hero-glow::before,
-.hero-glow::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-
-.hero-glow::before {
-  width: 560px;
-  height: 560px;
-  left: -12%;
-  top: -45%;
-  background: radial-gradient(circle, rgba(198, 161, 91, 0.13), transparent 65%);
-}
-
-.hero-glow::after {
-  width: 480px;
-  height: 480px;
-  right: -6%;
-  top: -15%;
-  background: radial-gradient(circle, rgba(138, 148, 121, 0.10), transparent 65%);
-}
-
-.hero-home > *:not(.hero-glow) {
-  position: relative;
-}
-
-/* Accented phrase in the headline — brass-to-clay gradient, italic */
+/* Accented phrase in the headline — a wide, unhurried brass–clay–sage
+   gradient across the italic type */
 .hero-home h1 em {
   font-style: italic;
-  background: linear-gradient(100deg, var(--brass) 20%, var(--clay) 50%, var(--brass) 80%);
-  background-size: 200% 100%;
+  background: linear-gradient(90deg, var(--brass), var(--clay) 40%, var(--moss) 70%, var(--brass));
+  background-size: 220% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -341,6 +320,11 @@ main.wrap {
   overflow: hidden;
   border: 1px solid var(--hairline);
   background: var(--panel);
+  transition: border-color 0.3s ease;
+}
+
+.category-card a:hover figure {
+  border-color: rgba(198, 161, 91, 0.45);
 }
 
 .category-card img {
@@ -381,8 +365,12 @@ main.wrap {
 /* Centered brand statement */
 .home-statement {
   margin: 5.5rem auto;
-  max-width: 30em;
+  max-width: 34em;
+  padding: 3rem 2rem;
   text-align: center;
+  /* A whisper of a dot grid behind the statement */
+  background-image: radial-gradient(rgba(237, 230, 217, 0.05) 1px, transparent 1.4px);
+  background-size: 22px 22px;
 }
 
 .statement-rule {
@@ -411,34 +399,33 @@ main.wrap {
 
 /* Gentle entrance animations — motion only when the visitor allows it */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-home > *:not(.hero-glow) {
+  .hero-home > * {
     animation: page-in 0.7s var(--ease-slow) both;
   }
-  .hero-home > *:nth-child(3) { animation-delay: 0.1s; }
-  .hero-home > *:nth-child(4) { animation-delay: 0.2s; }
-  .hero-home > *:nth-child(5) { animation-delay: 0.3s; }
+  .hero-home > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero-home > *:nth-child(3) { animation-delay: 0.2s; }
+  .hero-home > *:nth-child(4) { animation-delay: 0.3s; }
 
-  /* Light washes drift almost imperceptibly */
-  .hero-glow::before {
-    animation: glow-drift 14s ease-in-out infinite alternate;
+  /* Ambient washes drift almost imperceptibly */
+  body::before {
+    animation: ambient-drift 26s ease-in-out infinite alternate;
   }
 
-  .hero-glow::after {
-    animation: glow-drift 18s ease-in-out infinite alternate-reverse;
+  @keyframes ambient-drift {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(-32px, 22px, 0) scale(1.05); }
   }
 
-  @keyframes glow-drift {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(48px, 28px, 0); }
-  }
-
-  /* Headline gradient breathes slowly */
+  /* Headline gradient breathes slowly — a gentle back-and-forth,
+     never a hard jump */
   .hero-home h1 em {
-    animation: shimmer 9s linear infinite;
+    animation: shimmer 14s ease-in-out infinite;
   }
 
   @keyframes shimmer {
-    to { background-position: 200% 0; }
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   /* Ticker loops seamlessly (two identical groups, -50% shift) */
@@ -540,6 +527,11 @@ main.wrap {
   overflow: hidden;
   border: 1px solid var(--hairline);
   background: var(--panel);
+  transition: border-color 0.3s ease;
+}
+
+.product-card a:hover figure {
+  border-color: rgba(198, 161, 91, 0.45);
 }
 
 .product-card img {
@@ -584,6 +576,9 @@ main.wrap {
 /* ---------- Buttons ---------- */
 
 .btn {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
   display: inline-block;
   background: var(--ink);
   color: var(--bone);
@@ -597,11 +592,22 @@ main.wrap {
   border-radius: 2px;
   padding: 1rem 2.4rem;
   cursor: pointer;
-  transition: background-color 0.25s ease;
 }
 
-.btn:hover {
-  background: var(--brass);
+/* Hover crossfades to a brass–clay gradient (opacity animates smoothly
+   where a background swap would jump) */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, var(--brass), var(--clay));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover::before {
+  opacity: 1;
 }
 
 /* Quiet affiliate disclosure next to Buy Now buttons */
@@ -737,6 +743,11 @@ main.wrap {
   overflow: hidden;
   border: 1px solid var(--hairline);
   background: var(--panel);
+  transition: border-color 0.3s ease;
+}
+
+.post-card a:hover figure {
+  border-color: rgba(198, 161, 91, 0.45);
 }
 
 .post-card img {
@@ -828,6 +839,17 @@ main.wrap {
   font-size: 1.125rem;
   line-height: 1.65;
   color: var(--ink);
+}
+
+/* Classic editorial drop cap on the opening paragraph */
+.article-body > p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 3.3em;
+  line-height: 0.8;
+  float: left;
+  padding: 0.09em 0.14em 0 0;
+  color: var(--brass);
 }
 
 .article-body h2 {
@@ -945,8 +967,20 @@ main.wrap {
 /* ---------- Footer ---------- */
 
 .site-footer {
-  border-top: 1px solid var(--hairline);
+  position: relative;
   margin-top: auto;
+}
+
+/* Gradient hairline instead of a flat border */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass) 20%, var(--clay) 50%, var(--brass) 80%, transparent);
+  opacity: 0.45;
 }
 
 .site-footer .wrap {

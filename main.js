@@ -32,11 +32,19 @@
   }
 
   // Fetch and parse a JSON file, throwing on any failure.
+  // A timestamp query skips browser/CDN caches, so content saved in the
+  // admin panel shows up immediately instead of minutes later.
   function loadJSON(path) {
-    return fetch(path).then(function (response) {
+    return fetch(path + "?v=" + Date.now()).then(function (response) {
       if (!response.ok) throw new Error("HTTP " + response.status + " for " + path);
       return response.json();
     });
+  }
+
+  // Normalised comparison key: category matching must survive stray
+  // spaces and casing differences typed into the admin panel.
+  function norm(value) {
+    return (value || "").trim().toLowerCase();
   }
 
   // Read a query-string parameter (e.g. ?slug=arden-sofa).
@@ -197,14 +205,21 @@
     return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
   }
 
-  // Ordered list of unique values, preserving JSON order.
+  // Ordered list of unique display values, deduplicated case- and
+  // whitespace-insensitively (first spelling seen wins).
   function uniqueValues(items, pick) {
-    var seen = [];
+    var seen = {};
+    var out = [];
     items.forEach(function (item) {
-      var value = pick(item);
-      if (value && seen.indexOf(value) === -1) seen.push(value);
+      var raw = (pick(item) || "").trim();
+      if (!raw) return;
+      var key = raw.toLowerCase();
+      if (!seen[key]) {
+        seen[key] = true;
+        out.push(raw);
+      }
     });
-    return seen;
+    return out;
   }
 
   /* ---------- Scroll reveal (home page) ---------- */
@@ -253,7 +268,7 @@
         // first product in that category as the card image.
         var categoryGrid = document.getElementById("category-grid");
         uniqueValues(products, function (p) { return p.category; }).forEach(function (category, index) {
-          var inCategory = products.filter(function (p) { return p.category === category; });
+          var inCategory = products.filter(function (p) { return norm(p.category) === norm(category); });
           var count = inCategory.length;
           categoryGrid.appendChild(
             el("li", { class: "category-card" }, [
@@ -296,12 +311,17 @@
     loadJSON("./products.json")
       .then(function (products) {
         var categories = uniqueValues(products, function (p) { return p.category; });
+
+        // Resolve a raw value (e.g. from the URL) to its canonical spelling.
+        function canonical(list, value) {
+          if (!value) return null;
+          return list.find(function (item) { return norm(item) === norm(value); }) || null;
+        }
+
         var state = {
-          category: getParam("category"),
+          category: canonical(categories, getParam("category")),
           sub: getParam("sub")
         };
-        // Ignore unknown URL values so a stale link can't break the page.
-        if (categories.indexOf(state.category) === -1) state.category = null;
 
         function chip(label, pressed, onClick) {
           var button = el("button", { class: "chip", type: "button", "aria-pressed": String(pressed) }, [label]);
@@ -338,7 +358,7 @@
           // Subcategory chips — shown for every chosen category, starting
           // with an "All <category>" chip.
           var inCategory = state.category
-            ? products.filter(function (p) { return p.category === state.category; })
+            ? products.filter(function (p) { return norm(p.category) === norm(state.category); })
             : products;
           var subs = state.category
             ? uniqueValues(inCategory, function (p) { return p.subcategory; })
@@ -347,7 +367,7 @@
           subRow.textContent = "";
           subRow.hidden = !state.category || subs.length === 0;
           if (!subRow.hidden) {
-            if (subs.indexOf(state.sub) === -1) state.sub = null;
+            state.sub = canonical(subs, state.sub);
             subRow.appendChild(chip("All " + state.category, !state.sub, function () {
               state.sub = null;
               render();
@@ -365,7 +385,7 @@
           // The grid itself.
           grid.textContent = "";
           var visible = inCategory.filter(function (p) {
-            return !state.sub || p.subcategory === state.sub;
+            return !state.sub || norm(p.subcategory) === norm(state.sub);
           });
           if (!visible.length) {
             grid.appendChild(el("li", { class: "grid-empty" }, ["Nothing in this category yet."]));

@@ -150,14 +150,26 @@
 
   /* ---------- List view ---------- */
 
-  // Ordered unique values of a product field ("category" / "subcategory").
+  // Normalised comparison key (survives stray spaces and casing).
+  function norm(value) {
+    return (value || "").trim().toLowerCase();
+  }
+
+  // Ordered unique values of a product field ("category" / "subcategory"),
+  // deduplicated case-insensitively; the first spelling seen wins.
   function uniqueProductValues(products, key) {
-    var seen = [];
+    var seen = {};
+    var out = [];
     products.forEach(function (p) {
-      var value = (p[key] || "").trim();
-      if (value && seen.indexOf(value) === -1) seen.push(value);
+      var raw = (p[key] || "").trim();
+      if (!raw) return;
+      var k = raw.toLowerCase();
+      if (!seen[k]) {
+        seen[k] = true;
+        out.push(raw);
+      }
     });
-    return seen;
+    return out;
   }
 
   function selectTab(tab) {
@@ -227,7 +239,7 @@
     if (!next || next === oldName) return;
 
     state.products.data.forEach(function (p) {
-      if ((p[key] || "").trim() === oldName && (!filter || filter(p))) p[key] = next;
+      if (norm(p[key]) === norm(oldName) && (!filter || filter(p))) p[key] = next;
     });
     saveFile("products", "admin: rename " + label + " “" + oldName + "” to “" + next + "”")
       .then(renderList)
@@ -250,7 +262,7 @@
     ]));
 
     categories.forEach(function (category) {
-      var inCategory = products.filter(function (p) { return (p.category || "").trim() === category; });
+      var inCategory = products.filter(function (p) { return norm(p.category) === norm(category); });
 
       var renameBtn = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
       renameBtn.addEventListener("click", function () {
@@ -266,13 +278,13 @@
       ]));
 
       uniqueProductValues(inCategory, "subcategory").forEach(function (sub) {
-        var subCount = inCategory.filter(function (p) { return (p.subcategory || "").trim() === sub; }).length;
+        var subCount = inCategory.filter(function (p) { return norm(p.subcategory) === norm(sub); }).length;
         var subRename = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
         subRename.addEventListener("click", function () {
           // Scope the rename to this category so a same-named subcategory
           // elsewhere is left untouched.
           renameEverywhere("subcategory", "subcategory", sub, function (p) {
-            return (p.category || "").trim() === category;
+            return norm(p.category) === norm(category);
           });
         });
 
