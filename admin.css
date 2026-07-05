@@ -127,7 +127,7 @@ select:focus-visible {
 }
 
 .admin-status.error {
-  color: #8a3b2e;
+  color: #d08770;
 }
 
 /* Small quiet button (edit / delete / disconnect) */
@@ -151,8 +151,8 @@ select:focus-visible {
 }
 
 .ghost-btn.danger:hover {
-  color: #8a3b2e;
-  border-color: #8a3b2e;
+  color: #d08770;
+  border-color: #d08770;
 }
 
 /* ---------- Item list ---------- */
@@ -250,7 +250,7 @@ select:focus-visible {
 }
 
 .form-error {
-  color: #8a3b2e;
+  color: #d08770;
   font-size: var(--text-body);
   min-height: 1.2em;
   margin-top: 0.5rem;

@@ -79,22 +79,22 @@
 
   /* ---------- Product display helpers ---------- */
 
-  function isDigital(product) {
-    return (product.type || "").toLowerCase() === "digital";
+  function productType(product) {
+    var type = (product.type || "").toLowerCase();
+    return type === "digital" || type === "physical" ? type : "";
   }
 
-  // Small uppercase label above a product name (category, with fallbacks).
+  // Small uppercase label above a product name.
   function eyebrowText(product) {
-    if (product.category) return product.category;
-    return isDigital(product) ? "Digital" : "Objects";
+    return product.subcategory || product.category || "Objects";
   }
 
-  // Price line on cards: price is optional, digital products are marked.
-  // "$19 · Digital", "$45", or just "Digital" when there is no price.
+  // Price line on cards: price is optional; digital products carry a
+  // small marker so the format is clear before clicking through.
   function priceLineText(product) {
     var parts = [];
     if (product.price) parts.push(product.price);
-    if (isDigital(product)) parts.push("Digital");
+    if (productType(product) === "digital") parts.push("Digital");
     return parts.join(" · ");
   }
 
@@ -122,9 +122,16 @@
     return el("p", { class: "affiliate-note" }, [text]);
   }
 
-  // Prominent-but-quiet tag shown on digital products.
-  function digitalBadge() {
-    return el("span", { class: "badge-digital" }, ["Digital product · Instant online delivery"]);
+  // Type tag on the product page. Only rendered when a type is set:
+  // digital -> "Digital product", physical -> "Physical product".
+  function typeBadge(product) {
+    var type = productType(product);
+    if (!type) return null;
+    return el(
+      "span",
+      { class: "badge-type " + type },
+      [type === "digital" ? "Digital product" : "Physical product"]
+    );
   }
 
   // Product card used by the shop grid and the home page.
@@ -146,7 +153,7 @@
   function embeddedProductCard(product) {
     var metaParts = [];
     if (product.price) metaParts.push(product.price);
-    if (isDigital(product)) metaParts.push("Digital product");
+    if (productType(product) === "digital") metaParts.push("Digital product");
     return el("aside", { class: "embed-product" }, [
       el("figure", null, [
         el("img", { src: product.image, alt: product.name, loading: "lazy" })
@@ -180,6 +187,16 @@
   function sortNewestFirst(posts) {
     // ISO dates sort correctly as strings.
     return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  }
+
+  // Ordered list of unique values, preserving JSON order.
+  function uniqueValues(items, pick) {
+    var seen = [];
+    items.forEach(function (item) {
+      var value = pick(item);
+      if (value && seen.indexOf(value) === -1) seen.push(value);
+    });
+    return seen;
   }
 
   /* ---------- Scroll reveal (home page) ---------- */
@@ -224,9 +241,28 @@
 
     loadJSON("./products.json")
       .then(function (products) {
-        var grid = document.getElementById("featured-grid");
+        // Shop-by-category cards: one per top-level category, using the
+        // first product in that category as the card image.
+        var categoryGrid = document.getElementById("category-grid");
+        uniqueValues(products, function (p) { return p.category; }).forEach(function (category) {
+          var inCategory = products.filter(function (p) { return p.category === category; });
+          var count = inCategory.length;
+          categoryGrid.appendChild(
+            el("li", { class: "category-card" }, [
+              el("a", { href: "./shop.html?category=" + encodeURIComponent(category) }, [
+                el("figure", null, [
+                  el("img", { src: inCategory[0].image, alt: category, loading: "lazy" })
+                ]),
+                el("h3", null, [category]),
+                el("span", { class: "count" }, [count + (count === 1 ? " piece" : " pieces")])
+              ])
+            ])
+          );
+        });
+
+        var featured = document.getElementById("featured-grid");
         products.slice(0, 3).forEach(function (product) {
-          grid.appendChild(productCard(product));
+          featured.appendChild(productCard(product));
         });
       })
       .catch(function (error) { console.error(error); });
@@ -241,15 +277,96 @@
       .catch(function (error) { console.error(error); });
   }
 
-  /* ---------- Page: shop (full product grid) ---------- */
+  /* ---------- Page: shop (grid with two-level category filter) ---------- */
 
   function initShop() {
     var grid = document.getElementById("product-grid");
+    var catRow = document.getElementById("category-row");
+    var subRow = document.getElementById("subcategory-row");
+
     loadJSON("./products.json")
       .then(function (products) {
-        products.forEach(function (product) {
-          grid.appendChild(productCard(product));
-        });
+        var categories = uniqueValues(products, function (p) { return p.category; });
+        var state = {
+          category: getParam("category"),
+          sub: getParam("sub")
+        };
+        // Ignore unknown URL values so a stale link can't break the page.
+        if (categories.indexOf(state.category) === -1) state.category = null;
+
+        function chip(label, pressed, onClick) {
+          var button = el("button", { class: "chip", type: "button", "aria-pressed": String(pressed) }, [label]);
+          button.addEventListener("click", onClick);
+          return button;
+        }
+
+        function syncUrl() {
+          var params = new URLSearchParams();
+          if (state.category) params.set("category", state.category);
+          if (state.sub) params.set("sub", state.sub);
+          var query = params.toString();
+          history.replaceState(null, "", "./shop.html" + (query ? "?" + query : ""));
+        }
+
+        function render() {
+          syncUrl();
+
+          // Top-level category chips.
+          catRow.textContent = "";
+          catRow.appendChild(chip("All", !state.category, function () {
+            state.category = null;
+            state.sub = null;
+            render();
+          }));
+          categories.forEach(function (category) {
+            catRow.appendChild(chip(category, state.category === category, function () {
+              state.category = category;
+              state.sub = null;
+              render();
+            }));
+          });
+
+          // Subcategory chips — only when the chosen category has them.
+          var inCategory = state.category
+            ? products.filter(function (p) { return p.category === state.category; })
+            : products;
+          var subs = state.category
+            ? uniqueValues(inCategory, function (p) { return p.subcategory; })
+            : [];
+
+          subRow.textContent = "";
+          subRow.hidden = subs.length < 2;
+          if (!subRow.hidden) {
+            if (subs.indexOf(state.sub) === -1) state.sub = null;
+            subRow.appendChild(chip("All " + state.category, !state.sub, function () {
+              state.sub = null;
+              render();
+            }));
+            subs.forEach(function (sub) {
+              subRow.appendChild(chip(sub, state.sub === sub, function () {
+                state.sub = sub;
+                render();
+              }));
+            });
+          } else {
+            state.sub = null;
+          }
+
+          // The grid itself.
+          grid.textContent = "";
+          var visible = inCategory.filter(function (p) {
+            return !state.sub || p.subcategory === state.sub;
+          });
+          if (!visible.length) {
+            grid.appendChild(el("li", { class: "grid-empty" }, ["Nothing in this category yet."]));
+            return;
+          }
+          visible.forEach(function (product) {
+            grid.appendChild(productCard(product));
+          });
+        }
+
+        render();
       })
       .catch(function (error) {
         console.error(error);
@@ -284,7 +401,7 @@
           el("span", { class: "eyebrow" }, [eyebrowText(product)]),
           el("h1", null, [product.name]),
           product.price ? el("span", { class: "price" }, [product.price]) : null,
-          isDigital(product) ? digitalBadge() : null,
+          typeBadge(product),
           el("p", { class: "description" }, [product.description])
         ]);
 

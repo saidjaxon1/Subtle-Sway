@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subtle Sway — Quiet pieces and ideas for calm living</title>
   <meta name="description" content="A small, considered edit of home objects, digital guides and everyday apparel for quiet living.">
+  <meta name="theme-color" content="#1B1713">
+
+  <!-- Open Graph — used by Pinterest and other platforms when this page is shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Subtle Sway">
+  <meta property="og:title" content="Subtle Sway — Quiet pieces and ideas for calm living">
+  <meta property="og:description" content="A small, considered edit of home objects, digital guides and everyday apparel for quiet living.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80">
 
   <!-- Fonts: Fraunces (display) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +51,17 @@
     <figure class="hero-image">
       <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=2000&q=80" alt="A calm, light-filled living room with linen upholstery">
     </figure>
+
+    <!-- Shop by category — cards built from products.json by main.js -->
+    <section class="home-section reveal" aria-label="Shop by category">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Browse</span>
+          <h2>Shop by category</h2>
+        </div>
+      </div>
+      <ul class="category-grid" id="category-grid"></ul>
+    </section>
 
     <!-- Featured products — populated from products.json by main.js -->
     <section class="home-section reveal" aria-label="Featured pieces">

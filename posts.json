@@ -1,22 +1,80 @@
 [
   {
-    "slug": "the-quiet-living-room",
-    "title": "The Quiet Living Room: Five Principles",
-    "date": "2026-07-01",
+    "slug": "home-decor-the-quiet-way",
+    "title": "Home Decor, the Quiet Way: A Complete Foundation",
+    "date": "2026-07-04",
     "cover": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "A calm room is not an empty room. Five principles for a living space that feels considered rather than decorated.",
+    "excerpt": "Palette, texture, light, and negative space — the four decisions that shape every calm room, explained from the ground up.",
     "content": [
       {
         "type": "paragraph",
-        "text": "There is a particular kind of living room that photographs poorly and lives beautifully. Nothing in it shouts. The palette stays within a handful of tones, the furniture sits low, and the eye is allowed to rest. Achieving that calm is less about buying the right things and more about refusing the wrong ones."
+        "text": "Most rooms are not badly decorated; they are over-decided. Too many colours, too many small objects, too many ideas competing in one space. Calm interiors come from the opposite habit — making four large decisions well and then refusing to revisit them every time something catches your eye. Those four decisions are palette, texture, light, and negative space."
       },
       {
         "type": "heading",
-        "text": "Begin with the largest surface"
+        "text": "One palette, carried everywhere"
       },
       {
         "type": "paragraph",
-        "text": "The sofa sets the temperature of the whole room. Choose something with quiet proportions and an honest material — linen, wool, leather that will age — and let everything else defer to it. A sofa in a loud colour makes every future decision harder."
+        "text": "Choose three to five tones and use them in every room of the home. A warm base — bone, sand, clay — one deep anchor such as espresso or ink, and one quiet accent is enough. The discipline matters more than the exact colours: when every room draws from the same palette, the whole home reads as one continuous thought, and even inexpensive pieces look deliberate."
+      },
+      {
+        "type": "heading",
+        "text": "Texture does the work colour used to do"
+      },
+      {
+        "type": "paragraph",
+        "text": "A restrained palette only feels rich when the materials vary. Stonewashed linen against solid oak, unglazed ceramic beside wool, a ribbed rug under smooth plaster walls. Aim for at least three distinct textures in every seating area. This is how quiet rooms avoid feeling flat — the eye reads difference in surface, not in colour."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A living room with a tan leather sofa, deep green wall and layered natural textures"
+      },
+      {
+        "type": "heading",
+        "text": "Light in layers, never from one source"
+      },
+      {
+        "type": "paragraph",
+        "text": "A single ceiling light flattens everything it touches. Build three layers instead: ambient light from a soft overhead source, task light where you read or work, and low accent light that simply makes a corner feel inhabited. Keep every bulb warm — 2700 kelvin or lower — and put the brightest lamps closest to where people actually sit."
+      },
+      {
+        "type": "heading",
+        "text": "Negative space is a feature, not a gap"
+      },
+      {
+        "type": "paragraph",
+        "text": "The most expensive-looking thing in any room is emptiness used on purpose: a bare stretch of wall, a console holding one object, a corner left open. Before adding anything new, ask what the room would lose without it. If the honest answer is nothing, the space was already doing its job."
+      },
+      {
+        "type": "product",
+        "slug": "calm-interior-guide"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every room guide in this journal builds on these four foundations. Start with the room you use most, apply them slowly, and let the home catch up one decision at a time."
+      }
+    ]
+  },
+  {
+    "slug": "the-living-room-edited",
+    "title": "The Living Room, Edited",
+    "date": "2026-07-02",
+    "cover": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The living room carries more furniture, more traffic and more decisions than any other space. A complete guide to editing it down to what matters.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The living room is where decorating mistakes cost the most, simply because everything is visible at once. It is also the easiest room to transform, because three decisions — the sofa, the layout, and the light — carry almost all of the weight. Get those right and the smaller choices become forgiving."
+      },
+      {
+        "type": "heading",
+        "text": "Start with the sofa, and buy it calm"
+      },
+      {
+        "type": "paragraph",
+        "text": "The sofa sets the temperature of the entire room. Choose quiet proportions — low back, straight or gently curved arms — and an honest material that ages well: linen, wool, or leather. A neutral sofa is not a boring sofa; it is the surface every future decision rests on. Loud colour belongs in things you can move, not in the largest object you own."
       },
       {
         "type": "product",
@@ -24,24 +82,194 @@
       },
       {
         "type": "heading",
-        "text": "Let the light do the decorating"
+        "text": "Arrange for conversation, not for the television"
       },
       {
         "type": "paragraph",
-        "text": "Overhead light flattens a room; lamps build it. Two or three warm sources at different heights will do more for the atmosphere than any object you could place on a shelf. Aim for pools of light, not coverage."
+        "text": "Pull seating away from the walls, even by a hand's width — rooms breathe when furniture floats. Aim seats toward each other at a gentle angle, keep walkways at least sixty centimetres clear, and let one low table serve every seat. If the television must anchor a wall, balance it with something matte and tall on the other side so it stops being the room's only destination."
       },
       {
         "type": "image",
-        "src": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-        "alt": "A softly lit living room corner with layered warm lamplight"
+        "src": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A calm living room with woven pendant lights, a grey sofa and layered neutral textiles"
       },
       {
         "type": "heading",
-        "text": "Subtract before you add"
+        "text": "Three textures, two heights of light"
       },
       {
         "type": "paragraph",
-        "text": "Before anything new comes in, something should earn its place by surviving a simple question: would the room be worse without it? Most rooms are one careful subtraction away from feeling twice as expensive. Start there — it costs nothing."
+        "text": "Layer a floor lamp beside the seating and something low — a small table lamp or a soft wall light — across the room. Two warm sources at different heights will do more for the atmosphere than any object you could put on a shelf. Then check the textures: if the sofa is linen, add wool underfoot and wood or stone beside it. Difference in surface is what makes a restrained palette feel deliberate."
+      },
+      {
+        "type": "heading",
+        "text": "The last pass: subtract"
+      },
+      {
+        "type": "paragraph",
+        "text": "Finish the room by removing three things. Not the things you dislike — the things the room does not need. Most living rooms are one careful subtraction away from feeling twice as expensive, and the subtraction costs nothing."
+      }
+    ]
+  },
+  {
+    "slug": "a-calmer-dining-room",
+    "title": "A Calmer Dining Room",
+    "date": "2026-06-29",
+    "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A dining room needs exactly three things done well: a table that ages, chairs that invite, and light that flatters. Everything else is styling.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Dining rooms drift into two failure modes: the showroom nobody eats in, and the dumping ground nobody clears. Both have the same cure — reduce the room to its three working parts and give each one real attention. A table that ages, seats that invite, and light that flatters the people around it."
+      },
+      {
+        "type": "heading",
+        "text": "The table: solid, simple, slightly too big"
+      },
+      {
+        "type": "paragraph",
+        "text": "Buy the most honest table you can afford — solid wood, simple profile, no glass. Scratches and heat marks on real timber become character; on veneer they become damage. Size it a touch generously: a table that seats one pair more than your household makes the room feel hospitable even when it is empty. Leave it bare or nearly bare between meals — one vessel, at most."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A solid wood dining table with simple chairs under two pendant lights"
+      },
+      {
+        "type": "heading",
+        "text": "Chairs: comfort first, matching optional"
+      },
+      {
+        "type": "paragraph",
+        "text": "People remember how long they wanted to stay at the table, not what the chairs looked like. Choose seats you can sit in for two hours; a slightly curved back and a seat height around forty-five centimetres suits most tables. Chairs need not match the table — in fact a gentle contrast, pale wood against dark, reads as more considered than a purchased set."
+      },
+      {
+        "type": "heading",
+        "text": "Light: low, warm, and dimmable"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hang the pendant lower than feels safe — roughly seventy-five centimetres above the tabletop — so the light pools on the table instead of glaring into eyes. Warm bulbs and a dimmer are non-negotiable; the same room should be able to serve breakfast and a slow dinner. A soft secondary source in the corner keeps the walls from falling into darkness."
+      },
+      {
+        "type": "product",
+        "slug": "haze-floor-lamp"
+      },
+      {
+        "type": "heading",
+        "text": "The sideboard rule"
+      },
+      {
+        "type": "paragraph",
+        "text": "If the room has storage, give it one job: everything the table needs and nothing else. A sideboard styled with a single lamp and one object will quietly organise the whole room. The moment it collects paperwork, the dining room stops being one."
+      }
+    ]
+  },
+  {
+    "slug": "the-restful-bedroom",
+    "title": "The Restful Bedroom",
+    "date": "2026-06-25",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A bedroom has one job. A guide to designing for rest — bed, textiles, light and the discipline of what stays out.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A bedroom has exactly one job, and most bedrooms are furnished as if they had five. Rest is a design outcome: it comes from a calm palette, layered natural textiles, light you can lower to almost nothing, and a firm rule about what never enters the room. Everything below serves those four things."
+      },
+      {
+        "type": "heading",
+        "text": "The bed earns the budget"
+      },
+      {
+        "type": "paragraph",
+        "text": "Spend where your body spends eight hours. A simple upholstered or timber frame, low rather than tall, leaves the attention on the textiles — which is where a bedroom's softness actually lives. Centre the bed on the longest uninterrupted wall, never under a window if you can avoid it, and give both sides a small table and reach of light."
+      },
+      {
+        "type": "heading",
+        "text": "Dress it in layers that breathe"
+      },
+      {
+        "type": "paragraph",
+        "text": "Natural fibres regulate temperature in a way synthetics never will. Washed linen or cotton percale against the skin, a wool or cotton blanket folded at the foot, and one spare layer within reach for cold nights. Keep the palette within two quiet tones and let the wrinkles happen — pressed-flat bedding belongs to hotels, not to rest."
+      },
+      {
+        "type": "product",
+        "slug": "ren-linen-bedding"
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A soft bedroom with layered bedding, warm lamplight and hanging plants"
+      },
+      {
+        "type": "heading",
+        "text": "Light for winding down"
+      },
+      {
+        "type": "paragraph",
+        "text": "The overhead light in a bedroom should be almost ceremonial — used for cleaning and packing, nothing else. Evenings belong to two low, warm sources at bed height. If you change one thing, change the bulbs: 2700 kelvin or warmer, and dim. The room should get darker in stages, the way the day does."
+      },
+      {
+        "type": "heading",
+        "text": "What stays out"
+      },
+      {
+        "type": "paragraph",
+        "text": "No work, no laundry in progress, and as little technology as you can negotiate with yourself. A chair in the corner earns its place only if it holds a reader, not a pile. The discipline sounds austere; the room it produces feels like the opposite."
+      }
+    ]
+  },
+  {
+    "slug": "the-bathroom-reconsidered",
+    "title": "The Bathroom, Reconsidered",
+    "date": "2026-06-22",
+    "cover": "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The smallest room rewards restraint more than any other. Surfaces, storage and softness — how to make a bathroom feel composed.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Bathrooms are judged in a single glance, which is why clutter costs them more than any other room. The good news: because the space is small, restraint is cheap. Clear surfaces, closed storage, one living thing, and textiles chosen like clothing — that is the entire recipe."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the horizontal surfaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "Everything used daily goes behind a door or into one tray — a single tray, chosen well, turns necessity into composition. Everything used weekly goes out of sight entirely. The counter around the basin should hold three objects at most. This one habit does more for a bathroom than any renovation."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A white bathroom with a pedestal basin, checkered floor and trailing plants"
+      },
+      {
+        "type": "heading",
+        "text": "Textiles are the fastest upgrade"
+      },
+      {
+        "type": "paragraph",
+        "text": "Towels in one colour — ideally the palette's warm base — folded in thirds, and a bath mat with real weight underfoot. Mixed colours and thin towels make even a new bathroom feel like a rental. This is the cheapest transformation in the entire home and it takes one afternoon."
+      },
+      {
+        "type": "heading",
+        "text": "A surface within reach"
+      },
+      {
+        "type": "paragraph",
+        "text": "If the room allows it, a small stool or side table beside the bath changes how the space is used — a towel, a book, nothing more. Choose solid wood that tolerates humidity and let it age. It is the difference between a room you wash in and a room you stay in."
+      },
+      {
+        "type": "product",
+        "slug": "loam-side-table"
+      },
+      {
+        "type": "heading",
+        "text": "One living thing"
+      },
+      {
+        "type": "paragraph",
+        "text": "A fern or trailing plant thrives on bathroom humidity and softens all that tile. One is composure; three is a greenhouse. Add warm light — the vanity bulb included — and the smallest room in the home quietly becomes one of the best."
       }
     ]
   },
@@ -66,8 +294,8 @@
       },
       {
         "type": "image",
-        "src": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80",
-        "alt": "A bright, pared-back interior with linen upholstery and natural oak"
+        "src": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A bright bedroom dressed in layered natural textiles"
       },
       {
         "type": "heading",
@@ -75,7 +303,123 @@
       },
       {
         "type": "paragraph",
-        "text": "Resist the urge to style every surface. Give each corner of the room one material to speak with — oak in one, linen in another, a single brass detail near the window — and stop. Restraint, repeated four times, reads as intention."
+        "text": "Resist the urge to style every surface. Give each corner of the room one material to speak with — oak in one, linen in another, a single ceramic piece near the window — and stop. Restraint, repeated four times, reads as intention."
+      },
+      {
+        "type": "product",
+        "slug": "sana-stoneware-vase"
+      },
+      {
+        "type": "paragraph",
+        "text": "When autumn comes, reverse the ritual: the wool returns, the light drops lower, and the same room becomes its winter self. Two rooms for the price of one, separated only by an afternoon of folding."
+      }
+    ]
+  },
+  {
+    "slug": "the-calm-kitchen",
+    "title": "The Kitchen: Calm in the Busiest Room",
+    "date": "2026-06-15",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The kitchen works harder than any room in the home. How to keep it composed without hiding the fact that someone cooks here.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The kitchen is the one room where minimalism has to earn its keep — a space this useful cannot be styled into silence. The aim is different: a room that looks composed while openly admitting that someone cooks here. That balance comes from three habits and one lighting decision."
+      },
+      {
+        "type": "heading",
+        "text": "The counter keeps only what works daily"
+      },
+      {
+        "type": "paragraph",
+        "text": "Everything on the worktop must be used more days than not: the kettle, the board, the one pot that never gets put away. Everything else lives behind doors. A kitchen counter with three working objects and a bowl of whatever fruit is in season looks more alive — and more expensive — than any styled arrangement."
+      },
+      {
+        "type": "heading",
+        "text": "Repeat materials, not objects"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose one wood, one metal, and one ceramic tone, then repeat them: the board, the stools, the open shelf, the bowls. Repetition of material is what makes a hardworking room read as designed rather than accumulated. If the cabinets are painted, keep them within the home's palette so the kitchen belongs to the same story as every other room."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A kitchen island with glass pendant lights, brass tap and wooden counter stools"
+      },
+      {
+        "type": "heading",
+        "text": "Warm light over the work"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kitchens are usually lit like operating theatres. Keep the bright task light over the worktop, but add one warm, lower source — a pendant over the island or a small lamp on the counter's quiet end. In the evening, the warm source alone should be enough. It is the single change that lets the busiest room wind down with the rest of the home."
+      },
+      {
+        "type": "product",
+        "slug": "calm-interior-guide"
+      },
+      {
+        "type": "heading",
+        "text": "The ten-minute reset"
+      },
+      {
+        "type": "paragraph",
+        "text": "Composed kitchens are not tidier by nature; they reset more often. Ten minutes after the last meal — surfaces cleared, board dried, cloth folded — is the entire secret. Design gets the room to good; the reset keeps it there."
+      }
+    ]
+  },
+  {
+    "slug": "the-considered-entryway",
+    "title": "The Entryway: A Considered Welcome",
+    "date": "2026-06-11",
+    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The first three steps into a home decide how the whole of it feels. A guide to the most overlooked space you own.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "No space is judged faster or furnished later than the entryway. Yet the first three steps into a home set the tone for everything after them. The brief is short: somewhere to put things down, somewhere to sit, one source of warm light, and a strict ceiling on how much the space is asked to hold."
+      },
+      {
+        "type": "heading",
+        "text": "A surface, not a shelf system"
+      },
+      {
+        "type": "paragraph",
+        "text": "One narrow console or chest is enough. Its top holds a tray for keys, one lamp, and one object you like — nothing else. The moment an entry surface starts collecting post and parcels it stops welcoming anyone, so give the paperwork a home elsewhere and defend the emptiness."
+      },
+      {
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1600&q=80",
+        "alt": "A neutral seating corner with wooden side tables and soft grey upholstery"
+      },
+      {
+        "type": "heading",
+        "text": "Somewhere to sit, even briefly"
+      },
+      {
+        "type": "paragraph",
+        "text": "Shoes go on and off here every day; a seat acknowledges it. A small bench, a stool, or — where the space allows — a single good chair in the corner turns the entry from a corridor into a room. It is also the piece that makes the space feel furnished rather than merely equipped."
+      },
+      {
+        "type": "product",
+        "slug": "noma-lounge-chair"
+      },
+      {
+        "type": "heading",
+        "text": "Warm light, low switch"
+      },
+      {
+        "type": "paragraph",
+        "text": "Overhead light makes an entry feel like a lobby. A lamp on the console or a warm wall light beside the mirror greets better, especially in winter. If there is one mirror in the space, hang it where it borrows daylight from the nearest window — small entries double in size for free."
+      },
+      {
+        "type": "heading",
+        "text": "The seasonal edit"
+      },
+      {
+        "type": "paragraph",
+        "text": "Entries silt up quietly: coats out of season, shoes nobody wears, bags without owners. Twice a year, empty the space completely and return only what the current season needs. It is a fifteen-minute habit that keeps the home's first impression honest."
       }
     ]
   }

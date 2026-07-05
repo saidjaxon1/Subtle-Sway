@@ -22,6 +22,7 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
   "price": "$129",
   "type": "physical",
   "category": "Home Decor",
+  "subcategory": "Lighting",
   "image": "https://link-to-the-product-photo.jpg",
   "affiliateLink": "https://your-affiliate-link-here",
   "description": "One short paragraph about the product.",
@@ -31,12 +32,13 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
 
 Rules:
 - `slug` must be **unique** and use only lowercase letters, numbers, and dashes. It becomes the URL: `product.html?slug=my-new-lamp`.
-- `type` is `"physical"` or `"digital"`. Digital products (ebooks, printables, courses…) get a clear "Digital product · Instant online delivery" tag on their page and a small "Digital" note on cards.
-- `category` is **optional** — the small label above the product name (e.g. `"Home Decor"`, `"Apparel"`, `"Digital"`).
+- `type` is `"physical"`, `"digital"`, or `""`. If set, the product page shows a "Digital product" or "Physical product" tag (digital items also get a small "Digital" note on cards). If left `""`, no tag is shown.
+- `category` is the top-level group (e.g. `"Home Decor"`, `"Fashion"`, `"Digital"`). Categories become the filter tabs in the shop and the category cards on the home page — automatically, based on whatever categories your products use.
+- `subcategory` is **optional** (e.g. `"Living Room"`, `"Lighting"`, `"T-Shirts"`). Subcategories become the second filter row inside a category, and the small label above the product name.
 - `price` is **optional** plain text — write it exactly how you want it shown (e.g. `"$1,249"`), or leave it `""` to show the product without a price.
 - `colors` is **optional** — 3–4 hex color codes shown as small circles on the product page. Use `[]` for none (e.g. digital products).
 
-Save the file — the product appears in the shop automatically.
+Save the file — the product appears in the shop (and its category in the filters) automatically.
 
 ## How to add a new blog post
 

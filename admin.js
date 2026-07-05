@@ -234,16 +234,19 @@
 
   function productForm(product) {
     var typeSelect = el("select", { id: "f-type" }, [
+      el("option", { value: "" }, ["Not set — show nothing"]),
       el("option", { value: "physical" }, ["Physical — a shipped item (furniture, apparel…)"]),
       el("option", { value: "digital" }, ["Digital — delivered online (ebook, printable…)"])
     ]);
-    typeSelect.value = (product.type || "physical").toLowerCase() === "digital" ? "digital" : "physical";
+    var currentType = (product.type || "").toLowerCase();
+    typeSelect.value = currentType === "digital" || currentType === "physical" ? currentType : "";
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Slug", textInput("f-slug", product.slug, "e.g. walnut-coffee-table"), "Unique, lowercase-with-dashes. Becomes the URL."),
       field("Name", textInput("f-name", product.name, "e.g. Walnut Coffee Table")),
-      field("Type", typeSelect, "Digital products get a clear “Digital product” tag on the site."),
-      field("Category", textInput("f-cat", product.category, "e.g. Home Decor, Apparel, Digital"), "Optional — the small label above the product name."),
+      field("Type", typeSelect, "Shown on the product page as a Digital product or Physical product tag. Not set = no tag."),
+      field("Category", textInput("f-cat", product.category, "e.g. Home Decor, Fashion, Digital"), "Top-level group — the filter tabs in the shop."),
+      field("Subcategory", textInput("f-sub", product.subcategory, "e.g. Living Room, Lighting, T-Shirts"), "Optional — the second filter row inside a category, and the small label on the card."),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show the product without a price."),
       field("Image URL", textInput("f-image", product.image, "https://…")),
       field("Affiliate link", textInput("f-link", product.affiliateLink, "https://…"), "Opens from the Buy Now button."),
@@ -259,6 +262,7 @@
         price: $("f-price").value.trim(),
         type: $("f-type").value,
         category: $("f-cat").value.trim(),
+        subcategory: $("f-sub").value.trim(),
         image: $("f-image").value.trim(),
         affiliateLink: $("f-link").value.trim(),
         description: $("f-desc").value.trim(),
@@ -432,7 +436,7 @@
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct
-      ? { slug: "", name: "", price: "", type: "physical", category: "", image: "", affiliateLink: "", description: "", colors: [] }
+      ? { slug: "", name: "", price: "", type: "physical", category: "", subcategory: "", image: "", affiliateLink: "", description: "", colors: [] }
       : { slug: "", title: "", date: "", cover: "", excerpt: "", content: [] };
     var item = index === -1 ? blank : state[state.tab].data[index];
 
