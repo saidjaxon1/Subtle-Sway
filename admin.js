@@ -177,7 +177,7 @@
     $("tab-products").setAttribute("aria-selected", tab === "products");
     $("tab-posts").setAttribute("aria-selected", tab === "posts");
     $("tab-categories").setAttribute("aria-selected", tab === "categories");
-    $("list-title").textContent = { products: "Products", posts: "Posts", categories: "Categories" }[tab];
+    $("list-title").textContent = { products: "Products", posts: "Articles", categories: "Categories" }[tab];
     $("add-item").hidden = tab === "categories";
     $("form-view").hidden = true;
     $("list-view").hidden = false;
@@ -306,7 +306,7 @@
     if (!window.confirm("Delete “" + label + "”? This removes it from the live site.")) return;
 
     state[state.tab].data.splice(index, 1);
-    saveFile(state.tab, "admin: delete " + (isProduct ? "product" : "post") + " “" + label + "”")
+    saveFile(state.tab, "admin: delete " + (isProduct ? "product" : "article") + " “" + label + "”")
       .then(renderList)
       .catch(function (error) { setStatus(error.message, true); renderList(); });
   }
@@ -325,63 +325,155 @@
     ]);
   }
 
-  function slugTaken(slug, excludeIndex) {
-    return state[state.tab].data.some(function (item, i) {
-      return i !== excludeIndex && item.slug === slug;
-    });
+  /* ---------- Automatic URL slugs (no technical field to fill in) ---------- */
+
+  // "The Quiet Living Room: Five Principles" -> "the-quiet-living-room-five-principles"
+  function slugify(text) {
+    return (text || "")
+      .toLowerCase()
+      .replace(/['’]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "item";
   }
 
-  function validSlug(slug) {
-    return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug);
+  // Appends -2, -3… until the slug is unique within the current list.
+  function uniqueSlug(base, items) {
+    var candidate = base;
+    var n = 2;
+    while (items.some(function (item) { return item.slug === candidate; })) {
+      candidate = base + "-" + n++;
+    }
+    return candidate;
+  }
+
+  // Editing keeps the existing slug (links stay stable); new items get one
+  // generated from their name/title.
+  function resolveSlug(nameOrTitle) {
+    if (state.editIndex !== -1) return state[state.tab].data[state.editIndex].slug;
+    return uniqueSlug(slugify(nameOrTitle), state[state.tab].data);
+  }
+
+  /* ---------- Image upload (straight into the repo) ---------- */
+
+  function uploadImage(file, onDone, onError) {
+    var safe = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^-+|-+$/g, "") || "image.jpg";
+    var path = "images/" + Date.now().toString(36) + "-" + safe;
+    var reader = new FileReader();
+    reader.onerror = function () { onError(new Error("Could not read the file.")); };
+    reader.onload = function () {
+      fetch(API_BASE + path, {
+        method: "PUT",
+        headers: apiHeaders(),
+        body: JSON.stringify({
+          message: "admin: upload image " + safe,
+          content: String(reader.result).split(",")[1],
+          branch: CONFIG.branch
+        })
+      }).then(function (response) {
+        if (!response.ok) throw new Error("Upload failed (HTTP " + response.status + ").");
+        onDone("./" + path);
+      }).catch(onError);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // A photo field: paste a link, or press Upload to use a file from this
+  // computer — the link fills itself in. Shows a small live preview.
+  function imageField(labelText, inputId, value, hint) {
+    var input = el("input", { type: "text", id: inputId, value: value || "", placeholder: "https://…  (or press Upload)", autocomplete: "off" });
+    var thumb = el("img", { class: "img-thumb", alt: "", hidden: "" });
+    function syncThumb() {
+      var src = input.value.trim();
+      if (src) { thumb.src = src; thumb.hidden = false; } else { thumb.hidden = true; }
+    }
+    input.addEventListener("input", syncThumb);
+    syncThumb();
+
+    var fileInput = el("input", { type: "file", accept: "image/*", hidden: "" });
+    var uploadBtn = el("button", { type: "button", class: "ghost-btn" }, ["Upload"]);
+    var uploadStatus = el("span", { class: "field-hint" }, []);
+    uploadBtn.addEventListener("click", function () { fileInput.click(); });
+    fileInput.addEventListener("change", function () {
+      var file = fileInput.files[0];
+      if (!file) return;
+      if (file.size > 8 * 1024 * 1024) {
+        uploadStatus.textContent = "That image is over 8 MB — please use a smaller one.";
+        return;
+      }
+      uploadBtn.disabled = true;
+      uploadStatus.textContent = "Uploading…";
+      uploadImage(file, function (url) {
+        input.value = url;
+        syncThumb();
+        uploadBtn.disabled = false;
+        uploadStatus.textContent = "Uploaded ✓";
+        fileInput.value = "";
+      }, function (error) {
+        uploadBtn.disabled = false;
+        uploadStatus.textContent = error.message;
+      });
+    });
+
+    return el("div", { class: "field" }, [
+      el("span", { class: "field-label" }, [labelText]),
+      el("div", { class: "img-row" }, [input, uploadBtn, thumb]),
+      fileInput,
+      uploadStatus,
+      hint ? el("span", { class: "field-hint" }, [hint]) : null
+    ]);
   }
 
   /* ---------- Product form ---------- */
 
   function productForm(product) {
     var typeSelect = el("select", { id: "f-type" }, [
-      el("option", { value: "" }, ["Not set — show nothing"]),
-      el("option", { value: "physical" }, ["Physical — a shipped item (furniture, apparel…)"]),
-      el("option", { value: "digital" }, ["Digital — delivered online (ebook, printable…)"])
+      el("option", { value: "physical" }, ["Physical — a shipped item"]),
+      el("option", { value: "digital" }, ["Digital — delivered online"]),
+      el("option", { value: "" }, ["Don't show anything"])
     ]);
     var currentType = (product.type || "").toLowerCase();
     typeSelect.value = currentType === "digital" || currentType === "physical" ? currentType : "";
 
     var sourceSelect = el("select", { id: "f-source" }, [
-      el("option", { value: "affiliate" }, ["Affiliate link — shows the affiliate notes"]),
-      el("option", { value: "own" }, ["My product — no affiliate notes anywhere"])
+      el("option", { value: "affiliate" }, ["Affiliate link — shows the affiliate note"]),
+      el("option", { value: "own" }, ["My own product — no affiliate notes"])
     ]);
     sourceSelect.value = (product.source || "").toLowerCase() === "own" ? "own" : "affiliate";
 
     // Existing category/subcategory names appear as typing suggestions,
     // so a typo can't accidentally create a new category.
-    var catInput = textInput("f-cat", product.category, "e.g. Home Decor, Fashion, Digital");
+    var catInput = textInput("f-cat", product.category, "e.g. Home Decor");
     catInput.setAttribute("list", "dl-categories");
-    var subInput = textInput("f-sub", product.subcategory, "e.g. Living Room, Lighting, T-Shirts");
+    var subInput = textInput("f-sub", product.subcategory, "e.g. Living Room");
     subInput.setAttribute("list", "dl-subcategories");
+
+    var nameInput = textInput("f-name", product.name, "e.g. Walnut Coffee Table");
+    nameInput.classList.add("big");
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       el("datalist", { id: "dl-categories" },
         uniqueProductValues(state.products.data, "category").map(function (c) { return el("option", { value: c }); })),
       el("datalist", { id: "dl-subcategories" },
         uniqueProductValues(state.products.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
-      field("Slug", textInput("f-slug", product.slug, "e.g. walnut-coffee-table"), "Unique, lowercase-with-dashes. Becomes the URL."),
-      field("Name", textInput("f-name", product.name, "e.g. Walnut Coffee Table")),
-      field("Link type", sourceSelect, "Affiliate shows the disclosure next to Buy Now; My product hides it completely."),
-      field("Type", typeSelect, "Shown on the product page as a Digital product or Physical product tag. Not set = no tag."),
-      field("Category", catInput, "Top-level group — the filter tabs in the shop. Pick an existing one or type a new name."),
-      field("Subcategory", subInput, "Optional — the second filter row inside a category, and the small label on the card."),
-      field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show the product without a price."),
-      field("Image URL", textInput("f-image", product.image, "https://…")),
-      field("Affiliate link", textInput("f-link", product.affiliateLink, "https://…"), "Opens from the Buy Now button."),
-      field("Description", el("textarea", { id: "f-desc" }, [product.description || ""])),
-      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F, #23211D"), "Optional — 3–4 hex codes separated by commas.")
+      field("Name", nameInput),
+      imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
+      field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show no price."),
+      field("Buy Now link", textInput("f-link", product.affiliateLink, "https://…"), "Where the Buy Now button sends the visitor."),
+      field("Link type", sourceSelect),
+      field("Product kind", typeSelect, "Shown as a small tag on the product page."),
+      field("Category", catInput, "The shop filter group. Pick an existing one or type a new name."),
+      field("Subcategory", subInput, "Optional — the finer filter inside a category."),
+      field("Description", el("textarea", { id: "f-desc" }, [product.description || ""]), "One short paragraph shown on the product page."),
+      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F"), "Optional — hex codes separated by commas, shown as small circles.")
     ]);
 
     form.appendChild(formButtons(form, function () {
-      var slug = $("f-slug").value.trim();
-      var item = {
-        slug: slug,
-        name: $("f-name").value.trim(),
+      var name = $("f-name").value.trim();
+      if (!name) return { error: "Give the product a name." };
+      return { item: {
+        slug: resolveSlug(name),
+        name: name,
         price: $("f-price").value.trim(),
         type: $("f-type").value,
         source: $("f-source").value,
@@ -391,16 +483,14 @@
         affiliateLink: $("f-link").value.trim(),
         description: $("f-desc").value.trim(),
         colors: $("f-colors").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean)
-      };
-      if (!item.name) return { error: "Name is required." };
-      return { item: item };
+      } };
     }));
     return form;
   }
 
   /* ---------- Post form (with content block editor) ---------- */
 
-  var BLOCK_LABELS = { paragraph: "Paragraph", heading: "Heading", image: "Image", product: "Product card" };
+  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", product: "Product" };
 
   function blockRow(block, index) {
     var tools = el("div", { class: "block-tools" }, []);
@@ -432,11 +522,39 @@
       textEl.addEventListener("input", function () { block.text = textEl.value; });
       body.appendChild(textEl);
     } else if (block.type === "image") {
-      var src = el("input", { type: "text", value: block.src || "", placeholder: "Image URL (https://…)" });
-      var alt = el("input", { type: "text", value: block.alt || "", placeholder: "Alt text — describe the image" });
+      var src = el("input", { type: "text", value: block.src || "", placeholder: "Photo link — or press Upload" });
+      var alt = el("input", { type: "text", value: block.alt || "", placeholder: "A few words describing the photo" });
       src.addEventListener("input", function () { block.src = src.value; });
       alt.addEventListener("input", function () { block.alt = alt.value; });
-      body.appendChild(src);
+
+      var fileInput = el("input", { type: "file", accept: "image/*", hidden: "" });
+      var uploadBtn = el("button", { type: "button", class: "ghost-btn" }, ["Upload"]);
+      var uploadStatus = el("span", { class: "field-hint" }, []);
+      uploadBtn.addEventListener("click", function () { fileInput.click(); });
+      fileInput.addEventListener("change", function () {
+        var file = fileInput.files[0];
+        if (!file) return;
+        if (file.size > 8 * 1024 * 1024) {
+          uploadStatus.textContent = "That image is over 8 MB — please use a smaller one.";
+          return;
+        }
+        uploadBtn.disabled = true;
+        uploadStatus.textContent = "Uploading…";
+        uploadImage(file, function (url) {
+          src.value = url;
+          block.src = url;
+          uploadBtn.disabled = false;
+          uploadStatus.textContent = "Uploaded ✓";
+          fileInput.value = "";
+        }, function (error) {
+          uploadBtn.disabled = false;
+          uploadStatus.textContent = error.message;
+        });
+      });
+
+      body.appendChild(el("div", { class: "img-row" }, [src, uploadBtn]));
+      body.appendChild(fileInput);
+      body.appendChild(uploadStatus);
       body.appendChild(alt);
     } else if (block.type === "product") {
       var select = el("select", null, state.products.data.map(function (p) {
@@ -486,31 +604,34 @@
       addRow.appendChild(btn);
     });
 
+    var titleInput = textInput("f-title", post.title, "Article title…");
+    titleInput.classList.add("big");
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
-      field("Slug", textInput("f-slug", post.slug, "e.g. five-quiet-bedroom-ideas"), "Unique, lowercase-with-dashes. Becomes the URL."),
-      field("Title", textInput("f-title", post.title, "e.g. Five Quiet Bedroom Ideas")),
-      field("Date", el("input", { type: "date", id: "f-date", value: post.date || new Date().toISOString().slice(0, 10) }), "The journal sorts newest first by this date."),
-      field("Cover image URL", textInput("f-cover", post.cover, "https://…")),
-      field("Excerpt", el("textarea", { id: "f-excerpt" }, [post.excerpt || ""]), "1–2 sentences shown in the journal list."),
+      field("Title", titleInput),
+      imageField("Cover photo", "f-cover", post.cover, "The large photo at the top of the article and in the journal list."),
+      field("Date", el("input", { type: "date", id: "f-date", value: post.date || new Date().toISOString().slice(0, 10) }), "Newest date shows first in the journal."),
+      field("Short summary", el("textarea", { id: "f-excerpt" }, [post.excerpt || ""]), "1–2 sentences shown in the journal list."),
       el("div", { class: "field" }, [
-        el("span", { class: "field-label" }, ["Content blocks"]),
+        el("span", { class: "field-label" }, ["Article"]),
+        el("span", { class: "field-hint" }, ["Build the article from blocks. Use the buttons below to add text, headings, photos, or a product with its Buy Now button."]),
         el("div", { class: "blocks-editor", id: "blocks-editor" }),
         addRow
       ])
     ]);
 
     form.appendChild(formButtons(form, function () {
-      var item = {
-        slug: $("f-slug").value.trim(),
-        title: $("f-title").value.trim(),
+      var title = $("f-title").value.trim();
+      if (!title) return { error: "Give the article a title." };
+      if (!$("f-date").value) return { error: "Pick a date." };
+      return { item: {
+        slug: resolveSlug(title),
+        title: title,
         date: $("f-date").value,
         cover: $("f-cover").value.trim(),
         excerpt: $("f-excerpt").value.trim(),
         content: state.blocks
-      };
-      if (!item.title) return { error: "Title is required." };
-      if (!item.date) return { error: "Date is required." };
-      return { item: item };
+      } };
     }));
 
     // The editor div exists only after the form is in the DOM, so render on next tick.
@@ -530,10 +651,6 @@
       event.preventDefault();
       error.textContent = "";
 
-      var slug = $("f-slug").value.trim();
-      if (!validSlug(slug)) { error.textContent = "Slug must be lowercase letters, numbers and dashes only (e.g. my-new-item)."; return; }
-      if (slugTaken(slug, state.editIndex)) { error.textContent = "That slug is already used — pick a unique one."; return; }
-
       var result = collect();
       if (result.error) { error.textContent = result.error; return; }
 
@@ -542,7 +659,7 @@
       if (isNew) items.push(result.item);
       else items[state.editIndex] = result.item;
 
-      var noun = state.tab === "products" ? "product" : "post";
+      var noun = state.tab === "products" ? "product" : "article";
       var label = result.item.name || result.item.title;
       save.disabled = true;
       saveFile(state.tab, "admin: " + (isNew ? "add" : "update") + " " + noun + " “" + label + "”")
@@ -567,7 +684,7 @@
     var view = $("form-view");
     view.textContent = "";
     view.appendChild(el("h1", { class: "admin-title" }, [
-      (index === -1 ? "Add " : "Edit ") + (isProduct ? "product" : "post")
+      (index === -1 ? "Add " : "Edit ") + (isProduct ? "product" : "article")
     ]));
     view.appendChild(isProduct ? productForm(item) : postForm(item));
 

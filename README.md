@@ -82,6 +82,11 @@ Open `admin.html` on your live site (e.g. `https://your-domain/admin.html`). It 
 
 The **Categories** tab shows every category and subcategory with product counts, and can rename one everywhere in a single step. Categories are created simply by typing a new name on a product (existing names appear as suggestions while typing), and a category disappears on its own when no product uses it.
 
+Two conveniences worth knowing:
+
+- **Photos can be uploaded straight from your computer** — every photo field has an Upload button that stores the file in the repo (`images/` folder) and fills the link in for you. Pasting an outside URL still works too.
+- **URLs are automatic** — the address of a product or article is generated from its name the first time you save it; there is no technical field to fill in. (In the JSON files this is the `slug` value, which the admin now manages for you.)
+
 First-time setup (once per browser):
 
 1. On GitHub go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
