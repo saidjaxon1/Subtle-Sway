@@ -1189,6 +1189,8 @@
   }
 
   function openForm(index) {
+    // Only Products and Articles have an add/edit form.
+    if (state.tab !== "products" && state.tab !== "posts") return;
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct

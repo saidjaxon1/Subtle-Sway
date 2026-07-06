@@ -47,6 +47,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* The hidden attribute must always win, even over components that set an
+   explicit display (e.g. .btn { display: inline-block }). Without this,
+   a hidden .btn would still show. */
+[hidden] {
+  display: none !important;
+}
+
 body {
   background: var(--bone);
   color: var(--ink);
