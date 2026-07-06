@@ -1338,24 +1338,43 @@ main > .eyebrow::before,
   letter-spacing: 0.02em;
 }
 
-/* Small contact line at the top of the footer (edited from the admin) */
+/* Contact block under the disclosure (edited from the admin) */
 .footer-contact {
-  margin-bottom: 0.6rem;
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-.footer-contact .contact-label {
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--brass);
-}
-
-.footer-contact a {
+.contact-text {
+  font-size: var(--text-caption);
   color: var(--muted);
 }
 
-.footer-contact a:hover {
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Quiet button shape — hairline border warming to brass */
+.contact-btn {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-btn:hover {
   color: var(--ink);
+  border-color: var(--brass);
 }
 
 /* ---------- Responsive ---------- */

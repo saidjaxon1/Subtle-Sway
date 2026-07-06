@@ -227,20 +227,12 @@
         var c = (site && site.contact) || {};
         if (!c.email && !c.text && !c.pinterest && !c.instagram) return;
         slot.hidden = false;
-        slot.appendChild(el("span", { class: "contact-label" }, ["Contact us"]));
-        if (c.text) slot.appendChild(document.createTextNode(" — " + c.text));
-        if (c.email) {
-          slot.appendChild(document.createTextNode(" "));
-          slot.appendChild(el("a", { class: "text-link", href: "mailto:" + c.email }, [c.email]));
-        }
-        if (c.pinterest) {
-          slot.appendChild(document.createTextNode("  ·  "));
-          slot.appendChild(el("a", { class: "text-link", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
-        }
-        if (c.instagram) {
-          slot.appendChild(document.createTextNode("  ·  "));
-          slot.appendChild(el("a", { class: "text-link", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
-        }
+        if (c.text) slot.appendChild(el("span", { class: "contact-text" }, [c.text]));
+        var actions = el("div", { class: "contact-actions" });
+        if (c.email) actions.appendChild(el("a", { class: "contact-btn", href: "mailto:" + c.email }, ["Contact us"]));
+        if (c.pinterest) actions.appendChild(el("a", { class: "contact-btn", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
+        if (c.instagram) actions.appendChild(el("a", { class: "contact-btn", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
+        if (actions.children.length) slot.appendChild(actions);
       })
       .catch(function () { /* footer simply stays without a contact line */ });
   }

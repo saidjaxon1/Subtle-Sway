@@ -299,11 +299,49 @@ select:focus-visible {
   padding-top: 0;
 }
 
-/* One-tap product picker under the article editor */
+/* Search + category chips above the Products/Articles lists */
+.list-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.list-search,
+.picker-search {
+  width: min(22rem, 100%);
+}
+
+.picker-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Product picker panel under the article editor */
+.picker-panel {
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--panel);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
 .product-picker {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
+.picker-price {
+  color: var(--brass);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
 }
 
 .picker-item {

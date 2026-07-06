@@ -27,7 +27,8 @@
     tab: "products",     // which tab is active
     editIndex: -1,       // -1 = adding a new item
     blocks: [],          // working copy of a post's content blocks while editing
-    extraImages: []      // working copy of a product's extra photos while editing
+    extraImages: [],     // working copy of a product's extra photos while editing
+    listFilter: { q: "", cat: null }  // search/category filter on the list views
   };
 
   /* ---------- DOM helpers ---------- */
@@ -195,7 +196,53 @@
     $("list-title").textContent = { products: "Products", posts: "Articles", categories: "Categories" }[tab];
     $("form-view").hidden = true;
     $("list-view").hidden = false;
+    state.listFilter = { q: "", cat: null };
+    buildListControls();
     renderList();
+  }
+
+  // Search + category chips above the Products/Articles lists.
+  // Built once per tab so the search box keeps focus while typing.
+  function buildListControls() {
+    var wrap = $("list-controls");
+    wrap.textContent = "";
+    if (state.tab !== "products" && state.tab !== "posts") {
+      wrap.hidden = true;
+      return;
+    }
+    wrap.hidden = false;
+
+    var search = el("input", {
+      type: "search",
+      class: "list-search",
+      placeholder: state.tab === "products" ? "Search products…" : "Search articles…",
+      autocomplete: "off"
+    });
+    search.addEventListener("input", function () {
+      state.listFilter.q = search.value;
+      renderList();
+    });
+
+    var chipRow = el("div", { class: "picker-chips" });
+    var cats = uniqueProductValues(state[state.tab].data, "category");
+    function renderChips() {
+      chipRow.textContent = "";
+      function addChip(label, value) {
+        var button = el("button", { type: "button", class: "chip", "aria-pressed": String(state.listFilter.cat === value) }, [label]);
+        button.addEventListener("click", function () {
+          state.listFilter.cat = value;
+          renderChips();
+          renderList();
+        });
+        chipRow.appendChild(button);
+      }
+      addChip("All", null);
+      cats.forEach(function (c) { addChip(c, c); });
+    }
+    renderChips();
+
+    wrap.appendChild(search);
+    if (cats.length) wrap.appendChild(chipRow);
   }
 
   /* ---------- Contact form (footer contact line, stored in site.json) ---------- */
@@ -258,7 +305,28 @@
       return;
     }
 
-    items.forEach(function (item, index) {
+    // Filter for display but keep each item's original index, so Edit
+    // and Delete always act on the right entry.
+    var q = norm(state.listFilter.q);
+    var cat = state.listFilter.cat;
+    var entries = items
+      .map(function (item, index) { return { item: item, index: index }; })
+      .filter(function (entry) {
+        var item = entry.item;
+        if (cat && norm(item.category) !== norm(cat)) return false;
+        if (!q) return true;
+        return [item.name, item.title, item.slug, item.category, item.subcategory]
+          .some(function (part) { return norm(part).indexOf(q) !== -1; });
+      });
+
+    if (!entries.length) {
+      list.appendChild(el("li", { class: "admin-empty" }, ["Nothing matches that search."]));
+      return;
+    }
+
+    entries.forEach(function (entry) {
+      var item = entry.item;
+      var index = entry.index;
       var isProduct = state.tab === "products";
       var editBtn = el("button", { class: "ghost-btn", type: "button" }, ["Edit"]);
       var deleteBtn = el("button", { class: "ghost-btn danger", type: "button" }, ["Delete"]);
@@ -307,6 +375,26 @@
       .catch(function (error) { setStatus(error.message, true); renderList(); });
   }
 
+  // Remove a category/subcategory label. Items themselves are kept —
+  // they only lose the label (and stay visible under "All").
+  function removeEverywhere(fileName, noun, key, oldName, filter, count) {
+    var clearsSubs = key === "category";
+    var message = "Remove " + key + " “" + oldName + "”?\n\nThe " + count + " " + noun + (count === 1 ? "" : "s") +
+      " in it will NOT be deleted — " + (count === 1 ? "it" : "they") + " just lose this label" +
+      (clearsSubs ? " (and its subcategories)" : "") + " and stay visible under All.";
+    if (!window.confirm(message)) return;
+
+    state[fileName].data.forEach(function (item) {
+      if (norm(item[key]) === norm(oldName) && (!filter || filter(item))) {
+        item[key] = "";
+        if (clearsSubs) item.subcategory = "";
+      }
+    });
+    saveFile(fileName, "admin: remove " + key + " “" + oldName + "”")
+      .then(renderList)
+      .catch(function (error) { setStatus(error.message, true); renderList(); });
+  }
+
   // One group of category rows (used for products and for articles).
   function renderCategoryGroup(list, fileName, groupLabel, noun) {
     var items = state[fileName].data;
@@ -328,24 +416,31 @@
       renameBtn.addEventListener("click", function () {
         renameEverywhere(fileName, noun, "category", category);
       });
+      var removeBtn = el("button", { class: "ghost-btn danger", type: "button" }, ["Remove"]);
+      removeBtn.addEventListener("click", function () {
+        removeEverywhere(fileName, noun, "category", category, null, inCategory.length);
+      });
 
       list.appendChild(el("li", null, [
         el("div", { class: "item-info" }, [
           el("span", { class: "item-name" }, [category]),
           el("span", { class: "item-meta" }, [inCategory.length + " " + noun + (inCategory.length === 1 ? "" : "s")])
         ]),
-        el("div", { class: "item-actions" }, [renameBtn])
+        el("div", { class: "item-actions" }, [renameBtn, removeBtn])
       ]));
 
       uniqueProductValues(inCategory, "subcategory").forEach(function (sub) {
         var subCount = inCategory.filter(function (p) { return norm(p.subcategory) === norm(sub); }).length;
+        // Scoped to this category so a same-named subcategory elsewhere
+        // is left untouched.
+        function sameCategory(p) { return norm(p.category) === norm(category); }
         var subRename = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
         subRename.addEventListener("click", function () {
-          // Scope the rename to this category so a same-named subcategory
-          // elsewhere is left untouched.
-          renameEverywhere(fileName, noun, "subcategory", sub, function (p) {
-            return norm(p.category) === norm(category);
-          });
+          renameEverywhere(fileName, noun, "subcategory", sub, sameCategory);
+        });
+        var subRemove = el("button", { class: "ghost-btn danger", type: "button" }, ["Remove"]);
+        subRemove.addEventListener("click", function () {
+          removeEverywhere(fileName, noun, "subcategory", sub, sameCategory, subCount);
         });
 
         list.appendChild(el("li", { class: "sub" }, [
@@ -353,7 +448,7 @@
             el("span", { class: "item-name sub-name" }, ["↳  " + sub]),
             el("span", { class: "item-meta" }, [subCount + " " + noun + (subCount === 1 ? "" : "s")])
           ]),
-          el("div", { class: "item-actions" }, [subRename])
+          el("div", { class: "item-actions" }, [subRename, subRemove])
         ]));
       });
     });
@@ -742,20 +837,75 @@
       addRow.appendChild(btn);
     });
 
-    // One-tap product picker: tap a product below to drop its card
-    // (photo, price, Buy Now) into the article.
-    var picker = el("div", { class: "product-picker" },
-      state.products.data.map(function (p) {
-        var pickBtn = el("button", { type: "button", class: "picker-item", title: "Insert " + p.name }, [
-          p.image ? el("img", { src: p.image, alt: "" }) : null,
-          el("span", null, [p.name])
-        ]);
-        pickBtn.addEventListener("click", function () {
-          state.blocks.push({ type: "product", slug: p.slug });
-          renderBlocks();
+    // Product picker panel: search + category chips + one-tap insert.
+    // Tapping a product drops its card (photo, price, Buy Now) at the
+    // end of the article.
+    var picker = (function () {
+      var pickerState = { q: "", cat: null };
+      var pickerCats = uniqueProductValues(state.products.data, "category");
+
+      var searchIn = el("input", { type: "search", class: "picker-search", placeholder: "Search products…", autocomplete: "off" });
+      var chipRow = el("div", { class: "picker-chips" });
+      var itemsWrap = el("div", { class: "product-picker" });
+
+      function renderChips() {
+        chipRow.textContent = "";
+        function addChip(label, value) {
+          var button = el("button", { type: "button", class: "chip", "aria-pressed": String(pickerState.cat === value) }, [label]);
+          button.addEventListener("click", function () {
+            pickerState.cat = value;
+            renderChips();
+            renderItems();
+          });
+          chipRow.appendChild(button);
+        }
+        addChip("All", null);
+        pickerCats.forEach(function (c) { addChip(c, c); });
+      }
+
+      function renderItems() {
+        itemsWrap.textContent = "";
+        var visible = state.products.data.filter(function (p) {
+          var catOk = !pickerState.cat || norm(p.category) === norm(pickerState.cat);
+          var q = norm(pickerState.q);
+          var qOk = !q || norm(p.name).indexOf(q) !== -1;
+          return catOk && qOk;
         });
-        return pickBtn;
-      }));
+        if (!visible.length) {
+          itemsWrap.appendChild(el("span", { class: "field-hint" }, ["No products match."]));
+          return;
+        }
+        visible.forEach(function (p) {
+          var pickBtn = el("button", { type: "button", class: "picker-item", title: "Insert " + p.name }, [
+            p.image ? el("img", { src: p.image, alt: "" }) : null,
+            el("span", null, [p.name]),
+            p.price ? el("span", { class: "picker-price" }, [p.price]) : null
+          ]);
+          pickBtn.addEventListener("click", function () {
+            state.blocks.push({ type: "product", slug: p.slug });
+            renderBlocks();
+            setStatus("“" + p.name + "” added to the end of the article.");
+          });
+          itemsWrap.appendChild(pickBtn);
+        });
+      }
+
+      searchIn.addEventListener("input", function () {
+        pickerState.q = searchIn.value;
+        renderItems();
+      });
+
+      renderChips();
+      renderItems();
+
+      return el("div", { class: "picker-panel" }, [
+        el("span", { class: "field-label" }, ["Insert a product"]),
+        el("span", { class: "field-hint" }, ["Tap one — its card lands at the end of the article (move it with the arrows)."]),
+        searchIn,
+        chipRow,
+        itemsWrap
+      ]);
+    })();
 
     var titleInput = textInput("f-title", post.title, "Article title…");
     titleInput.classList.add("big");
@@ -782,7 +932,6 @@
         el("span", { class: "field-hint" }, ["Build the article from blocks: text, headings, single photos, a gallery (photos side by side), or products. Reorder with the arrows."]),
         el("div", { class: "blocks-editor", id: "blocks-editor" }),
         addRow,
-        el("span", { class: "field-hint" }, ["Or tap a product to insert it straight into the article:"]),
         picker
       ])
     ]);
