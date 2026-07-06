@@ -1,19 +1,52 @@
 {
   "contact": {
-    "text": "",
+    "text": "WW",
     "email": "saidjaxonshodmonov@gmail.com",
     "pinterest": "",
     "instagram": ""
   },
   "categories": {
     "products": [
-      { "name": "Home Decor", "subs": ["Living Room", "Lighting", "Tables", "Bedroom", "Accents"] },
-      { "name": "Fashion", "subs": ["T-Shirts"] },
-      { "name": "Digital", "subs": ["Guides"] }
+      {
+        "name": "Home Decor",
+        "subs": [
+          "Living Room",
+          "Lighting",
+          "Tables",
+          "Bedroom",
+          "Accents"
+        ]
+      },
+      {
+        "name": "Fashion",
+        "subs": [
+          "T-Shirts"
+        ]
+      },
+      {
+        "name": "Digital",
+        "subs": [
+          "Guides"
+        ]
+      }
     ],
     "articles": [
-      { "name": "Home Decor", "subs": ["Foundations", "Japandi", "Modern Home", "Room Guides", "Seasonal"] },
-      { "name": "Fashion", "subs": ["Casual Outfits"] }
+      {
+        "name": "Home Decor",
+        "subs": [
+          "Foundations",
+          "Japandi",
+          "Modern Home",
+          "Room Guides",
+          "Seasonal"
+        ]
+      },
+      {
+        "name": "Fashion",
+        "subs": [
+          "Casual Outfits"
+        ]
+      }
     ]
   }
 }
