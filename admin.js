@@ -306,20 +306,58 @@
 
   /* ---------- Contact form (footer contact line, stored in site.json) ---------- */
 
+  // Normalise contact links, converting the old pinterest/instagram
+  // fields into the flexible {label, url} list so nothing is lost.
+  function contactLinksOf(contact) {
+    if (Array.isArray(contact.links)) {
+      return contact.links.map(function (l) { return { label: (l.label || "").trim(), url: (l.url || "").trim() }; });
+    }
+    var out = [];
+    if (contact.pinterest) out.push({ label: "Pinterest", url: contact.pinterest });
+    if (contact.instagram) out.push({ label: "Instagram", url: contact.instagram });
+    return out;
+  }
+
   function openContactForm() {
     var contact = (state.site.data && state.site.data.contact) || {};
     var view = $("form-view");
     view.textContent = "";
     view.appendChild(el("h1", { class: "admin-title" }, ["Contact"]));
     view.appendChild(el("p", { class: "admin-hint" }, [
-      "Shown as a small “Contact us” line at the bottom of every page. Leave a field empty to hide that part."
+      "This fills the Contact Us page. The short line shows at the top, then the email, then a button for each link you add. Leave a field empty to hide that part."
     ]));
 
+    // Working copy of the links list.
+    var links = contactLinksOf(contact);
+
+    var linksWrap = el("div", { class: "stack" });
+    function renderLinks() {
+      linksWrap.textContent = "";
+      links.forEach(function (link, i) {
+        var labelIn = el("input", { type: "text", value: link.label || "", placeholder: "Label — e.g. Telegram" });
+        labelIn.addEventListener("input", function () { link.label = labelIn.value; });
+        var urlIn = el("input", { type: "text", value: link.url || "", placeholder: "https://t.me/…" });
+        urlIn.addEventListener("input", function () { link.url = urlIn.value; });
+        var removeBtn = el("button", { type: "button", class: "ghost-btn danger", title: "Remove this link" }, ["×"]);
+        removeBtn.addEventListener("click", function () { links.splice(i, 1); renderLinks(); });
+        linksWrap.appendChild(el("div", { class: "gallery-item" }, [
+          el("div", { class: "img-row" }, [labelIn, urlIn, removeBtn])
+        ]));
+      });
+      var addBtn = el("button", { type: "button", class: "ghost-btn" }, ["+ Add link"]);
+      addBtn.addEventListener("click", function () { links.push({ label: "", url: "" }); renderLinks(); });
+      linksWrap.appendChild(addBtn);
+    }
+    renderLinks();
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
-      field("Short line", textInput("c-text", contact.text, "e.g. Questions or collaborations — write to us."), "Optional — a few friendly words before the email."),
-      field("Email", textInput("c-email", contact.email, "hello@example.com")),
-      field("Pinterest link", textInput("c-pinterest", contact.pinterest, "https://pinterest.com/…"), "Optional."),
-      field("Instagram link", textInput("c-instagram", contact.instagram, "https://instagram.com/…"), "Optional.")
+      field("Short line", textInput("c-text", contact.text, "e.g. Questions or collaborations — write to us."), "Optional — a few friendly words shown at the top of the Contact Us page."),
+      field("Email", textInput("c-email", contact.email, "hello@example.com"), "Optional — shown as text on the Contact Us page."),
+      el("div", { class: "field" }, [
+        el("span", { class: "field-label" }, ["Links"]),
+        el("span", { class: "field-hint" }, ["Optional — any platform you like. The label becomes the button (e.g. Telegram, WhatsApp, Pinterest, Instagram)."]),
+        linksWrap
+      ])
     ]);
 
     var error = el("p", { class: "form-error", role: "alert" }, []);
@@ -331,11 +369,14 @@
       error.textContent = "";
       // Keep the rest of site.json (categories) intact — only replace contact.
       ensureCatStore();
+      var cleanLinks = links
+        .map(function (l) { return { label: (l.label || "").trim(), url: (l.url || "").trim() }; })
+        .filter(function (l) { return l.url; })
+        .map(function (l) { return { label: l.label || "Link", url: l.url }; });
       state.site.data.contact = {
         text: $("c-text").value.trim(),
         email: $("c-email").value.trim(),
-        pinterest: $("c-pinterest").value.trim(),
-        instagram: $("c-instagram").value.trim()
+        links: cleanLinks
       };
       save.disabled = true;
       saveFile("site", "admin: update contact details")

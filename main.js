@@ -217,7 +217,20 @@
     return parts.some(function (part) { return norm(part).indexOf(q) !== -1; });
   }
 
-  /* ---------- Footer contact (edited from the admin panel) ---------- */
+  /* ---------- Contact details (edited from the admin panel) ---------- */
+
+  // Normalise links, converting the legacy pinterest/instagram fields
+  // into the flexible {label, url} list so older data still works.
+  function contactLinks(c) {
+    if (Array.isArray(c.links)) {
+      return c.links.filter(function (l) { return l && l.url; })
+        .map(function (l) { return { label: (l.label || "Link"), url: l.url }; });
+    }
+    var out = [];
+    if (c.pinterest) out.push({ label: "Pinterest", url: c.pinterest });
+    if (c.instagram) out.push({ label: "Instagram", url: c.instagram });
+    return out;
+  }
 
   function initFooterContact() {
     var slot = document.getElementById("footer-contact");
@@ -225,7 +238,7 @@
     loadJSON("./site.json")
       .then(function (site) {
         var c = (site && site.contact) || {};
-        if (!c.email && !c.pinterest && !c.instagram) return;
+        if (!c.email && !c.text && !contactLinks(c).length) return;
         slot.hidden = false;
         // Goes to the Contact page, never straight to a mail client.
         slot.appendChild(el("div", { class: "contact-actions" }, [
@@ -254,12 +267,16 @@
           ]));
         }
 
-        var socials = el("div", { class: "contact-actions" });
-        if (c.pinterest) socials.appendChild(el("a", { class: "contact-btn", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
-        if (c.instagram) socials.appendChild(el("a", { class: "contact-btn", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
-        if (socials.children.length) wrap.appendChild(socials);
+        var links = contactLinks(c);
+        if (links.length) {
+          var actions = el("div", { class: "contact-actions" });
+          links.forEach(function (link) {
+            actions.appendChild(el("a", { class: "contact-btn", href: link.url, target: "_blank", rel: "noopener" }, [link.label]));
+          });
+          wrap.appendChild(actions);
+        }
 
-        if (!c.email && !c.pinterest && !c.instagram && !c.text) {
+        if (!c.email && !c.text && !links.length) {
           wrap.appendChild(el("p", { class: "contact-intro" }, ["Contact details are coming soon."]));
         }
 
