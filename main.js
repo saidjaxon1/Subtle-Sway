@@ -225,16 +225,49 @@
     loadJSON("./site.json")
       .then(function (site) {
         var c = (site && site.contact) || {};
-        if (!c.email && !c.text && !c.pinterest && !c.instagram) return;
+        if (!c.email && !c.pinterest && !c.instagram) return;
         slot.hidden = false;
-        if (c.text) slot.appendChild(el("span", { class: "contact-text" }, [c.text]));
-        var actions = el("div", { class: "contact-actions" });
-        if (c.email) actions.appendChild(el("a", { class: "contact-btn", href: "mailto:" + c.email }, ["Contact us"]));
-        if (c.pinterest) actions.appendChild(el("a", { class: "contact-btn", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
-        if (c.instagram) actions.appendChild(el("a", { class: "contact-btn", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
-        if (actions.children.length) slot.appendChild(actions);
+        // Goes to the Contact page, never straight to a mail client.
+        slot.appendChild(el("div", { class: "contact-actions" }, [
+          el("a", { class: "contact-btn", href: "./contact.html" }, ["Contact Us"])
+        ]));
       })
       .catch(function () { /* footer simply stays without a contact line */ });
+  }
+
+  /* ---------- Page: contact ---------- */
+
+  function initContact() {
+    var slot = document.getElementById("contact-body");
+    loadJSON("./site.json")
+      .then(function (site) {
+        var c = (site && site.contact) || {};
+        var wrap = el("div", { class: "contact-page" });
+
+        if (c.text) wrap.appendChild(el("p", { class: "contact-intro" }, [c.text]));
+
+        if (c.email) {
+          wrap.appendChild(el("div", { class: "contact-line" }, [
+            el("span", { class: "eyebrow" }, ["Email"]),
+            // Shown as selectable text — no mailto, so nothing auto-opens.
+            el("span", { class: "contact-email" }, [c.email])
+          ]));
+        }
+
+        var socials = el("div", { class: "contact-actions" });
+        if (c.pinterest) socials.appendChild(el("a", { class: "contact-btn", href: c.pinterest, target: "_blank", rel: "noopener" }, ["Pinterest"]));
+        if (c.instagram) socials.appendChild(el("a", { class: "contact-btn", href: c.instagram, target: "_blank", rel: "noopener" }, ["Instagram"]));
+        if (socials.children.length) wrap.appendChild(socials);
+
+        if (!c.email && !c.pinterest && !c.instagram && !c.text) {
+          wrap.appendChild(el("p", { class: "contact-intro" }, ["Contact details are coming soon."]));
+        }
+
+        slot.appendChild(wrap);
+      })
+      .catch(function () {
+        slot.appendChild(el("p", { class: "contact-intro" }, ["We couldn't load the contact details just now. Please try again in a moment."]));
+      });
   }
 
   /* ---------- Reading progress line (article pages) ---------- */
@@ -341,17 +374,17 @@
   function initHome() {
     initReveal();
 
-    loadJSON("./posts.json")
-      .then(function (posts) {
+    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json")])
+      .then(function (results) {
+        var products = results[0];
+        var posts = results[1];
+
+        // Latest three journal cards.
         var list = document.getElementById("journal-preview");
         sortNewestFirst(posts).slice(0, 3).forEach(function (post) {
           list.appendChild(postCard(post));
         });
-      })
-      .catch(function (error) { console.error(error); });
 
-    loadJSON("./products.json")
-      .then(function (products) {
         // Shop-by-category cards: one per top-level category, using the
         // first product in that category as the card image.
         var categoryGrid = document.getElementById("category-grid");
@@ -376,8 +409,79 @@
         products.slice(0, 3).forEach(function (product) {
           featured.appendChild(productCard(product));
         });
+
+        initHomeSearch(products, posts);
       })
-      .catch(function (error) { console.error(error); });
+      .catch(function (error) {
+        console.error(error);
+        showLoadError(document.querySelector("main"));
+      });
+  }
+
+  // Live site-wide search on the home page: a dropdown of matching
+  // products and articles that links straight to each page.
+  function initHomeSearch(products, posts) {
+    var input = document.getElementById("home-search");
+    var panel = document.getElementById("home-search-results");
+    if (!input || !panel) return;
+
+    var sortedPosts = sortNewestFirst(posts);
+
+    function resultLink(href, thumb, title, tag) {
+      return el("a", { class: "search-result", href: href }, [
+        thumb ? el("img", { src: thumb, alt: "", loading: "lazy" }) : el("span", { class: "search-thumb-empty" }),
+        el("span", { class: "search-result-title" }, [title]),
+        el("span", { class: "search-result-tag" }, [tag])
+      ]);
+    }
+
+    function render() {
+      var q = norm(input.value);
+      panel.textContent = "";
+      if (!q) { panel.hidden = true; return; }
+
+      var prod = products.filter(function (p) {
+        return matchesQuery(q, [p.name, p.category, p.subcategory, p.description]);
+      }).slice(0, 4);
+      var arts = sortedPosts.filter(function (p) {
+        var blockText = (p.content || []).map(function (b) { return b.text || ""; }).join(" ");
+        return matchesQuery(q, [p.title, p.excerpt, p.category, p.subcategory, blockText]);
+      }).slice(0, 4);
+
+      if (!prod.length && !arts.length) {
+        panel.appendChild(el("p", { class: "search-empty" }, ["No matches for “" + input.value.trim() + "”."]));
+        panel.hidden = false;
+        return;
+      }
+
+      if (prod.length) {
+        panel.appendChild(el("span", { class: "search-group" }, ["Products"]));
+        prod.forEach(function (p) {
+          panel.appendChild(resultLink(
+            "./product.html?slug=" + encodeURIComponent(p.slug),
+            p.image, p.name, p.category || "Shop"
+          ));
+        });
+      }
+      if (arts.length) {
+        panel.appendChild(el("span", { class: "search-group" }, ["Journal"]));
+        arts.forEach(function (p) {
+          panel.appendChild(resultLink(
+            "./post.html?slug=" + encodeURIComponent(p.slug),
+            p.cover, p.title, p.category || "Journal"
+          ));
+        });
+      }
+      panel.hidden = false;
+    }
+
+    input.addEventListener("input", render);
+    input.addEventListener("focus", render);
+    // Close the dropdown on Escape or when clicking away.
+    input.addEventListener("keydown", function (e) { if (e.key === "Escape") { panel.hidden = true; input.blur(); } });
+    document.addEventListener("click", function (e) {
+      if (!panel.contains(e.target) && e.target !== input) panel.hidden = true;
+    });
   }
 
   /* ---------- Page: shop (grid with two-level category filter) ---------- */
@@ -849,7 +953,8 @@
     shop: initShop,
     product: initProduct,
     blog: initBlog,
-    post: initPost
+    post: initPost,
+    contact: initContact
   }[page];
 
   document.addEventListener("DOMContentLoaded", function () {
