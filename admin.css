@@ -236,11 +236,20 @@ select:focus-visible {
 }
 
 .admin-list li.group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--brass);
-  padding-top: 1.6rem;
+  padding-top: 1.8rem;
+}
+
+.ghost-btn.add-cat {
+  color: var(--ink);
+  border-color: var(--brass);
 }
 
 .sub-name {

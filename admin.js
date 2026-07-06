@@ -23,7 +23,7 @@
     token: null,
     products: { data: [], sha: null },
     posts: { data: [], sha: null },
-    site: { data: { contact: { text: "", email: "", pinterest: "", instagram: "" } }, sha: null },
+    site: { data: { contact: { text: "", email: "", pinterest: "", instagram: "" }, categories: { products: [], articles: [] } }, sha: null },
     tab: "products",     // which tab is active
     editIndex: -1,       // -1 = adding a new item
     blocks: [],          // working copy of a post's content blocks while editing
@@ -140,10 +140,11 @@
     $("loading").hidden = false;
     // site.json may not exist yet — fall back to defaults and create it on first save.
     var fetchSite = fetchFile("site").catch(function () {
-      state.site = { data: { contact: { text: "", email: "", pinterest: "", instagram: "" } }, sha: null };
+      state.site = { data: { contact: { text: "", email: "", pinterest: "", instagram: "" }, categories: { products: [], articles: [] } }, sha: null };
     });
     Promise.all([fetchFile("products"), fetchFile("posts"), fetchSite])
       .then(function () {
+        ensureCatStore();
         localStorage.setItem(TOKEN_KEY, token);
         $("loading").hidden = true;
         $("panel").hidden = false;
@@ -178,6 +179,64 @@
       }
     });
     return out;
+  }
+
+  /* ---------- Category structure (shared by forms and the Categories tab) ----------
+
+     Categories live in two places that we always merge:
+       • site.json  → the deliberate structure, including empty categories
+                      the owner set up before adding any items
+       • the items  → every category/subcategory an item already uses
+     Merging means nothing is ever lost, and empty categories still persist. */
+
+  // Which site.json key holds this file's categories.
+  function catKey(fileName) { return fileName === "products" ? "products" : "articles"; }
+
+  function ensureCatStore() {
+    if (!state.site.data) state.site.data = {};
+    if (!state.site.data.categories) state.site.data.categories = {};
+    if (!state.site.data.categories.products) state.site.data.categories.products = [];
+    if (!state.site.data.categories.articles) state.site.data.categories.articles = [];
+  }
+
+  // Merged tree: [{ name, subs: [..] }, ...] preserving stored order first.
+  function categoryTree(fileName) {
+    ensureCatStore();
+    var tree = [];
+    var index = {};
+    function ensure(name) {
+      var k = norm(name);
+      if (!index[k]) { var e = { name: name, subs: [], _sub: {} }; index[k] = e; tree.push(e); }
+      return index[k];
+    }
+    function ensureSub(entry, sub) {
+      var k = norm(sub);
+      if (k && !entry._sub[k]) { entry._sub[k] = true; entry.subs.push(sub); }
+    }
+    state.site.data.categories[catKey(fileName)].forEach(function (c) {
+      var e = ensure(c.name);
+      (c.subs || []).forEach(function (s) { ensureSub(e, s); });
+    });
+    state[fileName].data.forEach(function (item) {
+      if (item.category) {
+        var e = ensure(item.category);
+        if (item.subcategory) ensureSub(e, item.subcategory);
+      }
+    });
+    return tree;
+  }
+
+  function findCatEntry(fileName, name) {
+    return categoryTree(fileName).filter(function (c) { return norm(c.name) === norm(name); })[0] || null;
+  }
+
+  // Save the store and/or the items file, whichever changed, in sequence.
+  function persistCategory(fileName, storeChanged, itemsChanged, message, done) {
+    var chain = Promise.resolve();
+    if (storeChanged) chain = chain.then(function () { return saveFile("site", message); });
+    if (itemsChanged) chain = chain.then(function () { return saveFile(fileName, message); });
+    chain.then(function () { if (done) done(); })
+      .catch(function (error) { setStatus(error.message, true); renderList(); });
   }
 
   function selectTab(tab) {
@@ -270,12 +329,14 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       error.textContent = "";
-      state.site.data = { contact: {
+      // Keep the rest of site.json (categories) intact — only replace contact.
+      ensureCatStore();
+      state.site.data.contact = {
         text: $("c-text").value.trim(),
         email: $("c-email").value.trim(),
         pinterest: $("c-pinterest").value.trim(),
         instagram: $("c-instagram").value.trim()
-      } };
+      };
       save.disabled = true;
       saveFile("site", "admin: update contact details")
         .then(function () { save.disabled = false; })
@@ -356,92 +417,154 @@
 
   /* ---------- Categories view (rename everywhere in one step) ---------- */
 
-  // Rename a category/subcategory across every item in one file
-  // ("products" or "posts") and save.
-  function renameEverywhere(fileName, noun, key, oldName, filter) {
-    var next = window.prompt(
-      "New name for " + key + " “" + oldName + "”.\nEvery " + noun + " in it will be updated.",
-      oldName
-    );
+  // Find a category's entry in the stored list (if any).
+  function storeEntry(fileName, name) {
+    var arr = state.site.data.categories[catKey(fileName)];
+    for (var i = 0; i < arr.length; i++) {
+      if (norm(arr[i].name) === norm(name)) return arr[i];
+    }
+    return null;
+  }
+
+  // Add a brand-new empty category to the stored list, then save.
+  function addCategory(fileName, noun) {
+    ensureCatStore();
+    var name = window.prompt("New " + noun + " category name:");
+    name = name ? name.trim() : "";
+    if (!name) return;
+    if (findCatEntry(fileName, name)) { setStatus("“" + name + "” already exists.", true); return; }
+    state.site.data.categories[catKey(fileName)].push({ name: name, subs: [] });
+    persistCategory(fileName, true, false, "admin: add category “" + name + "”", renderList);
+  }
+
+  // Add a subcategory inside an existing category, then save.
+  function addSubcategory(fileName, category) {
+    ensureCatStore();
+    var name = window.prompt("New subcategory inside “" + category + "”:");
+    name = name ? name.trim() : "";
+    if (!name) return;
+    var entry = storeEntry(fileName, category);
+    if (!entry) { entry = { name: category, subs: [] }; state.site.data.categories[catKey(fileName)].push(entry); }
+    if (entry.subs.some(function (s) { return norm(s) === norm(name); })) { setStatus("“" + name + "” already exists here.", true); return; }
+    entry.subs.push(name);
+    persistCategory(fileName, true, false, "admin: add subcategory “" + name + "”", renderList);
+  }
+
+  // Rename a category/subcategory in both the store and every item.
+  function renameCategory(fileName, noun, category, oldSub) {
+    var isSub = !!oldSub;
+    var label = isSub ? "subcategory" : "category";
+    var oldName = isSub ? oldSub : category;
+    var next = window.prompt("New name for " + label + " “" + oldName + "”:", oldName);
     if (next === null) return;
     next = next.trim();
     if (!next || next === oldName) return;
 
+    var storeChanged = false;
+    var itemsChanged = false;
+
+    // Store
+    if (isSub) {
+      var e = storeEntry(fileName, category);
+      if (e) e.subs = e.subs.map(function (s) { if (norm(s) === norm(oldName)) { storeChanged = true; return next; } return s; });
+    } else {
+      var ce = storeEntry(fileName, oldName);
+      if (ce) { ce.name = next; storeChanged = true; }
+    }
+
+    // Items
     state[fileName].data.forEach(function (item) {
-      if (norm(item[key]) === norm(oldName) && (!filter || filter(item))) item[key] = next;
+      if (isSub) {
+        if (norm(item.category) === norm(category) && norm(item.subcategory) === norm(oldName)) { item.subcategory = next; itemsChanged = true; }
+      } else if (norm(item.category) === norm(oldName)) { item.category = next; itemsChanged = true; }
     });
-    saveFile(fileName, "admin: rename " + key + " “" + oldName + "” to “" + next + "”")
-      .then(renderList)
-      .catch(function (error) { setStatus(error.message, true); renderList(); });
+
+    persistCategory(fileName, storeChanged, itemsChanged, "admin: rename " + label + " “" + oldName + "” to “" + next + "”", renderList);
   }
 
-  // Remove a category/subcategory label. Items themselves are kept —
-  // they only lose the label (and stay visible under "All").
-  function removeEverywhere(fileName, noun, key, oldName, filter, count) {
-    var clearsSubs = key === "category";
-    var message = "Remove " + key + " “" + oldName + "”?\n\nThe " + count + " " + noun + (count === 1 ? "" : "s") +
+  // Remove a category/subcategory label from the store and every item.
+  // Items are never deleted — they just lose the label.
+  function removeCategory(fileName, noun, category, oldSub, count) {
+    var isSub = !!oldSub;
+    var label = isSub ? "subcategory" : "category";
+    var oldName = isSub ? oldSub : category;
+    var message = "Remove " + label + " “" + oldName + "”?\n\nThe " + count + " " + noun + (count === 1 ? "" : "s") +
       " in it will NOT be deleted — " + (count === 1 ? "it" : "they") + " just lose this label" +
-      (clearsSubs ? " (and its subcategories)" : "") + " and stay visible under All.";
+      (isSub ? "" : " (and its subcategories)") + " and stay visible under All.";
     if (!window.confirm(message)) return;
 
-    state[fileName].data.forEach(function (item) {
-      if (norm(item[key]) === norm(oldName) && (!filter || filter(item))) {
-        item[key] = "";
-        if (clearsSubs) item.subcategory = "";
+    var storeChanged = false;
+    var itemsChanged = false;
+
+    // Store
+    var arr = state.site.data.categories[catKey(fileName)];
+    if (isSub) {
+      var e = storeEntry(fileName, category);
+      if (e) {
+        var before = e.subs.length;
+        e.subs = e.subs.filter(function (s) { return norm(s) !== norm(oldName); });
+        if (e.subs.length !== before) storeChanged = true;
       }
+    } else {
+      for (var i = arr.length - 1; i >= 0; i--) {
+        if (norm(arr[i].name) === norm(oldName)) { arr.splice(i, 1); storeChanged = true; }
+      }
+    }
+
+    // Items
+    state[fileName].data.forEach(function (item) {
+      if (isSub) {
+        if (norm(item.category) === norm(category) && norm(item.subcategory) === norm(oldName)) { item.subcategory = ""; itemsChanged = true; }
+      } else if (norm(item.category) === norm(oldName)) { item.category = ""; item.subcategory = ""; itemsChanged = true; }
     });
-    saveFile(fileName, "admin: remove " + key + " “" + oldName + "”")
-      .then(renderList)
-      .catch(function (error) { setStatus(error.message, true); renderList(); });
+
+    persistCategory(fileName, storeChanged, itemsChanged, "admin: remove " + label + " “" + oldName + "”", renderList);
   }
 
   // One group of category rows (used for products and for articles).
   function renderCategoryGroup(list, fileName, groupLabel, noun) {
+    var tree = categoryTree(fileName);
     var items = state[fileName].data;
-    var categories = uniqueProductValues(items, "category");
 
-    list.appendChild(el("li", { class: "group-head" }, [groupLabel]));
+    var addBtn = el("button", { class: "ghost-btn add-cat", type: "button" }, ["+ Add category"]);
+    addBtn.addEventListener("click", function () { addCategory(fileName, noun); });
+    list.appendChild(el("li", { class: "group-head" }, [
+      el("span", null, [groupLabel]),
+      addBtn
+    ]));
 
-    if (!categories.length) {
+    if (!tree.length) {
       list.appendChild(el("li", { class: "admin-empty" }, [
-        "Nothing yet — give a " + noun + " a category name and it appears here."
+        "No categories yet. Use “+ Add category”, or set a category when you add a " + noun + "."
       ]));
       return;
     }
 
-    categories.forEach(function (category) {
-      var inCategory = items.filter(function (p) { return norm(p.category) === norm(category); });
+    tree.forEach(function (entry) {
+      var category = entry.name;
+      var count = items.filter(function (p) { return norm(p.category) === norm(category); }).length;
 
+      var addSub = el("button", { class: "ghost-btn", type: "button", title: "Add a subcategory inside " + category }, ["+ Sub"]);
+      addSub.addEventListener("click", function () { addSubcategory(fileName, category); });
       var renameBtn = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
-      renameBtn.addEventListener("click", function () {
-        renameEverywhere(fileName, noun, "category", category);
-      });
+      renameBtn.addEventListener("click", function () { renameCategory(fileName, noun, category); });
       var removeBtn = el("button", { class: "ghost-btn danger", type: "button" }, ["Remove"]);
-      removeBtn.addEventListener("click", function () {
-        removeEverywhere(fileName, noun, "category", category, null, inCategory.length);
-      });
+      removeBtn.addEventListener("click", function () { removeCategory(fileName, noun, category, null, count); });
 
       list.appendChild(el("li", null, [
         el("div", { class: "item-info" }, [
           el("span", { class: "item-name" }, [category]),
-          el("span", { class: "item-meta" }, [inCategory.length + " " + noun + (inCategory.length === 1 ? "" : "s")])
+          el("span", { class: "item-meta" }, [count + " " + noun + (count === 1 ? "" : "s")])
         ]),
-        el("div", { class: "item-actions" }, [renameBtn, removeBtn])
+        el("div", { class: "item-actions" }, [addSub, renameBtn, removeBtn])
       ]));
 
-      uniqueProductValues(inCategory, "subcategory").forEach(function (sub) {
-        var subCount = inCategory.filter(function (p) { return norm(p.subcategory) === norm(sub); }).length;
-        // Scoped to this category so a same-named subcategory elsewhere
-        // is left untouched.
-        function sameCategory(p) { return norm(p.category) === norm(category); }
+      entry.subs.forEach(function (sub) {
+        var subCount = items.filter(function (p) { return norm(p.category) === norm(category) && norm(p.subcategory) === norm(sub); }).length;
         var subRename = el("button", { class: "ghost-btn", type: "button" }, ["Rename"]);
-        subRename.addEventListener("click", function () {
-          renameEverywhere(fileName, noun, "subcategory", sub, sameCategory);
-        });
+        subRename.addEventListener("click", function () { renameCategory(fileName, noun, category, sub); });
         var subRemove = el("button", { class: "ghost-btn danger", type: "button" }, ["Remove"]);
-        subRemove.addEventListener("click", function () {
-          removeEverywhere(fileName, noun, "subcategory", sub, sameCategory, subCount);
-        });
+        subRemove.addEventListener("click", function () { removeCategory(fileName, noun, category, sub, subCount); });
 
         list.appendChild(el("li", { class: "sub" }, [
           el("div", { class: "item-info" }, [
@@ -456,7 +579,7 @@
 
   function renderCategories(list) {
     list.appendChild(el("li", { class: "admin-hint" }, [
-      "Categories come from your products and articles: type a new name on any of them to create one; empty categories disappear on their own. Renaming here updates every item in one step."
+      "Add a category with “+ Add category”, or a subcategory inside one with “+ Sub”. You can also just set a category when adding a product or article. Renaming or removing here updates every item in one step; removing never deletes items — they only lose the label."
     ]));
     renderCategoryGroup(list, "products", "Product categories", "product");
     renderCategoryGroup(list, "posts", "Article categories", "article");
@@ -486,6 +609,97 @@
       inputEl,
       hint ? el("span", { class: "field-hint" }, [hint]) : null
     ]);
+  }
+
+  /* ---------- Category picker for the product / article forms ----------
+     Two linked dropdowns instead of free typing. The category list is the
+     merged tree; the last option is "+ New…", which asks for a name. The
+     subcategory dropdown follows the chosen category. */
+
+  var NEW_OPTION = "__add_new__";
+
+  function categoryFields(fileName, ids, currentCat, currentSub) {
+    var tree = categoryTree(fileName);
+
+    // Preserve legacy values that aren't in the tree yet (shouldn't happen,
+    // but never lose an item's existing category).
+    if (currentCat && !tree.some(function (c) { return norm(c.name) === norm(currentCat); })) {
+      tree.push({ name: currentCat, subs: currentSub ? [currentSub] : [] });
+    }
+
+    var catSelect = el("select", { id: ids.cat });
+    var subSelect = el("select", { id: ids.sub });
+
+    function entryFor(name) {
+      return tree.filter(function (c) { return norm(c.name) === norm(name); })[0];
+    }
+
+    function fillCat(selected) {
+      catSelect.textContent = "";
+      catSelect.appendChild(el("option", { value: "" }, ["— No category —"]));
+      tree.forEach(function (c) { catSelect.appendChild(el("option", { value: c.name }, [c.name])); });
+      catSelect.appendChild(el("option", { value: NEW_OPTION }, ["+ New category…"]));
+      catSelect.value = selected || "";
+    }
+
+    function fillSub(catName, selected) {
+      subSelect.textContent = "";
+      subSelect.appendChild(el("option", { value: "" }, ["— No subcategory —"]));
+      var entry = entryFor(catName);
+      (entry ? entry.subs : []).forEach(function (s) {
+        subSelect.appendChild(el("option", { value: s }, [s]));
+      });
+      subSelect.appendChild(el("option", { value: NEW_OPTION }, ["+ New subcategory…"]));
+      subSelect.value = selected || "";
+      subSelect.disabled = !catName;
+    }
+
+    fillCat(currentCat);
+    fillSub(currentCat, currentSub);
+
+    var lastCat = catSelect.value;
+    catSelect.addEventListener("change", function () {
+      if (catSelect.value === NEW_OPTION) {
+        var name = window.prompt("New category name:");
+        name = name ? name.trim() : "";
+        if (name) {
+          if (!entryFor(name)) tree.push({ name: name, subs: [] });
+          fillCat(name);
+          fillSub(name, "");
+          lastCat = name;
+        } else {
+          fillCat(lastCat);
+        }
+        return;
+      }
+      lastCat = catSelect.value;
+      fillSub(catSelect.value, "");
+    });
+
+    subSelect.addEventListener("change", function () {
+      if (subSelect.value === NEW_OPTION) {
+        var name = window.prompt("New subcategory name:");
+        name = name ? name.trim() : "";
+        if (name) {
+          var entry = entryFor(catSelect.value);
+          if (entry && !entry.subs.some(function (s) { return norm(s) === norm(name); })) entry.subs.push(name);
+          fillSub(catSelect.value, name);
+        } else {
+          fillSub(catSelect.value, subSelect.dataset ? "" : "");
+        }
+      }
+    });
+
+    return [
+      field("Category", catSelect, "Pick a group, or choose “+ New category…” to make one."),
+      field("Subcategory", subSelect, "Optional — a finer group inside the category.")
+    ];
+  }
+
+  // Read a category select's value, treating the "+ New" sentinel as empty.
+  function catValue(id) {
+    var v = $(id).value;
+    return v === NEW_OPTION ? "" : v.trim();
   }
 
   /* ---------- Automatic URL slugs (no technical field to fill in) ---------- */
@@ -633,12 +847,7 @@
     ]);
     sourceSelect.value = (product.source || "").toLowerCase() === "own" ? "own" : "affiliate";
 
-    // Existing category/subcategory names appear as typing suggestions,
-    // so a typo can't accidentally create a new category.
-    var catInput = textInput("f-cat", product.category, "e.g. Home Decor");
-    catInput.setAttribute("list", "dl-categories");
-    var subInput = textInput("f-sub", product.subcategory, "e.g. Living Room");
-    subInput.setAttribute("list", "dl-subcategories");
+    var catFields = categoryFields("products", { cat: "f-cat", sub: "f-sub" }, product.category, product.subcategory);
 
     var nameInput = textInput("f-name", product.name, "e.g. Walnut Coffee Table");
     nameInput.classList.add("big");
@@ -674,10 +883,6 @@
     renderExtraPhotos();
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
-      el("datalist", { id: "dl-categories" },
-        uniqueProductValues(state.products.data, "category").map(function (c) { return el("option", { value: c }); })),
-      el("datalist", { id: "dl-subcategories" },
-        uniqueProductValues(state.products.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
       field("Name", nameInput),
       imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
       el("div", { class: "field" }, [
@@ -689,8 +894,8 @@
       field("Buy Now link", textInput("f-link", product.affiliateLink, "https://…"), "Where the Buy Now button sends the visitor."),
       field("Link type", sourceSelect),
       field("Product kind", typeSelect, "Shown as a small tag on the product page."),
-      field("Category", catInput, "The shop filter group. Pick an existing one or type a new name."),
-      field("Subcategory", subInput, "Optional — the finer filter inside a category."),
+      catFields[0],
+      catFields[1],
       field("Description", el("textarea", { id: "f-desc" }, [product.description || ""]), "One short paragraph shown on the product page."),
       field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F"), "Optional — hex codes separated by commas, shown as small circles.")
     ]);
@@ -704,8 +909,8 @@
         price: $("f-price").value.trim(),
         type: $("f-type").value,
         source: $("f-source").value,
-        category: $("f-cat").value.trim(),
-        subcategory: $("f-sub").value.trim(),
+        category: catValue("f-cat"),
+        subcategory: catValue("f-sub"),
         image: $("f-image").value.trim(),
         images: state.extraImages.map(function (s) { return (s || "").trim(); }).filter(Boolean),
         affiliateLink: $("f-link").value.trim(),
@@ -910,20 +1115,12 @@
     var titleInput = textInput("f-title", post.title, "Article title…");
     titleInput.classList.add("big");
 
-    // Existing article category/subcategory names appear as suggestions.
-    var catInput = textInput("f-post-cat", post.category, "e.g. Home Decor, Fashion");
-    catInput.setAttribute("list", "dl-post-categories");
-    var subInput = textInput("f-post-sub", post.subcategory, "e.g. Japandi, Modern Home, Casual Outfits");
-    subInput.setAttribute("list", "dl-post-subcategories");
+    var catFields = categoryFields("posts", { cat: "f-post-cat", sub: "f-post-sub" }, post.category, post.subcategory);
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
-      el("datalist", { id: "dl-post-categories" },
-        uniqueProductValues(state.posts.data, "category").map(function (c) { return el("option", { value: c }); })),
-      el("datalist", { id: "dl-post-subcategories" },
-        uniqueProductValues(state.posts.data, "subcategory").map(function (s) { return el("option", { value: s }); })),
       field("Title", titleInput),
-      field("Category", catInput, "The journal filter group — also connects the article to matching products. Pick an existing one or type a new name."),
-      field("Subcategory", subInput, "Optional — the finer filter inside a category (e.g. Japandi, Modern Home)."),
+      catFields[0],
+      catFields[1],
       imageField("Cover photo", "f-cover", post.cover, "Optional — the large photo at the top of the article and in the journal list. Articles look good without one too."),
       field("Date", el("input", { type: "date", id: "f-date", value: post.date || new Date().toISOString().slice(0, 10) }), "Newest date shows first in the journal."),
       field("Short summary", el("textarea", { id: "f-excerpt" }, [post.excerpt || ""]), "1–2 sentences shown in the journal list."),
@@ -944,8 +1141,8 @@
         slug: resolveSlug(title),
         title: title,
         date: $("f-date").value,
-        category: $("f-post-cat").value.trim(),
-        subcategory: $("f-post-sub").value.trim(),
+        category: catValue("f-post-cat"),
+        subcategory: catValue("f-post-sub"),
         cover: $("f-cover").value.trim(),
         excerpt: $("f-excerpt").value.trim(),
         content: state.blocks
@@ -1041,9 +1238,11 @@
 
   // Debug hook so the UI can be exercised without a real token (used in testing).
   window.SSAdmin = {
-    _debugLoad: function (products, posts) {
+    _debugLoad: function (products, posts, site) {
       state.products = { data: products, sha: "debug" };
       state.posts = { data: posts, sha: "debug" };
+      if (site) state.site = { data: site, sha: "debug" };
+      ensureCatStore();
       $("auth-screen").hidden = true;
       $("loading").hidden = true;
       $("panel").hidden = false;
