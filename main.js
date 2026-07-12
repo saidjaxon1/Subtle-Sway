@@ -333,8 +333,8 @@
     slot.appendChild(el("span", { class: "eyebrow" }, ["A quick note before you go"]));
     slot.appendChild(el("h1", { class: "page-title" }, ["You're on your way to " + store]));
     slot.appendChild(el("p", { class: "go-message" }, [
-      "When you buy through our link, " + store +
-      " pays us a commission on anything you purchase within the next 24 hours — including different sizes and colours. " +
+      "When you visit " + store + " through our link, we may earn a commission on anything you buy there within the next 24 hours — " +
+      "whether it's this piece, a different size or colour, or something else entirely. You don't have to buy this exact item. " +
       "Shopping this way directly supports the site."
     ]));
     slot.appendChild(el("div", { class: "go-actions" }, [
