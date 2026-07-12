@@ -334,7 +334,7 @@
     slot.appendChild(el("h1", { class: "page-title" }, ["You're on your way to " + store]));
     slot.appendChild(el("p", { class: "go-message" }, [
       "When you visit " + store + " through our link, we may earn a commission on anything you buy there in the next 24 hours — " +
-      "not just this piece. Shopping this way directly supports the site."
+      "not just this product. Shopping this way directly supports the site."
     ]));
     slot.appendChild(el("div", { class: "go-actions" }, [
       el("a", { class: "btn", href: to, rel: "nofollow sponsored noopener" }, [isAmazon ? "Go to Amazon" : "Continue to the store"]),
