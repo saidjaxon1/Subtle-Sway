@@ -333,9 +333,9 @@
     slot.appendChild(el("span", { class: "eyebrow" }, ["A quick note before you go"]));
     slot.appendChild(el("h1", { class: "page-title" }, ["You're on your way to " + store]));
     slot.appendChild(el("p", { class: "go-message" }, [
-      "Subtle Sway is reader-supported. When you shop through our link, " + store +
-      " shares a small commission with us on anything you buy in the next 24 hours — different sizes and colours included. " +
-      "It's what keeps this quiet little studio going, and every purchase made this way means a great deal to us. Thank you for supporting our work."
+      "When you buy through our link, " + store +
+      " pays us a commission on anything you purchase within the next 24 hours — including different sizes and colours. " +
+      "Shopping this way directly supports the site."
     ]));
     slot.appendChild(el("div", { class: "go-actions" }, [
       el("a", { class: "btn", href: to, rel: "nofollow sponsored noopener" }, [isAmazon ? "Go to Amazon" : "Continue to the store"]),
