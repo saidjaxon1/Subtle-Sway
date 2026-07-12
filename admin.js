@@ -933,6 +933,8 @@
       ]),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show no price."),
       field("Buy Now link", textInput("f-link", product.affiliateLink, "https://…"), "Where the Buy Now button sends the visitor."),
+      field("Different colors link", textInput("f-colors-link", product.colorsLink, "https://…"), "Optional — shows a “Different Colors” button. Link to the item's other colors on Amazon."),
+      field("Different sizes link", textInput("f-sizes-link", product.sizesLink, "https://…"), "Optional — shows a “Different Sizes” button. Link to the item's other sizes on Amazon."),
       field("Link type", sourceSelect),
       field("Product kind", typeSelect, "Shown as a small tag on the product page."),
       catFields[0],
@@ -955,6 +957,8 @@
         image: $("f-image").value.trim(),
         images: state.extraImages.map(function (s) { return (s || "").trim(); }).filter(Boolean),
         affiliateLink: $("f-link").value.trim(),
+        colorsLink: $("f-colors-link").value.trim(),
+        sizesLink: $("f-sizes-link").value.trim(),
         description: $("f-desc").value.trim(),
         colors: $("f-colors").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean)
       } };
@@ -1235,7 +1239,7 @@
     state.editIndex = index;
     var isProduct = state.tab === "products";
     var blank = isProduct
-      ? { slug: "", name: "", price: "", type: "physical", source: "affiliate", category: "", subcategory: "", image: "", images: [], affiliateLink: "", description: "", colors: [] }
+      ? { slug: "", name: "", price: "", type: "physical", source: "affiliate", category: "", subcategory: "", image: "", images: [], affiliateLink: "", colorsLink: "", sizesLink: "", description: "", colors: [] }
       : { slug: "", title: "", date: "", category: "", subcategory: "", cover: "", excerpt: "", content: [] };
     var item = index === -1 ? blank : state[state.tab].data[index];
 

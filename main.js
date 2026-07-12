@@ -128,6 +128,21 @@
     );
   }
 
+  // Secondary "Different Colors" / "Different Sizes" button — only shown
+  // when the product provides that link.
+  function variantButton(product, label, url) {
+    return el(
+      "a",
+      {
+        class: "btn-secondary",
+        href: url,
+        target: "_blank",
+        rel: isOwnProduct(product) ? "noopener" : "nofollow sponsored noopener"
+      },
+      [label]
+    );
+  }
+
   // Quiet affiliate disclosure next to Buy Now buttons.
   // Own products get no note at all.
   function affiliateNote(product, short) {
@@ -683,7 +698,16 @@
           ]));
         }
 
-        info.appendChild(buyButton(product));
+        // Actions: optional Different Colors / Different Sizes buttons
+        // above the primary Buy Now button.
+        var actions = el("div", { class: "product-actions" });
+        var variants = el("div", { class: "variant-links" });
+        if ((product.colorsLink || "").trim()) variants.appendChild(variantButton(product, "Different Colors", product.colorsLink));
+        if ((product.sizesLink || "").trim()) variants.appendChild(variantButton(product, "Different Sizes", product.sizesLink));
+        if (variants.children.length) actions.appendChild(variants);
+        actions.appendChild(buyButton(product));
+        info.appendChild(actions);
+
         var note = affiliateNote(product, false);
         if (note) info.appendChild(note);
 
