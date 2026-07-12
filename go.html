@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journal — Subtle Sway</title>
-  <meta name="description" content="Notes on quiet interiors, honest materials, and living with less.">
+  <title>Heading out — Subtle Sway</title>
+  <meta name="robots" content="noindex, nofollow">
 
   <!-- Fonts: Fraunces (display) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./style.css?v=16">
   <script src="./main.js?v=16" defer></script>
 </head>
-<body data-page="blog">
+<body data-page="go">
 
   <header class="site-header">
     <div class="wrap">
@@ -22,26 +22,14 @@
       <nav class="site-nav" aria-label="Main">
         <a href="./index.html">Home</a>
         <a href="./shop.html">Shop</a>
-        <a href="./blog.html" aria-current="page">Journal</a>
+        <a href="./blog.html">Journal</a>
       </nav>
     </div>
   </header>
 
+  <!-- Interstitial content rendered by main.js from the ?to= parameter -->
   <main class="wrap">
-    <span class="eyebrow">The Journal</span>
-    <h1 class="page-title">Notes on quiet living.</h1>
-
-    <!-- Search + category filters — built from posts.json by main.js -->
-    <div class="filter-bar" aria-label="Search and filter">
-      <div class="search-row">
-        <input type="search" id="post-search" placeholder="Search the journal…" aria-label="Search articles" autocomplete="off">
-      </div>
-      <div class="filter-row" id="post-category-row"></div>
-      <div class="filter-row sub" id="post-subcategory-row" hidden></div>
-    </div>
-
-    <!-- Post list — populated from posts.json (newest first) by main.js -->
-    <ul class="blog-list" id="blog-list"></ul>
+    <div id="go-body" class="go-page"></div>
   </main>
 
   <footer class="site-footer">

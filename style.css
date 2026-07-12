@@ -802,6 +802,26 @@ main > .eyebrow::before,
   font-size: var(--text-body);
 }
 
+/* ---------- Affiliate interstitial (go.html) ---------- */
+
+.go-page {
+  max-width: 34rem;
+  margin: 2.5rem auto 0;
+}
+
+.go-message {
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+
+.go-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
 /* ---------- Contact page ---------- */
 
 .contact-page {

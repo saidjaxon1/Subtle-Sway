@@ -115,14 +115,21 @@
 
   // "Buy Now" button. Affiliate links carry nofollow/sponsored;
   // the site's own products get a plain link.
+  // Affiliate clicks open the go.html interstitial in a new tab (which
+  // discloses the relationship and offers a "Go to Amazon" button); the
+  // site's own products link straight out.
+  function outboundHref(product, url) {
+    return isOwnProduct(product) ? url : "./go.html?to=" + encodeURIComponent(url);
+  }
+
   function buyButton(product) {
     return el(
       "a",
       {
         class: "btn",
-        href: product.affiliateLink,
+        href: outboundHref(product, product.affiliateLink),
         target: "_blank",
-        rel: isOwnProduct(product) ? "noopener" : "nofollow sponsored noopener"
+        rel: isOwnProduct(product) ? "noopener" : "sponsored noopener"
       },
       ["Buy Now"]
     );
@@ -135,9 +142,9 @@
       "a",
       {
         class: "btn-secondary",
-        href: url,
+        href: outboundHref(product, url),
         target: "_blank",
-        rel: isOwnProduct(product) ? "noopener" : "nofollow sponsored noopener"
+        rel: isOwnProduct(product) ? "noopener" : "sponsored noopener"
       },
       [label]
     );
@@ -300,6 +307,40 @@
       .catch(function () {
         slot.appendChild(el("p", { class: "contact-intro" }, ["We couldn't load the contact details just now. Please try again in a moment."]));
       });
+  }
+
+  /* ---------- Page: go (affiliate interstitial) ---------- */
+
+  function initGo() {
+    var slot = document.getElementById("go-body");
+    var to = getParam("to") || "";
+    // Only ever follow http(s) destinations — never javascript: or data:.
+    var safe = /^https?:\/\//i.test(to);
+    var isAmazon = /(^|\.)amazon\.|amzn\./i.test(to);
+    var store = isAmazon ? "Amazon" : "the store";
+
+    document.title = "Heading out — " + SITE_NAME;
+
+    if (!safe) {
+      slot.appendChild(el("div", { class: "status" }, [
+        el("h2", null, ["This link isn't available"]),
+        el("p", null, ["Please head back and try again."]),
+        el("a", { class: "text-link", href: "./shop.html" }, ["Back to the shop"])
+      ]));
+      return;
+    }
+
+    slot.appendChild(el("span", { class: "eyebrow" }, ["A quick note before you go"]));
+    slot.appendChild(el("h1", { class: "page-title" }, ["You're on your way to " + store]));
+    slot.appendChild(el("p", { class: "go-message" }, [
+      "Subtle Sway is reader-supported. When you shop through our link, " + store +
+      " shares a small commission with us on anything you buy in the next 24 hours — different sizes and colours included. " +
+      "It's what keeps this quiet little studio going, and every purchase made this way means a great deal to us. Thank you for supporting our work."
+    ]));
+    slot.appendChild(el("div", { class: "go-actions" }, [
+      el("a", { class: "btn", href: to, rel: "nofollow sponsored noopener" }, [isAmazon ? "Go to Amazon" : "Continue to the store"]),
+      el("a", { class: "text-link", href: "./index.html" }, ["Back to Subtle Sway"])
+    ]));
   }
 
   /* ---------- Reading progress line (article pages) ---------- */
@@ -995,7 +1036,8 @@
     product: initProduct,
     blog: initBlog,
     post: initPost,
-    contact: initContact
+    contact: initContact,
+    go: initGo
   }[page];
 
   document.addEventListener("DOMContentLoaded", function () {
