@@ -149,7 +149,7 @@
     if (isOwnProduct(product)) return null;
     var text = short
       ? "Affiliate link — we may earn a commission."
-      : "As an affiliate partner, we may earn a commission when you buy through this link — at no extra cost to you.";
+      : "As an affiliate partner, we may earn a commission when you buy through this link.";
     return el("p", { class: "affiliate-note" }, [text]);
   }
 
