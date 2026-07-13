@@ -968,7 +968,7 @@
 
   /* ---------- Post form (with content block editor) ---------- */
 
-  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", gallery: "Gallery", product: "Product" };
+  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", gallery: "Gallery", product: "Product", shoplist: "Product list" };
 
   function blockRow(block, index) {
     var tools = el("div", { class: "block-tools" }, []);
@@ -1045,6 +1045,31 @@
       if (!block.slug && state.products.data.length) block.slug = state.products.data[0].slug;
       select.addEventListener("change", function () { block.slug = select.value; });
       body.appendChild(select);
+    } else if (block.type === "shoplist") {
+      // A group label plus a list of products (by slug).
+      if (!block.slugs) block.slugs = [];
+      var labelIn = el("input", { type: "text", value: block.label || "", placeholder: "Group heading — e.g. Sofas" });
+      labelIn.addEventListener("input", function () { block.label = labelIn.value; });
+      body.appendChild(labelIn);
+
+      block.slugs.forEach(function (slug, si) {
+        var prod = state.products.data.filter(function (p) { return p.slug === slug; })[0];
+        var removeBtn = el("button", { type: "button", class: "ghost-btn danger", title: "Remove from list" }, ["×"]);
+        removeBtn.addEventListener("click", function () { block.slugs.splice(si, 1); renderBlocks(); });
+        body.appendChild(el("div", { class: "shoplist-item-row" }, [
+          el("span", null, [prod ? prod.name : slug + " (missing)"]),
+          removeBtn
+        ]));
+      });
+
+      var addSel = el("select", null,
+        [el("option", { value: "" }, ["+ Add a product…"])].concat(
+          state.products.data.map(function (p) { return el("option", { value: p.slug }, [p.name]); })
+        ));
+      addSel.addEventListener("change", function () {
+        if (addSel.value) { block.slugs.push(addSel.value); renderBlocks(); }
+      });
+      body.appendChild(addSel);
     }
 
     return el("div", { class: "block-row" }, [
@@ -1080,6 +1105,7 @@
           type === "image" ? { type: type, src: "", alt: "" } :
           type === "gallery" ? { type: type, images: [{ src: "", alt: "" }, { src: "", alt: "" }] } :
           type === "product" ? { type: type, slug: "" } :
+          type === "shoplist" ? { type: type, label: "", slugs: [] } :
           { type: type, text: "" }
         );
         renderBlocks();

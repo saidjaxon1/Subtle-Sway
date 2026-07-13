@@ -294,6 +294,19 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
+/* Chosen products inside a Product-list block editor */
+.shoplist-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--bone);
+  font-size: 0.9rem;
+}
+
 /* Rows inside a gallery / extra-photos editor */
 .gallery-item {
   display: flex;

@@ -1056,6 +1056,17 @@ main > .eyebrow::before,
   align-items: start;
 }
 
+/* When a product has no photo yet, collapse to a single readable column */
+.product-detail.no-media {
+  grid-template-columns: 1fr;
+  max-width: 40rem;
+}
+
+.product-detail.no-media .info {
+  padding-left: 0;
+  border-left: none;
+}
+
 /* Main photo plus optional extra photos, stacked in a quiet column */
 .product-detail .media {
   display: flex;
@@ -1387,6 +1398,72 @@ main > .eyebrow::before,
 
 .article-body figure img {
   width: 100%;
+}
+
+/* Shopping-list block — a titled group of products as a clean text list */
+.shoplist {
+  margin: 2.5rem 0;
+  padding: 1.75rem 1.9rem;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+}
+
+.shoplist-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.4rem;
+}
+
+.shoplist-items {
+  list-style: none;
+}
+
+.shoplist-items li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.shoplist-items li:first-child {
+  border-top: none;
+}
+
+.shoplist-name {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.shoplist-link {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.shoplist-link::after {
+  content: " →";
+}
+
+.shoplist-link:hover {
+  color: var(--brass);
 }
 
 /* Photo gallery block — several photos side by side */

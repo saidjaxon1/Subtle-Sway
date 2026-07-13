@@ -752,21 +752,29 @@
         if (note) info.appendChild(note);
 
         // Main photo plus any extra photos, stacked in a quiet column.
-        var media = el("div", { class: "media" }, [
-          el("figure", null, [
-            el("img", { src: product.image, alt: product.name })
-          ])
-        ]);
+        // When there is no photo yet, the layout collapses to a single
+        // column so nothing looks broken.
+        var photos = [];
+        if ((product.image || "").trim()) photos.push(product.image);
         (product.images || []).forEach(function (src) {
-          if (!(src || "").trim()) return;
-          media.appendChild(el("figure", null, [
-            el("img", { src: src, alt: product.name, loading: "lazy" })
-          ]));
+          if ((src || "").trim()) photos.push(src);
         });
+
+        var media = null;
+        if (photos.length) {
+          media = el("div", { class: "media" }, photos.map(function (src, i) {
+            return el("figure", null, [
+              el("img", i === 0
+                ? { src: src, alt: product.name }
+                : { src: src, alt: product.name, loading: "lazy" })
+            ]);
+          }));
+        }
 
         main.textContent = "";
         main.appendChild(
-          el("article", { class: "product-detail" }, [media, info])
+          el("article", { class: "product-detail" + (media ? "" : " no-media") },
+            media ? [media, info] : [info])
         );
 
         // Below the product: more pieces from the same category, then
@@ -971,6 +979,30 @@
             var product = products.find(function (p) { return p.slug === block.slug; });
             if (product) body.appendChild(embeddedProductCard(product));
             // Unknown product slugs are skipped silently rather than breaking the post.
+          } else if (block.type === "shoplist") {
+            // A titled group of products shown as a clean text list, each
+            // linking to its product page. No images needed.
+            var listed = (block.slugs || [])
+              .map(function (s) { return products.find(function (p) { return p.slug === s; }); })
+              .filter(Boolean);
+            if (listed.length) {
+              var group = el("div", { class: "shoplist" });
+              if ((block.label || "").trim()) {
+                group.appendChild(el("span", { class: "shoplist-label" }, [block.label]));
+              }
+              var ul = el("ul", { class: "shoplist-items" });
+              listed.forEach(function (p) {
+                ul.appendChild(el("li", null, [
+                  el("span", { class: "shoplist-name" }, [p.name]),
+                  el("a", {
+                    class: "shoplist-link",
+                    href: "./product.html?slug=" + encodeURIComponent(p.slug)
+                  }, ["View product"])
+                ]));
+              });
+              group.appendChild(ul);
+              body.appendChild(group);
+            }
           }
         });
 
