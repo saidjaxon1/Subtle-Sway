@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "slug": "living-room-inspiration",
+    "title": "Living Room Inspiration: A Calm Room, Built Piece by Piece",
+    "date": "2026-07-12",
+    "category": "Home Decor",
+    "subcategory": "Living Room",
+    "cover": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The living room asks more of its furniture than any other space. Here's how to build a calm one — sofa, lighting, surfaces and textiles — piece by piece.",
+    "content": [
+      { "type": "paragraph", "text": "The living room asks more of its furniture than any other space — it has to seat a crowd, hold a quiet evening, and look composed doing both. The trick is to decide the large things well and let the small ones follow. Here is how we would build a calm living room, one layer at a time. Tap a category below to jump straight to the pieces." },
+      { "type": "jumpmenu" },
+      { "type": "heading", "text": "Sofas" },
+      { "type": "paragraph", "text": "The sofa sets the temperature of the whole room, so it earns the largest share of the budget and the most patience. Look for honest materials that age well — linen, wool, corduroy, leather — and quiet proportions that don't fight the walls. A modular design especially earns its keep: rearrange the sections, move the ottoman, and one sofa quietly becomes three different layouts." },
+      { "type": "shoplist", "label": "Sofas", "slugs": ["novilla-cloud-modular-sectional"] },
+      { "type": "heading", "text": "Lighting" },
+      { "type": "paragraph", "text": "Overhead light flattens a living room; lamps build it. Aim for three warm sources at different heights — a floor lamp beside the sofa, a low table lamp across the room, and one soft accent in a far corner. Keep every bulb at 2700 kelvin or warmer, and the room will feel lived-in the moment the sun drops." },
+      { "type": "shoplist", "label": "Lighting", "slugs": [] },
+      { "type": "heading", "text": "Surfaces" },
+      { "type": "paragraph", "text": "Every seat needs somewhere to set a cup down. A low table anchors the seating and one or two smaller ones catch the overflow. Choose solid wood that takes a ring or a scratch as character rather than damage, and keep the tops mostly clear — one object, a stack of books, and room to breathe." },
+      { "type": "shoplist", "label": "Tables", "slugs": [] },
+      { "type": "heading", "text": "Textiles" },
+      { "type": "paragraph", "text": "Textiles are where a restrained palette earns its warmth. A wool rug underfoot to hold the seating together, a throw folded over one arm, and cushions in two or three close tones. Vary the texture rather than the colour — a linen cushion against a boucle throw against a flatweave rug — and the room reads rich without ever raising its voice." },
+      { "type": "shoplist", "label": "Textiles", "slugs": [] }
+    ]
+  }
+]

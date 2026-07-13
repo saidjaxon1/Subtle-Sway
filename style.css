@@ -550,6 +550,11 @@ main > .eyebrow::before,
 
 /* Gentle entrance animations — motion only when the visitor allows it */
 @media (prefers-reduced-motion: no-preference) {
+  /* Smooth in-page scrolling for jump-menu anchors */
+  html {
+    scroll-behavior: smooth;
+  }
+
   .hero-home > * {
     animation: page-in 0.7s var(--ease-slow) both;
   }
@@ -1400,6 +1405,61 @@ main > .eyebrow::before,
   width: 100%;
 }
 
+/* Jump menu — auto-built "Label ↓" links that scroll down to each list */
+.jump-menu {
+  margin: 2.25rem 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.jump-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0.2rem;
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.jump-label {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: -0.015em;
+  position: relative;
+}
+
+/* A brass rule grows out from the label on hover */
+.jump-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--brass), var(--clay));
+  transition: width 0.4s var(--ease-slow);
+}
+
+.jump-link:hover .jump-label::after,
+.jump-link:focus-visible .jump-label::after {
+  width: 100%;
+}
+
+.jump-arrow {
+  flex-shrink: 0;
+  color: var(--brass);
+  font-size: 1.1rem;
+  transition: transform 0.3s var(--ease-slow);
+}
+
+.jump-link:hover .jump-arrow,
+.jump-link:focus-visible .jump-arrow {
+  transform: translateY(3px);
+}
+
 /* Shopping-list block — a titled group of products as a clean text list */
 .shoplist {
   margin: 2.5rem 0;
@@ -1407,6 +1467,7 @@ main > .eyebrow::before,
   background: var(--panel);
   border: 1px solid var(--hairline);
   border-radius: 2px;
+  scroll-margin-top: 1.5rem;
 }
 
 .shoplist-label {

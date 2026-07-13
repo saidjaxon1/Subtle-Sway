@@ -968,7 +968,7 @@
 
   /* ---------- Post form (with content block editor) ---------- */
 
-  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", gallery: "Gallery", product: "Product", shoplist: "Product list" };
+  var BLOCK_LABELS = { paragraph: "Text", heading: "Heading", image: "Photo", gallery: "Gallery", product: "Product", shoplist: "Product list", jumpmenu: "Jump menu" };
 
   function blockRow(block, index) {
     var tools = el("div", { class: "block-tools" }, []);
@@ -1070,6 +1070,11 @@
         if (addSel.value) { block.slugs.push(addSel.value); renderBlocks(); }
       });
       body.appendChild(addSel);
+    } else if (block.type === "jumpmenu") {
+      // No settings — it links to every Product list in the article.
+      body.appendChild(el("span", { class: "field-hint" }, [
+        "Automatically shows a “Label ↓” link for each Product list in this article, scrolling down to it. Place it near the top. No settings needed."
+      ]));
     }
 
     return el("div", { class: "block-row" }, [
@@ -1106,6 +1111,7 @@
           type === "gallery" ? { type: type, images: [{ src: "", alt: "" }, { src: "", alt: "" }] } :
           type === "product" ? { type: type, slug: "" } :
           type === "shoplist" ? { type: type, label: "", slugs: [] } :
+          type === "jumpmenu" ? { type: type } :
           { type: type, text: "" }
         );
         renderBlocks();

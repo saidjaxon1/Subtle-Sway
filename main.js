@@ -47,6 +47,14 @@
     return (value || "").trim().toLowerCase();
   }
 
+  // "Floor Lamps" -> "floor-lamps" (for in-page anchor ids).
+  function slugifyLabel(text) {
+    return (text || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "group";
+  }
+
   // Read a query-string parameter (e.g. ?slug=arden-sofa).
   function getParam(name) {
     return new URLSearchParams(window.location.search).get(name);
@@ -950,8 +958,28 @@
 
         document.title = post.title + " — " + SITE_NAME;
 
+        // Pre-pass: assign a unique anchor id to each non-empty Product-list
+        // block, and collect them so a Jump menu can link down to each one.
+        // Empty lists get no anchor, so jump links can never point nowhere.
+        var usedAnchors = {};
+        var anchorByBlock = [];   // anchor id per content index (or null)
+        var shopAnchors = [];     // ordered {label, id} for the jump menu
+        (post.content || []).forEach(function (block, i) {
+          if (block.type !== "shoplist") return;
+          var listed = (block.slugs || []).filter(function (s) {
+            return products.some(function (p) { return p.slug === s; });
+          });
+          if (!listed.length) { anchorByBlock[i] = null; return; }
+          var base = "shop-" + slugifyLabel(block.label || "products");
+          var id = base, n = 2;
+          while (usedAnchors[id]) { id = base + "-" + (n++); }
+          usedAnchors[id] = true;
+          anchorByBlock[i] = id;
+          shopAnchors.push({ label: (block.label || "Products").trim() || "Products", id: id });
+        });
+
         var body = el("div", { class: "article-body" });
-        (post.content || []).forEach(function (block) {
+        (post.content || []).forEach(function (block, blockIdx) {
           if (block.type === "paragraph") {
             body.appendChild(el("p", null, [block.text]));
           } else if (block.type === "heading") {
@@ -986,7 +1014,8 @@
               .map(function (s) { return products.find(function (p) { return p.slug === s; }); })
               .filter(Boolean);
             if (listed.length) {
-              var group = el("div", { class: "shoplist" });
+              var anchorId = anchorByBlock[blockIdx];
+              var group = el("div", anchorId ? { class: "shoplist", id: anchorId } : { class: "shoplist" });
               if ((block.label || "").trim()) {
                 group.appendChild(el("span", { class: "shoplist-label" }, [block.label]));
               }
@@ -1002,6 +1031,19 @@
               });
               group.appendChild(ul);
               body.appendChild(group);
+            }
+          } else if (block.type === "jumpmenu") {
+            // Auto-built navigation: one "Label →" link per non-empty
+            // Product list in this article, smooth-scrolling down to it.
+            if (shopAnchors.length) {
+              var nav = el("nav", { class: "jump-menu", "aria-label": "Shop by category" });
+              shopAnchors.forEach(function (a) {
+                nav.appendChild(el("a", { class: "jump-link", href: "#" + a.id }, [
+                  el("span", { class: "jump-label" }, [a.label]),
+                  el("span", { class: "jump-arrow", "aria-hidden": "true" }, ["↓"])
+                ]));
+              });
+              body.appendChild(nav);
             }
           }
         });
