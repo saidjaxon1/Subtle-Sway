@@ -181,13 +181,20 @@
   }
 
   // Product card used by the shop grid and the home page.
+  function hasImage(product) {
+    return !!(product && (product.image || "").trim());
+  }
+
   function productCard(product) {
     var priceLine = priceLineText(product);
+    // A product without a photo yet gets a clean panel placeholder
+    // instead of a broken image icon.
+    var figure = hasImage(product)
+      ? el("figure", null, [el("img", { src: product.image, alt: product.name, loading: "lazy" })])
+      : el("figure", { class: "figure-empty" });
     return el("li", { class: "product-card" }, [
       el("a", { href: "./product.html?slug=" + encodeURIComponent(product.slug) }, [
-        el("figure", null, [
-          el("img", { src: product.image, alt: product.name, loading: "lazy" })
-        ]),
+        figure,
         el("span", { class: "eyebrow" }, [eyebrowText(product)]),
         el("h2", null, [product.name]),
         priceLine ? el("span", { class: "price" }, [priceLine]) : null
@@ -441,10 +448,13 @@
       .slice(0, limit);
   }
 
+  // Used only for the "The Shop" related strips. Products without a photo
+  // are skipped, so those sections stay hidden until real images exist.
   function productsInCategory(products, category, excludeSlug, limit) {
     return products
       .filter(function (p) {
-        return (!category || norm(p.category) === norm(category)) && p.slug !== excludeSlug;
+        return (!category || norm(p.category) === norm(category)) &&
+          p.slug !== excludeSlug && hasImage(p);
       })
       .slice(0, limit);
   }
@@ -471,13 +481,16 @@
         uniqueValues(products, function (p) { return p.category; }).forEach(function (category, index) {
           var inCategory = products.filter(function (p) { return norm(p.category) === norm(category); });
           var count = inCategory.length;
+          // Use the first product image that exists; otherwise a clean panel.
+          var cardImage = inCategory.filter(hasImage)[0];
+          var catFigure = cardImage
+            ? el("figure", null, [el("img", { src: cardImage.image, alt: category, loading: "lazy" })])
+            : el("figure", { class: "figure-empty" });
           categoryGrid.appendChild(
             el("li", { class: "category-card" }, [
               el("a", { href: "./shop.html?category=" + encodeURIComponent(category) }, [
                 el("span", { class: "num", "aria-hidden": "true" }, ["0" + (index + 1)]),
-                el("figure", null, [
-                  el("img", { src: inCategory[0].image, alt: category, loading: "lazy" })
-                ]),
+                catFigure,
                 el("h3", null, [category]),
                 el("span", { class: "count" }, [count + (count === 1 ? " piece" : " pieces")])
               ])
@@ -1025,7 +1038,9 @@
                   el("span", { class: "shoplist-name" }, [p.name]),
                   el("a", {
                     class: "shoplist-link",
-                    href: "./product.html?slug=" + encodeURIComponent(p.slug)
+                    href: outboundHref(p, p.affiliateLink),
+                    target: "_blank",
+                    rel: isOwnProduct(p) ? "noopener" : "sponsored noopener"
                   }, ["View product"])
                 ]));
               });
@@ -1073,7 +1088,7 @@
         var relatedProducts = products
           .filter(function (p) {
             return (!post.category || norm(p.category) === norm(post.category)) &&
-              embeddedSlugs.indexOf(p.slug) === -1;
+              embeddedSlugs.indexOf(p.slug) === -1 && hasImage(p);
           })
           .slice(0, 3);
         var shopSection = relatedSection(
