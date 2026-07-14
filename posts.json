@@ -15,7 +15,7 @@
       { "type": "shoplist", "label": "Sofas", "slugs": [] },
       { "type": "heading", "text": "Lighting" },
       { "type": "paragraph", "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones." },
-      { "type": "shoplist", "label": "Lighting", "slugs": [] },
+      { "type": "shoplist", "label": "Lighting", "slugs": ["sunmory-arc-floor-lamp"] },
       { "type": "heading", "text": "Surfaces" },
       { "type": "paragraph", "text": "A coffee table, along with one or two side tables, gives everyone somewhere to set things down. Choose surfaces that suit how you actually live — sturdy and easy to clean if the room sees a lot of use — and try to leave a little open space rather than filling every inch." },
       { "type": "shoplist", "label": "Tables", "slugs": [] },
