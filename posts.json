@@ -1,26 +1,26 @@
 [
   {
     "slug": "living-room-inspiration",
-    "title": "Living Room Inspiration: A Calm Room, Built Piece by Piece",
+    "title": "Living Room Inspiration",
     "date": "2026-07-12",
     "category": "Home Decor",
     "subcategory": "Living Room",
     "cover": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "The living room asks more of its furniture than any other space. Here's how to build a calm one — sofa, lighting, surfaces and textiles — piece by piece.",
+    "excerpt": "A living room brings together more furniture and daily use than any other room. A simple guide to thinking through each part — sofa, lighting, surfaces, and textiles.",
     "content": [
-      { "type": "paragraph", "text": "The living room asks more of its furniture than any other space — it has to seat a crowd, hold a quiet evening, and look composed doing both. The trick is to decide the large things well and let the small ones follow. Here is how we would build a calm living room, one layer at a time. Tap a category below to jump straight to the pieces." },
+      { "type": "paragraph", "text": "A living room brings together more furniture and more daily use than any other space in a home, so it rewards a little planning. A good approach is to start with the largest pieces and work down to the details — once the big things are in place, everything else tends to fall into line. Below is a simple way to think about each part. Tap a category to jump straight to the pieces." },
       { "type": "jumpmenu" },
       { "type": "heading", "text": "Sofas" },
-      { "type": "paragraph", "text": "The sofa sets the temperature of the whole room, so it earns the largest share of the budget and the most patience. Look for honest materials that age well — linen, wool, corduroy, leather — and quiet proportions that don't fight the walls. A modular design especially earns its keep: rearrange the sections, move the ottoman, and one sofa quietly becomes three different layouts." },
-      { "type": "shoplist", "label": "Sofas", "slugs": ["novilla-cloud-modular-sectional"] },
+      { "type": "paragraph", "text": "The sofa is usually the largest and most-used piece in the room, so it is worth choosing with care. Think about the size of your space, how many people you need to seat, and how the sofa will be used from day to day. Comfortable, hard-wearing upholstery and a shape that suits the room will serve you far longer than any passing trend." },
+      { "type": "shoplist", "label": "Sofas", "slugs": [] },
       { "type": "heading", "text": "Lighting" },
-      { "type": "paragraph", "text": "Overhead light flattens a living room; lamps build it. Aim for three warm sources at different heights — a floor lamp beside the sofa, a low table lamp across the room, and one soft accent in a far corner. Keep every bulb at 2700 kelvin or warmer, and the room will feel lived-in the moment the sun drops." },
+      { "type": "paragraph", "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones." },
       { "type": "shoplist", "label": "Lighting", "slugs": [] },
       { "type": "heading", "text": "Surfaces" },
-      { "type": "paragraph", "text": "Every seat needs somewhere to set a cup down. A low table anchors the seating and one or two smaller ones catch the overflow. Choose solid wood that takes a ring or a scratch as character rather than damage, and keep the tops mostly clear — one object, a stack of books, and room to breathe." },
+      { "type": "paragraph", "text": "A coffee table, along with one or two side tables, gives everyone somewhere to set things down. Choose surfaces that suit how you actually live — sturdy and easy to clean if the room sees a lot of use — and try to leave a little open space rather than filling every inch." },
       { "type": "shoplist", "label": "Tables", "slugs": [] },
       { "type": "heading", "text": "Textiles" },
-      { "type": "paragraph", "text": "Textiles are where a restrained palette earns its warmth. A wool rug underfoot to hold the seating together, a throw folded over one arm, and cushions in two or three close tones. Vary the texture rather than the colour — a linen cushion against a boucle throw against a flatweave rug — and the room reads rich without ever raising its voice." },
+      { "type": "paragraph", "text": "Rugs, cushions, and throws are among the easiest ways to add warmth, colour, and texture to a room. A rug can help define the seating area, while cushions and throws soften the space and pull your colours together. Layering a few different textures usually feels richer than matching everything exactly." },
       { "type": "shoplist", "label": "Textiles", "slugs": [] }
     ]
   }
