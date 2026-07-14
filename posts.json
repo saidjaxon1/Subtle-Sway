@@ -12,7 +12,7 @@
       { "type": "heading", "text": "Seating" },
       { "type": "paragraph", "text": "Start with the sofa — the largest and most-used seat in the room — then add a chair or two for the corners a sofa cannot reach. Think about the size of your space and how many people you need to seat, and choose comfortable, hard-wearing pieces in shapes that suit the room. Done well, a room can seat a crowd without ever feeling crowded." },
       { "type": "shoplist", "label": "Sofa products", "slugs": ["acanva-curved-velvet-sofa", "acanva-zola-modular-sectional"] },
-      { "type": "shoplist", "label": "Chair products", "slugs": ["acanva-mellow-accent-chairs"] },
+      { "type": "shoplist", "label": "Chair products", "slugs": ["acanva-mellow-accent-chairs", "acanva-mellow-accent-chair", "chita-swivel-velvet-armchair"] },
       { "type": "heading", "text": "Lighting" },
       { "type": "paragraph", "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones." },
       { "type": "shoplist", "label": "Lighting products", "slugs": ["sunmory-arc-floor-lamp"] },
@@ -21,7 +21,7 @@
       { "type": "shoplist", "label": "Storage products", "slugs": ["t4tream-fluted-dresser"] },
       { "type": "heading", "text": "Textiles" },
       { "type": "paragraph", "text": "Rugs, cushions, and throws are among the easiest ways to add warmth, colour, and texture to a room. A rug can help define the seating area, while cushions and throws soften the space and pull your colours together. Layering a few different textures usually feels richer than matching everything exactly." },
-      { "type": "shoplist", "label": "Textile products", "slugs": [] }
+      { "type": "shoplist", "label": "Rug products", "slugs": ["srugn-washable-vintage-rug", "machine-washable-boho-rug", "soalmost-washable-area-rug", "pauwer-fluffy-area-rug", "swgrt-boho-plush-rug", "lofus-abstract-area-rug"] }
     ]
   }
 ]
