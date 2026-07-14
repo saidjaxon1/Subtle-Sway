@@ -11,7 +11,7 @@
       { "type": "paragraph", "text": "A living room brings together more furniture and more daily use than any other space in a home, so it rewards a little planning. A good approach is to start with the largest pieces and work down to the details — once the big things are in place, everything else tends to fall into line. Below is a simple way to think about each part, with a few pieces to shop under each one." },
       { "type": "heading", "text": "Sofas" },
       { "type": "paragraph", "text": "The sofa is usually the largest and most-used piece in the room, so it is worth choosing with care. Think about the size of your space, how many people you need to seat, and how the sofa will be used from day to day. Comfortable, hard-wearing upholstery and a shape that suits the room will serve you far longer than any passing trend." },
-      { "type": "shoplist", "label": "Sofa products", "slugs": [] },
+      { "type": "shoplist", "label": "Sofa products", "slugs": ["acanva-curved-velvet-sofa"] },
       { "type": "heading", "text": "Lighting" },
       { "type": "paragraph", "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones." },
       { "type": "shoplist", "label": "Lighting products", "slugs": ["sunmory-arc-floor-lamp"] },
