@@ -8,20 +8,84 @@
     "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
     "excerpt": "A living room brings together more furniture and daily use than any other room. A simple guide to thinking through each part — sofa, lighting, surfaces, and textiles.",
     "content": [
-      { "type": "paragraph", "text": "A living room brings together more furniture and more daily use than any other space in a home, so it rewards a little planning. A good approach is to start with the largest pieces and work down to the details — once the big things are in place, everything else tends to fall into line. Below is a simple way to think about each part, with a few pieces to shop under each one." },
-      { "type": "heading", "text": "Seating" },
-      { "type": "paragraph", "text": "Start with the sofa — the largest and most-used seat in the room — then add a chair or two for the corners a sofa cannot reach. Think about the size of your space and how many people you need to seat, and choose comfortable, hard-wearing pieces in shapes that suit the room. Done well, a room can seat a crowd without ever feeling crowded." },
-      { "type": "shoplist", "label": "Sofa products", "slugs": ["acanva-curved-velvet-sofa", "acanva-zola-modular-sectional"] },
-      { "type": "shoplist", "label": "Chair products", "slugs": ["acanva-mellow-accent-chairs", "acanva-mellow-accent-chair", "chita-swivel-velvet-armchair"] },
-      { "type": "heading", "text": "Lighting" },
-      { "type": "paragraph", "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones." },
-      { "type": "shoplist", "label": "Lighting products", "slugs": ["sunmory-arc-floor-lamp"] },
-      { "type": "heading", "text": "Storage & Surfaces" },
-      { "type": "paragraph", "text": "A coffee table and a side table or two give everyone somewhere to set things down, while a low console or chest of drawers hides the clutter and can carry a television. Look for solid, easy-to-live-with surfaces, and leave a little open space rather than filling every inch." },
-      { "type": "shoplist", "label": "Storage products", "slugs": ["t4tream-fluted-dresser"] },
-      { "type": "heading", "text": "Textiles" },
-      { "type": "paragraph", "text": "Rugs, cushions, and throws are among the easiest ways to add warmth, colour, and texture to a room. A rug can help define the seating area, while cushions and throws soften the space and pull your colours together. Layering a few different textures usually feels richer than matching everything exactly." },
-      { "type": "shoplist", "label": "Rug products", "slugs": ["srugn-washable-vintage-rug", "machine-washable-boho-rug", "soalmost-washable-area-rug", "pauwer-fluffy-area-rug", "swgrt-boho-plush-rug", "lofus-abstract-area-rug"] }
+      {
+        "type": "paragraph",
+        "text": "A living room brings together more furniture and more daily use than any other space in a home, so it rewards a little planning. A good approach is to start with the largest pieces and work down to the details — once the big things are in place, everything else tends to fall into line. Below is a simple way to think about each part, with a few pieces to shop under each one."
+      },
+      {
+        "type": "heading",
+        "text": "Seating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with the sofa — the largest and most-used seat in the room — then add a chair or two for the corners a sofa cannot reach. Think about the size of your space and how many people you need to seat, and choose comfortable, hard-wearing pieces in shapes that suit the room. Done well, a room can seat a crowd without ever feeling crowded."
+      },
+      {
+        "type": "shoplist",
+        "label": "Sofa products",
+        "slugs": [
+          "acanva-curved-velvet-sofa",
+          "acanva-zola-modular-sectional"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Chair products",
+        "slugs": [
+          "acanva-mellow-accent-chair",
+          "chita-swivel-velvet-armchair"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Lighting"
+      },
+      {
+        "type": "paragraph",
+        "text": "A single overhead light rarely does a living room justice. A mix of sources — a floor lamp, a table lamp, and a little accent light — lets you set the mood for reading, relaxing, or having people over. As a rule, warm-toned bulbs feel more inviting in the evening than cool, bright white ones."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting products",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Storage & Surfaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "A coffee table and a side table or two give everyone somewhere to set things down, while a low console or chest of drawers hides the clutter and can carry a television. Look for solid, easy-to-live-with surfaces, and leave a little open space rather than filling every inch."
+      },
+      {
+        "type": "shoplist",
+        "label": "Storage products",
+        "slugs": [
+          "t4tream-fluted-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Textiles"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rugs, cushions, and throws are among the easiest ways to add warmth, colour, and texture to a room. A rug can help define the seating area, while cushions and throws soften the space and pull your colours together. Layering a few different textures usually feels richer than matching everything exactly."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
     ]
   }
 ]
