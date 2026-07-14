@@ -87,5 +87,359 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "bedroom-inspiration",
+    "title": "Bedroom Inspiration",
+    "date": "2026-07-13",
+    "category": "Home Decor",
+    "subcategory": "Bedroom",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The one room with a single job: rest. A simple guide to a calm bedroom — the bed, storage, a place to sit, soft light, and what goes underfoot.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A bedroom has one real job — rest — and the calmest ones are built around that single idea. Keep the palette quiet, the surfaces clear, and the light low, and the room does the rest. Here is a simple way to think it through, part by part."
+      },
+      {
+        "type": "heading",
+        "text": "The Bed"
+      },
+      {
+        "type": "paragraph",
+        "text": "Spend where your body spends the night. A simple, low frame and honest bedding in natural fibres matter far more than anything decorative. Centre the bed on the calmest wall, leave a little room to walk on either side, and let it anchor everything else."
+      },
+      {
+        "type": "heading",
+        "text": "Storage"
+      },
+      {
+        "type": "paragraph",
+        "text": "A chest of drawers keeps a bedroom calm by giving everything a place to disappear. Choose one wide and low enough to double as a surface for a lamp and a small tray, and the day-to-day clutter stays behind closed drawers."
+      },
+      {
+        "type": "shoplist",
+        "label": "Storage products",
+        "slugs": [
+          "t4tream-fluted-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Seating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Even a small bedroom benefits from a single chair — somewhere to sit while you dress, or read a few pages before sleep. A compact accent chair in the corner is enough, and it softens the room in the bargain."
+      },
+      {
+        "type": "shoplist",
+        "label": "Chair products",
+        "slugs": [
+          "acanva-mellow-accent-chair",
+          "chita-swivel-velvet-armchair"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Lighting"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bedrooms are for winding down, so keep the overhead light for cleaning and let warm, low lamps take over in the evening. A lamp on each side of the bed, or one beside a reading corner, is all you really need."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting products",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A soft rug is the first thing your feet meet in the morning. Lay one that reaches out from under the bed in a low, easy-care pile you can wash when you need to — comfort where it counts most."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "home-office-inspiration",
+    "title": "Home Office Inspiration",
+    "date": "2026-07-11",
+    "category": "Home Decor",
+    "subcategory": "Home Office",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A room that has to help you focus and then let you switch off. A simple guide to a calm, workable home office — desk, seating, light, and comfort underfoot.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A home office has to do two opposite things — help you focus through the day and let you close the door on work at night. A calm, uncluttered setup makes both easier. Start with the desk and build outward from there."
+      },
+      {
+        "type": "heading",
+        "text": "The Desk"
+      },
+      {
+        "type": "paragraph",
+        "text": "Give yourself a surface large enough to spread out on and solid enough to lean into. Face it toward a window where you can; daylight does more for a working day than any lamp, and a view rests the eyes between tasks."
+      },
+      {
+        "type": "heading",
+        "text": "Seating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Beyond the desk chair, a comfortable accent or swivel chair gives you somewhere to read, think, or take a call away from the screen — a small change of position that keeps the day from stiffening up."
+      },
+      {
+        "type": "shoplist",
+        "label": "Chair products",
+        "slugs": [
+          "acanva-mellow-accent-chair",
+          "chita-swivel-velvet-armchair"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Lighting"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bright, even light for working hours; a warmer, lower source for early mornings and late evenings. A floor lamp beside a reading chair covers the softer end of the day without lighting the whole room like an office."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting products",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rug warms a hard floor, softens the sound of a busy room, and quietly marks the office off from the rest of the home. Choose a low, washable pile that stands up to a rolling chair."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dining-room-inspiration",
+    "title": "Dining Room Inspiration",
+    "date": "2026-07-10",
+    "category": "Home Decor",
+    "subcategory": "Dining Room",
+    "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Three things done well — a table that ages, chairs that invite, and light that flatters — and a rug to hold it all together.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A dining room needs only a few things done well: a table you are happy to gather around, chairs that make people want to linger, and light that flatters the food and the faces around it. Get those right and the smaller choices become forgiving."
+      },
+      {
+        "type": "heading",
+        "text": "The Table"
+      },
+      {
+        "type": "paragraph",
+        "text": "Buy the most honest table you can — solid, simple, and a touch larger than you think you need. Real timber takes a scratch as character rather than damage; leave it mostly bare between meals and let it be the quiet centre of the room."
+      },
+      {
+        "type": "heading",
+        "text": "Seating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose chairs you can sit in for two hours, not two minutes. They need not match the table — a gentle contrast, pale wood against dark or a softer seat against a hard top, often reads as more considered than a matching set."
+      },
+      {
+        "type": "heading",
+        "text": "Lighting"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hang the light low over the table so it pools on the surface instead of glaring into eyes, keep the bulbs warm, and add a dimmer so the same room can serve a bright breakfast and a slow, low-lit dinner."
+      },
+      {
+        "type": "heading",
+        "text": "Underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rug under the table softens the room and catches the sound of chairs on a hard floor. Size it so the chairs stay on the rug even when pulled out, and choose a washable weave — dining rooms see the odd spill."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "entryway-inspiration",
+    "title": "Entryway Inspiration",
+    "date": "2026-07-09",
+    "category": "Home Decor",
+    "subcategory": "Entryway",
+    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The first few steps into a home set the tone for the rest of it. A guide to a considered welcome — a surface, a seat, warm light, and something soft underfoot.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "No space is judged faster or furnished later than the entryway, yet the first few steps into a home set the tone for everything after them. Keep it simple: a surface to drop things on, a place to sit, a little warm light, and something soft underfoot."
+      },
+      {
+        "type": "heading",
+        "text": "The Console"
+      },
+      {
+        "type": "paragraph",
+        "text": "One narrow console or chest is enough — somewhere to drop keys and post, with drawers to keep the day-to-day out of sight. A low chest of drawers works beautifully here, its top holding a lamp, a tray, and one object you like."
+      },
+      {
+        "type": "shoplist",
+        "label": "Storage products",
+        "slugs": [
+          "t4tream-fluted-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Seating"
+      },
+      {
+        "type": "paragraph",
+        "text": "Shoes go on and off at the door every day, and a seat quietly acknowledges it. A single compact chair or a small bench in the corner turns a corridor into a room and makes the space feel furnished rather than merely passed through."
+      },
+      {
+        "type": "shoplist",
+        "label": "Chair products",
+        "slugs": [
+          "acanva-mellow-accent-chair",
+          "chita-swivel-velvet-armchair"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Lighting"
+      },
+      {
+        "type": "paragraph",
+        "text": "Overhead light makes an entry feel like a lobby. A warm lamp on the console greets far better, especially in winter, and throws a soft pool of light over the first few steps inside."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting products",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rug at the door softens the first step inside and catches what the outdoors brings in. Choose a low, washable pile that can take the traffic and lift straight into the machine when it needs it."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "kitchen-inspiration",
+    "title": "Kitchen Inspiration",
+    "date": "2026-07-08",
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The hardest-working room in the home, kept calm. A short guide to a composed kitchen — and the rug that softens it.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The kitchen works harder than any room in the home, so the aim is not a showroom but a space that looks composed while openly admitting that someone cooks here. That balance comes from a couple of simple habits and one soft touch underfoot."
+      },
+      {
+        "type": "heading",
+        "text": "The Counter"
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep on the worktop only what earns its place daily — the kettle, a board, the one pot always in use — and let everything else live behind doors. A clear counter with a bowl of whatever fruit is in season does more for a kitchen than any renovation."
+      },
+      {
+        "type": "heading",
+        "text": "Materials"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose one wood, one metal, and one ceramic tone, then repeat them across the board, the stools, the open shelf, the bowls. Repetition of material is what makes a hardworking room read as designed rather than simply accumulated."
+      },
+      {
+        "type": "heading",
+        "text": "Underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A washable runner softens the spot where you stand and cook, warms a hard floor, and wipes up after the inevitable splashes. A low, non-slip pile is the practical choice — comfort that goes straight into the machine."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
   }
 ]
