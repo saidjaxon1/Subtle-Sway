@@ -30,5 +30,53 @@
     "sizesLink": "",
     "description": "A three-seater with a softly curved back and a tight, tailored velvet cover — minimal in its lines, yet plush to sink into. The low, clean silhouette suits an apartment living room, adding warmth and a quiet sense of luxury without crowding the room.",
     "colors": []
+  },
+  {
+    "slug": "acanva-zola-modular-sectional",
+    "name": "Acanva Zola Modular Sectional",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Sofas",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/gp/aw/d/B0CRV8NK9Q?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=dc45375672f462e41be90ccb91256982&hsa_cr_id=0&qid=1784026379&sr=1-2-9e67e56a-6f64-441f-a281-df67fc737124&pd_rd_w=Er3ar&content-id=amzn1.sym.2fb72bc8-96ef-420d-b08f-c04b69f36507%3Aamzn1.sym.2fb72bc8-96ef-420d-b08f-c04b69f36507&pf_rd_p=2fb72bc8-96ef-420d-b08f-c04b69f36507&pf_rd_r=222FHR6C13PK1MN4B96F&pd_rd_wg=582jS&pd_rd_r=41275020-cb7b-477d-bef0-241ed857eadd&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=f54f9e02dff57094f3e2305a85d0d455&language=en_US&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "An L-shaped modular sofa with a movable ottoman and a solid wood frame, cut in a clean, minimalist line. Rearrange the sections to suit the room, and the same sofa serves a wide apartment or a smaller corner equally well.",
+    "colors": []
+  },
+  {
+    "slug": "acanva-mellow-accent-chairs",
+    "name": "Acanva Mellow Accent Chairs, Set of 2",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Chairs",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/Acanva-Luxury-Minimalist-Apartment-Reception/dp/B0DMNXQ3BK?pd_rd_w=aTwNw&content-id=amzn1.sym.9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_p=9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_r=6YCT1V5YXX0KJNZFYQZX&pd_rd_wg=SLWSW&pd_rd_r=ea26d8e3-e732-411e-9945-53d516fdd08c&pd_rd_i=B0DMNXQ3BK&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=d8d1fd9fcac361f58352d3c4e6fb6ff9&language=en_US&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A pair of accent chairs with softly curved backs and a tailored velvet cover over a solid wood frame. They arrive ready to use and move easily from a living-room corner to a bedroom or study — a quiet way to add a second place to sit.",
+    "colors": []
+  },
+  {
+    "slug": "t4tream-fluted-dresser",
+    "name": "T4TREAM Fluted 6-Drawer Dresser",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Storage",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/gp/aw/d/B0CN2LPS56?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=25daf5e32068d9a7d6afb8bb80098740&hsa_cr_id=0&qid=1784026505&sr=1-1-9e67e56a-6f64-441f-a281-df67fc737124&pd_rd_w=ez9JG&content-id=amzn1.sym.2fb72bc8-96ef-420d-b08f-c04b69f36507%3Aamzn1.sym.2fb72bc8-96ef-420d-b08f-c04b69f36507&pf_rd_p=2fb72bc8-96ef-420d-b08f-c04b69f36507&pf_rd_r=DN63X6KXMDM9SMQ0S3RS&pd_rd_wg=gXG74&pd_rd_r=cf984bb5-f417-4cab-8c14-b706e00786f1&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=6e0c28f29d72cc59556986648e10d3c2&language=en_US&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A six-drawer dresser with a fluted front, a gently curved profile, and a faux-marble top in natural oak. Wide and low, it works as a bedroom chest or a living-room media console — holding a television above and hiding the clutter below.",
+    "colors": []
   }
 ]
