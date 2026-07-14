@@ -617,6 +617,16 @@ main > .eyebrow::before,
     transform: scaleX(1);
   }
 
+  /* Product list gently unfolds when opened */
+  .shoplist[open] .shoplist-items {
+    animation: shoplist-open 0.35s var(--ease-slow);
+  }
+
+  @keyframes shoplist-open {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+  }
+
   /* The statement dot breathes, slowly */
   .statement-dot {
     animation: dot-breathe 4.5s ease-in-out infinite;
@@ -1478,29 +1488,70 @@ main > .eyebrow::before,
   transform: translateY(3px);
 }
 
-/* Shopping-list block — a titled group of products as a clean text list */
+/* Shopping-list block — a collapsible "Label" panel that opens to a list */
 .shoplist {
-  margin: 2.5rem 0;
-  padding: 1.75rem 1.9rem;
+  margin: 2.25rem 0;
   background: var(--panel);
   border: 1px solid var(--hairline);
   border-radius: 2px;
+  overflow: hidden;
   scroll-margin-top: 1.5rem;
 }
 
-.shoplist-label {
-  display: block;
+.shoplist-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.15rem 1.5rem;
   font-family: var(--sans);
-  font-size: 0.6875rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--brass);
-  margin-bottom: 0.4rem;
+  transition: background-color 0.25s ease;
+}
+
+/* Hide the native disclosure triangle */
+.shoplist-summary::-webkit-details-marker { display: none; }
+.shoplist-summary::marker { content: ""; }
+
+.shoplist-summary:hover {
+  background: rgba(198, 161, 91, 0.06);
+}
+
+.shoplist-summary-label {
+  flex: 1;
+}
+
+.shoplist-summary-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* Chevron: points down when closed, flips up when open */
+.shoplist-chevron {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--brass);
+  border-bottom: 1.5px solid var(--brass);
+  transform: rotate(45deg);
+  margin-top: -3px;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-slow);
+}
+
+.shoplist[open] .shoplist-chevron {
+  transform: rotate(-135deg);
+  margin-top: 2px;
 }
 
 .shoplist-items {
   list-style: none;
+  padding: 0 1.5rem 0.4rem;
 }
 
 .shoplist-items li {

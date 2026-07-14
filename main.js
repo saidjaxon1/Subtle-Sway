@@ -1021,17 +1021,23 @@
             if (product) body.appendChild(embeddedProductCard(product));
             // Unknown product slugs are skipped silently rather than breaking the post.
           } else if (block.type === "shoplist") {
-            // A titled group of products shown as a clean text list, each
-            // linking to its product page. No images needed.
+            // A collapsible group of products: a "Label" summary with a
+            // chevron, closed by default, opening to a clean text list.
+            // No images needed. Native <details> — keyboard-accessible.
             var listed = (block.slugs || [])
               .map(function (s) { return products.find(function (p) { return p.slug === s; }); })
               .filter(Boolean);
             if (listed.length) {
               var anchorId = anchorByBlock[blockIdx];
-              var group = el("div", anchorId ? { class: "shoplist", id: anchorId } : { class: "shoplist" });
-              if ((block.label || "").trim()) {
-                group.appendChild(el("span", { class: "shoplist-label" }, [block.label]));
-              }
+              var details = el("details", anchorId ? { class: "shoplist", id: anchorId } : { class: "shoplist" });
+
+              var count = listed.length;
+              details.appendChild(el("summary", { class: "shoplist-summary" }, [
+                el("span", { class: "shoplist-summary-label" }, [(block.label || "").trim() || "Products"]),
+                el("span", { class: "shoplist-summary-meta" }, [String(count) + (count === 1 ? " item" : " items")]),
+                el("span", { class: "shoplist-chevron", "aria-hidden": "true" })
+              ]));
+
               var ul = el("ul", { class: "shoplist-items" });
               listed.forEach(function (p) {
                 ul.appendChild(el("li", null, [
@@ -1044,8 +1050,8 @@
                   }, ["View product"])
                 ]));
               });
-              group.appendChild(ul);
-              body.appendChild(group);
+              details.appendChild(ul);
+              body.appendChild(details);
             }
           } else if (block.type === "jumpmenu") {
             // Auto-built navigation: one "Label →" link per non-empty
