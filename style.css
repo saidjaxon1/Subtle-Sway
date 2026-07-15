@@ -1744,6 +1744,29 @@ main > .eyebrow::before,
   letter-spacing: 0.02em;
 }
 
+/* Footer navigation — About / Contact / Disclosure / Privacy */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.footer-nav a {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.25s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--ink);
+}
+
 /* Contact block under the disclosure (edited from the admin) */
 .footer-contact {
   margin-top: 1.4rem;
