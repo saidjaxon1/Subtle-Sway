@@ -6153,5 +6153,943 @@
         ]
       }
     ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "small-kitchen-ideas",
+    "title": "Small Kitchen Ideas",
+    "date": "2026-07-03",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A small kitchen can cook just as well as a large one. Ideas for making a compact kitchen feel calm, clear, and easy to work in.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A small kitchen has no room for clutter, which is really a gift in disguise — it forces the calm, cleared look the best kitchens have anyway. With a little discipline and a few smart choices, a compact kitchen works beautifully. Here is how."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the counters clear"
+      },
+      {
+        "type": "paragraph",
+        "text": "In a small kitchen, worktop space is everything. Keep out only what earns its place daily — the kettle, a board, the one pot always in use — and let everything else live behind doors."
+      },
+      {
+        "type": "heading",
+        "text": "Store up the walls"
+      },
+      {
+        "type": "paragraph",
+        "text": "When floor and counter space are short, go up. A run of open shelves or a wall rail holds everyday things within reach and frees the worktop for actual cooking."
+      },
+      {
+        "type": "heading",
+        "text": "Lay one good runner underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A washable runner softens the spot where you stand and cook and warms a hard floor. Choose a low, non-slip pile that wipes up easily and lifts straight into the machine."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Light the counter well"
+      },
+      {
+        "type": "paragraph",
+        "text": "A small kitchen needs good light where you work, not just overhead. Light aimed at the counter makes cooking easier and the whole room feel larger and brighter."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the surfaces pale and reflective"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pale worktops and cabinets bounce light and make a small kitchen feel more open. Save any darker tones for small touches, and let the room stay bright."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "modern-kitchen-ideas",
+    "title": "Modern Kitchen Ideas",
+    "date": "2026-06-30",
+    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A modern kitchen that feels warm as well as sleek. Ideas for clean lines, hidden clutter, and natural materials that soften the hard surfaces.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A modern kitchen can easily turn cold, all hard surfaces and sharp edges. The fix is to pair clean lines with natural materials and warm light, so the room feels current and welcoming at once. Here are a few ideas."
+      },
+      {
+        "type": "heading",
+        "text": "Choose clean, handleless lines"
+      },
+      {
+        "type": "paragraph",
+        "text": "Flat, handleless cabinet fronts in a quiet tone are the heart of a modern kitchen. Keep the lines simple and unbroken, and the room reads as calm rather than busy."
+      },
+      {
+        "type": "heading",
+        "text": "Hide the clutter behind doors"
+      },
+      {
+        "type": "paragraph",
+        "text": "A modern kitchen lives or dies by its cleared counters. Give the small appliances and daily clutter a home behind closed doors, and keep only one or two things on show."
+      },
+      {
+        "type": "heading",
+        "text": "Warm it with natural materials"
+      },
+      {
+        "type": "paragraph",
+        "text": "Balance hard surfaces with materials that have some life — a wooden board, a stone bowl, an open oak shelf. A few natural textures keep a modern kitchen from feeling clinical."
+      },
+      {
+        "type": "heading",
+        "text": "Ground it with a low runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "A flat, low-pile runner in a muted tone softens a modern kitchen underfoot and quiets a hard floor. Choose a washable one that suits the busiest room in the house."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Hold the palette tight and tonal"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modern kitchens read best in a narrow band of related tones, with texture standing in for colour. One wood tone and one stone, repeated, is often all a modern kitchen needs."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "minimalist-kitchen-ideas",
+    "title": "Minimalist Kitchen Ideas",
+    "date": "2026-06-27",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The calmest kitchens are the clearest ones. Ideas for a minimalist kitchen that hides the clutter and keeps only what you use.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A minimalist kitchen is not an empty one — it is a working kitchen with everything in its place and nothing extra on show. A cleared counter genuinely makes cooking calmer. Here is how to approach it."
+      },
+      {
+        "type": "heading",
+        "text": "Clear every counter"
+      },
+      {
+        "type": "paragraph",
+        "text": "Treat the worktop as space to work, not to store. Keep out only what you use every single day, and give everything else a home behind a door or in a drawer."
+      },
+      {
+        "type": "heading",
+        "text": "Keep one or two things out"
+      },
+      {
+        "type": "paragraph",
+        "text": "A minimalist kitchen still needs a little life. One board leaning at the back, a single bowl of fruit — a couple of considered things stop the room from feeling clinical."
+      },
+      {
+        "type": "heading",
+        "text": "Rely on hidden storage"
+      },
+      {
+        "type": "paragraph",
+        "text": "Minimal kitchens stay minimal only when there is somewhere for everything to go. Closed cabinets and deep drawers keep the clutter out of sight, so the surfaces can stay bare."
+      },
+      {
+        "type": "heading",
+        "text": "Lay a single quiet runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "One low, calm runner underfoot marks where you stand and cook without pattern-noise. A washable pile keeps a minimalist kitchen easy to keep clean."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Keep the surfaces calm"
+      },
+      {
+        "type": "paragraph",
+        "text": "A minimalist kitchen keeps its walls and worktops quiet — one shelf, or none. The empty surface is what lets the room breathe and the cooking take the focus."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "cosy-kitchen-ideas",
+    "title": "Cosy Kitchen Ideas",
+    "date": "2026-06-24",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The kitchen is the heart of the home — make it feel like it. Ideas for a warm, lived-in kitchen full of natural texture and soft light.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The kitchen is where a home gathers, so it should feel warm and lived-in rather than showroom-perfect. Cosiness here comes from open shelves of things you love, soft light, and natural materials. Here is how to build a kitchen with heart."
+      },
+      {
+        "type": "heading",
+        "text": "Open shelves for the things you love"
+      },
+      {
+        "type": "paragraph",
+        "text": "A few open shelves holding the bowls, boards, and jars you use daily make a kitchen feel warm and human. Keep them to the things you genuinely reach for, and the display stays honest."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the light warm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Warm light turns a functional kitchen into a welcoming one. Under-cabinet light for the counter and a warm glow over the room make early mornings and late evenings feel gentle."
+      },
+      {
+        "type": "heading",
+        "text": "Soften where you stand"
+      },
+      {
+        "type": "paragraph",
+        "text": "A soft runner underfoot makes long spells at the counter kinder on your feet and warms a hard floor. Choose a plush, washable pile for the spot where you cook."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bring in natural materials and herbs"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wood, stone, ceramic, and a pot of herbs on the windowsill give a kitchen life and texture. Natural materials age well and make the room feel grounded and warm."
+      },
+      {
+        "type": "heading",
+        "text": "Keep a bowl of what's in season"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bowl of whatever fruit is in season does more for a kitchen than any decoration. It is colour, life, and a small daily pleasure, all at once."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "scandinavian-kitchen-ideas",
+    "title": "Scandinavian Kitchen Ideas",
+    "date": "2026-06-21",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Light, pale, and quietly functional — Scandi style suits a working kitchen well. Ideas built on pale wood, simple shelving, and warmth.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Scandinavian style makes a lovely kitchen: light, simple, and functional, with just enough warmth to keep it welcoming. It rests on pale wood, honest materials, and open, uncluttered surfaces. Here is how to bring it to yours."
+      },
+      {
+        "type": "heading",
+        "text": "Keep it light and pale"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with pale cabinets and light wood tones so the kitchen feels bright even on a dark day. A pale Scandi kitchen reflects what light there is and feels calm and clean."
+      },
+      {
+        "type": "heading",
+        "text": "Choose simple open shelving"
+      },
+      {
+        "type": "paragraph",
+        "text": "A few simple open shelves holding plain crockery and wooden boards are pure Scandi. Keep them honest and uncrowded, showing the things you actually use."
+      },
+      {
+        "type": "heading",
+        "text": "Warm the floor with a soft runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "A wool-soft, textured runner takes the chill off a pale kitchen floor and adds a little hygge underfoot. Choose a washable one that suits the busiest room in the house."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Light it low and warm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Warm light is part of the Scandi welcome. A soft glow over the room and warm light at the counter make even early, dark mornings feel gentle."
+      },
+      {
+        "type": "heading",
+        "text": "Let a little nature in"
+      },
+      {
+        "type": "paragraph",
+        "text": "A pot of herbs, a few stems in a jug, a wooden bowl of fruit — a touch of nature is the finishing Scandi note. Keep it simple, and the kitchen feels alive without clutter."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "japandi-kitchen-ideas",
+    "title": "Japandi Kitchen Ideas",
+    "date": "2026-06-18",
+    "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A calm, natural kitchen where Japanese restraint meets Scandinavian warmth. Ideas for muted tones, cleared counters, and honest materials.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Japandi brings a quiet order to the kitchen, joining Japanese restraint to Scandinavian warmth. It favours natural materials, muted tones, cleared counters, and a few honest objects. Here is how to bring that calm to where you cook."
+      },
+      {
+        "type": "heading",
+        "text": "Lean on natural, muted materials"
+      },
+      {
+        "type": "paragraph",
+        "text": "Oak, stone, linen, ceramic — Japandi rests on natural materials in soft, muted tones. Keep colour almost out of the kitchen and let the grain of the wood and the weight of the stone carry the interest."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the counters to a few objects"
+      },
+      {
+        "type": "paragraph",
+        "text": "A Japandi kitchen keeps its worktops nearly bare — a board, a stone mortar, one bowl. That restraint is what gives the room its calm, so give everything else a home behind doors."
+      },
+      {
+        "type": "heading",
+        "text": "Lay a muted runner underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A muted, low-pile runner softens the floor without a loud pattern, keeping the kitchen quiet. Let it be soft where you stand and near-silent to the eye."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Keep the light soft and low"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soft, warm light suits the Japandi mood far better than a bright, even glare. Gentle light over the counter and the room keeps the kitchen calm morning and night."
+      },
+      {
+        "type": "heading",
+        "text": "Repeat one wood and one stone"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose a single wood tone and a single stone, then repeat them across the boards, the shelves, and the bowls. Repetition of material is what makes a Japandi kitchen read as considered rather than accumulated."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-lighting-ideas",
+    "title": "Kitchen Lighting Ideas",
+    "date": "2026-06-15",
+    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A kitchen needs light to work by and light to relax in. Ideas for layering kitchen lighting that helps you cook and warms the room.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A kitchen asks two things of its lighting: bright, focused light to cook by, and a warmer glow to soften the room the rest of the time. A single overhead bulb manages neither well. Here is how to layer kitchen light that does both."
+      },
+      {
+        "type": "heading",
+        "text": "Put task light on the counter"
+      },
+      {
+        "type": "paragraph",
+        "text": "The most important kitchen light falls on the worktop, where you actually chop and cook. Light aimed at the counter, rather than the middle of the room, makes cooking safer and easier."
+      },
+      {
+        "type": "heading",
+        "text": "Add under-cabinet light"
+      },
+      {
+        "type": "paragraph",
+        "text": "A strip of light under the wall cabinets lights the counter without shadow and adds a soft glow in the evening. It is one of the most useful upgrades a kitchen can have."
+      },
+      {
+        "type": "heading",
+        "text": "Warm the room with a softer source"
+      },
+      {
+        "type": "paragraph",
+        "text": "Beyond the task light, a warmer glow — over a table or in a corner — keeps a kitchen from feeling like a workspace after dark. Warm bulbs make the whole room more welcoming."
+      },
+      {
+        "type": "heading",
+        "text": "Skip the single harsh overhead"
+      },
+      {
+        "type": "paragraph",
+        "text": "A lone bright ceiling light flattens a kitchen and throws shadows onto the counter where you work. Build the light up from task and warm sources instead, and the room feels calmer."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the standing spot with a runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "Good light makes a kitchen work; a soft floor makes it comfortable. A runner where you stand and cook warms the floor and takes the edge off long spells at the counter."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-colour-palette-ideas",
+    "title": "Kitchen Colour Palette Ideas",
+    "date": "2026-06-12",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The right kitchen colours feel warm, clean, and appetising. Ideas for a palette that wears well in the hardest-working room in the home.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Kitchen colours have to work harder than most, staying calm through mess and cooking and looking good for years. A warm, considered palette does exactly that. Here is a simple way to build one that wears well."
+      },
+      {
+        "type": "heading",
+        "text": "Lean warm and appetising"
+      },
+      {
+        "type": "paragraph",
+        "text": "Warm neutrals and soft, earthy tones — cream, oat, sage, clay — make a kitchen feel welcoming and suit the colours of food. Stark whites and cool greys can feel more like a laboratory than a kitchen."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the cabinets quiet"
+      },
+      {
+        "type": "paragraph",
+        "text": "The cabinets are the largest surface in the room and the hardest to change, so keep them in soft tones you will not tire of. Let the colour come from smaller, changeable things."
+      },
+      {
+        "type": "heading",
+        "text": "Add the accent where it's easy to change"
+      },
+      {
+        "type": "paragraph",
+        "text": "Put your colour in the runner and the small things rather than the cabinets. Many of these rugs come in several colourways, so the kitchen's accent is easy to switch with the season."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Repeat one wood and one metal"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose a single wood tone and a single metal — brass, black, steel — and repeat them across the handles, the shelf, the bowls. Repetition is what makes a kitchen palette feel designed rather than accidental."
+      },
+      {
+        "type": "heading",
+        "text": "Test it in kitchen light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kitchens are lived in early and late, so judge the palette under the actual light you cook by. A tone that works in daylight can turn cold or muddy under a different bulb."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-rug-runner-ideas",
+    "title": "Kitchen Rug & Runner Ideas",
+    "date": "2026-06-09",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A runner is the one soft thing a kitchen needs. Ideas for choosing a kitchen rug that survives spills, warms the floor, and looks good doing it.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A kitchen is all hard surfaces, which is exactly why a runner earns its place: it warms the floor, softens where you stand, and adds the one soft note the room is missing. The trick is choosing one that survives real kitchen life. Here is how."
+      },
+      {
+        "type": "heading",
+        "text": "Choose washable and non-slip"
+      },
+      {
+        "type": "paragraph",
+        "text": "A kitchen sees spills, splashes, and daily traffic, so a washable, non-slip runner is the only sensible choice. One you can lift straight into the machine keeps the floor clean without a fuss."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Lay it where you stand"
+      },
+      {
+        "type": "paragraph",
+        "text": "Put the runner along the stretch where you stand most — in front of the sink or the hob — so it cushions your feet through cooking. That is where a runner does its real work."
+      },
+      {
+        "type": "heading",
+        "text": "Pick a forgiving pattern"
+      },
+      {
+        "type": "paragraph",
+        "text": "A pattern or a mid-tone hides the crumbs and marks a plain, pale runner would show. A gently vintage or textured design looks softer and stays looking clean far longer in a busy kitchen."
+      },
+      {
+        "type": "heading",
+        "text": "Size it to the run of counter"
+      },
+      {
+        "type": "paragraph",
+        "text": "A runner should roughly match the length of the counter it sits along, leaving a little space at each end. Too short looks like an afterthought; sized to the run, it looks intentional."
+      },
+      {
+        "type": "heading",
+        "text": "Keep a low, flat pile"
+      },
+      {
+        "type": "paragraph",
+        "text": "A low, flat pile is easiest to keep clean, least likely to trip you, and simplest to sweep or vacuum around. In a kitchen, practical almost always beats plush."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-storage-ideas",
+    "title": "Kitchen Storage Ideas",
+    "date": "2026-06-06",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A calm kitchen is a well-stored one. Ideas for keeping counters clear and everything in easy reach, so cooking stays simple.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A kitchen collects more stuff than any other room, and the difference between calm and chaos is mostly storage. The goal is clear counters and everything within easy reach. Here is where to start."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the counters, close the storage"
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep the worktop for working by giving the small appliances and daily clutter a home behind doors. A cleared counter with one or two things out is the foundation of a calm kitchen."
+      },
+      {
+        "type": "heading",
+        "text": "Keep open shelves for daily things"
+      },
+      {
+        "type": "paragraph",
+        "text": "A few open shelves hold the plates, bowls, and jars you reach for every day, keeping them close without a cupboard door in the way. Reserve them for what you use, not what you store."
+      },
+      {
+        "type": "heading",
+        "text": "Use the walls"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rail with hooks along the backsplash holds utensils, cloths, and mugs off the counter and within reach. Working up the wall frees the worktop and keeps cooking things where you need them."
+      },
+      {
+        "type": "heading",
+        "text": "Corral the small stuff in jars and baskets"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dry goods in jars and odds-and-ends in a basket keep a pantry or shelf tidy and easy to read at a glance. Contained, the small stuff stops sprawling across the counter."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the floor where you work"
+      },
+      {
+        "type": "paragraph",
+        "text": "Storage keeps a kitchen calm; a runner keeps it comfortable. A washable runner where you stand warms the floor and takes the edge off long spells at the counter."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "open-plan-kitchen-ideas",
+    "title": "Open-Plan Kitchen Ideas",
+    "date": "2026-06-03",
+    "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "When the kitchen is always on show, it has to look as calm as it cooks. Ideas for an open-plan kitchen that blends into the living space.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "In an open-plan home the kitchen is always in view, so it has to look as calm as it works. The aim is to blend it into the living space while keeping it practical. Here is how to make an open-plan kitchen feel considered."
+      },
+      {
+        "type": "heading",
+        "text": "Repeat materials across the zones"
+      },
+      {
+        "type": "paragraph",
+        "text": "Echo a wood tone or a colour between the kitchen and the living area, so the two feel related rather than stuck together. Repetition of material is what makes an open plan read as one considered space."
+      },
+      {
+        "type": "heading",
+        "text": "Define the kitchen with a runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "A runner along the kitchen floor quietly marks it off from the living area without a wall or a step. It draws a soft line that says the kitchen begins here."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Keep the counters clear"
+      },
+      {
+        "type": "paragraph",
+        "text": "An open-plan kitchen is always on show, so cleared counters matter more than ever. Give the clutter a home behind doors, and the kitchen stays calm as part of the wider room."
+      },
+      {
+        "type": "heading",
+        "text": "Warm the hard surfaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "A kitchen full of hard surfaces can feel cold beside a soft living room. A wooden board, an open shelf of ceramics, and a runner underfoot warm it and help it sit with the rest of the space."
+      },
+      {
+        "type": "heading",
+        "text": "Light the zones separately"
+      },
+      {
+        "type": "paragraph",
+        "text": "Light the kitchen for cooking and the living area for relaxing, each on its own switch. Being able to keep the kitchen light low while the room is in use keeps the whole open plan calm."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-refresh-ideas",
+    "title": "Kitchen Refresh Ideas",
+    "date": "2026-05-31",
+    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "You don't need a new kitchen, just a few small changes. Low-effort ideas that make a tired kitchen feel fresh and calm again.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A full kitchen renovation is a big job, but making a kitchen feel new again rarely needs one. A handful of small changes, most of them done in an afternoon, can lift a tired room. Here are the ones worth reaching for first."
+      },
+      {
+        "type": "heading",
+        "text": "Swap the runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "A fresh runner underfoot resets the whole kitchen, shifting the palette and warming a tired floor. A washable one keeps the hardest-working room easy to live with."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Change the light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Adding under-cabinet light or swapping a hard overhead for warmer bulbs changes how a kitchen feels morning and night. Better light is one of the cheapest, biggest improvements you can make."
+      },
+      {
+        "type": "heading",
+        "text": "Restyle the open shelves"
+      },
+      {
+        "type": "paragraph",
+        "text": "Clear the open shelves completely, then put back only what you use and love. A restyled shelf, honest and uncrowded, makes the whole kitchen feel considered again."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the counters"
+      },
+      {
+        "type": "paragraph",
+        "text": "Take everything off the worktops, then return only what earns its place daily. A cleared counter is the single fastest way to make a kitchen feel new."
+      },
+      {
+        "type": "heading",
+        "text": "Change the handles"
+      },
+      {
+        "type": "paragraph",
+        "text": "New cabinet handles are a small change with a big effect, quietly updating a kitchen without touching the cabinets themselves. It is the least work for the most noticeable difference."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "rental-friendly-kitchen-ideas",
+    "title": "Rental-Friendly Kitchen Ideas",
+    "date": "2026-05-28",
+    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Make a rented kitchen feel like yours — no renovations, no damage, and everything comes with you when you move on.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A rented kitchen is the hardest room to make your own: you cannot change the cabinets, the counters, or usually much else. But a few freestanding, removable touches go a long way. Here is how to make a rental kitchen feel like yours."
+      },
+      {
+        "type": "heading",
+        "text": "Work with what you can't change"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rather than fighting the fixed cabinets and counters, soften them with what you can add. Freestanding pieces and removable touches do the work where renovations are off the table."
+      },
+      {
+        "type": "heading",
+        "text": "Lay a washable runner over the floor"
+      },
+      {
+        "type": "paragraph",
+        "text": "A runner hides a floor you did not choose and protects the one you are responsible for from spills and traffic. Choose a washable, low pile you can lift into the machine at the end of the tenancy."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Add freestanding storage"
+      },
+      {
+        "type": "paragraph",
+        "text": "A freestanding shelf, a trolley, or a small cart adds storage and counter space without a single fixing, and comes along when you move. In a rental, freestanding beats built-in every time."
+      },
+      {
+        "type": "heading",
+        "text": "Bring warm, removable light"
+      },
+      {
+        "type": "paragraph",
+        "text": "If the rented light is harsh, add your own warmer source — a plug-in under-cabinet strip or a small lamp on a shelf. Warm light softens a rented kitchen with nothing to undo later."
+      },
+      {
+        "type": "heading",
+        "text": "Style with removable touches"
+      },
+      {
+        "type": "paragraph",
+        "text": "Open shelves of your own crockery, a wooden board, a pot of herbs, a bowl of fruit — small removable things make a rented kitchen feel yours. Nothing here costs your deposit."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-counter-styling-ideas",
+    "title": "Kitchen Counter Styling Ideas",
+    "date": "2026-05-25",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A well-styled counter is the difference between cluttered and calm. Ideas for keeping worktops clear, useful, and quietly good-looking.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The worktop is the face of a kitchen, and how you style it decides whether the room reads as cluttered or calm. The aim is a counter that looks composed while openly admitting that someone cooks here. Here is how to get there."
+      },
+      {
+        "type": "heading",
+        "text": "Keep out only what earns it"
+      },
+      {
+        "type": "paragraph",
+        "text": "The kettle, a board, the one pot always in use — keep out what you reach for daily and give everything else a home behind doors. A near-clear counter is the whole foundation of a calm kitchen."
+      },
+      {
+        "type": "heading",
+        "text": "Group things by use"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cluster what belongs together: a board and knife by the prep area, oils and salt by the hob, mugs by the kettle. Grouped by use, the few things on show look intentional rather than scattered."
+      },
+      {
+        "type": "heading",
+        "text": "Style with one board and one bowl"
+      },
+      {
+        "type": "paragraph",
+        "text": "A wooden board leaning at the back and a single bowl of seasonal fruit are enough to make a counter feel warm and lived-in. One or two honest, useful objects beat a row of decoration."
+      },
+      {
+        "type": "heading",
+        "text": "Add a little green"
+      },
+      {
+        "type": "paragraph",
+        "text": "A pot of herbs or a small plant on the windowsill brings life and colour to a hardworking counter. It earns its place by being useful as well as good to look at."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the floor below"
+      },
+      {
+        "type": "paragraph",
+        "text": "A styled counter deserves a soft floor beneath it. A washable runner along the worktop warms the spot where you stand and finishes the look of the whole run."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug products",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
   }
 ]
