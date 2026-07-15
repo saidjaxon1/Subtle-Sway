@@ -207,10 +207,11 @@
     var metaParts = [];
     if (product.price) metaParts.push(product.price);
     if (productType(product) === "digital") metaParts.push("Digital product");
+    var figure = hasImage(product)
+      ? el("figure", null, [el("img", { src: product.image, alt: product.name, loading: "lazy" })])
+      : el("figure", { class: "figure-empty" });
     return el("aside", { class: "embed-product" }, [
-      el("figure", null, [
-        el("img", { src: product.image, alt: product.name, loading: "lazy" })
-      ]),
+      figure,
       el("div", null, [
         el("span", { class: "eyebrow" }, ["Featured piece"]),
         el("h3", null, [
