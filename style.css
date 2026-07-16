@@ -1549,6 +1549,15 @@ main > .eyebrow::before,
   margin-top: 2px;
 }
 
+.shoplist-intro {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--muted);
+  font-style: italic;
+  margin: 1.75rem 0 0.9rem;
+  letter-spacing: 0.01em;
+}
+
 .shoplist-items {
   list-style: none;
   padding: 0 1.5rem 0.4rem;

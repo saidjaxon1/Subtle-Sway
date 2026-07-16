@@ -993,6 +993,7 @@
         });
 
         var body = el("div", { class: "article-body" });
+        var shoplistIntroShown = false;
         (post.content || []).forEach(function (block, blockIdx) {
           if (block.type === "paragraph") {
             body.appendChild(el("p", null, [block.text]));
@@ -1029,12 +1030,20 @@
               .map(function (s) { return products.find(function (p) { return p.slug === s; }); })
               .filter(Boolean);
             if (listed.length) {
+              // One quiet line, before the first product list, framing these as
+              // inspiration for the look rather than a "buy exactly this" list.
+              if (!shoplistIntroShown) {
+                body.appendChild(el("p", { class: "shoplist-intro" }, [
+                  "A few pieces in this spirit — inspiration for the look, not a must-buy. Choose what suits your space."
+                ]));
+                shoplistIntroShown = true;
+              }
               var anchorId = anchorByBlock[blockIdx];
               var details = el("details", anchorId ? { class: "shoplist", id: anchorId } : { class: "shoplist" });
 
               var count = listed.length;
               details.appendChild(el("summary", { class: "shoplist-summary" }, [
-                el("span", { class: "shoplist-summary-label" }, [(block.label || "").trim() || "Products"]),
+                el("span", { class: "shoplist-summary-label" }, [(block.label || "").trim() || "Inspiration"]),
                 el("span", { class: "shoplist-summary-meta" }, [String(count) + (count === 1 ? " item" : " items")]),
                 el("span", { class: "shoplist-chevron", "aria-hidden": "true" })
               ]));
