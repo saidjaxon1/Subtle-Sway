@@ -1,0 +1,46 @@
+name: Update sitemap
+
+# Runs whenever articles or products change — including edits made from the
+# admin panel, which commits posts.json / products.json through the GitHub API.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "posts.json"
+      - "products.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sitemap
+  cancel-in-progress: false
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Rebuild sitemap.xml
+        run: node scripts/generate-sitemap.js
+
+      - name: Commit sitemap if it changed
+        run: |
+          if [ -n "$(git status --porcelain sitemap.xml)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            git commit -m "Auto-update sitemap.xml [skip ci]"
+            git push
+            echo "sitemap.xml updated and pushed"
+          else
+            echo "sitemap.xml already up to date — nothing to commit"
+          fi
