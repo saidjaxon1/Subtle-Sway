@@ -638,6 +638,140 @@
   },
   {
     "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "small-kitchen-ideas",
+    "title": "Small Kitchen Ideas",
+    "date": "2026-07-03",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A small kitchen can cook just as well as a large one. Ideas for making a compact kitchen feel calm, clear, and easy to work in.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A small kitchen has no room for clutter, which is really a gift in disguise — it forces the calm, cleared look the best kitchens have anyway. With a little discipline and a few smart choices, a compact kitchen works beautifully. Here is how."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the counters clear"
+      },
+      {
+        "type": "paragraph",
+        "text": "In a small kitchen, worktop space is everything. Keep out only what earns its place daily — the kettle, a board, the one pot always in use — and let everything else live behind doors."
+      },
+      {
+        "type": "heading",
+        "text": "Store up the walls"
+      },
+      {
+        "type": "paragraph",
+        "text": "When floor and counter space are short, go up. A run of open shelves or a wall rail holds everyday things within reach and frees the worktop for actual cooking."
+      },
+      {
+        "type": "heading",
+        "text": "Lay one good runner underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A washable runner softens the spot where you stand and cook and warms a hard floor. Choose a low, non-slip pile that wipes up easily and lifts straight into the machine."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Light the counter well"
+      },
+      {
+        "type": "paragraph",
+        "text": "A small kitchen needs good light where you work, not just overhead. Light aimed at the counter makes cooking easier and the whole room feel larger and brighter."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the surfaces pale and reflective"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pale worktops and cabinets bounce light and make a small kitchen feel more open. Save any darker tones for small touches, and let the room stay bright."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Dining Room",
+    "slug": "small-dining-room-ideas",
+    "title": "Small Dining Room Ideas",
+    "date": "2026-07-05",
+    "cover": "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A small dining space can still gather a table full of people. Ideas for making a compact dining room work for everyday meals and long lunches alike.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A small dining room does not have to mean small gatherings. With the right table and a little planning, a compact space can seat everyday meals and the occasional crowd without ever feeling cramped. Here is how to make the most of it."
+      },
+      {
+        "type": "heading",
+        "text": "Choose a table that fits — and can grow"
+      },
+      {
+        "type": "paragraph",
+        "text": "Start with a table sized to the room on an ordinary day, ideally one that extends when more people come. A round table is forgiving in a tight space, letting you squeeze in an extra chair without anyone catching a corner."
+      },
+      {
+        "type": "heading",
+        "text": "Pick chairs that tuck right in"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chairs that slide fully under the table free up the floor when the room is not in use. Slim, armless chairs take up less space and are easy to pull out for an extra guest."
+      },
+      {
+        "type": "heading",
+        "text": "Hang the light low and modest"
+      },
+      {
+        "type": "paragraph",
+        "text": "A single pendant hung low over the table lights the meal without crowding a small room. Keep the fitting modest in scale so it does not overwhelm the space above the table."
+      },
+      {
+        "type": "heading",
+        "text": "Lay a rug sized to the table"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rug warms a small dining room and catches the scrape of chairs on a hard floor. Size it so the chairs stay on it even when pulled out, and choose a washable weave for the odd spill."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Keep the palette light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pale, warm tones make a small dining room feel more open and the meals more inviting. Let the walls and larger pieces stay quiet, and add any depth in small, movable touches."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
     "subcategory": "Home Office",
     "slug": "small-home-office-ideas",
     "title": "Small Home Office Ideas",
@@ -715,95 +849,6 @@
           "swgrt-boho-plush-rug",
           "lofus-abstract-area-rug"
         ]
-      }
-    ]
-  },
-  {
-    "category": "Home Decor",
-    "subcategory": "",
-    "slug": "small-space-living-ideas",
-    "title": "Small Space Living Ideas",
-    "date": "2026-05-18",
-    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "Living well in a small home is about choosing well, not doing without. Ideas for making a compact space feel calm, open, and generous.",
-    "content": [
-      {
-        "type": "paragraph",
-        "text": "Living in a small home is not about doing without; it is about choosing well. When every piece has to earn its place, a compact space often ends up calmer and more considered than a large one. Here are a few ideas for living well with less room."
-      },
-      {
-        "type": "heading",
-        "text": "Choose multi-tasking pieces"
-      },
-      {
-        "type": "paragraph",
-        "text": "In a small home, the best pieces do more than one job. A low chest that hides clutter and carries a television, or a bench that stores and seats, earns its footprint twice over."
-      },
-      {
-        "type": "shoplist",
-        "label": "Storage inspiration",
-        "slugs": [
-          "t4tream-fluted-dresser"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Choose furniture that moves"
-      },
-      {
-        "type": "paragraph",
-        "text": "Pieces that adapt suit a small space best. A modular sofa you can rearrange, or a swivel chair that turns to follow the light, works harder in a compact room than anything fixed."
-      },
-      {
-        "type": "shoplist",
-        "label": "Sofa inspiration",
-        "slugs": [
-          "acanva-curved-velvet-sofa",
-          "acanva-zola-modular-sectional"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Lift the light off the floor"
-      },
-      {
-        "type": "paragraph",
-        "text": "Floor space is precious, so choose lighting that reaches over the furniture rather than standing in front of it. An arc lamp lights a corner while taking only a few inches of floor."
-      },
-      {
-        "type": "shoplist",
-        "label": "Lighting inspiration",
-        "slugs": [
-          "sunmory-arc-floor-lamp"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Define zones with rugs"
-      },
-      {
-        "type": "paragraph",
-        "text": "In a small or open-plan home, rugs draw the invisible lines between areas — where the seating is, where you eat. A well-placed rug makes one room feel like several considered spaces."
-      },
-      {
-        "type": "shoplist",
-        "label": "Rug inspiration",
-        "slugs": [
-          "srugn-washable-vintage-rug",
-          "machine-washable-boho-rug",
-          "soalmost-washable-area-rug",
-          "pauwer-fluffy-area-rug",
-          "swgrt-boho-plush-rug",
-          "lofus-abstract-area-rug"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Keep the palette light, and leave space"
-      },
-      {
-        "type": "paragraph",
-        "text": "Pale tones make a small home feel more open, and a little empty space makes it feel calm rather than crammed. Resist the urge to fill every corner, and a compact home breathes."
       }
     ]
   },
@@ -1063,40 +1108,176 @@
   },
   {
     "category": "Home Decor",
-    "subcategory": "Living Room",
-    "slug": "living-room-seating-ideas",
-    "title": "Living Room Seating Ideas",
-    "date": "2026-06-07",
-    "cover": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "Seat a crowd without crowding the room. Ideas for choosing and mixing living-room seating that stays comfortable and easy to move around.",
+    "subcategory": "Kitchen",
+    "slug": "cosy-kitchen-ideas",
+    "title": "Cosy Kitchen Ideas",
+    "date": "2026-06-24",
+    "cover": "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "The kitchen is the heart of the home — make it feel like it. Ideas for a warm, lived-in kitchen full of natural texture and soft light.",
     "content": [
       {
         "type": "paragraph",
-        "text": "Seating is the heart of a living room: it decides how many people the room welcomes and how comfortable they are once they arrive. The aim is to seat a crowd without ever feeling crowded. Here is how to think it through."
+        "text": "The kitchen is where a home gathers, so it should feel warm and lived-in rather than showroom-perfect. Cosiness here comes from open shelves of things you love, soft light, and natural materials. Here is how to build a kitchen with heart."
       },
       {
         "type": "heading",
-        "text": "Start with the right sofa"
+        "text": "Open shelves for the things you love"
       },
       {
         "type": "paragraph",
-        "text": "Begin with the sofa and size it to the room and the number of people you usually seat. A curved three-seater suits a compact space, while a modular design stretches to fill a larger one — comfort and hard-wearing covers matter more than the perfect look."
+        "text": "A few open shelves holding the bowls, boards, and jars you use daily make a kitchen feel warm and human. Keep them to the things you genuinely reach for, and the display stays honest."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the light warm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Warm light turns a functional kitchen into a welcoming one. Under-cabinet light for the counter and a warm glow over the room make early mornings and late evenings feel gentle."
+      },
+      {
+        "type": "heading",
+        "text": "Soften where you stand"
+      },
+      {
+        "type": "paragraph",
+        "text": "A soft runner underfoot makes long spells at the counter kinder on your feet and warms a hard floor. Choose a plush, washable pile for the spot where you cook."
       },
       {
         "type": "shoplist",
-        "label": "Sofa inspiration",
+        "label": "Rug inspiration",
         "slugs": [
-          "acanva-curved-velvet-sofa",
-          "acanva-zola-modular-sectional"
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
         ]
       },
       {
         "type": "heading",
-        "text": "Add a chair that turns"
+        "text": "Bring in natural materials and herbs"
       },
       {
         "type": "paragraph",
-        "text": "A swivel chair earns its place by following the conversation or the light without being dragged about, while a curved accent chair fills a corner the sofa cannot. Either adds a seat without adding bulk."
+        "text": "Wood, stone, ceramic, and a pot of herbs on the windowsill give a kitchen life and texture. Natural materials age well and make the room feel grounded and warm."
+      },
+      {
+        "type": "heading",
+        "text": "Keep a bowl of what's in season"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bowl of whatever fruit is in season does more for a kitchen than any decoration. It is colour, life, and a small daily pleasure, all at once."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Bedroom",
+    "slug": "bedroom-storage-ideas",
+    "title": "Bedroom Storage Ideas",
+    "date": "2026-06-17",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A calm bedroom is mostly a tidy one. Ideas for storing everything a bedroom collects, so the surfaces — and your mind — can stay clear.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Nothing unsettles a bedroom faster than clutter on show, and nothing calms it faster than good storage. The goal is to give everything a place to disappear, so the surfaces stay clear and the room stays restful. Here is where to start."
+      },
+      {
+        "type": "heading",
+        "text": "Start with a wide, low chest"
+      },
+      {
+        "type": "paragraph",
+        "text": "A wide, low chest of drawers is the workhorse of a calm bedroom, swallowing folded clothes and oddments behind a clean front. Choose one low enough to double as a surface for a lamp and a small tray."
+      },
+      {
+        "type": "shoplist",
+        "label": "Storage inspiration",
+        "slugs": [
+          "t4tream-fluted-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Use the top as a considered surface"
+      },
+      {
+        "type": "paragraph",
+        "text": "A chest earns its keep twice when its top is styled with restraint — a lamp, a tray for small things, one object you like. Keep it sparse, and the storage looks deliberate rather than dumped-on."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the bedside minimal"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bedside needs only what the night asks for: a light, a book, a glass of water. A small nightstand or a slim table keeps the essentials close without becoming a shelf for clutter."
+      },
+      {
+        "type": "heading",
+        "text": "Store the soft things in baskets"
+      },
+      {
+        "type": "paragraph",
+        "text": "Woven baskets are the quiet heroes of bedroom storage, holding spare bedding, laundry, or throws without a hard edge in sight. Tucked beside the chest or under a bench, they keep the soft stuff close but out of view."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the surfaces each night"
+      },
+      {
+        "type": "paragraph",
+        "text": "The best storage habit costs nothing: return things to their place before bed. A cleared bedside and a tidy chest are what let you wake to a calm room rather than yesterday's mess."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Entryway",
+    "slug": "entryway-storage-ideas",
+    "title": "Entryway Storage Ideas",
+    "date": "2026-06-13",
+    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Keys, post, shoes, coats — the entryway collects it all. Ideas for storing the daily clutter so your welcome home stays calm.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "No room collects clutter faster than the entryway: keys, post, shoes, coats, and everything you drop on the way in. Good storage gives all of it a home, so the first thing you see coming back is calm. Here is where to start."
+      },
+      {
+        "type": "heading",
+        "text": "Start with a console or chest"
+      },
+      {
+        "type": "paragraph",
+        "text": "A console or a low chest is the backbone of entryway storage, swallowing gloves, keys, and post behind a clean front. Choose one with drawers, and the daily clutter disappears the moment you are through the door."
+      },
+      {
+        "type": "shoplist",
+        "label": "Storage inspiration",
+        "slugs": [
+          "t4tream-fluted-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Use the top as a landing spot"
+      },
+      {
+        "type": "paragraph",
+        "text": "The top of the console is where you land everything as you come in, so give it structure: a tray for keys, a dish for coins, one thing you like. Contained, the landing spot stays tidy instead of becoming a heap."
+      },
+      {
+        "type": "heading",
+        "text": "Corral shoes in baskets or a bench"
+      },
+      {
+        "type": "paragraph",
+        "text": "Shoes are the entryway's biggest mess. A row of baskets under the console, or a bench with storage inside, keeps them together and off the floor where they trip everyone up."
       },
       {
         "type": "shoplist",
@@ -1108,97 +1289,148 @@
       },
       {
         "type": "heading",
-        "text": "Mix your seating types"
+        "text": "Take coats up the wall"
       },
       {
         "type": "paragraph",
-        "text": "A room of identical seats feels like a waiting room. Mixing a sofa with a chair or two of a different shape reads as more considered and gives everyone a choice of where and how to sit."
+        "text": "A run of hooks or a wall rail holds coats and bags without a bulky stand, keeping the floor clear. Working up the wall is almost always the best move in a busy entrance."
       },
       {
         "type": "heading",
-        "text": "Leave room to move between seats"
+        "text": "Clear it once a week"
       },
       {
         "type": "paragraph",
-        "text": "Comfort is not only the seats themselves but the space around them. Leave enough room to pass behind a chair and to stretch your legs from the sofa, and the whole arrangement feels relaxed."
+        "text": "Even the best storage needs a weekly reset: clear the console top, empty the post, and return the strays. Ten minutes a week is what keeps an entryway welcoming rather than piled high."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-storage-ideas",
+    "title": "Kitchen Storage Ideas",
+    "date": "2026-06-06",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A calm kitchen is a well-stored one. Ideas for keeping counters clear and everything in easy reach, so cooking stays simple.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A kitchen collects more stuff than any other room, and the difference between calm and chaos is mostly storage. The goal is clear counters and everything within easy reach. Here is where to start."
       },
       {
         "type": "heading",
-        "text": "Choose comfort you can sit in for hours"
+        "text": "Clear the counters, close the storage"
       },
       {
         "type": "paragraph",
-        "text": "A seat that looks striking but sits badly will always be the empty one. Choose depth, support, and covers you actually want to touch, and the room fills up naturally."
+        "text": "Keep the worktop for working by giving the small appliances and daily clutter a home behind doors. A cleared counter with one or two things out is the foundation of a calm kitchen."
+      },
+      {
+        "type": "heading",
+        "text": "Keep open shelves for daily things"
+      },
+      {
+        "type": "paragraph",
+        "text": "A few open shelves hold the plates, bowls, and jars you reach for every day, keeping them close without a cupboard door in the way. Reserve them for what you use, not what you store."
+      },
+      {
+        "type": "heading",
+        "text": "Use the walls"
+      },
+      {
+        "type": "paragraph",
+        "text": "A rail with hooks along the backsplash holds utensils, cloths, and mugs off the counter and within reach. Working up the wall frees the worktop and keeps cooking things where you need them."
+      },
+      {
+        "type": "heading",
+        "text": "Corral the small stuff in jars and baskets"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dry goods in jars and odds-and-ends in a basket keep a pantry or shelf tidy and easy to read at a glance. Contained, the small stuff stops sprawling across the counter."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the floor where you work"
+      },
+      {
+        "type": "paragraph",
+        "text": "Storage keeps a kitchen calm; a runner keeps it comfortable. A washable runner where you stand warms the floor and takes the edge off long spells at the counter."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
       }
     ]
   },
   {
     "category": "Home Decor",
     "subcategory": "Home Office",
-    "slug": "home-office-seating-ideas",
-    "title": "Home Office Seating Ideas",
-    "date": "2026-06-09",
-    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "The chair you sit in all day matters — and so does the one you step away to. Ideas for comfortable, considered home-office seating.",
+    "slug": "home-office-storage-ideas",
+    "title": "Home Office Storage Ideas",
+    "date": "2026-06-06",
+    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A tidy office is a calm one. Ideas for storing files, cables, and clutter so your desk — and your focus — can stay clear.",
     "content": [
       {
         "type": "paragraph",
-        "text": "Seating is the part of a home office you feel most directly, hour after hour. A good working chair keeps you comfortable at the desk, and a second, softer seat gives you somewhere to think. Here is how to get both right."
+        "text": "Clutter is the enemy of focus, and a home office collects it fast: paper, cables, chargers, and the odd thing with nowhere to live. Good storage gives all of it a home so the desk can stay clear. Here is where to start."
       },
       {
         "type": "heading",
-        "text": "Get the working chair right first"
+        "text": "Start with a low credenza"
       },
       {
         "type": "paragraph",
-        "text": "The chair you sit in all day deserves the most thought — one that supports your back and suits your desk height. Everything else in the office is secondary to sitting comfortably while you work."
-      },
-      {
-        "type": "heading",
-        "text": "Add a second, softer seat"
-      },
-      {
-        "type": "paragraph",
-        "text": "A comfortable armchair away from the desk lets you read, think, or take a call in a different posture. A soft accent or swivel chair gives the office a gentler gear to shift into."
+        "text": "A low chest of drawers beside or behind the desk is the backbone of office storage, swallowing files and oddments behind a clean front. Its top doubles as a surface for a lamp, a plant, or a printer."
       },
       {
         "type": "shoplist",
-        "label": "Chair inspiration",
+        "label": "Storage inspiration",
         "slugs": [
-          "acanva-mellow-accent-chair",
-          "chita-swivel-velvet-armchair"
+          "t4tream-fluted-dresser"
         ]
       },
       {
         "type": "heading",
-        "text": "Make a small thinking corner"
+        "text": "Use the top as a working surface"
       },
       {
         "type": "paragraph",
-        "text": "Set that softer chair by a window or a lamp and you have made a corner for the parts of work that do not happen at a screen. A comfortable seat and a warm light are all it takes."
-      },
-      {
-        "type": "shoplist",
-        "label": "Lighting inspiration",
-        "slugs": [
-          "sunmory-arc-floor-lamp"
-        ]
+        "text": "A credenza earns its keep twice when its top holds what the desk cannot — a second monitor, a stack of current work, a warm lamp. Keep it styled with restraint so it reads as calm, not cluttered."
       },
       {
         "type": "heading",
-        "text": "Change position through the day"
+        "text": "Take shelving up the wall"
       },
       {
         "type": "paragraph",
-        "text": "Moving between the desk and a softer seat keeps the body from stiffening and the mind from stalling. A second chair is not a luxury so much as a small, useful change of scene."
+        "text": "When floor space is short, storage goes up. A run of simple shelves above the desk keeps books and files within reach without taking a single square foot of floor."
       },
       {
         "type": "heading",
-        "text": "Choose comfort over the perfect look"
+        "text": "Corral the small stuff in boxes and baskets"
       },
       {
         "type": "paragraph",
-        "text": "A striking chair you cannot sit in for long is no use in an office. Choose support and a cover you are happy to touch all day, and the room works as hard as it looks."
+        "text": "Cables, chargers, and stationery disappear neatly into a few boxes or woven baskets in a drawer or on a shelf. Contained and out of sight, the small stuff stops cluttering the desk."
+      },
+      {
+        "type": "heading",
+        "text": "Clear the desk each evening"
+      },
+      {
+        "type": "paragraph",
+        "text": "The best storage habit is free: clear the desk at the end of the day. Returning things to their place each evening is what lets you start the next morning to a calm, ready workspace."
       }
     ]
   },
@@ -1342,6 +1574,73 @@
   },
   {
     "category": "Home Decor",
+    "subcategory": "Kitchen",
+    "slug": "kitchen-lighting-ideas",
+    "title": "Kitchen Lighting Ideas",
+    "date": "2026-06-15",
+    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A kitchen needs light to work by and light to relax in. Ideas for layering kitchen lighting that helps you cook and warms the room.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "A kitchen asks two things of its lighting: bright, focused light to cook by, and a warmer glow to soften the room the rest of the time. A single overhead bulb manages neither well. Here is how to layer kitchen light that does both."
+      },
+      {
+        "type": "heading",
+        "text": "Put task light on the counter"
+      },
+      {
+        "type": "paragraph",
+        "text": "The most important kitchen light falls on the worktop, where you actually chop and cook. Light aimed at the counter, rather than the middle of the room, makes cooking safer and easier."
+      },
+      {
+        "type": "heading",
+        "text": "Add under-cabinet light"
+      },
+      {
+        "type": "paragraph",
+        "text": "A strip of light under the wall cabinets lights the counter without shadow and adds a soft glow in the evening. It is one of the most useful upgrades a kitchen can have."
+      },
+      {
+        "type": "heading",
+        "text": "Warm the room with a softer source"
+      },
+      {
+        "type": "paragraph",
+        "text": "Beyond the task light, a warmer glow — over a table or in a corner — keeps a kitchen from feeling like a workspace after dark. Warm bulbs make the whole room more welcoming."
+      },
+      {
+        "type": "heading",
+        "text": "Skip the single harsh overhead"
+      },
+      {
+        "type": "paragraph",
+        "text": "A lone bright ceiling light flattens a kitchen and throws shadows onto the counter where you work. Build the light up from task and warm sources instead, and the room feels calmer."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the standing spot with a runner"
+      },
+      {
+        "type": "paragraph",
+        "text": "Good light makes a kitchen work; a soft floor makes it comfortable. A runner where you stand and cook warms the floor and takes the edge off long spells at the counter."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
     "subcategory": "",
     "slug": "layering-light-at-home",
     "title": "Layering Light at Home",
@@ -1404,195 +1703,230 @@
   },
   {
     "category": "Home Decor",
-    "subcategory": "Bedroom",
-    "slug": "bedroom-storage-ideas",
-    "title": "Bedroom Storage Ideas",
-    "date": "2026-06-17",
-    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "A calm bedroom is mostly a tidy one. Ideas for storing everything a bedroom collects, so the surfaces — and your mind — can stay clear.",
-    "content": [
-      {
-        "type": "paragraph",
-        "text": "Nothing unsettles a bedroom faster than clutter on show, and nothing calms it faster than good storage. The goal is to give everything a place to disappear, so the surfaces stay clear and the room stays restful. Here is where to start."
-      },
-      {
-        "type": "heading",
-        "text": "Start with a wide, low chest"
-      },
-      {
-        "type": "paragraph",
-        "text": "A wide, low chest of drawers is the workhorse of a calm bedroom, swallowing folded clothes and oddments behind a clean front. Choose one low enough to double as a surface for a lamp and a small tray."
-      },
-      {
-        "type": "shoplist",
-        "label": "Storage inspiration",
-        "slugs": [
-          "t4tream-fluted-dresser"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Use the top as a considered surface"
-      },
-      {
-        "type": "paragraph",
-        "text": "A chest earns its keep twice when its top is styled with restraint — a lamp, a tray for small things, one object you like. Keep it sparse, and the storage looks deliberate rather than dumped-on."
-      },
-      {
-        "type": "heading",
-        "text": "Keep the bedside minimal"
-      },
-      {
-        "type": "paragraph",
-        "text": "A bedside needs only what the night asks for: a light, a book, a glass of water. A small nightstand or a slim table keeps the essentials close without becoming a shelf for clutter."
-      },
-      {
-        "type": "heading",
-        "text": "Store the soft things in baskets"
-      },
-      {
-        "type": "paragraph",
-        "text": "Woven baskets are the quiet heroes of bedroom storage, holding spare bedding, laundry, or throws without a hard edge in sight. Tucked beside the chest or under a bench, they keep the soft stuff close but out of view."
-      },
-      {
-        "type": "heading",
-        "text": "Clear the surfaces each night"
-      },
-      {
-        "type": "paragraph",
-        "text": "The best storage habit costs nothing: return things to their place before bed. A cleared bedside and a tidy chest are what let you wake to a calm room rather than yesterday's mess."
-      }
-    ]
-  },
-  {
-    "category": "Home Decor",
-    "subcategory": "Entryway",
-    "slug": "entryway-storage-ideas",
-    "title": "Entryway Storage Ideas",
-    "date": "2026-06-13",
-    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "Keys, post, shoes, coats — the entryway collects it all. Ideas for storing the daily clutter so your welcome home stays calm.",
-    "content": [
-      {
-        "type": "paragraph",
-        "text": "No room collects clutter faster than the entryway: keys, post, shoes, coats, and everything you drop on the way in. Good storage gives all of it a home, so the first thing you see coming back is calm. Here is where to start."
-      },
-      {
-        "type": "heading",
-        "text": "Start with a console or chest"
-      },
-      {
-        "type": "paragraph",
-        "text": "A console or a low chest is the backbone of entryway storage, swallowing gloves, keys, and post behind a clean front. Choose one with drawers, and the daily clutter disappears the moment you are through the door."
-      },
-      {
-        "type": "shoplist",
-        "label": "Storage inspiration",
-        "slugs": [
-          "t4tream-fluted-dresser"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Use the top as a landing spot"
-      },
-      {
-        "type": "paragraph",
-        "text": "The top of the console is where you land everything as you come in, so give it structure: a tray for keys, a dish for coins, one thing you like. Contained, the landing spot stays tidy instead of becoming a heap."
-      },
-      {
-        "type": "heading",
-        "text": "Corral shoes in baskets or a bench"
-      },
-      {
-        "type": "paragraph",
-        "text": "Shoes are the entryway's biggest mess. A row of baskets under the console, or a bench with storage inside, keeps them together and off the floor where they trip everyone up."
-      },
-      {
-        "type": "shoplist",
-        "label": "Chair inspiration",
-        "slugs": [
-          "acanva-mellow-accent-chair",
-          "chita-swivel-velvet-armchair"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Take coats up the wall"
-      },
-      {
-        "type": "paragraph",
-        "text": "A run of hooks or a wall rail holds coats and bags without a bulky stand, keeping the floor clear. Working up the wall is almost always the best move in a busy entrance."
-      },
-      {
-        "type": "heading",
-        "text": "Clear it once a week"
-      },
-      {
-        "type": "paragraph",
-        "text": "Even the best storage needs a weekly reset: clear the console top, empty the post, and return the strays. Ten minutes a week is what keeps an entryway welcoming rather than piled high."
-      }
-    ]
-  },
-  {
-    "category": "Home Decor",
-    "subcategory": "Home Office",
-    "slug": "home-office-storage-ideas",
-    "title": "Home Office Storage Ideas",
+    "subcategory": "",
+    "slug": "neutral-colour-palette-ideas",
+    "title": "Neutral Colour Palette Ideas",
     "date": "2026-06-06",
-    "cover": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "A tidy office is a calm one. Ideas for storing files, cables, and clutter so your desk — and your focus — can stay clear.",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A neutral palette is calm, timeless, and anything but boring when done well. Ideas for building a warm neutral scheme across your home.",
     "content": [
       {
         "type": "paragraph",
-        "text": "Clutter is the enemy of focus, and a home office collects it fast: paper, cables, chargers, and the odd thing with nowhere to live. Good storage gives all of it a home so the desk can stay clear. Here is where to start."
+        "text": "A neutral palette is the easiest way to make a home feel calm and cohesive, and the easiest to make flat if you are not careful. The secret is warmth and texture. Here is how to build a neutral scheme that feels rich rather than dull."
       },
       {
         "type": "heading",
-        "text": "Start with a low credenza"
+        "text": "Build on warm neutrals"
       },
       {
         "type": "paragraph",
-        "text": "A low chest of drawers beside or behind the desk is the backbone of office storage, swallowing files and oddments behind a clean front. Its top doubles as a surface for a lamp, a plant, or a printer."
+        "text": "Choose your neutrals on the warm side — oat, sand, greige, clay — rather than cool grey. Warm neutrals make a home feel welcoming and flatter almost any light."
+      },
+      {
+        "type": "heading",
+        "text": "Work with three related tones"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hold the scheme to three soft, related tones: a pale base, a mid-tone, and a deeper grounding shade. Repeat them across the room, and the palette reads as considered rather than accidental."
+      },
+      {
+        "type": "heading",
+        "text": "Find depth in texture, not colour"
+      },
+      {
+        "type": "paragraph",
+        "text": "With colour held quiet, texture does the work. Linen, wool, wood, and ceramic in the same tone still read as rich, because the surfaces vary even when the colour does not."
+      },
+      {
+        "type": "heading",
+        "text": "Add one grounding dark note"
+      },
+      {
+        "type": "paragraph",
+        "text": "A single darker touch — a soft-black lamp, a walnut surface — stops a pale scheme from floating away and gives the eye somewhere to land. Keep it to one or two notes."
       },
       {
         "type": "shoplist",
-        "label": "Storage inspiration",
+        "label": "Lighting inspiration",
         "slugs": [
-          "t4tream-fluted-dresser"
+          "sunmory-arc-floor-lamp"
         ]
       },
       {
         "type": "heading",
-        "text": "Use the top as a working surface"
+        "text": "Accent where it's easy to change"
       },
       {
         "type": "paragraph",
-        "text": "A credenza earns its keep twice when its top holds what the desk cannot — a second monitor, a stack of current work, a warm lamp. Keep it styled with restraint so it reads as calm, not cluttered."
+        "text": "Put any colour in the pieces you can swap cheaply — a rug, a cushion — rather than the furniture you keep for years. Many of these rugs come in several colourways, so the accent is easy to shift."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "lofus-abstract-area-rug"
+        ]
       },
       {
         "type": "heading",
-        "text": "Take shelving up the wall"
+        "text": "Test it in your own light"
       },
       {
         "type": "paragraph",
-        "text": "When floor space is short, storage goes up. A run of simple shelves above the desk keeps books and files within reach without taking a single square foot of floor."
+        "text": "Neutrals shift completely between daylight and lamplight, and from room to room. Judge any tone in the actual space and light before you commit to it across the home."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Living Room",
+    "slug": "living-room-colour-palette-ideas",
+    "title": "Living Room Colour Palette Ideas",
+    "date": "2026-06-10",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "A room feels calm when its colours agree. Ideas for building a living-room palette that holds together — a base, a ground, and one quiet accent.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The colours in a living room do more for its mood than any single piece of furniture. A palette that agrees with itself feels calm; one that fights feels busy, however nice the individual things are. Here is a simple way to build one."
       },
       {
         "type": "heading",
-        "text": "Corral the small stuff in boxes and baskets"
+        "text": "Work from a base, a ground, and an accent"
       },
       {
         "type": "paragraph",
-        "text": "Cables, chargers, and stationery disappear neatly into a few boxes or woven baskets in a drawer or on a shelf. Contained and out of sight, the small stuff stops cluttering the desk."
+        "text": "Choose three roles rather than three random colours: a light base for the walls and big pieces, a deeper ground to anchor the room, and one quiet accent to bring it to life. Almost any calm room can be traced back to these three."
       },
       {
         "type": "heading",
-        "text": "Clear the desk each evening"
+        "text": "Let the largest pieces stay quiet"
       },
       {
         "type": "paragraph",
-        "text": "The best storage habit is free: clear the desk at the end of the day. Returning things to their place each evening is what lets you start the next morning to a calm, ready workspace."
+        "text": "Keep the sofa and other big pieces in your base or ground tones, so they never date or tire the eye. A sofa in a soft, neutral cover is a backdrop the rest of the palette can play against."
+      },
+      {
+        "type": "shoplist",
+        "label": "Sofa inspiration",
+        "slugs": [
+          "acanva-curved-velvet-sofa",
+          "acanva-zola-modular-sectional"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bring colour in where it's easy to change"
+      },
+      {
+        "type": "paragraph",
+        "text": "Put your accent where you can swap it cheaply — a rug, cushions, a throw — rather than in the furniture you will keep for years. Many of these rugs come in several colourways, so the room's accent can shift with the season."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Repeat each colour at least three times"
+      },
+      {
+        "type": "paragraph",
+        "text": "A colour used once looks like a mistake; used three times it looks deliberate. Echo your accent around the room — a cushion, a book spine, a stem of something green — and the palette reads as planned."
+      },
+      {
+        "type": "heading",
+        "text": "Test it in warm evening light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Colours shift completely between daylight and a warm lamp. Live with your palette under the light you use most — usually low and warm in the evening — before you commit to it."
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "Bedroom",
+    "slug": "bedroom-colour-palette-ideas",
+    "title": "Bedroom Colour Palette Ideas",
+    "date": "2026-06-11",
+    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Restful sleep starts with a restful palette. Ideas for choosing bedroom colours that stay calm — warm neutrals, quiet depth, one soft accent.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The colours in a bedroom quietly decide how restful it feels, long before you notice any single piece. A palette that agrees with itself soothes; one that jars keeps the eye — and the mind — busy. Here is a simple way to build a calm one."
+      },
+      {
+        "type": "heading",
+        "text": "Choose warm neutrals as your base"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lean the base warm — oat, sand, clay, greige — rather than cool grey, and the whole room feels a few degrees kinder. Let the largest surfaces carry the palest of these tones."
+      },
+      {
+        "type": "heading",
+        "text": "Keep the big surfaces quiet"
+      },
+      {
+        "type": "paragraph",
+        "text": "The bed, the walls, and the chest take up most of the room, so keep them in soft, restful tones that will not tire you. Loud colour on a large surface is hard to sleep beside."
+      },
+      {
+        "type": "heading",
+        "text": "Add the accent where it's easy to change"
+      },
+      {
+        "type": "paragraph",
+        "text": "Put your colour where you can swap it cheaply — a rug, cushions, a throw — rather than in the furniture you keep for years. Many of these rugs come in several colourways, so a bedroom's accent can shift with the season."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "machine-washable-boho-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "swgrt-boho-plush-rug",
+          "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Repeat the accent softly"
+      },
+      {
+        "type": "paragraph",
+        "text": "Echo your chosen accent two or three times around the room — a cushion, a book, a stem of something green — and the palette reads as considered rather than accidental."
+      },
+      {
+        "type": "heading",
+        "text": "Test it under lamp light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bedroom colours are lived with mostly after dark, so judge them under a warm lamp, not just daylight. A tone that sings at noon can turn muddy by a cool bulb, or glow beautifully under a warm one."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting inspiration",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
       }
     ]
   },
@@ -2054,48 +2388,66 @@
   },
   {
     "category": "Home Decor",
-    "subcategory": "Bedroom",
-    "slug": "japandi-bedroom-ideas",
-    "title": "Japandi Bedroom Ideas",
-    "date": "2026-06-20",
-    "cover": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "Japanese calm, Scandinavian warmth, and a room stripped back to rest. Ideas for a Japandi bedroom of low shapes and natural materials.",
+    "subcategory": "Living Room",
+    "slug": "scandinavian-living-room-ideas",
+    "title": "Scandinavian Living Room Ideas",
+    "date": "2026-06-22",
+    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Light, pale, and quietly warm. Ideas for a Scandi living room built on simple shapes, soft wool, and a little hygge.",
     "content": [
       {
         "type": "paragraph",
-        "text": "Japandi may be the most restful look a bedroom can take, joining the spare calm of Japanese design to the soft warmth of Scandinavian style. It favours low shapes, natural materials, muted tones, and space left deliberately empty. A few ideas to begin."
+        "text": "Scandinavian style is loved for good reason: it is light, simple, and warm in a way that suits long dark evenings. The look rests on pale tones, honest materials, and comfort that never tips into clutter. Here is how to bring a little of it home."
       },
       {
         "type": "heading",
-        "text": "Sleep low and simple"
+        "text": "Keep it light and pale"
       },
       {
         "type": "paragraph",
-        "text": "Japandi bedrooms sit close to the floor. A low, plain bed without a tall headboard grounds the room and sets the calm, unhurried tone the whole style depends on."
+        "text": "Start with a pale, warm-white base and let the wood tones stay light. Scandi rooms feel airy because they reflect what daylight there is, so save the darker notes for small, deliberate touches."
       },
       {
         "type": "heading",
-        "text": "Choose natural, muted materials"
+        "text": "Choose simple, functional seating"
       },
       {
         "type": "paragraph",
-        "text": "Oak, linen, wool, rattan, paper — Japandi leans entirely on natural materials in soft, muted tones. Keep colour almost out of it and let grain and weave carry the interest."
+        "text": "A sofa with a clean shape and honest lines is pure Scandi — nothing ornate, nothing oversized, just a comfortable seat that looks quietly good. Let its form be plain so the textiles can do the softening."
+      },
+      {
+        "type": "shoplist",
+        "label": "Sofa inspiration",
+        "slugs": [
+          "acanva-curved-velvet-sofa",
+          "acanva-zola-modular-sectional"
+        ]
       },
       {
         "type": "heading",
-        "text": "Add a quiet, honest chest"
+        "text": "Add warmth with wool underfoot"
       },
       {
         "type": "paragraph",
-        "text": "A simple chest of drawers in a natural tone keeps a Japandi bedroom clear without breaking its calm. Let its lines be plain and its surface nearly bare."
+        "text": "Cosiness, or hygge, comes from the soft layers. A wool-soft, textured rug warms a pale floor and takes the edge off simple furniture, turning a light room into a welcoming one."
+      },
+      {
+        "type": "shoplist",
+        "label": "Rug inspiration",
+        "slugs": [
+          "srugn-washable-vintage-rug",
+          "soalmost-washable-area-rug",
+          "pauwer-fluffy-area-rug",
+          "lofus-abstract-area-rug"
+        ]
       },
       {
         "type": "heading",
-        "text": "Keep the light soft and low"
+        "text": "Light it low and warm"
       },
       {
         "type": "paragraph",
-        "text": "Soft, low light suits the Japandi mood far better than a bright ceiling fitting. A warm lamp glowing gently in the corner keeps the room quiet as the evening settles."
+        "text": "Scandinavians treat lighting as mood, not just function. A single warm floor lamp casting a low glow does more for the evening than a bright ceiling light ever could."
       },
       {
         "type": "shoplist",
@@ -2106,11 +2458,81 @@
       },
       {
         "type": "heading",
-        "text": "Lay a muted rug and leave space"
+        "text": "Add one soft chair and a little nature"
       },
       {
         "type": "paragraph",
-        "text": "A muted, low-pile rug anchors the room without a loud pattern — and just as important is the space you leave around it. A bare wall and a clear floor are what give a Japandi bedroom its stillness."
+        "text": "A curved accent chair by the window and a few sprigs of green — that is the finishing Scandi touch. Keep it simple: one comfortable chair, one plant, nothing crowded."
+      },
+      {
+        "type": "shoplist",
+        "label": "Chair inspiration",
+        "slugs": [
+          "acanva-mellow-accent-chair",
+          "chita-swivel-velvet-armchair"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Home Decor",
+    "subcategory": "",
+    "slug": "warm-minimalist-home-ideas",
+    "title": "Warm Minimalist Home Ideas",
+    "date": "2026-06-26",
+    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
+    "excerpt": "Minimalism doesn't have to feel cold. Ideas for a warm, minimalist home that keeps things clear without losing its comfort.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Minimalism gets a cold reputation, but it need not be stark or bare. Warm minimalism keeps the calm and the clear surfaces while adding back the comfort — natural materials, soft light, and a few things you love. Here is how to strike the balance."
+      },
+      {
+        "type": "heading",
+        "text": "Keep it minimal, but warm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Aim for clear and calm rather than empty and hard. A warm minimalist home holds only what it needs, but what it holds is soft, natural, and inviting."
+      },
+      {
+        "type": "heading",
+        "text": "Choose natural materials over cold surfaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wood, wool, linen, and stone bring warmth that glass and metal cannot. Lean on natural materials, and a minimal room feels grounded rather than clinical."
+      },
+      {
+        "type": "heading",
+        "text": "Keep one or two things out"
+      },
+      {
+        "type": "paragraph",
+        "text": "A warm minimalist room is not bare — it just edits carefully. One considered object on a surface, a bowl of fruit, a stack of books gives the calm a little life."
+      },
+      {
+        "type": "heading",
+        "text": "Soften the light"
+      },
+      {
+        "type": "paragraph",
+        "text": "Warm, low light is what turns minimalism cosy. A soft lamp in place of a hard overhead keeps the clean lines but loses the chill."
+      },
+      {
+        "type": "shoplist",
+        "label": "Lighting inspiration",
+        "slugs": [
+          "sunmory-arc-floor-lamp"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Add texture underfoot"
+      },
+      {
+        "type": "paragraph",
+        "text": "A soft rug is the quickest way to warm a minimal room. A plush, low pile adds comfort and texture without breaking the calm."
       },
       {
         "type": "shoplist",
@@ -2120,6 +2542,14 @@
           "soalmost-washable-area-rug",
           "lofus-abstract-area-rug"
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Treat empty space as a feature"
+      },
+      {
+        "type": "paragraph",
+        "text": "In warm minimalism, the space you leave is as considered as the things you keep. A clear floor and a quiet wall are what let the few things you own feel special."
       }
     ]
   },
@@ -2206,165 +2636,6 @@
       {
         "type": "paragraph",
         "text": "The final, hardest touch is restraint: a clear surface, an empty stretch of wall, room to breathe. Space is the one thing quiet luxury never skimps on."
-      }
-    ]
-  },
-  {
-    "category": "Home Decor",
-    "subcategory": "",
-    "slug": "warm-minimalist-home-ideas",
-    "title": "Warm Minimalist Home Ideas",
-    "date": "2026-06-26",
-    "cover": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "Minimalism doesn't have to feel cold. Ideas for a warm, minimalist home that keeps things clear without losing its comfort.",
-    "content": [
-      {
-        "type": "paragraph",
-        "text": "Minimalism gets a cold reputation, but it need not be stark or bare. Warm minimalism keeps the calm and the clear surfaces while adding back the comfort — natural materials, soft light, and a few things you love. Here is how to strike the balance."
-      },
-      {
-        "type": "heading",
-        "text": "Keep it minimal, but warm"
-      },
-      {
-        "type": "paragraph",
-        "text": "Aim for clear and calm rather than empty and hard. A warm minimalist home holds only what it needs, but what it holds is soft, natural, and inviting."
-      },
-      {
-        "type": "heading",
-        "text": "Choose natural materials over cold surfaces"
-      },
-      {
-        "type": "paragraph",
-        "text": "Wood, wool, linen, and stone bring warmth that glass and metal cannot. Lean on natural materials, and a minimal room feels grounded rather than clinical."
-      },
-      {
-        "type": "heading",
-        "text": "Keep one or two things out"
-      },
-      {
-        "type": "paragraph",
-        "text": "A warm minimalist room is not bare — it just edits carefully. One considered object on a surface, a bowl of fruit, a stack of books gives the calm a little life."
-      },
-      {
-        "type": "heading",
-        "text": "Soften the light"
-      },
-      {
-        "type": "paragraph",
-        "text": "Warm, low light is what turns minimalism cosy. A soft lamp in place of a hard overhead keeps the clean lines but loses the chill."
-      },
-      {
-        "type": "shoplist",
-        "label": "Lighting inspiration",
-        "slugs": [
-          "sunmory-arc-floor-lamp"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Add texture underfoot"
-      },
-      {
-        "type": "paragraph",
-        "text": "A soft rug is the quickest way to warm a minimal room. A plush, low pile adds comfort and texture without breaking the calm."
-      },
-      {
-        "type": "shoplist",
-        "label": "Rug inspiration",
-        "slugs": [
-          "srugn-washable-vintage-rug",
-          "soalmost-washable-area-rug",
-          "lofus-abstract-area-rug"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Treat empty space as a feature"
-      },
-      {
-        "type": "paragraph",
-        "text": "In warm minimalism, the space you leave is as considered as the things you keep. A clear floor and a quiet wall are what let the few things you own feel special."
-      }
-    ]
-  },
-  {
-    "category": "Home Decor",
-    "subcategory": "",
-    "slug": "neutral-colour-palette-ideas",
-    "title": "Neutral Colour Palette Ideas",
-    "date": "2026-06-06",
-    "cover": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
-    "excerpt": "A neutral palette is calm, timeless, and anything but boring when done well. Ideas for building a warm neutral scheme across your home.",
-    "content": [
-      {
-        "type": "paragraph",
-        "text": "A neutral palette is the easiest way to make a home feel calm and cohesive, and the easiest to make flat if you are not careful. The secret is warmth and texture. Here is how to build a neutral scheme that feels rich rather than dull."
-      },
-      {
-        "type": "heading",
-        "text": "Build on warm neutrals"
-      },
-      {
-        "type": "paragraph",
-        "text": "Choose your neutrals on the warm side — oat, sand, greige, clay — rather than cool grey. Warm neutrals make a home feel welcoming and flatter almost any light."
-      },
-      {
-        "type": "heading",
-        "text": "Work with three related tones"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hold the scheme to three soft, related tones: a pale base, a mid-tone, and a deeper grounding shade. Repeat them across the room, and the palette reads as considered rather than accidental."
-      },
-      {
-        "type": "heading",
-        "text": "Find depth in texture, not colour"
-      },
-      {
-        "type": "paragraph",
-        "text": "With colour held quiet, texture does the work. Linen, wool, wood, and ceramic in the same tone still read as rich, because the surfaces vary even when the colour does not."
-      },
-      {
-        "type": "heading",
-        "text": "Add one grounding dark note"
-      },
-      {
-        "type": "paragraph",
-        "text": "A single darker touch — a soft-black lamp, a walnut surface — stops a pale scheme from floating away and gives the eye somewhere to land. Keep it to one or two notes."
-      },
-      {
-        "type": "shoplist",
-        "label": "Lighting inspiration",
-        "slugs": [
-          "sunmory-arc-floor-lamp"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Accent where it's easy to change"
-      },
-      {
-        "type": "paragraph",
-        "text": "Put any colour in the pieces you can swap cheaply — a rug, a cushion — rather than the furniture you keep for years. Many of these rugs come in several colourways, so the accent is easy to shift."
-      },
-      {
-        "type": "shoplist",
-        "label": "Rug inspiration",
-        "slugs": [
-          "srugn-washable-vintage-rug",
-          "soalmost-washable-area-rug",
-          "pauwer-fluffy-area-rug",
-          "lofus-abstract-area-rug"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Test it in your own light"
-      },
-      {
-        "type": "paragraph",
-        "text": "Neutrals shift completely between daylight and lamplight, and from room to room. Judge any tone in the actual space and light before you commit to it across the home."
       }
     ]
   },
