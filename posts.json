@@ -1258,14 +1258,6 @@
         "text": "Shoes are the entryway's biggest mess. A row of baskets under the console, or a bench with storage inside, keeps them together and off the floor where they trip everyone up."
       },
       {
-        "type": "shoplist",
-        "label": "Chair inspiration",
-        "slugs": [
-          "acanva-mellow-accent-chair",
-          "chita-swivel-velvet-armchair"
-        ]
-      },
-      {
         "type": "heading",
         "text": "Take coats up the wall"
       },
