@@ -280,6 +280,136 @@ select:focus-visible {
   color: var(--muted);
 }
 
+/* Catalogue tab */
+.cat-card {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.cat-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 0.7rem;
+}
+
+.cat-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.9rem;
+}
+
+.cat-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cat-stat strong {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.cat-stat span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.cat-stat.warn strong { color: var(--clay); }
+
+.cat-table-wrap {
+  overflow-x: auto;
+  margin-top: 0.7rem;
+}
+
+.cat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 34rem;
+}
+
+.cat-table th,
+.cat-table td {
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+
+.cat-table thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.cat-table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.cat-table td { color: var(--ink); }
+.cat-table td.is-zero { color: var(--clay); }
+.cat-table td.is-total { color: var(--brass); font-weight: 500; }
+
+.cat-issues {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.cat-issue h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin: 0 0 0.35rem;
+  font-weight: 500;
+}
+
+.cat-issue ul,
+.cat-products {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cat-issue li {
+  font-size: 0.83rem;
+  color: var(--muted);
+  padding: 0.2rem 0;
+}
+
+.cat-product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.cat-product:first-child { border-top: none; }
+
+.cat-product-name {
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.cat-product-meta {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
 /* Room checkboxes on the product form */
 .room-grid {
   display: grid;

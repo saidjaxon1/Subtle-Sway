@@ -248,10 +248,10 @@
 
   function selectTab(tab) {
     state.tab = tab;
-    ["products", "posts", "categories", "contact"].forEach(function (name) {
+    ["products", "posts", "catalogue", "categories", "contact"].forEach(function (name) {
       $("tab-" + name).setAttribute("aria-selected", tab === name);
     });
-    $("add-item").hidden = tab === "categories" || tab === "contact";
+    $("add-item").hidden = tab === "categories" || tab === "contact" || tab === "catalogue";
 
     if (tab === "contact") {
       $("list-view").hidden = true;
@@ -259,7 +259,7 @@
       return;
     }
 
-    $("list-title").textContent = { products: "Products", posts: "Articles", categories: "Categories" }[tab];
+    $("list-title").textContent = { products: "Products", posts: "Articles", catalogue: "Catalogue", categories: "Categories" }[tab];
     $("form-view").hidden = true;
     $("list-view").hidden = false;
     state.listFilter = { q: "", cat: null };
@@ -407,6 +407,11 @@
       return;
     }
 
+    if (state.tab === "catalogue") {
+      renderCatalogue(list);
+      return;
+    }
+
     var items = state[state.tab].data;
 
     if (!items.length) {
@@ -464,6 +469,132 @@
           editBtn,
           deleteBtn
         ])
+      ]));
+    });
+  }
+
+  /* ---------- Catalogue view ----------
+     A read-only overview of the shop: what each room can be furnished with,
+     what is still missing, and which pieces need attention. Everything is
+     worked out from the live data, so it is never out of date. */
+
+  function renderCatalogue(list) {
+    var products = state.products.data;
+    var posts = state.posts.data;
+    var kinds = uniqueProductValues(products, "subcategory");
+
+    function card(children) {
+      return el("li", { class: "cat-card" }, children);
+    }
+
+    /* Where each product is used */
+    var usedIn = {};
+    posts.forEach(function (post) {
+      (post.content || []).forEach(function (block) {
+        if (block.type === "shoplist") {
+          block.slugs.forEach(function (slug) {
+            if (!usedIn[slug]) usedIn[slug] = [];
+            if (usedIn[slug].indexOf(post.title) === -1) usedIn[slug].push(post.title);
+          });
+        } else if (block.type === "product" && block.slug) {
+          if (!usedIn[block.slug]) usedIn[block.slug] = [];
+          if (usedIn[block.slug].indexOf(post.title) === -1) usedIn[block.slug].push(post.title);
+        }
+      });
+    });
+
+    /* At a glance */
+    var noImage = products.filter(function (p) { return !p.image; });
+    var noPrice = products.filter(function (p) { return !p.price; });
+    var noRooms = products.filter(function (p) { return !(p.rooms || []).length; });
+    var unused = products.filter(function (p) { return !usedIn[p.slug]; });
+
+    function stat(number, label, warn) {
+      return el("div", { class: "cat-stat" + (warn && number ? " warn" : "") }, [
+        el("strong", null, [String(number)]),
+        el("span", null, [label])
+      ]);
+    }
+
+    list.appendChild(card([
+      el("h2", { class: "cat-title" }, ["At a glance"]),
+      el("div", { class: "cat-stats" }, [
+        stat(products.length, "products"),
+        stat(posts.length, "articles"),
+        stat(noImage.length, "without a photo", true),
+        stat(noPrice.length, "without a price", true),
+        stat(noRooms.length, "without rooms", true),
+        stat(unused.length, "in no article", true)
+      ])
+    ]));
+
+    /* Room coverage */
+    var header = el("tr", null, [el("th", null, ["Room"])]);
+    kinds.forEach(function (kind) { header.appendChild(el("th", null, [kind])); });
+    header.appendChild(el("th", null, ["Total"]));
+
+    var body = el("tbody");
+    ROOMS.forEach(function (room) {
+      var inRoom = products.filter(function (p) { return (p.rooms || []).indexOf(room) !== -1; });
+      var row = el("tr", null, [el("th", { scope: "row" }, [room])]);
+      kinds.forEach(function (kind) {
+        var n = inRoom.filter(function (p) { return p.subcategory === kind; }).length;
+        row.appendChild(el("td", { class: n ? "" : "is-zero" }, [n ? String(n) : "—"]));
+      });
+      row.appendChild(el("td", { class: "is-total" }, [String(inRoom.length)]));
+      body.appendChild(row);
+    });
+
+    list.appendChild(card([
+      el("h2", { class: "cat-title" }, ["What each room can be furnished with"]),
+      el("span", { class: "field-hint" }, ["A dash means nothing in the shop suits that room yet — those are the gaps worth filling first."]),
+      el("div", { class: "cat-table-wrap" }, [
+        el("table", { class: "cat-table" }, [el("thead", null, [header]), body])
+      ])
+    ]));
+
+    /* Needs attention */
+    function issueList(title, items, describe) {
+      if (!items.length) return null;
+      return el("div", { class: "cat-issue" }, [
+        el("h3", null, [title + " (" + items.length + ")"]),
+        el("ul", null, items.map(function (p) {
+          return el("li", null, [p.name + (describe ? " — " + describe(p) : "")]);
+        }))
+      ]);
+    }
+
+    var issues = [
+      issueList("No photo yet", noImage),
+      issueList("No price yet", noPrice),
+      issueList("No rooms set", noRooms),
+      issueList("Not used in any article", unused, function (p) { return p.subcategory; })
+    ].filter(Boolean);
+
+    list.appendChild(card([
+      el("h2", { class: "cat-title" }, ["Needs attention"]),
+      issues.length
+        ? el("div", { class: "cat-issues" }, issues)
+        : el("p", { class: "field-hint" }, ["Nothing outstanding — every product has a photo, a price, its rooms, and a place in an article."])
+    ]));
+
+    /* Every product, grouped by kind */
+    kinds.forEach(function (kind) {
+      var rows = products.filter(function (p) { return p.subcategory === kind; }).map(function (p) {
+        var where = usedIn[p.slug] || [];
+        return el("li", { class: "cat-product" }, [
+          el("span", { class: "cat-product-name" }, [p.name]),
+          el("span", { class: "cat-product-meta" }, [
+            (p.rooms || []).join(", ") || "no rooms set"
+          ]),
+          el("span", { class: "cat-product-meta" }, [
+            "In: " + (where.length ? where.join(", ") : "no article yet")
+          ])
+        ]);
+      });
+      list.appendChild(card([
+        el("h2", { class: "cat-title" }, [kind + " (" + rows.length + ")"]),
+        el("ul", { class: "cat-products" }, rows)
       ]));
     });
   }
@@ -1529,6 +1660,7 @@
 
     $("tab-products").addEventListener("click", function () { selectTab("products"); });
     $("tab-posts").addEventListener("click", function () { selectTab("posts"); });
+    $("tab-catalogue").addEventListener("click", function () { selectTab("catalogue"); });
     $("tab-categories").addEventListener("click", function () { selectTab("categories"); });
     $("tab-contact").addEventListener("click", function () { selectTab("contact"); });
     $("add-item").addEventListener("click", function () { openForm(-1); });
