@@ -21,6 +21,10 @@
   // Public address of the site, used to show and copy page links.
   var SITE_URL = "https://subtlesway.com/";
 
+  // Rooms a product can belong to. Tagging products this way lets the article
+  // editor filter the list down to what actually suits the room being written.
+  var ROOMS = ["Living Room", "Bedroom", "Dining Room", "Entryway", "Home Office", "Kitchen"];
+
   // In-memory state: parsed JSON plus the git blob sha needed to update each file.
   var state = {
     token: null,
@@ -446,10 +450,11 @@
           el("span", { class: "item-name" }, [isProduct ? item.name : item.title]),
           el("span", { class: "item-meta" }, [
             isProduct
-              ? [item.price || "no price",
+              ? [item.subcategory || null,
+                 (item.rooms || []).length ? (item.rooms || []).join(", ") : "no rooms set",
+                 item.price || "no price",
                  (item.type || "") === "digital" ? "digital" : null,
-                 (item.source || "") === "own" ? "my product" : null,
-                 item.slug]
+                 (item.source || "") === "own" ? "my product" : null]
                   .filter(Boolean).join("  ·  ")
               : [item.hidden ? "HIDDEN" : null, item.date, item.category || null, item.slug].filter(Boolean).join("  ·  ")
           ])
@@ -828,6 +833,112 @@
     ]);
   }
 
+  /* ---------- Product finder ----------
+     One searchable, filterable list of products, reused wherever an article
+     needs a product attached. Filtering by room and by kind means you only
+     ever look at pieces that actually suit what you are writing about. */
+
+  function productRooms(product) {
+    return Array.isArray(product.rooms) ? product.rooms : [];
+  }
+
+  // onPick(product) is called when a product is tapped. `roomHint` preselects
+  // the room filter — the article's own room, so the right pieces come first.
+  function productFinder(onPick, roomHint, isChosen) {
+    var finder = { room: roomHint || null, kind: null, q: "" };
+
+    var search = el("input", {
+      type: "search", class: "picker-search",
+      placeholder: "Search by name…", autocomplete: "off"
+    });
+    var roomRow = el("div", { class: "picker-chips" });
+    var kindRow = el("div", { class: "picker-chips" });
+    var itemsWrap = el("div", { class: "product-picker" });
+    var countLine = el("span", { class: "field-hint" }, []);
+
+    function kinds() {
+      return uniqueProductValues(state.products.data, "subcategory");
+    }
+
+    function chip(row, label, active, onClick) {
+      var button = el("button", { type: "button", class: "chip", "aria-pressed": String(active) }, [label]);
+      button.addEventListener("click", onClick);
+      row.appendChild(button);
+    }
+
+    function renderFilters() {
+      roomRow.textContent = "";
+      chip(roomRow, "Any room", !finder.room, function () { finder.room = null; render(); });
+      ROOMS.forEach(function (room) {
+        chip(roomRow, room, finder.room === room, function () { finder.room = room; render(); });
+      });
+
+      kindRow.textContent = "";
+      chip(kindRow, "Any kind", !finder.kind, function () { finder.kind = null; render(); });
+      kinds().forEach(function (kind) {
+        chip(kindRow, kind, finder.kind === kind, function () { finder.kind = kind; render(); });
+      });
+    }
+
+    function matches(product) {
+      if (finder.room && productRooms(product).indexOf(finder.room) === -1) return false;
+      if (finder.kind && norm(product.subcategory) !== norm(finder.kind)) return false;
+      var q = norm(finder.q);
+      if (q && norm(product.name).indexOf(q) === -1 && norm(product.subcategory).indexOf(q) === -1) return false;
+      return true;
+    }
+
+    function renderItems() {
+      itemsWrap.textContent = "";
+      var visible = state.products.data.filter(matches);
+      countLine.textContent = visible.length + " of " + state.products.data.length + " products" +
+        (finder.room ? " suit the " + finder.room.toLowerCase() : "");
+
+      if (!visible.length) {
+        itemsWrap.appendChild(el("span", { class: "field-hint" }, [
+          "Nothing matches. Try another room or clear the filters."
+        ]));
+        return;
+      }
+      visible.forEach(function (product) {
+        var already = isChosen ? isChosen(product) : false;
+        var button = el("button", {
+          type: "button",
+          class: "picker-item" + (already ? " is-chosen" : ""),
+          title: already ? product.name + " is already in this list" : "Add " + product.name
+        }, [
+          product.image ? el("img", { src: product.image, alt: "" }) : el("span", { class: "picker-thumb-empty" }),
+          el("span", { class: "picker-name" }, [product.name]),
+          el("span", { class: "picker-meta" }, [
+            [product.subcategory, productRooms(product).join(", ")].filter(Boolean).join(" · ")
+          ]),
+          already ? el("span", { class: "picker-tick" }, ["Added"]) : null
+        ]);
+        if (already) button.setAttribute("disabled", "");
+        button.addEventListener("click", function () { onPick(product); });
+        itemsWrap.appendChild(button);
+      });
+    }
+
+    function render() { renderFilters(); renderItems(); }
+
+    search.addEventListener("input", function () { finder.q = search.value; renderItems(); });
+    render();
+
+    return {
+      el: el("div", { class: "finder" }, [
+        search,
+        el("span", { class: "finder-label" }, ["Room"]),
+        roomRow,
+        el("span", { class: "finder-label" }, ["Kind"]),
+        kindRow,
+        countLine,
+        itemsWrap
+      ]),
+      refresh: render
+    };
+  }
+
   /* ---------- Image upload (straight into the repo) ---------- */
 
   function uploadImage(file, onDone, onError) {
@@ -979,9 +1090,23 @@
     }
     renderExtraPhotos();
 
+    // Which rooms this piece suits — used to filter the catalogue while
+    // writing an article, so only fitting pieces are offered.
+    var roomChecks = ROOMS.map(function (room) {
+      var box = el("input", { type: "checkbox", value: room });
+      box.className = "room-check";
+      if ((product.rooms || []).indexOf(room) !== -1) box.checked = true;
+      return el("label", { class: "room-option" }, [box, el("span", null, [room])]);
+    });
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Name", nameInput),
       state.editIndex !== -1 ? pageLinkField(product, true) : null,
+      el("div", { class: "field" }, [
+        el("span", { class: "field-label" }, ["Suits these rooms"]),
+        el("div", { class: "room-grid" }, roomChecks),
+        el("span", { class: "field-hint" }, ["Tick every room this piece genuinely works in. When you write an article, the product list filters to the room you are writing about — so only fitting pieces are offered."])
+      ]),
       imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
       el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["More photos"]),
@@ -1017,7 +1142,10 @@
         colorsLink: $("f-colors-link").value.trim(),
         sizesLink: $("f-sizes-link").value.trim(),
         description: $("f-desc").value.trim(),
-        colors: $("f-colors").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean)
+        colors: $("f-colors").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean),
+        rooms: Array.prototype.slice.call(form.querySelectorAll(".room-check"))
+          .filter(function (box) { return box.checked; })
+          .map(function (box) { return box.value; })
       } };
     }));
     return form;
@@ -1094,14 +1222,29 @@
       });
       body.appendChild(addPhotoBtn);
     } else if (block.type === "product") {
-      var select = el("select", null, state.products.data.map(function (p) {
-        var option = el("option", { value: p.slug }, [p.name + (p.price ? " (" + p.price + ")" : "")]);
-        if (p.slug === block.slug) option.setAttribute("selected", "");
-        return option;
-      }));
-      if (!block.slug && state.products.data.length) block.slug = state.products.data[0].slug;
-      select.addEventListener("change", function () { block.slug = select.value; });
-      body.appendChild(select);
+      var chosen = state.products.data.filter(function (p) { return p.slug === block.slug; })[0];
+      body.appendChild(el("p", { class: "block-chosen" }, [
+        chosen ? chosen.name + (chosen.price ? " · " + chosen.price : "") : "No product chosen yet."
+      ]));
+
+      var pRoomHint = (function () {
+        var sub = $("f-post-sub");
+        var value = sub ? sub.value : "";
+        return ROOMS.indexOf(value) !== -1 ? value : null;
+      })();
+
+      var pFinder = productFinder(function (product) {
+        block.slug = product.slug;
+        renderBlocks();
+        setStatus("“" + product.name + "” chosen.");
+      }, pRoomHint, function (product) {
+        return product.slug === block.slug;
+      });
+
+      body.appendChild(el("details", { class: "finder-wrap" }, [
+        el("summary", { class: "finder-summary" }, [chosen ? "Change product" : "Choose a product"]),
+        pFinder.el
+      ]));
     } else if (block.type === "shoplist") {
       // A group label plus a list of products (by slug).
       if (!block.slugs) block.slugs = [];
@@ -1119,14 +1262,28 @@
         ]));
       });
 
-      var addSel = el("select", null,
-        [el("option", { value: "" }, ["+ Add a product…"])].concat(
-          state.products.data.map(function (p) { return el("option", { value: p.slug }, [p.name]); })
-        ));
-      addSel.addEventListener("change", function () {
-        if (addSel.value) { block.slugs.push(addSel.value); renderBlocks(); }
+      // Search and filter the catalogue instead of scrolling one long list.
+      // The article's own room is preselected, so the pieces that suit it
+      // come up first.
+      var roomHint = (function () {
+        var sub = $("f-post-sub");
+        var value = sub ? sub.value : "";
+        return ROOMS.indexOf(value) !== -1 ? value : null;
+      })();
+
+      var finder = productFinder(function (product) {
+        if (block.slugs.indexOf(product.slug) !== -1) return;
+        block.slugs.push(product.slug);
+        renderBlocks();
+        setStatus("“" + product.name + "” added to “" + (block.label || "this list") + "”.");
+      }, roomHint, function (product) {
+        return block.slugs.indexOf(product.slug) !== -1;
       });
-      body.appendChild(addSel);
+
+      body.appendChild(el("details", { class: "finder-wrap" }, [
+        el("summary", { class: "finder-summary" }, ["+ Add a product"]),
+        finder.el
+      ]));
     } else if (block.type === "jumpmenu") {
       // No settings — it links to every Product list in the article.
       body.appendChild(el("span", { class: "field-hint" }, [

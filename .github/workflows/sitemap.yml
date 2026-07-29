@@ -1,4 +1,4 @@
-name: Update sitemap
+name: Update sitemap and catalogue
 
 # Runs whenever articles or products change — including edits made from the
 # admin panel, which commits posts.json / products.json through the GitHub API.
@@ -32,15 +32,18 @@ jobs:
       - name: Rebuild sitemap.xml
         run: node scripts/generate-sitemap.js
 
-      - name: Commit sitemap if it changed
+      - name: Rebuild CATALOGUE.md
+        run: node scripts/generate-catalogue.js
+
+      - name: Commit generated files if they changed
         run: |
-          if [ -n "$(git status --porcelain sitemap.xml)" ]; then
+          if [ -n "$(git status --porcelain sitemap.xml CATALOGUE.md)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add sitemap.xml
-            git commit -m "Auto-update sitemap.xml [skip ci]"
+            git add sitemap.xml CATALOGUE.md
+            git commit -m "Auto-update sitemap and catalogue [skip ci]"
             git push
-            echo "sitemap.xml updated and pushed"
+            echo "generated files updated and pushed"
           else
-            echo "sitemap.xml already up to date — nothing to commit"
+            echo "sitemap and catalogue already up to date — nothing to commit"
           fi

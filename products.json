@@ -13,7 +13,12 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A slim arc floor lamp that reaches out over a sofa or reading chair, placing light exactly where an overhead fixture cannot. The metal stem and hanging shade adjust to angle the glow just so, and the bulb shifts between three colour temperatures — warm and low for the evening, brighter and cooler for reading.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Home Office"
+    ]
   },
   {
     "slug": "acanva-curved-velvet-sofa",
@@ -29,7 +34,10 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A three-seater with a softly curved back and a tight, tailored velvet cover — minimal in its lines, yet plush to sink into. The low, clean silhouette suits an apartment living room, adding warmth and a quiet sense of luxury without crowding the room.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room"
+    ]
   },
   {
     "slug": "acanva-zola-modular-sectional",
@@ -45,7 +53,10 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "An L-shaped modular sofa with a movable ottoman and a solid wood frame, cut in a clean, minimalist line. Rearrange the sections to suit the room, and the same sofa serves a wide apartment or a smaller corner equally well.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room"
+    ]
   },
   {
     "slug": "t4tream-fluted-dresser",
@@ -61,7 +72,12 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A six-drawer dresser with a fluted front, a gently curved profile, and a faux-marble top in natural oak. Wide and low, it works as a bedroom chest or a living-room media console — holding a television above and hiding the clutter below.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Bedroom",
+      "Living Room",
+      "Entryway"
+    ]
   },
   {
     "slug": "chita-swivel-velvet-armchair",
@@ -77,7 +93,12 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A barrel-backed swivel armchair in soft velvet, arriving fully assembled. It turns easily to follow the conversation or the light, at home in a living-room corner, a bedroom, or a study.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Home Office"
+    ]
   },
   {
     "slug": "acanva-mellow-accent-chair",
@@ -93,7 +114,13 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "An accent chair with a softly curved back and a tailored velvet cover over a solid wood frame. Ready to use out of the box, it slips into a quiet corner of almost any room.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Entryway",
+      "Home Office"
+    ]
   },
   {
     "slug": "srugn-washable-vintage-rug",
@@ -109,7 +136,13 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A washable rug with a faded, vintage-style print and a soft, low pile. Machine-friendly and non-slip, it warms a floor without the upkeep of a traditional weave.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Dining Room",
+      "Home Office"
+    ]
   },
   {
     "slug": "machine-washable-boho-rug",
@@ -125,7 +158,15 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A washable area rug with a relaxed boho pattern and a low, easy-care pile that lifts straight into the machine — a forgiving choice for busy rooms.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Dining Room",
+      "Entryway",
+      "Home Office",
+      "Kitchen"
+    ]
   },
   {
     "slug": "soalmost-washable-area-rug",
@@ -141,7 +182,12 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A soft, low-pile area rug with a quiet vintage print, made to be washed and laid back down. Non-slip and lightweight, it suits a living room or a bedroom equally.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Dining Room"
+    ]
   },
   {
     "slug": "pauwer-fluffy-area-rug",
@@ -157,7 +203,15 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A washable area rug with a low 0.2-inch pile and a non-slip backing — soft underfoot but flat enough for chairs to move over. Machine washable, it suits a living room, bedroom, entryway, kitchen or study.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Dining Room",
+      "Entryway",
+      "Home Office",
+      "Kitchen"
+    ]
   },
   {
     "slug": "swgrt-boho-plush-rug",
@@ -173,7 +227,11 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A high-low plush rug with a subtle boho texture, soft underfoot and fully washable. Durable and non-slip, it anchors a room without demanding attention.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom"
+    ]
   },
   {
     "slug": "lofus-abstract-area-rug",
@@ -189,6 +247,12 @@
     "colorsLink": "",
     "sizesLink": "",
     "description": "A washable area rug with a soft abstract pattern, a dense low pile and a non-slip rubber backing. Calm and modern, it suits a bedroom, dining room or home office.",
-    "colors": []
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom",
+      "Dining Room",
+      "Home Office"
+    ]
   }
 ]
