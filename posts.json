@@ -1488,7 +1488,8 @@
         "type": "paragraph",
         "text": "A dark corner makes a room feel smaller. A single lamp throwing light into the far corner of the room adds depth and makes the whole space feel larger and more considered."
       }
-    ]
+    ],
+    "hidden": true
   },
   {
     "category": "Home Decor",
@@ -1557,7 +1558,8 @@
         "type": "paragraph",
         "text": "Light you can lower is worth far more in a bedroom than light you cannot. A lamp with adjustable warmth lets the same corner serve an alert morning and a sleepy midnight."
       }
-    ]
+    ],
+    "hidden": true
   },
   {
     "category": "Home Decor",
@@ -1686,7 +1688,8 @@
         "type": "paragraph",
         "text": "A dimmer lets one fitting serve a bright morning and a low-lit evening. Being able to lower the light as the day winds down is what makes a home feel calm after dark."
       }
-    ]
+    ],
+    "hidden": true
   },
   {
     "category": "Home Decor",
