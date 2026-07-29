@@ -18,6 +18,9 @@
   var TOKEN_KEY = "ss-admin-token";
   var API_BASE = "https://api.github.com/repos/" + CONFIG.owner + "/" + CONFIG.repo + "/contents/";
 
+  // Public address of the site, used to show and copy page links.
+  var SITE_URL = "https://subtlesway.com/";
+
   // In-memory state: parsed JSON plus the git blob sha needed to update each file.
   var state = {
     token: null,
@@ -451,7 +454,11 @@
               : [item.hidden ? "HIDDEN" : null, item.date, item.category || null, item.slug].filter(Boolean).join("  ·  ")
           ])
         ]),
-        el("div", { class: "item-actions" }, [editBtn, deleteBtn])
+        el("div", { class: "item-actions" }, [
+          copyLinkButton(pageUrl(item, isProduct), "Copy link"),
+          editBtn,
+          deleteBtn
+        ])
       ]));
     });
   }
@@ -772,6 +779,55 @@
     return uniqueSlug(slugify(nameOrTitle), state[state.tab].data);
   }
 
+  /* ---------- Page links ----------
+     An item's slug is fixed the moment it is created and is never
+     regenerated on edit, so these addresses are safe to pin and share. */
+
+  function pageUrl(item, isProduct) {
+    if (!item || !item.slug) return "";
+    return SITE_URL + (isProduct ? "product" : "post") +
+      ".html?slug=" + encodeURIComponent(item.slug);
+  }
+
+  // Small button that copies a link and confirms it in place.
+  function copyLinkButton(url, label) {
+    var button = el("button", { class: "ghost-btn", type: "button" }, [label || "Copy link"]);
+    button.addEventListener("click", function () {
+      var done = function () {
+        var original = button.textContent;
+        button.textContent = "Copied ✓";
+        setTimeout(function () { button.textContent = original; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { setStatus("Could not copy the link.", true); });
+      } else {
+        // Older browsers: copy through a temporary field.
+        var temp = el("input", { type: "text", value: url });
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand("copy"); done(); } catch (e) { setStatus("Could not copy the link.", true); }
+        document.body.removeChild(temp);
+      }
+    });
+    return button;
+  }
+
+  // Read-only row shown while editing: the item's permanent address, with
+  // buttons to copy it or open the live page.
+  function pageLinkField(item, isProduct) {
+    var url = pageUrl(item, isProduct);
+    if (!url) return null;
+    return el("div", { class: "field" }, [
+      el("span", { class: "field-label" }, ["Page link"]),
+      el("div", { class: "link-row" }, [
+        el("code", { class: "link-value" }, [url]),
+        copyLinkButton(url),
+        el("a", { class: "ghost-btn", href: url, target: "_blank", rel: "noopener" }, ["Open"])
+      ]),
+      el("span", { class: "field-hint" }, ["This address never changes — editing the title or the text keeps the same link, so anything you have already pinned or shared keeps working."])
+    ]);
+  }
+
   /* ---------- Image upload (straight into the repo) ---------- */
 
   function uploadImage(file, onDone, onError) {
@@ -925,6 +981,7 @@
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Name", nameInput),
+      state.editIndex !== -1 ? pageLinkField(product, true) : null,
       imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
       el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["More photos"]),
@@ -1199,6 +1256,7 @@
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Title", titleInput),
+      state.editIndex !== -1 ? pageLinkField(post, false) : null,
       catFields[0],
       catFields[1],
       imageField("Cover photo", "f-cover", post.cover, "Optional — the large photo at the top of the article and in the journal list. Articles look good without one too."),

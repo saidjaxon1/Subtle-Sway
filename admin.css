@@ -280,6 +280,27 @@ select:focus-visible {
   color: var(--muted);
 }
 
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.link-value {
+  flex: 1 1 16rem;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+}
+
 .check-row {
   display: flex;
   align-items: center;
