@@ -41,8 +41,10 @@ add(BASE + "disclosure.html", today, "0.3");
 add(BASE + "privacy.html", today, "0.3");
 
 // Articles, newest first; each keeps its own publish date as lastmod.
+// Hidden articles are work in progress and stay out of the sitemap.
 posts
   .slice()
+  .filter(function (post) { return !post.hidden; })
   .sort(function (a, b) { return a.date < b.date ? 1 : -1; })
   .forEach(function (post) {
     if (!post.slug) return;
@@ -67,7 +69,9 @@ urls.forEach(function (u) {
 xml += "</urlset>\n";
 
 fs.writeFileSync(path.join(root, "sitemap.xml"), xml);
+var visible = posts.filter(function (post) { return !post.hidden; }).length;
 console.log(
   "sitemap.xml written — " + urls.length + " URLs " +
-  "(7 pages + " + posts.length + " articles + " + products.length + " products)"
+  "(7 pages + " + visible + " articles + " + products.length + " products)" +
+  (posts.length - visible ? "  [" + (posts.length - visible) + " hidden article(s) skipped]" : "")
 );

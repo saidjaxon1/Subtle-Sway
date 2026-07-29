@@ -280,6 +280,22 @@ select:focus-visible {
   color: var(--muted);
 }
 
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.check-row input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--brass);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
 .field-hint {
   font-size: var(--text-caption);
   color: var(--muted);

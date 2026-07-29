@@ -448,7 +448,7 @@
                  (item.source || "") === "own" ? "my product" : null,
                  item.slug]
                   .filter(Boolean).join("  ·  ")
-              : [item.date, item.category || null, item.slug].filter(Boolean).join("  ·  ")
+              : [item.hidden ? "HIDDEN" : null, item.date, item.category || null, item.slug].filter(Boolean).join("  ·  ")
           ])
         ]),
         el("div", { class: "item-actions" }, [editBtn, deleteBtn])
@@ -1192,6 +1192,9 @@
     var titleInput = textInput("f-title", post.title, "Article title…");
     titleInput.classList.add("big");
 
+    var hiddenCheck = el("input", { type: "checkbox", id: "f-hidden" });
+    hiddenCheck.checked = !!post.hidden;
+
     var catFields = categoryFields("posts", { cat: "f-post-cat", sub: "f-post-sub" }, post.category, post.subcategory);
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
@@ -1201,6 +1204,14 @@
       imageField("Cover photo", "f-cover", post.cover, "Optional — the large photo at the top of the article and in the journal list. Articles look good without one too."),
       field("Date", el("input", { type: "date", id: "f-date", value: post.date || new Date().toISOString().slice(0, 10) }), "Newest date shows first in the journal."),
       field("Short summary", el("textarea", { id: "f-excerpt" }, [post.excerpt || ""]), "1–2 sentences shown in the journal list."),
+      el("label", { class: "field field-check" }, [
+        el("span", { class: "field-label" }, ["Hide this article"]),
+        el("span", { class: "check-row" }, [
+          hiddenCheck,
+          el("span", null, ["Keep it off the site for now"])
+        ]),
+        el("span", { class: "field-hint" }, ["The article is saved but stays out of the journal, the search and the sitemap — useful while it is still being worked on. Untick to publish it."])
+      ]),
       el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["Article"]),
         el("span", { class: "field-hint" }, ["Build the article from blocks: text, headings, single photos, a gallery (photos side by side), or products. Reorder with the arrows."]),
@@ -1214,7 +1225,7 @@
       var title = $("f-title").value.trim();
       if (!title) return { error: "Give the article a title." };
       if (!$("f-date").value) return { error: "Pick a date." };
-      return { item: {
+      var item = {
         slug: resolveSlug(title),
         title: title,
         date: $("f-date").value,
@@ -1223,7 +1234,10 @@
         cover: $("f-cover").value.trim(),
         excerpt: $("f-excerpt").value.trim(),
         content: state.blocks
-      } };
+      };
+      // Only carry the flag when it is on, so published articles stay clean.
+      if ($("f-hidden").checked) item.hidden = true;
+      return { item: item };
     }));
 
     // The editor div exists only after the form is in the DOM, so render on next tick.

@@ -243,6 +243,18 @@
     ]);
   }
 
+  // Articles marked "hidden" in the admin panel are work in progress: they are
+  // kept out of every listing, the search, and the sitemap. A direct link still
+  // opens the article so it can be previewed, but search engines are told not
+  // to index it.
+  function isHidden(post) {
+    return !!(post && post.hidden);
+  }
+
+  function published(posts) {
+    return posts.filter(function (post) { return !isHidden(post); });
+  }
+
   function sortNewestFirst(posts) {
     // ISO dates sort correctly as strings.
     return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
@@ -442,7 +454,7 @@
   }
 
   function postsInCategory(posts, category, excludeSlug, limit) {
-    return sortNewestFirst(posts)
+    return sortNewestFirst(published(posts))
       .filter(function (p) {
         return (!category || norm(p.category) === norm(category)) && p.slug !== excludeSlug;
       })
@@ -472,7 +484,7 @@
 
         // Latest three journal cards.
         var list = document.getElementById("journal-preview");
-        sortNewestFirst(posts).slice(0, 3).forEach(function (post) {
+        sortNewestFirst(published(posts)).slice(0, 3).forEach(function (post) {
           list.appendChild(postCard(post));
         });
 
@@ -519,7 +531,7 @@
     var panel = document.getElementById("home-search-results");
     if (!input || !panel) return;
 
-    var sortedPosts = sortNewestFirst(posts);
+    var sortedPosts = sortNewestFirst(published(posts));
 
     function resultLink(href, thumb, title, tag) {
       return el("a", { class: "search-result", href: href }, [
@@ -835,7 +847,7 @@
 
     Promise.all([loadJSON("./posts.json"), loadJSON("./products.json").catch(function () { return []; })])
       .then(function (results) {
-        var sorted = sortNewestFirst(results[0]);
+        var sorted = sortNewestFirst(published(results[0]));
         var allProducts = results[1];
         var categories = uniqueValues(sorted, function (p) { return p.category; });
 
@@ -971,6 +983,14 @@
         }
 
         document.title = post.title + " — " + SITE_NAME;
+
+        // A hidden article can still be opened from a direct link so it can be
+        // previewed, but it must never end up in search results.
+        if (isHidden(post)) {
+          document.head.appendChild(
+            el("meta", { name: "robots", content: "noindex, nofollow" })
+          );
+        }
 
         // Pre-pass: assign a unique anchor id to each non-empty Product-list
         // block, and collect them so a Jump menu can link down to each one.
