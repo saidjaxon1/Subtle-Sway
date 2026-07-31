@@ -61,7 +61,7 @@ Rooms: Bedroom, Living Room, Entryway
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
-> A six-drawer dresser with a fluted front, a gently curved profile, and a faux-marble top in natural oak. Wide and low, it works as a bedroom chest or a living-room media console — holding a television above and hiding the clutter below.
+> A six-drawer chest with a fluted front and a gently curved profile, finished in a natural oak tone with a faux-marble top. Wide and low, it works as a bedroom chest or a living-room media unit — a surface above, and the clutter hidden below.
 
 ### Chairs
 
@@ -105,7 +105,7 @@ Rooms: Living Room, Bedroom, Dining Room
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration, Dining Room Inspiration
 
-> A soft, low-pile area rug with a quiet vintage print, made to be washed and laid back down. Non-slip and lightweight, it suits a living room or a bedroom equally.
+> A soft, low-pile area rug with a quiet vintage print, made to be washed and laid back down. Non-slip and lightweight, it is easy to lift and easy to live with.
 
 **Pauwer Washable Area Rug**  
 `pauwer-fluffy-area-rug` · ASIN `B0F1F86K8R`  
@@ -113,7 +113,7 @@ Rooms: Living Room, Bedroom, Dining Room, Entryway, Home Office, Kitchen
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration, Dining Room Inspiration
 
-> A washable area rug with a low 0.2-inch pile and a non-slip backing — soft underfoot but flat enough for chairs to move over. Machine washable, it suits a living room, bedroom, entryway, kitchen or study.
+> A washable area rug with a low 0.2-inch pile and a non-slip backing — soft underfoot but flat enough for chairs to move over. Machine washable, and easy to keep that way.
 
 **SWGRT Boho Plush Rug**  
 `swgrt-boho-plush-rug` · ASIN `B0FPCGVZYS`  
@@ -129,7 +129,7 @@ Rooms: Living Room, Bedroom, Dining Room, Home Office
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration, Dining Room Inspiration
 
-> A washable area rug with a soft abstract pattern, a dense low pile and a non-slip rubber backing. Calm and modern, it suits a bedroom, dining room or home office.
+> A washable area rug with a soft abstract pattern, a dense low pile and a non-slip rubber backing. Calm and modern, it settles a room without drawing attention to itself.
 
 ### Textiles
 
@@ -203,7 +203,7 @@ Rooms: Living Room, Bedroom
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
-> The inner pads that go inside cushion covers, sold in a set of four with a soft down-alternative filling. Worth buying slightly plump — a well-filled pad is what keeps a cover looking full rather than flat.
+> The inner pads that go inside cushion covers, sold in a set of four with a soft down-alternative filling. Softer and more yielding than a firm pad, so a cover settles into a relaxed shape rather than standing to attention.
 
 **MIULEE Cushion Inserts**  
 `miulee-cushion-inserts` · ASIN `B0FBGR3L75`  
@@ -211,7 +211,7 @@ Rooms: Living Room, Bedroom
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
-> A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. The better choice if you like a cushion that stands up on a sofa instead of slouching.
+> A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. Worth knowing if you prefer a cushion that stands up on a sofa rather than one you sink into.
 
 ### Bedding
 
