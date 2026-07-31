@@ -136,7 +136,7 @@
       },
       {
         "type": "shoplist",
-        "label": "Cushion inspiration",
+        "label": "Cushion cover inspiration",
         "slugs": [
           "stellhome-linen-cushion-covers",
           "meekio-linen-blend-cushion-covers",
@@ -145,7 +145,13 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion insert inspiration",
+        "slugs": [
           "utopia-bedding-cushion-inserts"
         ]
       },
@@ -284,7 +290,7 @@
       },
       {
         "type": "shoplist",
-        "label": "Cushion inspiration",
+        "label": "Cushion cover inspiration",
         "slugs": [
           "stellhome-linen-cushion-covers",
           "meekio-linen-blend-cushion-covers",
@@ -293,7 +299,13 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion insert inspiration",
+        "slugs": [
           "utopia-bedding-cushion-inserts"
         ]
       },
@@ -354,7 +366,7 @@
       },
       {
         "type": "shoplist",
-        "label": "Cushion inspiration",
+        "label": "Cushion cover inspiration",
         "slugs": [
           "stellhome-linen-cushion-covers",
           "meekio-linen-blend-cushion-covers",
@@ -363,7 +375,13 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion insert inspiration",
+        "slugs": [
           "utopia-bedding-cushion-inserts"
         ]
       },
