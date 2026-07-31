@@ -8,16 +8,16 @@ _Last generated: 2026-07-31_
 
 ## At a glance
 
-- **20 products** in the shop
-- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 8
-- Missing a photo: **20** · missing a price: **20** · no rooms set: **0**
+- **21 products** in the shop
+- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 9
+- Missing a photo: **21** · missing a price: **21** · no rooms set: **0**
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Total |
 |---|---|---|---|---|---|---|---|
-| **Living Room** | 1 | 2 | 1 | 2 | 6 | 8 | 20 |
-| **Bedroom** | 1 | — | 1 | 2 | 6 | 8 | 18 |
+| **Living Room** | 1 | 2 | 1 | 2 | 6 | 9 | 21 |
+| **Bedroom** | 1 | — | 1 | 2 | 6 | 9 | 19 |
 | **Dining Room** | — | — | — | — | 5 | — | 5 |
 | **Entryway** | — | — | 1 | 1 | 2 | — | 4 |
 | **Home Office** | 1 | — | — | 2 | 4 | — | 7 |
@@ -196,6 +196,14 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A pair of covers in a two-tone stripe, pieced from panels so the pattern stays soft and irregular. A gentle way to bring a slightly deeper tone into a pale seating group.
+
+**Utopia Bedding Cushion Inserts**  
+`utopia-bedding-cushion-inserts` · ASIN `B0714K41PB`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> The inner pads that go inside cushion covers, sold in a set of four with a soft down-alternative filling. Worth buying slightly plump — a well-filled pad is what keeps a cover looking full rather than flat.
 
 ## Gaps worth filling
 
