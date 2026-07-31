@@ -110,7 +110,6 @@
           "machine-washable-boho-rug",
           "soalmost-washable-area-rug",
           "pauwer-fluffy-area-rug",
-          "swgrt-boho-plush-rug",
           "lofus-abstract-area-rug"
         ]
       },
@@ -132,7 +131,7 @@
       },
       {
         "type": "paragraph",
-        "text": "When the palette is quiet, texture is what stops a room from feeling flat. Linen, wool, wood, ceramic and stone all read differently even in the same tone, and layering three or four of them makes a simple room feel rich. Mix soft with hard — a wool rug under a wooden surface, a linen cushion against a smooth frame — and the room gains depth without gaining noise."
+        "text": "When the palette is quiet, texture is what stops a room from feeling flat. Linen, wool, wood, ceramic and stone all read differently even in the same tone, and layering three or four of them makes a simple room feel rich. Mix soft with hard — a soft rug under a wooden surface, a linen cushion against a smooth frame — and the room gains depth without gaining noise."
       },
       {
         "type": "shoplist",
@@ -277,7 +276,6 @@
           "machine-washable-boho-rug",
           "soalmost-washable-area-rug",
           "pauwer-fluffy-area-rug",
-          "swgrt-boho-plush-rug",
           "lofus-abstract-area-rug"
         ]
       },
@@ -375,28 +373,6 @@
         ]
       },
       {
-        "type": "shoplist",
-        "label": "Cushion cover inspiration",
-        "slugs": [
-          "stellhome-linen-cushion-covers",
-          "meekio-linen-blend-cushion-covers",
-          "foindtower-linen-cushion-covers",
-          "miulee-chenille-cushion-covers",
-          "cozoomy-textured-cushion-covers",
-          "miulee-striped-jacquard-cushion-covers",
-          "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers"
-        ]
-      },
-      {
-        "type": "shoplist",
-        "label": "Cushion insert inspiration",
-        "slugs": [
-          "utopia-bedding-cushion-inserts",
-          "miulee-cushion-inserts"
-        ]
-      },
-      {
         "type": "heading",
         "text": "Let one chest keep the room clear"
       },
@@ -485,6 +461,28 @@
       {
         "type": "paragraph",
         "text": "Warm neutrals — oat, sand, clay, greige — suit a bedroom better than anything loud, and they flatter both morning and lamplight. Let the largest surfaces carry the palest tones, and save any depth for smaller pieces so nothing weighs the room down."
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion cover inspiration",
+        "slugs": [
+          "stellhome-linen-cushion-covers",
+          "meekio-linen-blend-cushion-covers",
+          "foindtower-linen-cushion-covers",
+          "miulee-chenille-cushion-covers",
+          "cozoomy-textured-cushion-covers",
+          "miulee-striped-jacquard-cushion-covers",
+          "topfinel-corduroy-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion insert inspiration",
+        "slugs": [
+          "utopia-bedding-cushion-inserts",
+          "miulee-cushion-inserts"
+        ]
       },
       {
         "type": "heading",

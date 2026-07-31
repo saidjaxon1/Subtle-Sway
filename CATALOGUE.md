@@ -119,7 +119,7 @@ Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 `swgrt-boho-plush-rug` · ASIN `B0FPCGVZYS`  
 Rooms: Living Room, Bedroom  
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
-Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+Appears in: Bedroom Inspiration
 
 > A high-low plush rug with a subtle boho texture, soft underfoot and fully washable. Durable and non-slip, it anchors a room without demanding attention.
 
