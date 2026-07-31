@@ -434,5 +434,25 @@
       "Living Room",
       "Bedroom"
     ]
+  },
+  {
+    "slug": "miulee-cushion-inserts",
+    "name": "MIULEE Cushion Inserts",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Textiles",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/MIULEE-Pillows-Inserts-Microfiber-Filling/dp/B0FBGR3L75?crid=3RHPDHWN9US0M&dib=eyJ2IjoiMSJ9.6KA2zvTNq895dr20tj5o7LojmgoBySCD7RaBSLw6LqwzOPWh40TvDfrfFj_vS_lcaZR8hT6kNrp5eo3Y0ZvdhZDTqKO0dnZvZAr24R2u5eNFK4diXmIzeklubSWox0YpqtKTXA-saKsEZhRz0GA-k-FzaSwI3vr6QSQlQ3WpYwgF_-Pvx2ky5g1Bpituh8H8U7CbRtWtY2SDGurItSyegxbHx_eNIGKa9UI1SF-Qqg6b2eNfRmSWR31U0ipHJKRreGL2z4cvl89hZjNo1LpcH0jp9QMsIiTDyRLCTUHekj0.BFgSHbEyUkMAyXheAb8VZt1G9DIyVSf9lVoYzoE31j0&dib_tag=se&keywords=pillows&qid=1785495126&sprefix=pillow%2Caps%2C342&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=e6690e7c78cfa0274ba669828cad67ce&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. The better choice if you like a cushion that stands up on a sofa instead of slouching.",
+    "colors": [],
+    "rooms": [
+      "Living Room",
+      "Bedroom"
+    ]
   }
 ]

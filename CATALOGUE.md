@@ -8,16 +8,16 @@ _Last generated: 2026-07-31_
 
 ## At a glance
 
-- **21 products** in the shop
-- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 9
-- Missing a photo: **21** · missing a price: **21** · no rooms set: **0**
+- **22 products** in the shop
+- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 10
+- Missing a photo: **22** · missing a price: **22** · no rooms set: **0**
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Total |
 |---|---|---|---|---|---|---|---|
-| **Living Room** | 1 | 2 | 1 | 2 | 6 | 9 | 21 |
-| **Bedroom** | 1 | — | 1 | 2 | 6 | 9 | 19 |
+| **Living Room** | 1 | 2 | 1 | 2 | 6 | 10 | 22 |
+| **Bedroom** | 1 | — | 1 | 2 | 6 | 10 | 20 |
 | **Dining Room** | — | — | — | — | 5 | — | 5 |
 | **Entryway** | — | — | 1 | 1 | 2 | — | 4 |
 | **Home Office** | 1 | — | — | 2 | 4 | — | 7 |
@@ -204,6 +204,14 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > The inner pads that go inside cushion covers, sold in a set of four with a soft down-alternative filling. Worth buying slightly plump — a well-filled pad is what keeps a cover looking full rather than flat.
+
+**MIULEE Cushion Inserts**  
+`miulee-cushion-inserts` · ASIN `B0FBGR3L75`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. The better choice if you like a cushion that stands up on a sofa instead of slouching.
 
 ## Gaps worth filling
 
