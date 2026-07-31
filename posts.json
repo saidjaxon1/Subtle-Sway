@@ -131,7 +131,7 @@
       },
       {
         "type": "paragraph",
-        "text": "When the palette is quiet, texture is what stops a room from feeling flat. Surfaces read differently even in the same tone, and layering three or four of them makes a simple room feel rich. Mix soft with hard — something woven against something solid, something matte beside something smooth — and the room gains depth without gaining noise."
+        "text": "When the palette is quiet, texture is what stops a room from feeling flat. Wood, stone, ceramic and cloth all read differently even in the same tone, and a room carrying three or four of them feels rich without ever raising its voice. Mix soft against hard, matte against smooth, and the depth arrives without any noise."
       },
       {
         "type": "shoplist",
@@ -266,7 +266,7 @@
       },
       {
         "type": "paragraph",
-        "text": "In a room that gets daily use, think about upkeep as much as looks. A rug you can actually clean is one you will still be happy with in two years."
+        "text": "A living room floor takes more traffic than any other in the house, so how a rug cleans matters as much as how it looks. The one you can lift and wash without a second thought is the one you will still be glad of in two years."
       },
       {
         "type": "shoplist",
@@ -285,7 +285,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Cushions and throws are the easiest way to add warmth and texture, and the easiest to change when a room starts to feel tired. Layer a few different weaves rather than matching everything exactly, letting them differ in feel as much as in tone, and the seating invites you to stay rather than simply to look."
+        "text": "Cushions and throws are the easiest way to add warmth, and the easiest thing to change when a room starts to feel tired. Layer a few weaves rather than matching everything exactly — something smooth beside something with a bit of grain, one folded loosely over an arm — and the seating starts to invite you in rather than simply be looked at."
       },
       {
         "type": "shoplist",
@@ -371,6 +371,28 @@
           "simple-opulence-linen-duvet-cover-set",
           "bedsure-purewoven-duvet-cover-set",
           "bedsure-easy-care-duvet-cover-set"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion cover inspiration",
+        "slugs": [
+          "stellhome-linen-cushion-covers",
+          "meekio-linen-blend-cushion-covers",
+          "foindtower-linen-cushion-covers",
+          "miulee-chenille-cushion-covers",
+          "cozoomy-textured-cushion-covers",
+          "miulee-striped-jacquard-cushion-covers",
+          "topfinel-corduroy-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion insert inspiration",
+        "slugs": [
+          "utopia-bedding-cushion-inserts",
+          "miulee-cushion-inserts"
         ]
       },
       {
@@ -461,29 +483,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Keep the room's colours in conversation with each other rather than competing for attention. Let the largest surfaces carry the quietest tones, and save any depth for the smaller pieces — which are also the easiest to change when you tire of them."
-      },
-      {
-        "type": "shoplist",
-        "label": "Cushion cover inspiration",
-        "slugs": [
-          "stellhome-linen-cushion-covers",
-          "meekio-linen-blend-cushion-covers",
-          "foindtower-linen-cushion-covers",
-          "miulee-chenille-cushion-covers",
-          "cozoomy-textured-cushion-covers",
-          "miulee-striped-jacquard-cushion-covers",
-          "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers"
-        ]
-      },
-      {
-        "type": "shoplist",
-        "label": "Cushion insert inspiration",
-        "slugs": [
-          "utopia-bedding-cushion-inserts",
-          "miulee-cushion-inserts"
-        ]
+        "text": "Warm neutrals — oat, sand, clay, greige — flatter a bedroom in both morning light and lamplight, where colder tones can leave it looking unfinished. Let the largest surfaces carry the quietest of them, and save any depth for the smaller pieces, which are also the easiest to change when you tire of them."
       },
       {
         "type": "heading",
