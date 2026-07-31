@@ -8,16 +8,16 @@ _Last generated: 2026-07-31_
 
 ## At a glance
 
-- **24 products** in the shop
-- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 10 · Bedding 2
-- Missing a photo: **24** · missing a price: **24** · no rooms set: **0**
+- **25 products** in the shop
+- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 10 · Bedding 3
+- Missing a photo: **25** · missing a price: **25** · no rooms set: **0**
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Total |
 |---|---|---|---|---|---|---|---|---|
 | **Living Room** | 1 | 2 | 1 | 2 | 6 | 10 | — | 22 |
-| **Bedroom** | 1 | — | 1 | 2 | 6 | 10 | 2 | 22 |
+| **Bedroom** | 1 | — | 1 | 2 | 6 | 10 | 3 | 23 |
 | **Dining Room** | — | — | — | — | 5 | — | — | 5 |
 | **Entryway** | — | — | 1 | 1 | 2 | — | — | 4 |
 | **Home Office** | 1 | — | — | 2 | 4 | — | — | 7 |
@@ -230,6 +230,14 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Bedroom Inspiration
 
 > A three-piece set in washed cotton percale, woven with a fine yarn-dyed stripe that sits in the cloth rather than printed on it. Crisp and breathable, and it softens with washing the way good cotton should.
+
+**Bedsure Easy-Care Duvet Cover Set**  
+`bedsure-easy-care-duvet-cover-set` · ASIN `B09YM372LR`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A three-piece set in prewashed brushed microfibre, with a duvet cover and two shams. It is a synthetic rather than a natural fibre, which means it creases far less and washes hard — the practical choice for a bed that has to be made in a hurry.
 
 ## Gaps worth filling
 
