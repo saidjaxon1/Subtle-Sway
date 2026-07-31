@@ -135,6 +135,20 @@
         "text": "When the palette is quiet, texture is what stops a room from feeling flat. Linen, wool, wood, ceramic and stone all read differently even in the same tone, and layering three or four of them makes a simple room feel rich. Mix soft with hard — a wool rug under a wooden surface, a linen cushion against a smooth frame — and the room gains depth without gaining noise."
       },
       {
+        "type": "shoplist",
+        "label": "Cushion inspiration",
+        "slugs": [
+          "stellhome-linen-cushion-covers",
+          "meekio-linen-blend-cushion-covers",
+          "foindtower-linen-cushion-covers",
+          "miulee-chenille-cushion-covers",
+          "cozoomy-textured-cushion-covers",
+          "miulee-striped-jacquard-cushion-covers",
+          "topfinel-corduroy-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
         "type": "heading",
         "text": "Buy slowly, and leave space"
       },
@@ -268,6 +282,20 @@
         "text": "Cushions and throws are the easiest way to add warmth and texture, and the easiest to change when a room starts to feel tired. Layer a few different weaves rather than matching everything exactly — a linen cushion against a soft cover, a chunky knit folded over an arm — and the seating invites you to stay."
       },
       {
+        "type": "shoplist",
+        "label": "Cushion inspiration",
+        "slugs": [
+          "stellhome-linen-cushion-covers",
+          "meekio-linen-blend-cushion-covers",
+          "foindtower-linen-cushion-covers",
+          "miulee-chenille-cushion-covers",
+          "cozoomy-textured-cushion-covers",
+          "miulee-striped-jacquard-cushion-covers",
+          "topfinel-corduroy-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
+      },
+      {
         "type": "heading",
         "text": "Keep the palette calm and repeat it"
       },
@@ -321,6 +349,20 @@
       {
         "type": "paragraph",
         "text": "Keep the bedding within your palette. A bed that recedes into the room is far more restful than one that shouts from the doorway."
+      },
+      {
+        "type": "shoplist",
+        "label": "Cushion inspiration",
+        "slugs": [
+          "stellhome-linen-cushion-covers",
+          "meekio-linen-blend-cushion-covers",
+          "foindtower-linen-cushion-covers",
+          "miulee-chenille-cushion-covers",
+          "cozoomy-textured-cushion-covers",
+          "miulee-striped-jacquard-cushion-covers",
+          "topfinel-corduroy-cushion-covers",
+          "ycoll-striped-patchwork-cushion-covers"
+        ]
       },
       {
         "type": "heading",
