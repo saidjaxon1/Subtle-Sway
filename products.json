@@ -454,5 +454,43 @@
       "Living Room",
       "Bedroom"
     ]
+  },
+  {
+    "slug": "simple-opulence-linen-duvet-cover-set",
+    "name": "Simple&Opulence Linen Duvet Cover Set",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Bedding",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/Simple-Opulence-Coconut-Button-Closure/dp/B0868MQN92?crid=3LIRG9OW0TCK8&dib=eyJ2IjoiMSJ9.KBFFPkVXbJpuYA8AtcwyIO62Oawgm6BhMhccr_4V_l-7fMxe704p3dQE8qhFL_SA4tevZ-S9MDQySh-TiAKTeqG1ru3REKG5AhHSaqEo-7wQnaAr0U4PnoaaoHd4huDv7bP2BRj2h8DcCTisr50BvOIqnzEsym2wrg7IBHg1z6AIDsGezDZDAo5IVloB-CdrsgwT1Q1FCXyssYGPgeLBx64Em8YXbJ3bhvTwPazgyW78YdyHCvNuMqLGNl31YAMDJC_tZK_EG8vjIMtvqLbFjWAh7QciQ30ZkuPVCRkbq_k.Dk5TlPYv-29NRVIIYz_XWd6XvDgddSpASWdcNV6YyQU&dib_tag=se&keywords=linen%2Bduvet%2Bcover%2Bset%2Bneutral%2Bwashed%2Bcotton%2Bduvet%2Bcover&nsdOptOutParam=true&qid=1785495882&s=home-garden&sprefix=linen%2Bduvet%2Bcover%2Bset%2Bneutral%2Bwashed%2Bcotton%2Bduvet%2Bcover%2Cgarden%2C279&sr=1-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=33c7221c661c0b7b8850a94b41e2071d&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A three-piece set in washed flax linen, with a duvet cover and two pillowcases and coconut buttons instead of a zip. Linen breathes, softens with every wash, and looks better creased than pressed — which is exactly what a bed wants.",
+    "colors": [],
+    "rooms": [
+      "Bedroom"
+    ]
+  },
+  {
+    "slug": "bedsure-purewoven-duvet-cover-set",
+    "name": "Bedsure PureWoven Striped Duvet Cover Set",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Bedding",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/Bedsure-Linen%E2%80%91Like-PureWoven-Reversible-Double%E2%80%91Stitch/dp/B0G5P7Y622?content-id=amzn1.sym.292df443-b323-44ae-8b40-9a666975b8b5%3Aamzn1.sym.292df443-b323-44ae-8b40-9a666975b8b5&crid=3LIRG9OW0TCK8&cv_ct_cx=linen%2Bduvet%2Bcover%2Bset%2Bneutral%2Bwashed%2Bcotton%2Bduvet%2Bcover&keywords=linen%2Bduvet%2Bcover%2Bset%2Bneutral%2Bwashed%2Bcotton%2Bduvet%2Bcover&nsdOptOutParam=true&pd_rd_i=B0G5P7Y622&pd_rd_r=58108ff6-204d-424d-b4e7-a780e013403d&pd_rd_w=Mm5fF&pd_rd_wg=aSBGA&pf_rd_p=292df443-b323-44ae-8b40-9a666975b8b5&pf_rd_r=K0PCB53VGZHVDBGND00G&qid=1785495882&s=home-garden&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=linen%2Bduvet%2Bcover%2Bset%2Bneutral%2Bwashed%2Bcotton%2Bduvet%2Bcover%2Cgarden%2C279&sr=1-4-6024b2a3-78e4-4fed-8fed-e1613be3bcce-spons&aref=pj5oo21jpQ&sp_csd=d2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=ef6b62b3fe5455c18ff2235582eca06e&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A three-piece set in washed cotton percale, woven with a fine yarn-dyed stripe that sits in the cloth rather than printed on it. Crisp and breathable, and it softens with washing the way good cotton should.",
+    "colors": [],
+    "rooms": [
+      "Bedroom"
+    ]
   }
 ]

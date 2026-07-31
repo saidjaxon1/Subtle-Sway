@@ -8,20 +8,20 @@ _Last generated: 2026-07-31_
 
 ## At a glance
 
-- **22 products** in the shop
-- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 10
-- Missing a photo: **22** · missing a price: **22** · no rooms set: **0**
+- **24 products** in the shop
+- By kind: Lighting 1 · Sofas 2 · Storage 1 · Chairs 2 · Rugs 6 · Textiles 10 · Bedding 2
+- Missing a photo: **24** · missing a price: **24** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Total |
-|---|---|---|---|---|---|---|---|
-| **Living Room** | 1 | 2 | 1 | 2 | 6 | 10 | 22 |
-| **Bedroom** | 1 | — | 1 | 2 | 6 | 10 | 20 |
-| **Dining Room** | — | — | — | — | 5 | — | 5 |
-| **Entryway** | — | — | 1 | 1 | 2 | — | 4 |
-| **Home Office** | 1 | — | — | 2 | 4 | — | 7 |
-| **Kitchen** | — | — | — | — | 2 | — | 2 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Total |
+|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 1 | 2 | 1 | 2 | 6 | 10 | — | 22 |
+| **Bedroom** | 1 | — | 1 | 2 | 6 | 10 | 2 | 22 |
+| **Dining Room** | — | — | — | — | 5 | — | — | 5 |
+| **Entryway** | — | — | 1 | 1 | 2 | — | — | 4 |
+| **Home Office** | 1 | — | — | 2 | 4 | — | — | 7 |
+| **Kitchen** | — | — | — | — | 2 | — | — | 2 |
 
 ## The catalogue
 
@@ -212,6 +212,24 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. The better choice if you like a cushion that stands up on a sofa instead of slouching.
+
+### Bedding
+
+**Simple&Opulence Linen Duvet Cover Set**  
+`simple-opulence-linen-duvet-cover-set` · ASIN `B0868MQN92`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A three-piece set in washed flax linen, with a duvet cover and two pillowcases and coconut buttons instead of a zip. Linen breathes, softens with every wash, and looks better creased than pressed — which is exactly what a bed wants.
+
+**Bedsure PureWoven Striped Duvet Cover Set**  
+`bedsure-purewoven-duvet-cover-set` · ASIN `B0G5P7Y622`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A three-piece set in washed cotton percale, woven with a fine yarn-dyed stripe that sits in the cloth rather than printed on it. Crisp and breathable, and it softens with washing the way good cotton should.
 
 ## Gaps worth filling
 

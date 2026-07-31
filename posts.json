@@ -368,6 +368,14 @@
       },
       {
         "type": "shoplist",
+        "label": "Bedding inspiration",
+        "slugs": [
+          "simple-opulence-linen-duvet-cover-set",
+          "bedsure-purewoven-duvet-cover-set"
+        ]
+      },
+      {
+        "type": "shoplist",
         "label": "Cushion cover inspiration",
         "slugs": [
           "stellhome-linen-cushion-covers",
