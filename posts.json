@@ -29,7 +29,8 @@
         "label": "Sofa inspiration",
         "slugs": [
           "acanva-curved-velvet-sofa",
-          "acanva-zola-modular-sectional"
+          "acanva-zola-modular-sectional",
+          "monvane-modular-cloud-sofa"
         ]
       },
       {
@@ -68,7 +69,16 @@
         "type": "shoplist",
         "label": "Storage inspiration",
         "slugs": [
-          "t4tream-fluted-dresser"
+          "t4tream-fluted-dresser",
+          "ifget-arched-fluted-sideboard"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Surface styling inspiration",
+        "slugs": [
+          "carrots-den-ceramic-vase-set",
+          "yalikop-wood-link-object"
         ]
       },
       {
@@ -87,7 +97,9 @@
         "type": "shoplist",
         "label": "Lighting inspiration",
         "slugs": [
-          "sunmory-arc-floor-lamp"
+          "sunmory-arc-floor-lamp",
+          "pokat-ceramic-table-lamps",
+          "rottogoon-linen-shade-floor-lamp"
         ]
       },
       {
@@ -111,6 +123,25 @@
           "soalmost-washable-area-rug",
           "pauwer-fluffy-area-rug",
           "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Let one corner be green"
+      },
+      {
+        "type": "paragraph",
+        "text": "A room with something growing in it reads as looked after in a way that furniture alone never manages. One larger plant usually does more than a scattering of small ones, and the corner that furniture leaves awkward is generally where it belongs."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where the daylight never reaches, or the watering never quite happens, a faux tree holds the same shape and weight in the room and asks nothing of you. It is worth being honest with yourself about which of the two you will actually keep."
+      },
+      {
+        "type": "shoplist",
+        "label": "Greenery inspiration",
+        "slugs": [
+          "lomanto-artificial-olive-tree"
         ]
       },
       {
@@ -156,6 +187,13 @@
         ]
       },
       {
+        "type": "shoplist",
+        "label": "Wall panel inspiration",
+        "slugs": [
+          "tonor-wood-slat-wall-panels"
+        ]
+      },
+      {
         "type": "heading",
         "text": "Buy slowly, and leave space"
       },
@@ -195,7 +233,8 @@
         "label": "Sofa inspiration",
         "slugs": [
           "acanva-curved-velvet-sofa",
-          "acanva-zola-modular-sectional"
+          "acanva-zola-modular-sectional",
+          "monvane-modular-cloud-sofa"
         ]
       },
       {
@@ -234,7 +273,9 @@
         "type": "shoplist",
         "label": "Lighting inspiration",
         "slugs": [
-          "sunmory-arc-floor-lamp"
+          "sunmory-arc-floor-lamp",
+          "pokat-ceramic-table-lamps",
+          "rottogoon-linen-shade-floor-lamp"
         ]
       },
       {
@@ -253,7 +294,16 @@
         "type": "shoplist",
         "label": "Storage inspiration",
         "slugs": [
-          "t4tream-fluted-dresser"
+          "t4tream-fluted-dresser",
+          "ifget-arched-fluted-sideboard"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Surface styling inspiration",
+        "slugs": [
+          "carrots-den-ceramic-vase-set",
+          "yalikop-wood-link-object"
         ]
       },
       {
@@ -277,6 +327,25 @@
           "soalmost-washable-area-rug",
           "pauwer-fluffy-area-rug",
           "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Give one corner something green"
+      },
+      {
+        "type": "paragraph",
+        "text": "Furniture on its own rarely makes a living room feel finished; something growing usually does. A single tall plant reads better than several small ones dotted about, and it earns the corner that seating tends to leave empty."
+      },
+      {
+        "type": "paragraph",
+        "text": "If the light in that corner is poor, or plants have never lasted long in your care, a faux tree keeps the same presence without the guilt of another one dying quietly behind the sofa."
+      },
+      {
+        "type": "shoplist",
+        "label": "Greenery inspiration",
+        "slugs": [
+          "lomanto-artificial-olive-tree"
         ]
       },
       {
@@ -450,7 +519,9 @@
         "type": "shoplist",
         "label": "Lighting inspiration",
         "slugs": [
-          "sunmory-arc-floor-lamp"
+          "sunmory-arc-floor-lamp",
+          "pokat-ceramic-table-lamps",
+          "rottogoon-linen-shade-floor-lamp"
         ]
       },
       {
@@ -574,6 +645,13 @@
       {
         "type": "paragraph",
         "text": "A sideboard or low console along one wall holds what the table cannot and gives you somewhere to serve from, so the table itself can stay clear. Keep it against the wall so it never eats into the space around the chairs, and keep its top to one or two things."
+      },
+      {
+        "type": "shoplist",
+        "label": "Sideboard inspiration",
+        "slugs": [
+          "ifget-arched-fluted-sideboard"
+        ]
       },
       {
         "type": "heading",
