@@ -25,6 +25,27 @@
   // editor filter the list down to what actually suits the room being written.
   var ROOMS = ["Living Room", "Bedroom", "Dining Room", "Entryway", "Home Office", "Kitchen"];
 
+  // The order the lists group by: the way a room is actually furnished —
+  // the big pieces first, then the floor, the soft things, the light, and
+  // the finishing touches. Anything not listed follows, alphabetically.
+  var KIND_ORDER = [
+    "Sofas", "Chairs", "Storage", "Rugs",
+    "Bedding", "Throws", "Textiles",
+    "Lighting", "Window", "Mirrors", "Greenery", "Decor"
+  ];
+  var ROOM_ORDER = ["Whole home"].concat(ROOMS);
+
+  // Sort group names by the preferred order, then alphabetically.
+  function orderGroups(names, preferred) {
+    return names.slice().sort(function (a, b) {
+      var ia = preferred.indexOf(a), ib = preferred.indexOf(b);
+      if (ia === -1 && ib === -1) return a.localeCompare(b);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  }
+
   // In-memory state: parsed JSON plus the git blob sha needed to update each file.
   var state = {
     token: null,
@@ -432,9 +453,17 @@
         var item = entry.item;
         if (cat && norm(item.subcategory) !== norm(cat)) return false;
         if (!q) return true;
+        // Rooms are searchable too, so "kitchen" finds everything that suits one.
         return [item.name, item.title, item.slug, item.category, item.subcategory]
+          .concat(item.rooms || [])
           .some(function (part) { return norm(part).indexOf(q) !== -1; });
       });
+
+    // Say how much is on screen, and out of how many.
+    var label = { products: "Products", posts: "Articles" }[state.tab] || "Items";
+    $("list-title").textContent = entries.length === items.length
+      ? label + " (" + items.length + ")"
+      : label + " (" + entries.length + " of " + items.length + ")";
 
     if (!entries.length) {
       list.appendChild(el("li", { class: "admin-empty" }, ["Nothing matches that search."]));
@@ -451,6 +480,8 @@
       if (!byName[key]) { byName[key] = []; groups.push(key); }
       byName[key].push(entry);
     });
+
+    groups = orderGroups(groups, state.tab === "products" ? KIND_ORDER : ROOM_ORDER);
 
     groups.forEach(function (group) {
       list.appendChild(el("li", { class: "list-group" }, [
