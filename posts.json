@@ -78,7 +78,8 @@
         "label": "Surface styling inspiration",
         "slugs": [
           "carrots-den-ceramic-vase-set",
-          "yalikop-wood-link-object"
+          "yalikop-wood-link-object",
+          "heart-ceramic-vase-set"
         ]
       },
       {
@@ -141,7 +142,46 @@
         "type": "shoplist",
         "label": "Greenery inspiration",
         "slugs": [
-          "lomanto-artificial-olive-tree"
+          "lomanto-artificial-olive-tree",
+          "artificial-olive-tree-with-lights"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Dress the windows"
+      },
+      {
+        "type": "paragraph",
+        "text": "Curtains do more than cover the glass. Cloth at a window absorbs sound, takes the hard edge off daylight, and brings in the one large soft surface a room full of hard ones is missing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hang the pole higher and wider than the frame, so the fabric sits clear of the glass when it is drawn back. The window looks taller for it, and none of the light you were trying to let in gets blocked."
+      },
+      {
+        "type": "shoplist",
+        "label": "Curtain tieback inspiration",
+        "slugs": [
+          "klogtsind-magnetic-curtain-tiebacks"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Hang one mirror"
+      },
+      {
+        "type": "paragraph",
+        "text": "A mirror is the cheapest way to change how much light a room has. Facing a window it hands the daylight back into the room; on a wall the sun never reaches, it opens a view where there was none."
+      },
+      {
+        "type": "paragraph",
+        "text": "One is usually enough. Hang it where it reflects something worth seeing — a window, a lamp, the green corner — rather than the back of a door."
+      },
+      {
+        "type": "shoplist",
+        "label": "Mirror inspiration",
+        "slugs": [
+          "elehume-asymmetrical-wall-mirror"
         ]
       },
       {
@@ -175,7 +215,9 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers"
+          "ycoll-striped-patchwork-cushion-covers",
+          "miulee-striped-corduroy-cushion-covers",
+          "miulee-plain-corduroy-cushion-cover-set"
         ]
       },
       {
@@ -303,7 +345,8 @@
         "label": "Surface styling inspiration",
         "slugs": [
           "carrots-den-ceramic-vase-set",
-          "yalikop-wood-link-object"
+          "yalikop-wood-link-object",
+          "heart-ceramic-vase-set"
         ]
       },
       {
@@ -345,7 +388,46 @@
         "type": "shoplist",
         "label": "Greenery inspiration",
         "slugs": [
-          "lomanto-artificial-olive-tree"
+          "lomanto-artificial-olive-tree",
+          "artificial-olive-tree-with-lights"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Soften the window"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bare window leaves a living room sounding louder and feeling colder than it really is. Cloth at the glass absorbs the echo, filters the light coming through, and gives the eye somewhere gentle to land at the edge of the room."
+      },
+      {
+        "type": "paragraph",
+        "text": "Set the pole above and beyond the frame so the curtains clear the glass when open, and let them fall close to the floor. A curtain that stops short always looks as though it was cut for a different room."
+      },
+      {
+        "type": "shoplist",
+        "label": "Curtain tieback inspiration",
+        "slugs": [
+          "klogtsind-magnetic-curtain-tiebacks"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Put a mirror where the light is short"
+      },
+      {
+        "type": "paragraph",
+        "text": "Where a wall gets no daylight of its own, a mirror borrows some from the window opposite and gives it back to the room. It is the one piece that makes a space feel larger without taking any of it up."
+      },
+      {
+        "type": "paragraph",
+        "text": "Keep it to one. A wall of mirrors starts to read as a corridor rather than a room, and the trick stops working the moment it is repeated."
+      },
+      {
+        "type": "shoplist",
+        "label": "Mirror inspiration",
+        "slugs": [
+          "elehume-asymmetrical-wall-mirror"
         ]
       },
       {
@@ -367,7 +449,9 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers"
+          "ycoll-striped-patchwork-cushion-covers",
+          "miulee-striped-corduroy-cushion-covers",
+          "miulee-plain-corduroy-cushion-cover-set"
         ]
       },
       {
@@ -453,7 +537,9 @@
           "cozoomy-textured-cushion-covers",
           "miulee-striped-jacquard-cushion-covers",
           "topfinel-corduroy-cushion-covers",
-          "ycoll-striped-patchwork-cushion-covers"
+          "ycoll-striped-patchwork-cushion-covers",
+          "miulee-striped-corduroy-cushion-covers",
+          "miulee-plain-corduroy-cushion-cover-set"
         ]
       },
       {
@@ -546,6 +632,25 @@
           "pauwer-fluffy-area-rug",
           "swgrt-boho-plush-rug",
           "lofus-abstract-area-rug"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Cover the window properly"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bedroom asks more of its curtains than any other room, because they have to hold back the morning as well as dress the wall. It is the one place where how well they close matters more than how they look."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hang the pole high and wide so the cloth clears the glass when open, and let it fall close to the floor. Tied back through the day, the same curtains give the light somewhere to come in."
+      },
+      {
+        "type": "shoplist",
+        "label": "Curtain tieback inspiration",
+        "slugs": [
+          "klogtsind-magnetic-curtain-tiebacks"
         ]
       },
       {

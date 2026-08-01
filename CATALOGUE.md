@@ -8,20 +8,20 @@ _Last generated: 2026-08-01_
 
 ## At a glance
 
-- **33 products** in the shop
-- By kind: Lighting 3 · Sofas 3 · Storage 2 · Chairs 2 · Rugs 6 · Textiles 10 · Bedding 3 · Decor 4
-- Missing a photo: **33** · missing a price: **33** · no rooms set: **0**
+- **39 products** in the shop
+- By kind: Lighting 3 · Sofas 3 · Storage 2 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 4 · Window 1 · Mirrors 1
+- Missing a photo: **39** · missing a price: **39** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Decor | Total |
-|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 3 | 3 | 2 | 2 | 6 | 10 | — | 4 | 30 |
-| **Bedroom** | 3 | — | 1 | 2 | 6 | 10 | 3 | 4 | 29 |
-| **Dining Room** | — | — | 1 | — | 5 | — | — | 2 | 8 |
-| **Entryway** | — | — | 2 | 1 | 2 | — | — | 2 | 7 |
-| **Home Office** | 2 | — | — | 2 | 4 | — | — | 2 | 10 |
-| **Kitchen** | — | — | — | — | 2 | — | — | — | 2 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Total |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 3 | 3 | 2 | 2 | 6 | 12 | — | 2 | 4 | 1 | 1 | 36 |
+| **Bedroom** | 3 | — | 1 | 2 | 6 | 12 | 3 | 2 | 4 | 1 | 1 | 35 |
+| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 3 | 1 | — | 10 |
+| **Entryway** | — | — | 2 | 1 | 2 | — | — | 2 | 1 | — | 1 | 9 |
+| **Home Office** | 2 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | 12 |
+| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | 2 |
 
 ## The catalogue
 
@@ -245,6 +245,22 @@ Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A set of four inner pads with a firmer fibre filling and a brushed cover, made to hold their shape rather than sink. Worth knowing if you prefer a cushion that stands up on a sofa rather than one you sink into.
 
+**MIULEE Striped Corduroy Cushion Covers**  
+`miulee-striped-corduroy-cushion-covers` · ASIN `B0BFVVKVSK`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A pair of covers in soft corduroy with a fine ribbed stripe and a hidden zip. Polyester, so they wash and dry easily and hold their tone through it.
+
+**MIULEE Plain Corduroy Cushion Cover Set**  
+`miulee-plain-corduroy-cushion-cover-set` · ASIN `B0D2CYFRFJ`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> Four plain corduroy covers in one tone, enough to dress a whole sofa without mixing. The ribbing gives a flat colour something to catch the light, so the set reads as texture rather than pattern.
+
 ### Bedding
 
 **Simple&Opulence Linen Duvet Cover Set**  
@@ -271,7 +287,7 @@ Appears in: Bedroom Inspiration
 
 > A three-piece set in prewashed brushed microfibre, with a duvet cover and two shams. It is a synthetic rather than a natural fibre, which means it creases far less and washes hard — the practical choice for a bed that has to be made in a hurry.
 
-### Decor
+### Greenery
 
 **LOMANTO Artificial Olive Tree**  
 `lomanto-artificial-olive-tree` · ASIN `B0BQ2GWB2M`  
@@ -280,6 +296,16 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration
 
 > A tall faux olive tree that arrives in sections and comes already potted. It is artificial, so it asks nothing of you beyond dusting and bending the branches back into shape after unpacking — useful in a corner where daylight never reaches.
+
+**Artificial Olive Tree with Lights**  
+`artificial-olive-tree-with-lights` · ASIN `B0GVS8GB23`  
+Rooms: Living Room, Bedroom, Home Office, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration
+
+> A faux olive tree that arrives potted and threaded with a warm string light, which can be left steady, set to flash, or simply switched off. The branches come compressed and need opening out by hand once it is standing.
+
+### Decor
 
 **Carrot's Den Ceramic Vase Set**  
 `carrots-den-ceramic-vase-set` · ASIN `B0BDR1X6PT`  
@@ -304,6 +330,34 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration
 
 > Wood-veneer slats mounted on a felt backing, fixed to the wall with adhesive or screws. They warm a bare wall and take the edge off echo in a room with hard floors, though they do have to be cut and fitted, so they suit a wall you own.
+
+**Heart Ceramic Vase Set**  
+`heart-ceramic-vase-set` · ASIN `B0CF9K1NJM`  
+Rooms: Living Room, Bedroom, Dining Room  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration
+
+> Two ceramic vases of different heights, each cut through with an open heart. The finish is a matte sand glaze rather than a gloss, and the neck is narrow enough to hold dried stems upright.
+
+### Window
+
+**KLOGTSIND Magnetic Curtain Tiebacks**  
+`klogtsind-magnetic-curtain-tiebacks` · ASIN `B0CHRTZKB6`  
+Rooms: Living Room, Bedroom, Dining Room, Home Office  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A pair of tiebacks strung with wooden beads and closed with magnets, so a curtain is held open without hooks or drilling. The cord stretches, which lets the same pair work on anything from a sheer to a heavy blackout curtain.
+
+### Mirrors
+
+**ELEHUME Asymmetrical Wall Mirror**  
+`elehume-asymmetrical-wall-mirror` · ASIN `B0DK6Z8VVZ`  
+Rooms: Living Room, Bedroom, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration
+
+> A wall mirror with an irregular outline and a slim metal frame, hung on hooks already fitted to the back. Sized for a stretch of wall above a console rather than a full-length view.
 
 ## Gaps worth filling
 
