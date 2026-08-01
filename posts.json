@@ -79,7 +79,8 @@
         "slugs": [
           "carrots-den-ceramic-vase-set",
           "yalikop-wood-link-object",
-          "heart-ceramic-vase-set"
+          "heart-ceramic-vase-set",
+          "fjsperm-ceramic-vase-set"
         ]
       },
       {
@@ -181,7 +182,8 @@
         "type": "shoplist",
         "label": "Mirror inspiration",
         "slugs": [
-          "elehume-asymmetrical-wall-mirror"
+          "elehume-asymmetrical-wall-mirror",
+          "honyee-full-length-mirror"
         ]
       },
       {
@@ -233,6 +235,15 @@
         "label": "Wall panel inspiration",
         "slugs": [
           "tonor-wood-slat-wall-panels"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Throw inspiration",
+        "slugs": [
+          "samiah-luxe-chunky-knit-throw",
+          "blunique-faux-fur-throw",
+          "cozy-bliss-faux-fur-throw"
         ]
       },
       {
@@ -346,7 +357,8 @@
         "slugs": [
           "carrots-den-ceramic-vase-set",
           "yalikop-wood-link-object",
-          "heart-ceramic-vase-set"
+          "heart-ceramic-vase-set",
+          "fjsperm-ceramic-vase-set"
         ]
       },
       {
@@ -427,7 +439,8 @@
         "type": "shoplist",
         "label": "Mirror inspiration",
         "slugs": [
-          "elehume-asymmetrical-wall-mirror"
+          "elehume-asymmetrical-wall-mirror",
+          "honyee-full-length-mirror"
         ]
       },
       {
@@ -460,6 +473,15 @@
         "slugs": [
           "utopia-bedding-cushion-inserts",
           "miulee-cushion-inserts"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Throw inspiration",
+        "slugs": [
+          "samiah-luxe-chunky-knit-throw",
+          "blunique-faux-fur-throw",
+          "cozy-bliss-faux-fur-throw"
         ]
       },
       {
@@ -551,6 +573,15 @@
         ]
       },
       {
+        "type": "shoplist",
+        "label": "Throw inspiration",
+        "slugs": [
+          "samiah-luxe-chunky-knit-throw",
+          "blunique-faux-fur-throw",
+          "cozy-bliss-faux-fur-throw"
+        ]
+      },
+      {
         "type": "heading",
         "text": "Let one chest keep the room clear"
       },
@@ -587,6 +618,26 @@
         "slugs": [
           "chita-swivel-velvet-armchair",
           "acanva-mellow-accent-chair"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Find room for a mirror you can see all of"
+      },
+      {
+        "type": "paragraph",
+        "text": "A bedroom is where clothes get chosen, and choosing them from the waist up is guesswork. One mirror you can see the whole of settles that question every morning, and it does the same favour with light that any mirror does."
+      },
+      {
+        "type": "paragraph",
+        "text": "Leaning is easier than hanging and reads less formally, as long as the base sits secure against the wall. Place it where it catches the window rather than a blank stretch of wall, and it hands the daylight back into the room."
+      },
+      {
+        "type": "shoplist",
+        "label": "Mirror inspiration",
+        "slugs": [
+          "honyee-full-length-mirror",
+          "elehume-asymmetrical-wall-mirror"
         ]
       },
       {

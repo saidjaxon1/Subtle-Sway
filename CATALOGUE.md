@@ -8,20 +8,20 @@ _Last generated: 2026-08-01_
 
 ## At a glance
 
-- **39 products** in the shop
-- By kind: Lighting 3 · Sofas 3 · Storage 2 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 4 · Window 1 · Mirrors 1
-- Missing a photo: **39** · missing a price: **39** · no rooms set: **0**
+- **44 products** in the shop
+- By kind: Lighting 3 · Sofas 3 · Storage 2 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 5 · Window 1 · Mirrors 2 · Throws 3
+- Missing a photo: **44** · missing a price: **44** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Total |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 3 | 3 | 2 | 2 | 6 | 12 | — | 2 | 4 | 1 | 1 | 36 |
-| **Bedroom** | 3 | — | 1 | 2 | 6 | 12 | 3 | 2 | 4 | 1 | 1 | 35 |
-| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 3 | 1 | — | 10 |
-| **Entryway** | — | — | 2 | 1 | 2 | — | — | 2 | 1 | — | 1 | 9 |
-| **Home Office** | 2 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | 12 |
-| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | 2 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Total |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 3 | 3 | 2 | 2 | 6 | 12 | — | 2 | 5 | 1 | 2 | 3 | 41 |
+| **Bedroom** | 3 | — | 1 | 2 | 6 | 12 | 3 | 2 | 5 | 1 | 2 | 3 | 40 |
+| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | 11 |
+| **Entryway** | — | — | 2 | 1 | 2 | — | — | 2 | 2 | — | 2 | — | 11 |
+| **Home Office** | 2 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | 12 |
+| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | 2 |
 
 ## The catalogue
 
@@ -339,6 +339,14 @@ Appears in: Home Decor Inspiration, Living Room Inspiration
 
 > Two ceramic vases of different heights, each cut through with an open heart. The finish is a matte sand glaze rather than a gloss, and the neck is narrow enough to hold dried stems upright.
 
+**FJSPERM Ceramic Vase Set**  
+`fjsperm-ceramic-vase-set` · ASIN `B0CT2LG31G`  
+Rooms: Living Room, Bedroom, Dining Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration
+
+> Three small ceramic vases in three different shapes, made to stand as a group rather than alone. They hold water, so cut stems work as well as dried ones, and each is small enough to sit on a coffee table without crowding it.
+
 ### Window
 
 **KLOGTSIND Magnetic Curtain Tiebacks**  
@@ -355,9 +363,43 @@ Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 `elehume-asymmetrical-wall-mirror` · ASIN `B0DK6Z8VVZ`  
 Rooms: Living Room, Bedroom, Entryway  
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
-Appears in: Home Decor Inspiration, Living Room Inspiration
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A wall mirror with an irregular outline and a slim metal frame, hung on hooks already fitted to the back. Sized for a stretch of wall above a console rather than a full-length view.
+
+**Honyee Full-Length Mirror**  
+`honyee-full-length-mirror` · ASIN `B0C7G62S68`  
+Rooms: Bedroom, Living Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A full-length mirror with an irregular outline and a wooden frame wrapped in padded fabric, so the edge reads as soft rather than hard. It can lean against a wall or be hung, and it is tall enough to dress in front of.
+
+### Throws
+
+**SAMIAH LUXE Chunky Knit Throw**  
+`samiah-luxe-chunky-knit-throw` · ASIN `B08RRPQHLC`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A chunky cable-knit throw in polyester chenille, heavy enough to hold its shape over a sofa arm and soft enough to actually pull over you. It washes on a gentle cycle without going out of shape, and carries OEKO-TEX certification for the substances that standard covers.
+
+**blunique Faux Fur Throw**  
+`blunique-faux-fur-throw` · ASIN `B0D9VDW7N8`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A faux fur throw with a raised bubble texture on one face and a short plush on the other. It arrives vacuum-packed and flattened, so it needs a wash and a tumble before it reaches the loft shown on the listing.
+
+**Cozy Bliss Faux Fur Throw**  
+`cozy-bliss-faux-fur-throw` · ASIN `B0CRYNQBMS`  
+Rooms: Living Room, Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
+
+> A faux fur throw with the same raised wave on the face and a fleece backing, finished in a tonal wash rather than a flat colour. Like the others it comes compressed, so a wash and a low tumble bring it back to full loft.
 
 ## Gaps worth filling
 
