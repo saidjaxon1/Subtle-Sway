@@ -508,6 +508,12 @@ select:focus-visible {
   flex-wrap: wrap;
 }
 
+/* A text field sharing a row with a copy button */
+.link-row input[type="text"] {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
 .link-value {
   flex: 1 1 16rem;
   min-width: 0;

@@ -465,7 +465,8 @@
           ])
         ]),
         el("div", { class: "item-actions" }, [
-          copyLinkButton(pageUrl(item, isProduct), "Copy link"),
+          copyLinkButton(pageUrl(item, isProduct), isProduct ? "Copy page link" : "Copy link"),
+          isProduct ? copyLinkButton(item.affiliateLink, "Copy affiliate link") : null,
           editBtn,
           deleteBtn
         ])
@@ -925,24 +926,38 @@
       ".html?slug=" + encodeURIComponent(item.slug);
   }
 
-  // Small button that copies a link and confirms it in place.
-  function copyLinkButton(url, label) {
+  // Small button that copies a link and confirms it in place. `source` may be
+  // a string, or a function returning one — handy for a field still being edited.
+  function copyLinkButton(source, label) {
     var button = el("button", { class: "ghost-btn", type: "button" }, [label || "Copy link"]);
     button.addEventListener("click", function () {
+      var url = typeof source === "function" ? source() : source;
+      if (!url) { setStatus("There is no link to copy yet.", true); return; }
       var done = function () {
         var original = button.textContent;
         button.textContent = "Copied ✓";
         setTimeout(function () { button.textContent = original; }, 1600);
       };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { setStatus("Could not copy the link.", true); });
-      } else {
-        // Older browsers: copy through a temporary field.
-        var temp = el("input", { type: "text", value: url });
+      // Used when the clipboard API is missing, and again if it refuses —
+      // it is blocked on some browsers and whenever the page is not secure.
+      var byField = function () {
+        var temp = el("textarea", { readonly: "" });
+        temp.value = url;
+        temp.style.position = "fixed";
+        temp.style.top = "-1000px";
+        temp.style.opacity = "0";
         document.body.appendChild(temp);
         temp.select();
-        try { document.execCommand("copy"); done(); } catch (e) { setStatus("Could not copy the link.", true); }
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
         document.body.removeChild(temp);
+        if (ok) done();
+        else setStatus("Could not copy automatically — open the item and copy the link by hand.", true);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, byField);
+      } else {
+        byField();
       }
     });
     return button;
@@ -1245,7 +1260,14 @@
         extraWrap
       ]),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show no price."),
-      field("Buy Now link", textInput("f-link", product.affiliateLink, "https://…"), "Where the Buy Now button sends the visitor."),
+      el("label", { class: "field" }, [
+        el("span", { class: "field-label" }, ["Buy Now link"]),
+        el("div", { class: "link-row" }, [
+          textInput("f-link", product.affiliateLink, "https://…"),
+          copyLinkButton(function () { return $("f-link").value.trim(); }, "Copy affiliate link")
+        ]),
+        el("span", { class: "field-hint" }, ["Where the Buy Now button sends the visitor. Paste the SiteStripe link exactly as Amazon gives it — the copy button hands it back whenever you need it for a pin."])
+      ]),
       field("Different colors link", textInput("f-colors-link", product.colorsLink, "https://…"), "Optional — shows a “Different Colors” button. Link to the item's other colors on Amazon."),
       field("Different sizes link", textInput("f-sizes-link", product.sizesLink, "https://…"), "Optional — shows a “Different Sizes” button. Link to the item's other sizes on Amazon."),
       field("Link type", sourceSelect),
