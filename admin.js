@@ -948,6 +948,8 @@
         temp.style.opacity = "0";
         document.body.appendChild(temp);
         temp.select();
+        // iOS ignores select() on its own and needs an explicit range.
+        if (temp.setSelectionRange) temp.setSelectionRange(0, url.length);
         var ok = false;
         try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
         document.body.removeChild(temp);
@@ -1260,7 +1262,9 @@
         extraWrap
       ]),
       field("Price", textInput("f-price", product.price, "e.g. $249"), "Optional — leave empty to show no price."),
-      el("label", { class: "field" }, [
+      // A div rather than a label: a click on a button inside a label is also
+      // routed to the label's control, which steals focus mid-copy.
+      el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["Buy Now link"]),
         el("div", { class: "link-row" }, [
           textInput("f-link", product.affiliateLink, "https://…"),
