@@ -290,7 +290,10 @@
     });
 
     var chipRow = el("div", { class: "picker-chips" });
-    var cats = uniqueProductValues(state[state.tab].data, "category");
+    // Filter by the finer grouping — the kind of product, or the room an
+    // article is about. The top-level category is the same for everything,
+    // so it would make a useless filter.
+    var cats = uniqueProductValues(state[state.tab].data, "subcategory");
     function renderChips() {
       chipRow.textContent = "";
       function addChip(label, value) {
@@ -427,7 +430,7 @@
       .map(function (item, index) { return { item: item, index: index }; })
       .filter(function (entry) {
         var item = entry.item;
-        if (cat && norm(item.category) !== norm(cat)) return false;
+        if (cat && norm(item.subcategory) !== norm(cat)) return false;
         if (!q) return true;
         return [item.name, item.title, item.slug, item.category, item.subcategory]
           .some(function (part) { return norm(part).indexOf(q) !== -1; });
@@ -438,7 +441,26 @@
       return;
     }
 
+    // Group under a heading for each kind of product, or each room for
+    // articles, so a long list stays readable.
+    var groups = [];
+    var byName = {};
     entries.forEach(function (entry) {
+      var key = (entry.item.subcategory || "").trim() ||
+        (state.tab === "products" ? "Everything else" : "Whole home");
+      if (!byName[key]) { byName[key] = []; groups.push(key); }
+      byName[key].push(entry);
+    });
+
+    groups.forEach(function (group) {
+      list.appendChild(el("li", { class: "list-group" }, [
+        el("span", { class: "list-group-name" }, [group]),
+        el("span", { class: "list-group-count" }, [String(byName[group].length)])
+      ]));
+      byName[group].forEach(renderRow);
+    });
+
+    function renderRow(entry) {
       var item = entry.item;
       var index = entry.index;
       var isProduct = state.tab === "products";
@@ -455,8 +477,8 @@
           el("span", { class: "item-name" }, [isProduct ? item.name : item.title]),
           el("span", { class: "item-meta" }, [
             isProduct
-              ? [item.subcategory || null,
-                 (item.rooms || []).length ? (item.rooms || []).join(", ") : "no rooms set",
+              // The kind is already the group heading, so it is not repeated here.
+              ? [(item.rooms || []).length ? (item.rooms || []).join(", ") : "no rooms set",
                  item.price || "no price",
                  (item.type || "") === "digital" ? "digital" : null,
                  (item.source || "") === "own" ? "my product" : null]
@@ -471,7 +493,7 @@
           deleteBtn
         ])
       ]));
-    });
+    }
   }
 
   /* ---------- Catalogue view ----------

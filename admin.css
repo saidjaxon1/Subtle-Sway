@@ -280,6 +280,31 @@ select:focus-visible {
   color: var(--muted);
 }
 
+/* Group heading inside the Products / Articles list */
+.list-group {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 0 0.4rem !important;
+  border: none !important;
+  background: none !important;
+}
+
+.list-group:first-child { padding-top: 0.2rem !important; }
+
+.list-group-name {
+  font-size: 0.74rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.list-group-count {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
 /* Catalogue tab */
 .cat-card {
   display: block;
