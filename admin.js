@@ -56,7 +56,7 @@
     editIndex: -1,       // -1 = adding a new item
     blocks: [],          // working copy of a post's content blocks while editing
     extraImages: [],     // working copy of a product's extra photos while editing
-    listFilter: { q: "", cat: null }  // search/category filter on the list views
+    listFilter: { q: "", cat: null, room: null }  // search, kind and room filters on the list views
   };
 
   /* ---------- DOM helpers ---------- */
@@ -283,7 +283,7 @@
     $("list-title").textContent = { products: "Products", posts: "Articles", catalogue: "Catalogue", categories: "Categories" }[tab];
     $("form-view").hidden = true;
     $("list-view").hidden = false;
-    state.listFilter = { q: "", cat: null };
+    state.listFilter = { q: "", cat: null, room: null };
     buildListControls();
     renderList();
   }
@@ -310,6 +310,29 @@
       renderList();
     });
 
+    // Products carry room tags, so they get a room filter above the kind one.
+    // A product tagged for several rooms shows under each of them, and a
+    // product with no room set is treated as suiting every room.
+    var roomRow = null;
+    if (state.tab === "products") {
+      roomRow = el("div", { class: "picker-chips" });
+      var renderRoomChips = function () {
+        roomRow.textContent = "";
+        var addRoomChip = function (label, value) {
+          var button = el("button", { type: "button", class: "chip", "aria-pressed": String(state.listFilter.room === value) }, [label]);
+          button.addEventListener("click", function () {
+            state.listFilter.room = value;
+            renderRoomChips();
+            renderList();
+          });
+          roomRow.appendChild(button);
+        };
+        addRoomChip("Every room", null);
+        ROOMS.forEach(function (r) { addRoomChip(r, r); });
+      };
+      renderRoomChips();
+    }
+
     var chipRow = el("div", { class: "picker-chips" });
     // Filter by the finer grouping — the kind of product, or the room an
     // article is about. The top-level category is the same for everything,
@@ -332,7 +355,14 @@
     renderChips();
 
     wrap.appendChild(search);
-    if (cats.length) wrap.appendChild(chipRow);
+    if (roomRow) {
+      wrap.appendChild(el("span", { class: "finder-label" }, ["Room"]));
+      wrap.appendChild(roomRow);
+    }
+    if (cats.length) {
+      if (roomRow) wrap.appendChild(el("span", { class: "finder-label" }, ["Kind"]));
+      wrap.appendChild(chipRow);
+    }
   }
 
   /* ---------- Contact form (footer contact line, stored in site.json) ---------- */
@@ -447,11 +477,17 @@
     // and Delete always act on the right entry.
     var q = norm(state.listFilter.q);
     var cat = state.listFilter.cat;
+    var room = state.listFilter.room;
     var entries = items
       .map(function (item, index) { return { item: item, index: index }; })
       .filter(function (entry) {
         var item = entry.item;
         if (cat && norm(item.subcategory) !== norm(cat)) return false;
+        // A product with no room set suits every room, so it never filters out.
+        if (room) {
+          var rooms = item.rooms || [];
+          if (rooms.length && rooms.indexOf(room) === -1) return false;
+        }
         if (!q) return true;
         // Rooms are searchable too, so "kitchen" finds everything that suits one.
         return [item.name, item.title, item.slug, item.category, item.subcategory]
