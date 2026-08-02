@@ -327,8 +327,10 @@
           });
           roomRow.appendChild(button);
         };
-        addRoomChip("Every room", null);
+        addRoomChip("All", null);
         ROOMS.forEach(function (r) { addRoomChip(r, r); });
+        // Products left without a room are the general ones; this picks them out.
+        addRoomChip("Every room", "__any__");
       };
       renderRoomChips();
     }
@@ -484,9 +486,11 @@
         var item = entry.item;
         if (cat && norm(item.subcategory) !== norm(cat)) return false;
         // A product with no room set suits every room, so it never filters out.
+        // "__any__" is the reverse: show only those general products.
         if (room) {
           var rooms = item.rooms || [];
-          if (rooms.length && rooms.indexOf(room) === -1) return false;
+          if (room === "__any__") { if (rooms.length) return false; }
+          else if (rooms.length && rooms.indexOf(room) === -1) return false;
         }
         if (!q) return true;
         // Rooms are searchable too, so "kitchen" finds everything that suits one.
@@ -502,7 +506,11 @@
       : label + " (" + entries.length + " of " + items.length + ")";
 
     if (!entries.length) {
-      list.appendChild(el("li", { class: "admin-empty" }, ["Nothing matches that search."]));
+      list.appendChild(el("li", { class: "admin-empty" }, [
+        q ? "Nothing matches that search."
+          : room === "__any__" ? "Nothing is set to suit every room yet."
+          : "Nothing here with those filters."
+      ]));
       return;
     }
 
@@ -545,7 +553,7 @@
           el("span", { class: "item-meta" }, [
             isProduct
               // The kind is already the group heading, so it is not repeated here.
-              ? [(item.rooms || []).length ? (item.rooms || []).join(", ") : "no rooms set",
+              ? [(item.rooms || []).length ? (item.rooms || []).join(", ") : "every room",
                  item.price || "no price",
                  (item.type || "") === "digital" ? "digital" : null,
                  (item.source || "") === "own" ? "my product" : null]
@@ -1329,11 +1337,27 @@
 
     // Which rooms this piece suits — used to filter the catalogue while
     // writing an article, so only fitting pieces are offered.
+    var roomBoxes = [];
     var roomChecks = ROOMS.map(function (room) {
       var box = el("input", { type: "checkbox", value: room });
       box.className = "room-check";
       if ((product.rooms || []).indexOf(room) !== -1) box.checked = true;
+      roomBoxes.push(box);
       return el("label", { class: "room-option" }, [box, el("span", null, [room])]);
+    });
+
+    // "Every room" is the general case, stored by leaving the room list empty.
+    // Ticking it clears the individual rooms; ticking any room clears it.
+    var everyRoomBox = el("input", { type: "checkbox", id: "f-every-room" });
+    everyRoomBox.checked = !(product.rooms || []).length;
+    everyRoomBox.addEventListener("change", function () {
+      if (everyRoomBox.checked) roomBoxes.forEach(function (b) { b.checked = false; });
+    });
+    roomBoxes.forEach(function (b) {
+      b.addEventListener("change", function () {
+        if (b.checked) everyRoomBox.checked = false;
+        else if (!roomBoxes.some(function (x) { return x.checked; })) everyRoomBox.checked = true;
+      });
     });
 
     var form = el("form", { class: "admin-form", novalidate: "" }, [
@@ -1341,8 +1365,11 @@
       state.editIndex !== -1 ? pageLinkField(product, true) : null,
       el("div", { class: "field" }, [
         el("span", { class: "field-label" }, ["Suits these rooms"]),
+        el("label", { class: "room-option room-option-all" }, [
+          everyRoomBox, el("span", null, ["Every room — it suits the whole house"])
+        ]),
         el("div", { class: "room-grid" }, roomChecks),
-        el("span", { class: "field-hint" }, ["Tick every room this piece genuinely works in. When you write an article, the product list filters to the room you are writing about — so only fitting pieces are offered."])
+        el("span", { class: "field-hint" }, ["Tick every room this piece genuinely works in, or choose “Every room” if it belongs anywhere. When you write an article, the product list filters to the room you are writing about — so only fitting pieces are offered."])
       ]),
       imageField("Photo", "f-image", product.image, "Paste a link, or press Upload to use a photo from this computer."),
       el("div", { class: "field" }, [
