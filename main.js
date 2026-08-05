@@ -482,6 +482,18 @@
         var products = results[0];
         var posts = results[1];
 
+        // Until the shop has photographs, the product sections would be rows
+        // of empty frames — so they stay off the home page and come back on
+        // their own as soon as any product has one.
+        var anyPhoto = products.some(hasImage);
+        if (!anyPhoto) {
+          ["category-grid", "featured-grid"].forEach(function (id) {
+            var section = document.getElementById(id);
+            section = section && section.closest("section");
+            if (section) section.hidden = true;
+          });
+        }
+
         // Latest three journal cards.
         var list = document.getElementById("journal-preview");
         sortNewestFirst(published(posts)).slice(0, 3).forEach(function (post) {

@@ -32,8 +32,13 @@ function add(loc, lastmod, priority) {
 
 // Public pages. admin.html, go.html and 404.html are left out on purpose —
 // they are disallowed in robots.txt.
+// The shop and the product pages only earn a place once the products have
+// photographs; until then they would be thin pages. This restores itself the
+// moment any product gets an image.
+var shopIsReady = products.some(function (p) { return (p.image || "").trim(); });
+
 add(BASE, today, "1.0");
-add(BASE + "shop.html", today, "0.9");
+if (shopIsReady) add(BASE + "shop.html", today, "0.9");
 add(BASE + "blog.html", today, "0.9");
 add(BASE + "about.html", today, "0.5");
 add(BASE + "contact.html", today, "0.4");
@@ -51,9 +56,9 @@ posts
     add(BASE + "post.html?slug=" + encodeURIComponent(post.slug), post.date || today, "0.8");
   });
 
-// Products.
+// Products — only the ones with a photograph, for the same reason.
 products.forEach(function (product) {
-  if (!product.slug) return;
+  if (!product.slug || !(product.image || "").trim()) return;
   add(BASE + "product.html?slug=" + encodeURIComponent(product.slug), today, "0.7");
 });
 
@@ -69,9 +74,12 @@ urls.forEach(function (u) {
 xml += "</urlset>\n";
 
 fs.writeFileSync(path.join(root, "sitemap.xml"), xml);
-var visible = posts.filter(function (post) { return !post.hidden; }).length;
+var visibleArticles = posts.filter(function (post) { return !post.hidden; }).length;
+var listedProducts = products.filter(function (p) { return (p.image || "").trim(); }).length;
+var pages = urls.length - visibleArticles - listedProducts;
 console.log(
   "sitemap.xml written — " + urls.length + " URLs " +
-  "(7 pages + " + visible + " articles + " + products.length + " products)" +
-  (posts.length - visible ? "  [" + (posts.length - visible) + " hidden article(s) skipped]" : "")
+  "(" + pages + " pages + " + visibleArticles + " articles + " + listedProducts + " products)"
 );
+if (posts.length - visibleArticles) console.log("  " + (posts.length - visibleArticles) + " hidden article(s) skipped");
+if (!shopIsReady) console.log("  shop and product pages held back until products have photographs");
