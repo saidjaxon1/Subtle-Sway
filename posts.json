@@ -597,7 +597,29 @@
         "type": "shoplist",
         "label": "Storage inspiration",
         "slugs": [
-          "t4tream-fluted-dresser"
+          "t4tream-fluted-dresser",
+          "xixini-fluted-dresser",
+          "eliteset-curved-dresser"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Keep one surface within reach of the bed"
+      },
+      {
+        "type": "paragraph",
+        "text": "Whatever stands beside the bed ends up the busiest surface in the room — the lamp, the book, the glass of water, the phone you would rather not sleep next to. A drawer below takes most of that out of sight."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where there is room on both sides of the bed, two of the same piece settles the room more than two unrelated ones. Where there is not, one is plenty."
+      },
+      {
+        "type": "shoplist",
+        "label": "Bedside table inspiration",
+        "slugs": [
+          "aitjunz-bentwood-nightstand",
+          "leyaoyao-fluted-nightstand"
         ]
       },
       {
@@ -637,7 +659,9 @@
         "label": "Mirror inspiration",
         "slugs": [
           "honyee-full-length-mirror",
-          "elehume-asymmetrical-wall-mirror"
+          "elehume-asymmetrical-wall-mirror",
+          "riskioir-arched-full-length-mirror",
+          "beautypeak-rectangle-full-length-mirror"
         ]
       },
       {
@@ -658,7 +682,11 @@
         "slugs": [
           "sunmory-arc-floor-lamp",
           "pokat-ceramic-table-lamps",
-          "rottogoon-linen-shade-floor-lamp"
+          "rottogoon-linen-shade-floor-lamp",
+          "seealle-ceramic-table-lamps",
+          "fenmzee-pull-chain-bedside-lamps",
+          "fenmzee-touch-bedside-lamp",
+          "edishine-wooden-tripod-table-lamp"
         ]
       },
       {
@@ -719,6 +747,17 @@
       {
         "type": "paragraph",
         "text": "The best bedroom habit costs nothing: clear the bedside and the top of the chest before you sleep. A lamp, a book and one small object is plenty, and waking to a calm room is worth the two minutes it takes."
+      },
+      {
+        "type": "paragraph",
+        "text": "The one thing worth putting back is a clock. Leaving the phone to charge in another room is far easier when something else is doing the waking."
+      },
+      {
+        "type": "shoplist",
+        "label": "Clock inspiration",
+        "slugs": [
+          "dreamsky-wooden-alarm-clock"
+        ]
       }
     ]
   },

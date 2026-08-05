@@ -8,20 +8,20 @@ _Last generated: 2026-08-05_
 
 ## At a glance
 
-- **44 products** in the shop
-- By kind: Lighting 3 · Sofas 3 · Storage 2 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 5 · Window 1 · Mirrors 2 · Throws 3
-- Missing a photo: **44** · missing a price: **44** · no rooms set: **0**
+- **55 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 2
+- Missing a photo: **55** · missing a price: **55** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Total |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 3 | 3 | 2 | 2 | 6 | 12 | — | 2 | 5 | 1 | 2 | 3 | 41 |
-| **Bedroom** | 3 | — | 1 | 2 | 6 | 12 | 3 | 2 | 5 | 1 | 2 | 3 | 40 |
-| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | 11 |
-| **Entryway** | — | — | 2 | 1 | 2 | — | — | 2 | 2 | — | 2 | — | 11 |
-| **Home Office** | 2 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | 12 |
-| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | 2 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Total |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 2 | 51 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 2 | 51 |
+| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | 11 |
+| **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | 15 |
+| **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | 15 |
+| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | — | 2 |
 
 ## The catalogue
 
@@ -50,6 +50,38 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A standing lamp with a fabric shade and a warm bulb included, switched with a foot pedal so you never have to reach for it. It stands beside a chair or a sofa without taking much floor.
+
+**Fenmzee Pull-Chain Bedside Lamps**  
+`fenmzee-pull-chain-bedside-lamps` · ASIN `B0D53D4JWT`  
+Rooms: Bedroom, Living Room, Home Office  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A pair of bedside lamps worked by a pull chain, which steps the light through three temperatures — warm for the evening, cooler for reading. Each base carries a spare socket, and the bulbs come in the box.
+
+**Fenmzee Touch Bedside Lamp**  
+`fenmzee-touch-bedside-lamp` · ASIN `B0BZXNSW5K`  
+Rooms: Bedroom, Living Room, Home Office  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A bedside lamp dimmed by touching the base, through three levels from a low night glow up to enough light to read by. It carries USB-A, USB-C and a spare socket, so the phone charges without a second adapter on the table. Bulb included.
+
+**EDISHINE Wooden Tripod Table Lamp**  
+`edishine-wooden-tripod-table-lamp` · ASIN `B0BZTT3MKR`  
+Rooms: Bedroom, Living Room, Home Office  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A small table lamp on a wooden tripod under a linen-look shade, light enough to move around and braced widely enough not to tip. It takes a few minutes to assemble, and the bulb is bought separately.
+
+**Seealle Ceramic Table Lamps**  
+`seealle-ceramic-table-lamps` · ASIN `B0G2MGMMF3`  
+Rooms: Bedroom, Living Room  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A pair of ceramic lamps on slim metal stems under linen-look shades, sold together so both sides of a bed can match. They fit together without tools, and the bulb is bought separately.
 
 ### Sofas
 
@@ -94,6 +126,22 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Dining Room Inspiration
 
 > A long sideboard made up of three separate cabinets, with fluted arched doors and shelves that sit at three heights. It comes flat and takes a couple of hours to build with a second pair of hands, and it clears the floor enough underneath for a robot vacuum.
+
+**Xixini Fluted 9-Drawer Dresser**  
+`xixini-fluted-dresser` · ASIN `B0DQKQGXTT`  
+Rooms: Bedroom, Living Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A wide chest with a rippled fluted front and splayed legs, its nine drawers deep enough to swallow a season of folding. The top is braced to take a lamp and a tray, and an anti-tip strap is in the box.
+
+**EliteSet Curved 9-Drawer Dresser**  
+`eliteset-curved-dresser` · ASIN `B0FSCLP54K`  
+Rooms: Bedroom, Living Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A nine-drawer chest with rounded corners rather than sharp ones, raised on adjustable legs with enough clearance underneath for a robot vacuum. It arrives in two boxes and takes about an hour to build.
 
 ### Chairs
 
@@ -347,6 +395,14 @@ Appears in: Home Decor Inspiration, Living Room Inspiration
 
 > Three small ceramic vases in three different shapes, made to stand as a group rather than alone. They hold water, so cut stems work as well as dried ones, and each is small enough to sit on a coffee table without crowding it.
 
+**DreamSky Wooden Alarm Clock**  
+`dreamsky-wooden-alarm-clock` · ASIN `B0DPYZ68GK`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A plug-in bedside clock in a wooden case, with a display that dims through six levels down to something you can sleep beside. The alarm volume adjusts as well, and a battery holds the alarm and the settings through a power cut.
+
 ### Window
 
 **KLOGTSIND Magnetic Curtain Tiebacks**  
@@ -375,6 +431,22 @@ Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A full-length mirror with an irregular outline and a wooden frame wrapped in padded fabric, so the edge reads as soft rather than hard. It can lean against a wall or be hung, and it is tall enough to dress in front of.
 
+**Riskioir Arched Full-Length Mirror**  
+`riskioir-arched-full-length-mirror` · ASIN `B0G7TV87TQ`  
+Rooms: Bedroom, Living Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A tall arched floor mirror in a slim aluminium frame, made to lean on its stand or hang flat against the wall. The glass is backed with a safety film, so a knock cracks it rather than scattering it.
+
+**BEAUTYPEAK Rectangle Full-Length Mirror**  
+`beautypeak-rectangle-full-length-mirror` · ASIN `B0DXKWBDGS`  
+Rooms: Bedroom, Living Room, Entryway  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A full-length mirror squared off rather than arched, in a thin aluminium frame. It leans, stands on its own bracket or mounts to the wall, and the tempered glass carries the same anti-shatter backing.
+
 ### Throws
 
 **SAMIAH LUXE Chunky Knit Throw**  
@@ -400,6 +472,24 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
 
 > A faux fur throw with the same raised wave on the face and a fleece backing, finished in a tonal wash rather than a flat colour. Like the others it comes compressed, so a wash and a low tumble bring it back to full loft.
+
+### Nightstands
+
+**Aitjunz Bentwood Nightstand**  
+`aitjunz-bentwood-nightstand` · ASIN `B0DKJS5M3P`  
+Rooms: Bedroom, Living Room  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A bedside table with two handle-less drawers and an open shelf above them, its edges bent and rounded rather than cut square. A charging station sits at the back with two sockets and two USB ports, and a cable hole keeps the leads out of sight.
+
+**LEYAOYAO Fluted Nightstand**  
+`leyaoyao-fluted-nightstand` · ASIN `B0FP2MTJG9`  
+Rooms: Bedroom, Living Room  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A bedside table with two deep drawers behind a fluted front, wide enough to hold a lamp and still leave the top usable. It carries the same built-in charging station — two sockets, two USB ports and a hole at the back for the cable.
 
 ## Gaps worth filling
 
