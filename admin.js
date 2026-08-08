@@ -29,7 +29,7 @@
   // the big pieces first, then the floor, the soft things, the light, and
   // the finishing touches. Anything not listed follows, alphabetically.
   var KIND_ORDER = [
-    "Beds", "Mattresses", "Bed Sets", "Sofas", "Chairs", "Storage", "Nightstands", "Rugs",
+    "Beds", "Mattresses", "Bed Sets", "Dining Tables", "Dining Chairs", "Sofas", "Chairs", "Storage", "Nightstands", "Rugs",
     "Bedding", "Throws", "Textiles",
     "Lighting", "Window", "Mirrors", "Greenery", "Decor"
   ];

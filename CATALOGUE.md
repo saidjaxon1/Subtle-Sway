@@ -8,20 +8,20 @@ _Last generated: 2026-08-08_
 
 ## At a glance
 
-- **65 products** in the shop
-- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 4 · Mattresses 4 · Bed Sets 1
-- Missing a photo: **65** · missing a price: **65** · no rooms set: **0**
+- **72 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 4 · Mattresses 4 · Bed Sets 1 · Dining Tables 6 · Dining Chairs 1
+- Missing a photo: **72** · missing a price: **72** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Bed Sets | Total |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | 52 |
-| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 4 | 4 | 1 | 61 |
-| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | — | 11 |
-| **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | 15 |
-| **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | 15 |
-| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | — | — | — | — | 2 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Bed Sets | Dining Tables | Dining Chairs | Total |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | — | — | 52 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 4 | 4 | 1 | — | — | 61 |
+| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | — | 6 | 1 | 18 |
+| **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | — | — | 15 |
+| **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | — | — | 15 |
+| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | — | — | — | — | 6 | 1 | 9 |
 
 ## The catalogue
 
@@ -576,6 +576,66 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Bedroom Inspiration
 
 > An adjustable base sold together with its mattress, so the two arrive matched to each other. The head and the foot raise on a remote with saved positions, and the base adds a massage setting, USB sockets and a light underneath. It carries a twenty-five year warranty and ships in three boxes, which may not arrive on the same day.
+
+### Dining Tables
+
+**POVISON Sintered Stone Round Dining Table**  
+`povison-sintered-stone-dining-table` · ASIN `B0DJ6WYTGY`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A round table with a sintered stone top on a curved steel base. Sintered stone takes heat and resists oil and staining, so a hot dish set down on it is not a crisis. It is heavy — three hundred pounds — and comes in two packages that may not arrive together; lifting the top onto the base takes two people.
+
+**MECHYIN Round Dining Table with Shelf**  
+`mechyin-round-dining-table` · ASIN `B0FFLXKPLR`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A round table on an X-shaped steel base with a shelf underneath for the things a dining room collects. The top is sealed board, resistant to heat, scratches and water, and it comes as two panels rather than four, so there are fewer seams across the surface.
+
+**LITTLE TREE Rectangular Dining Table**  
+`little-tree-rectangular-dining-table` · ASIN `B0DTNX2SLV`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A rectangular table on heavy steel legs, with a thick engineered-wood top finished to resist scratches and wipe down with a damp cloth. The legs are set in from the corners, so chairs still tuck underneath.
+
+**Tribesigns Fluted Round Dining Table**  
+`tribesigns-fluted-round-dining-table` · ASIN `B0DX24QC16`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A round table with a fluted base and a textured board top on a metal frame. The feet adjust for floors that are not quite level, and it is rated to hold three hundred pounds.
+
+**Devoko Acacia Wood Dining Table**  
+`devoko-acacia-dining-table` · ASIN `B0BS6C9CMG`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> Solid acacia timber rather than a board material — over two inches thick, sanded smooth, on painted steel legs. It is treated to stand outdoors as well as in, though it wants oiling now and then if it lives outside. One person can put it together in about ten minutes.
+
+**ONBRILL Pedestal Round Dining Table**  
+`onbrill-pedestal-dining-table` · ASIN `B0GD1BS51Q`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A round table on a square pedestal, so there are no legs at the corners to work a chair around. The top is a thick engineered board, and the foot of the base is rounded off rather than left square.
+
+### Dining Chairs
+
+**RIVOVA Linen Dining Chairs**  
+`rivova-linen-dining-chairs` · ASIN `B0DDBQFCL7`  
+Rooms: Dining Room, Kitchen  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Dining Room Inspiration
+
+> A set of six upholstered chairs in linen, with a curved back and a deep foam seat on solid wood legs. Each takes about ten minutes to assemble, and the covers are spot-cleaned rather than taken off.
 
 ## Gaps worth filling
 
