@@ -521,11 +521,38 @@
       },
       {
         "type": "paragraph",
-        "text": "A simple, low bed frame matters far more than anything decorative. Centre it on the calmest wall, leave enough room to walk on either side, and let it anchor everything else in the room. Low frames keep the sightlines open, so the room reads as calm rather than crowded."
+        "text": "The bed matters far more than anything decorative in this room, so it is the thing worth settling first. Centre it on the calmest wall, leave enough room to walk on either side, and let it anchor everything else."
       },
       {
         "type": "paragraph",
-        "text": "Beyond the frame, put the money into the mattress and the bedding rather than the headboard. They are what you actually feel."
+        "text": "The frame and the mattress are usually two separate purchases, and occasionally one — so each list below says plainly what is and is not in the box. Of the two, the mattress is the one you actually feel every night."
+      },
+      {
+        "type": "shoplist",
+        "label": "Bed frame inspiration",
+        "note": "Frames only. A mattress is not included with any of these, and none of them need a box spring.",
+        "slugs": [
+          "allewie-lift-up-storage-bed",
+          "vecelo-upholstered-storage-bed",
+          "allewie-channel-tufted-storage-bed",
+          "t4tream-fluted-storage-bed"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Mattress inspiration",
+        "note": "Mattresses only. No frame is included — each one needs a frame or a base of its own to sit on.",
+        "slugs": [
+          "casper-original-memory-foam-mattress"
+        ]
+      },
+      {
+        "type": "shoplist",
+        "label": "Bed and mattress together",
+        "note": "Base and mattress in one purchase — the only listing here that arrives complete, with nothing left to buy separately.",
+        "slugs": [
+          "sven-son-adjustable-base-and-mattress"
+        ]
       },
       {
         "type": "heading",
@@ -619,7 +646,8 @@
         "label": "Bedside table inspiration",
         "slugs": [
           "aitjunz-bentwood-nightstand",
-          "leyaoyao-fluted-nightstand"
+          "leyaoyao-fluted-nightstand",
+          "t4tream-fluted-nightstand"
         ]
       },
       {

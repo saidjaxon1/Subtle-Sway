@@ -1080,6 +1080,12 @@
                 el("span", { class: "shoplist-chevron", "aria-hidden": "true" })
               ]));
 
+              // An optional line of plain fact about what is and is not in the
+              // box — a bed frame arrives without a mattress, and the other way
+              // round. It sits inside the list so it is read with the products.
+              var note = (block.note || "").trim();
+              if (note) details.appendChild(el("p", { class: "shoplist-note" }, [note]));
+
               var ul = el("ul", { class: "shoplist-items" });
               listed.forEach(function (p) {
                 ul.appendChild(el("li", null, [

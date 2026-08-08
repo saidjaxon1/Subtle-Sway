@@ -1558,6 +1558,19 @@ main > .eyebrow::before,
   letter-spacing: 0.01em;
 }
 
+/* What is, and is not, in the box. Set apart from the product names so it
+   reads as a fact about the list rather than a line of copy. */
+.shoplist-note {
+  margin: 0;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  background: var(--bg);
+  border-top: 1px solid var(--hairline);
+}
+
 .shoplist-items {
   list-style: none;
   padding: 0 1.5rem 0.4rem;

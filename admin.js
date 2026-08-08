@@ -29,7 +29,7 @@
   // the big pieces first, then the floor, the soft things, the light, and
   // the finishing touches. Anything not listed follows, alphabetically.
   var KIND_ORDER = [
-    "Sofas", "Chairs", "Storage", "Nightstands", "Rugs",
+    "Beds", "Mattresses", "Bed Sets", "Sofas", "Chairs", "Storage", "Nightstands", "Rugs",
     "Bedding", "Throws", "Textiles",
     "Lighting", "Window", "Mirrors", "Greenery", "Decor"
   ];
@@ -1524,6 +1524,20 @@
       var labelIn = el("input", { type: "text", value: block.label || "", placeholder: "Group heading — e.g. Sofas" });
       labelIn.addEventListener("input", function () { block.label = labelIn.value; });
       body.appendChild(labelIn);
+
+      // Optional: one line of plain fact about what is not in the box — a bed
+      // frame comes without a mattress, a mattress without a frame. Left empty
+      // on lists where there is nothing to warn about.
+      var noteIn = el("input", {
+        type: "text",
+        value: block.note || "",
+        placeholder: "Note (optional) — e.g. Frames only. A mattress is not included."
+      });
+      noteIn.addEventListener("input", function () {
+        var value = noteIn.value.trim();
+        if (value) block.note = noteIn.value; else delete block.note;
+      });
+      body.appendChild(noteIn);
 
       block.slugs.forEach(function (slug, si) {
         var prod = state.products.data.filter(function (p) { return p.slug === slug; })[0];
