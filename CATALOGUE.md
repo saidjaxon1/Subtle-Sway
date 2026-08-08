@@ -575,7 +575,7 @@ Rooms: Bedroom
 Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
 Appears in: Bedroom Inspiration
 
-> An adjustable base sold together with its mattress, so the two arrive matched to each other. The head and the foot raise on a remote with saved positions, and the base adds a massage setting, USB sockets and a light underneath. It carries a twenty-five year warranty and ships in three boxes, which may not arrive on the same day.
+> An adjustable base offered together with a mattress as a bundle, chosen from the options on the listing. The head and the foot raise on a remote with saved positions, and the base adds a massage setting, USB sockets and a light underneath. It carries a twenty-five year warranty and ships in three boxes, which may not arrive on the same day.
 
 ### Dining Tables
 
