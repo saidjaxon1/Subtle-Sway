@@ -8,16 +8,16 @@ _Last generated: 2026-08-08_
 
 ## At a glance
 
-- **62 products** in the shop
-- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 4 · Mattresses 1 · Bed Sets 1
-- Missing a photo: **62** · missing a price: **62** · no rooms set: **0**
+- **65 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 4 · Mattresses 4 · Bed Sets 1
+- Missing a photo: **65** · missing a price: **65** · no rooms set: **0**
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Bed Sets | Total |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | 52 |
-| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 4 | 1 | 1 | 58 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 4 | 4 | 1 | 61 |
 | **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | — | 11 |
 | **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | 15 |
 | **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | 15 |
@@ -542,6 +542,30 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Bedroom Inspiration
 
 > A memory foam mattress in a medium-firm feel, built in three layers with firmer foam under the hips and lower back. The open-cell top layer is made to move air rather than hold it, and it ships compressed in a box with a hundred-night trial.
+
+**Nectar Memory Foam Mattress**  
+`nectar-memory-foam-mattress` · ASIN `B0DCXFXGBM`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A memory foam mattress built up in five layers under a cooling cover, with contouring foam over a firmer support layer beneath it. Made without fibreglass, it arrives rolled in a box and takes about a day to reach full shape, and the trial period runs a whole year.
+
+**Casper Element Mattress**  
+`casper-element-mattress` · ASIN `B085H466BX`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> The plainest construction Casper makes — two layers rather than three, in a medium feel with no zoning through the middle. The same open-cell foam moves air rather than holding it, and the hundred-night trial applies.
+
+**Novilla Bliss Gel Memory Foam Mattress**  
+`novilla-bliss-gel-memory-foam-mattress` · ASIN `B083YYBNF9`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A gel memory foam mattress in four layers, with the gel worked into the top so it carries heat away instead of trapping it. The edges are reinforced to hold their shape when you sit on the side, and it ships rolled, taking up to three days to expand fully.
 
 ### Bed Sets
 
