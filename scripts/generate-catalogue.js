@@ -11,8 +11,14 @@ var fs = require("fs");
 var path = require("path");
 
 var root = path.join(__dirname, "..");
-var products = JSON.parse(fs.readFileSync(path.join(root, "products.json"), "utf8"));
+var allProducts = JSON.parse(fs.readFileSync(path.join(root, "products.json"), "utf8"));
 var posts = JSON.parse(fs.readFileSync(path.join(root, "posts.json"), "utf8"));
+
+// Flagged products have a known problem and are off the site entirely. They
+// are counted and listed separately at the end, never mixed into the figures
+// for what the shop can actually furnish a room with.
+var flagged = allProducts.filter(function (p) { return p.flagged; });
+var products = allProducts.filter(function (p) { return !p.flagged; });
 
 var ROOMS = ["Living Room", "Bedroom", "Dining Room", "Entryway", "Home Office", "Kitchen"];
 
@@ -61,6 +67,7 @@ lines.push("- By kind: " + kinds.map(function (kind) {
   return kind + " " + products.filter(function (p) { return p.subcategory === kind; }).length;
 }).join(" · "));
 lines.push("- Missing a photo: **" + noImage + "** · missing a price: **" + noPrice + "** · no rooms set: **" + noRooms + "**");
+if (flagged.length) lines.push("- **" + flagged.length + " flagged** and held off the site — see the end of this file");
 lines.push("");
 
 /* Room coverage */
@@ -98,23 +105,53 @@ kinds.forEach(function (kind) {
   });
 });
 
-/* Gaps */
-lines.push("## Gaps worth filling");
+/* Gaps — sections of an article that still have no product to point at. */
+var gaps = [];
+posts.forEach(function (post) {
+  var heading = null, hasList = false;
+  (post.content || []).forEach(function (block) {
+    if (block.type === "heading") {
+      if (heading && !hasList) gaps.push({ post: post.title, heading: heading });
+      heading = block.text;
+      hasList = false;
+    }
+    if (block.type === "shoplist" && (block.slugs || []).length) hasList = true;
+  });
+  if (heading && !hasList) gaps.push({ post: post.title, heading: heading });
+});
+
+lines.push("## Sections with nothing to link to");
 lines.push("");
-lines.push("Pieces the articles talk about that the shop does not carry yet, most useful first:");
-lines.push("");
-lines.push("| Piece | Why it matters |");
-lines.push("|---|---|");
-lines.push("| Table lamp | Every room article has a lighting section; the shop has one floor lamp |");
-lines.push("| Throw or blanket | Named in the texture and cosy sections — cheap and rarely returned |");
-lines.push("| Cushion covers | The easiest way to carry an accent colour, and an easy first sale |");
-lines.push("| Nightstand | The bedroom article's bedside advice has nothing to link to |");
-lines.push("| Side table | The reading corner and living-room sections both call for one |");
-lines.push("| Bed frame | The bedroom article opens with the bed |");
-lines.push("| Baskets | Named in every storage section |");
-lines.push("| Dining table and chairs | The dining article's first two sections have no products |");
-lines.push("| Pendant light | The dining lighting section has no product |");
+if (gaps.length) {
+  lines.push("Every article section that currently carries no product list. Some are advice");
+  lines.push("sections that need none; the rest are gaps worth filling.");
+  lines.push("");
+  lines.push("| Article | Section |");
+  lines.push("|---|---|");
+  gaps.forEach(function (gap) { lines.push("| " + gap.post + " | " + gap.heading + " |"); });
+} else {
+  lines.push("Every section of every article has at least one product.");
+}
 lines.push("");
 
+/* Flagged */
+if (flagged.length) {
+  lines.push("## Flagged — held off the site");
+  lines.push("");
+  lines.push("Something is known to be wrong with these. They are stripped out as the site");
+  lines.push("loads, so they appear in no article, no list, no search and no sitemap. They stay");
+  lines.push("here so the problem is recorded rather than forgotten.");
+  lines.push("");
+  flagged.forEach(function (p) {
+    lines.push("**" + p.name + "**  ");
+    lines.push("`" + p.slug + "` · ASIN `" + asin(p.affiliateLink) + "` · was: " + (p.subcategory || "_no kind_") + "  ");
+    lines.push("Problem: " + (p.issue ? p.issue : "_not recorded yet_"));
+    lines.push("");
+  });
+}
+
 fs.writeFileSync(path.join(root, "CATALOGUE.md"), lines.join("\n"));
-console.log("CATALOGUE.md written — " + products.length + " products, " + kinds.length + " kinds");
+console.log(
+  "CATALOGUE.md written — " + products.length + " products, " + kinds.length + " kinds" +
+  (flagged.length ? ", " + flagged.length + " flagged" : "")
+);

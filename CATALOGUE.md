@@ -8,16 +8,17 @@ _Last generated: 2026-08-10_
 
 ## At a glance
 
-- **72 products** in the shop
-- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 5 · Mattresses 4 · Dining Tables 6 · Dining Chairs 1
-- Missing a photo: **72** · missing a price: **72** · no rooms set: **0**
+- **71 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 2 · Nightstands 3 · Beds 5 · Mattresses 4 · Dining Tables 6 · Dining Chairs 1
+- Missing a photo: **71** · missing a price: **71** · no rooms set: **0**
+- **1 flagged** and held off the site — see the end of this file
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Dining Tables | Dining Chairs | Total |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | — | 52 |
-| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 5 | 4 | — | — | 61 |
+| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 2 | 3 | — | — | — | — | 51 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 2 | 3 | 5 | 4 | — | — | 60 |
 | **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | 6 | 1 | 18 |
 | **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | — | 15 |
 | **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | — | 15 |
@@ -449,14 +450,6 @@ Appears in: Bedroom Inspiration
 
 ### Throws
 
-**SAMIAH LUXE Chunky Knit Throw**  
-`samiah-luxe-chunky-knit-throw` · ASIN `B08RRPQHLC`  
-Rooms: Living Room, Bedroom  
-Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
-Appears in: Home Decor Inspiration, Living Room Inspiration, Bedroom Inspiration
-
-> A chunky cable-knit throw in polyester chenille, heavy enough to hold its shape over a sofa arm and soft enough to actually pull over you. It washes on a gentle cycle without going out of shape, and carries OEKO-TEX certification for the substances that standard covers.
-
 **blunique Faux Fur Throw**  
 `blunique-faux-fur-throw` · ASIN `B0D9VDW7N8`  
 Rooms: Living Room, Bedroom  
@@ -635,18 +628,29 @@ Appears in: Dining Room Inspiration
 
 > A set of six upholstered chairs in linen, with a curved back and a deep foam seat on solid wood legs. Each takes about ten minutes to assemble, and the covers are spot-cleaned rather than taken off.
 
-## Gaps worth filling
+## Sections with nothing to link to
 
-Pieces the articles talk about that the shop does not carry yet, most useful first:
+Every article section that currently carries no product list. Some are advice
+sections that need none; the rest are gaps worth filling.
 
-| Piece | Why it matters |
+| Article | Section |
 |---|---|
-| Table lamp | Every room article has a lighting section; the shop has one floor lamp |
-| Throw or blanket | Named in the texture and cosy sections — cheap and rarely returned |
-| Cushion covers | The easiest way to carry an accent colour, and an easy first sale |
-| Nightstand | The bedroom article's bedside advice has nothing to link to |
-| Side table | The reading corner and living-room sections both call for one |
-| Bed frame | The bedroom article opens with the bed |
-| Baskets | Named in every storage section |
-| Dining table and chairs | The dining article's first two sections have no products |
-| Pendant light | The dining lighting section has no product |
+| Home Decor Inspiration | Hold the palette to three quiet tones |
+| Home Decor Inspiration | Buy slowly, and leave space |
+| Living Room Inspiration | Keep the palette calm and repeat it |
+| Living Room Inspiration | Leave a little space empty |
+| Bedroom Inspiration | Hold the palette quiet |
+| Dining Room Inspiration | Hang the light low and keep it warm |
+| Dining Room Inspiration | Leave room to pull the chairs out |
+| Dining Room Inspiration | Repeat one material, then one soft one |
+| Dining Room Inspiration | Style the table with restraint |
+
+## Flagged — held off the site
+
+Something is known to be wrong with these. They are stripped out as the site
+loads, so they appear in no article, no list, no search and no sitemap. They stay
+here so the problem is recorded rather than forgotten.
+
+**SAMIAH LUXE Chunky Knit Throw**  
+`samiah-luxe-chunky-knit-throw` · ASIN `B08RRPQHLC` · was: Throws  
+Problem: _not recorded yet_

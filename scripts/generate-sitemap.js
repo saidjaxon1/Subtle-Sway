@@ -13,7 +13,11 @@ var BASE = "https://subtlesway.com/";
 var root = path.join(__dirname, "..");
 
 var posts = JSON.parse(fs.readFileSync(path.join(root, "posts.json"), "utf8"));
-var products = JSON.parse(fs.readFileSync(path.join(root, "products.json"), "utf8"));
+// Flagged products have a known problem and are stripped out by main.js before
+// anything renders, so their pages do not exist as far as a visitor is
+// concerned. They must not be advertised to search engines either.
+var products = JSON.parse(fs.readFileSync(path.join(root, "products.json"), "utf8"))
+  .filter(function (product) { return !product.flagged; });
 var today = new Date().toISOString().slice(0, 10);
 
 // XML-escape a URL or value.

@@ -56,7 +56,7 @@
     editIndex: -1,       // -1 = adding a new item
     blocks: [],          // working copy of a post's content blocks while editing
     extraImages: [],     // working copy of a product's extra photos while editing
-    listFilter: { q: "", cat: null, room: null }  // search, kind and room filters on the list views
+    listFilter: { q: "", cat: null, room: null, flagged: false }  // search, kind, room and "needs attention" filters
   };
 
   /* ---------- DOM helpers ---------- */
@@ -283,7 +283,7 @@
     $("list-title").textContent = { products: "Products", posts: "Articles", catalogue: "Catalogue", categories: "Categories" }[tab];
     $("form-view").hidden = true;
     $("list-view").hidden = false;
-    state.listFilter = { q: "", cat: null, room: null };
+    state.listFilter = { q: "", cat: null, room: null, flagged: false };
     buildListControls();
     renderList();
   }
@@ -309,6 +309,32 @@
       state.listFilter.q = search.value;
       renderList();
     });
+
+    // Products held off the site sit behind their own switch. They are out of
+    // the way by default — but the count is on the button, so a problem left
+    // unfixed keeps announcing itself.
+    var statusRow = null;
+    if (state.tab === "products") {
+      statusRow = el("div", { class: "picker-chips" });
+      var renderStatusChips = function () {
+        statusRow.textContent = "";
+        var broken = state.products.data.filter(function (p) { return p.flagged; }).length;
+        [["On the site", false], ["Needs attention" + (broken ? " · " + broken : ""), true]].forEach(function (pair) {
+          var button = el("button", {
+            type: "button",
+            class: "chip" + (pair[1] && broken ? " chip-alert" : ""),
+            "aria-pressed": String(state.listFilter.flagged === pair[1])
+          }, [pair[0]]);
+          button.addEventListener("click", function () {
+            state.listFilter.flagged = pair[1];
+            renderStatusChips();
+            renderList();
+          });
+          statusRow.appendChild(button);
+        });
+      };
+      renderStatusChips();
+    }
 
     // Products carry room tags, so they get a room filter above the kind one.
     // A product tagged for several rooms shows under each of them, and a
@@ -357,6 +383,10 @@
     renderChips();
 
     wrap.appendChild(search);
+    if (statusRow) {
+      wrap.appendChild(el("span", { class: "finder-label" }, ["Status"]));
+      wrap.appendChild(statusRow);
+    }
     if (roomRow) {
       wrap.appendChild(el("span", { class: "finder-label" }, ["Room"]));
       wrap.appendChild(roomRow);
@@ -484,6 +514,9 @@
       .map(function (item, index) { return { item: item, index: index }; })
       .filter(function (entry) {
         var item = entry.item;
+        // Products only: the two sides of the Status switch never mix, so a
+        // flagged piece can't be picked up by mistake while browsing the shop.
+        if (state.tab === "products" && !!item.flagged !== !!state.listFilter.flagged) return false;
         if (cat && norm(item.subcategory) !== norm(cat)) return false;
         // A product with no room set suits every room, so it never filters out.
         // "__any__" is the reverse: show only those general products.
@@ -499,15 +532,22 @@
           .some(function (part) { return norm(part).indexOf(q) !== -1; });
       });
 
-    // Say how much is on screen, and out of how many.
+    // Say how much is on screen, and out of how many. The Status switch splits
+    // the list in two, so the total counts only the side being looked at.
     var label = { products: "Products", posts: "Articles" }[state.tab] || "Items";
-    $("list-title").textContent = entries.length === items.length
-      ? label + " (" + items.length + ")"
-      : label + " (" + entries.length + " of " + items.length + ")";
+    if (state.tab === "products" && state.listFilter.flagged) label = "Needs attention";
+    var pool = state.tab === "products"
+      ? items.filter(function (item) { return !!item.flagged === !!state.listFilter.flagged; })
+      : items;
+    $("list-title").textContent = entries.length === pool.length
+      ? label + " (" + pool.length + ")"
+      : label + " (" + entries.length + " of " + pool.length + ")";
 
     if (!entries.length) {
       list.appendChild(el("li", { class: "admin-empty" }, [
         q ? "Nothing matches that search."
+          : state.tab === "products" && state.listFilter.flagged
+            ? "Nothing is flagged — everything in the shop is live."
           : room === "__any__" ? "Nothing is set to suit every room yet."
           : "Nothing here with those filters."
       ]));
@@ -553,7 +593,9 @@
           el("span", { class: "item-meta" }, [
             isProduct
               // The kind is already the group heading, so it is not repeated here.
-              ? [(item.rooms || []).length ? (item.rooms || []).join(", ") : "every room",
+              // A flagged piece leads with the reason it is being held back.
+              ? [item.flagged ? "OFF THE SITE" + (item.issue ? " — " + item.issue : "") : null,
+                 (item.rooms || []).length ? (item.rooms || []).join(", ") : "every room",
                  item.price || "no price",
                  (item.type || "") === "digital" ? "digital" : null,
                  (item.source || "") === "own" ? "my product" : null]
@@ -1360,6 +1402,12 @@
       });
     });
 
+    // A product with a known problem is held off the site rather than deleted,
+    // so the record — and the reason — survives.
+    var flaggedBox = el("input", { type: "checkbox", id: "f-flagged" });
+    flaggedBox.checked = !!product.flagged;
+    var issueInput = textInput("f-issue", product.issue, "What is wrong with it? e.g. the listing changed");
+
     var form = el("form", { class: "admin-form", novalidate: "" }, [
       field("Name", nameInput),
       state.editIndex !== -1 ? pageLinkField(product, true) : null,
@@ -1395,15 +1443,29 @@
       catFields[0],
       catFields[1],
       field("Description", el("textarea", { id: "f-desc" }, [product.description || ""]), "One short paragraph shown on the product page."),
-      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F"), "Optional — hex codes separated by commas, shown as small circles.")
+      field("Colors", textInput("f-colors", (product.colors || []).join(", "), "#D8CFC0, #5C594F"), "Optional — hex codes separated by commas, shown as small circles."),
+      el("div", { class: "field" }, [
+        el("span", { class: "field-label" }, ["Something wrong with it"]),
+        el("label", { class: "room-option room-option-all" }, [
+          flaggedBox, el("span", null, ["Hold this off the site — it has a problem"])
+        ]),
+        issueInput,
+        el("span", { class: "field-hint" }, ["Tick this and the piece disappears from every article, list, search and the sitemap, but stays here under “Needs attention” so it is not lost. Write down what is wrong so you know what to fix."])
+      ])
     ]);
 
     form.appendChild(formButtons(form, function () {
       var name = $("f-name").value.trim();
       if (!name) return { error: "Give the product a name." };
+      // Only written when actually set, so untouched products keep the shape
+      // they already have in products.json.
+      var flagged = $("f-flagged").checked;
+      var issue = $("f-issue").value.trim();
       return { item: {
         slug: resolveSlug(name),
         name: name,
+        flagged: flagged || undefined,
+        issue: flagged && issue ? issue : undefined,
         price: $("f-price").value.trim(),
         type: $("f-type").value,
         source: $("f-source").value,

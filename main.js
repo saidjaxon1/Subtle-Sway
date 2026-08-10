@@ -255,6 +255,22 @@
     return posts.filter(function (post) { return !isHidden(post); });
   }
 
+  // Products marked "flagged" in the admin have something known to be wrong
+  // with them — a link that no longer resolves, a listing that changed under
+  // us, a description that stopped matching. Unlike a hidden article there is
+  // no preview: a flagged product is wrong, so it is stripped as the JSON
+  // loads and never reaches a page, a list, the search, or the sitemap. The
+  // record stays in products.json so the problem is not simply forgotten.
+  function isFlagged(product) {
+    return !!(product && product.flagged);
+  }
+
+  function loadProducts() {
+    return loadJSON("./products.json").then(function (products) {
+      return (products || []).filter(function (product) { return !isFlagged(product); });
+    });
+  }
+
   function sortNewestFirst(posts) {
     // ISO dates sort correctly as strings.
     return posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
@@ -477,7 +493,7 @@
   function initHome() {
     initReveal();
 
-    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json")])
+    Promise.all([loadProducts(), loadJSON("./posts.json")])
       .then(function (results) {
         var products = results[0];
         var posts = results[1];
@@ -612,7 +628,7 @@
     var relatedSlot = el("div");
     document.querySelector("main").appendChild(relatedSlot);
 
-    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json").catch(function () { return []; })])
+    Promise.all([loadProducts(), loadJSON("./posts.json").catch(function () { return []; })])
       .then(function (results) {
         var products = results[0];
         var allPosts = results[1];
@@ -737,7 +753,7 @@
     var main = document.querySelector("main");
     var slug = getParam("slug");
 
-    Promise.all([loadJSON("./products.json"), loadJSON("./posts.json").catch(function () { return []; })])
+    Promise.all([loadProducts(), loadJSON("./posts.json").catch(function () { return []; })])
       .then(function (results) {
         var products = results[0];
         var allPosts = results[1];
@@ -857,7 +873,7 @@
     var relatedSlot = el("div");
     document.querySelector("main").appendChild(relatedSlot);
 
-    Promise.all([loadJSON("./posts.json"), loadJSON("./products.json").catch(function () { return []; })])
+    Promise.all([loadJSON("./posts.json"), loadProducts().catch(function () { return []; })])
       .then(function (results) {
         var sorted = sortNewestFirst(published(results[0]));
         var allProducts = results[1];
@@ -977,7 +993,7 @@
     var slug = getParam("slug");
 
     // Products are loaded too so "product" blocks always show live data.
-    Promise.all([loadJSON("./posts.json"), loadJSON("./products.json")])
+    Promise.all([loadJSON("./posts.json"), loadProducts()])
       .then(function (results) {
         var posts = results[0];
         var products = results[1];

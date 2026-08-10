@@ -907,6 +907,24 @@ main > .eyebrow::before,
   color: var(--bone);
 }
 
+/* The "Needs attention" chip, only while something is actually flagged.
+   Quiet enough for a calm panel, dark enough to be noticed unpressed. */
+.chip-alert {
+  border-color: #9C5B4A;
+  color: #9C5B4A;
+}
+
+.chip-alert:hover {
+  border-color: #7E4437;
+  color: #7E4437;
+}
+
+.chip-alert[aria-pressed="true"] {
+  background: #9C5B4A;
+  border-color: #9C5B4A;
+  color: var(--bone);
+}
+
 .filter-row.sub .chip {
   font-size: 0.65rem;
   padding: 0.45rem 0.9rem;
