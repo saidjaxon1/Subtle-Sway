@@ -525,7 +525,7 @@
       },
       {
         "type": "paragraph",
-        "text": "The frame and the mattress are usually two separate purchases, and occasionally one — so each list below says plainly what is and is not in the box. Of the two, the mattress is the one you actually feel every night."
+        "text": "The frame and the mattress are two separate purchases, so each list below says plainly what is and is not in the box. Of the two, the mattress is the one you actually feel every night."
       },
       {
         "type": "shoplist",
@@ -548,14 +548,6 @@
           "nectar-memory-foam-mattress",
           "casper-element-mattress",
           "novilla-bliss-gel-memory-foam-mattress"
-        ]
-      },
-      {
-        "type": "shoplist",
-        "label": "Base and mattress on one listing",
-        "note": "The listing the link opens is the base bundled with a mattress — but the same page also sells the base on its own. Check which configuration is selected before ordering. The bundle ships in three separate boxes.",
-        "slugs": [
-          "sven-son-adjustable-base-and-mattress"
         ]
       },
       {

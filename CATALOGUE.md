@@ -8,20 +8,20 @@ _Last generated: 2026-08-10_
 
 ## At a glance
 
-- **73 products** in the shop
-- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 5 · Mattresses 4 · Bed Sets 1 · Dining Tables 6 · Dining Chairs 1
-- Missing a photo: **73** · missing a price: **73** · no rooms set: **0**
+- **72 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 5 · Mattresses 4 · Dining Tables 6 · Dining Chairs 1
+- Missing a photo: **72** · missing a price: **72** · no rooms set: **0**
 
 ## What each room can be furnished with
 
-| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Bed Sets | Dining Tables | Dining Chairs | Total |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | — | — | 52 |
-| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 5 | 4 | 1 | — | — | 62 |
-| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | — | 6 | 1 | 18 |
-| **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | — | — | 15 |
-| **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | — | — | 15 |
-| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | — | — | — | — | 6 | 1 | 9 |
+| Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Dining Tables | Dining Chairs | Total |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | — | 52 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 5 | 4 | — | — | 61 |
+| **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | 6 | 1 | 18 |
+| **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | — | 15 |
+| **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | — | 15 |
+| **Kitchen** | — | — | — | — | 2 | — | — | — | — | — | — | — | — | — | — | 6 | 1 | 9 |
 
 ## The catalogue
 
@@ -574,16 +574,6 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Bedroom Inspiration
 
 > A gel memory foam mattress in four layers, with the gel worked into the top so it carries heat away instead of trapping it. The edges are reinforced to hold their shape when you sit on the side, and it ships rolled, taking up to three days to expand fully.
-
-### Bed Sets
-
-**Sven & Son Adjustable Base and Mattress**  
-`sven-son-adjustable-base-and-mattress` · ASIN `B07MHWDTX9`  
-Rooms: Bedroom  
-Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
-Appears in: Bedroom Inspiration
-
-> An adjustable base offered together with a mattress as a bundle, chosen from the options on the listing. The head and the foot raise on a remote with saved positions, and the base adds a massage setting, USB sockets and a light underneath. It carries a twenty-five year warranty and ships in three boxes, which may not arrive on the same day.
 
 ### Dining Tables
 
