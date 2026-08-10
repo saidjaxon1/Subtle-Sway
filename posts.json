@@ -552,8 +552,8 @@
       },
       {
         "type": "shoplist",
-        "label": "Bed and mattress together",
-        "note": "An adjustable base offered together with a mattress. This listing sells several configurations from the same page, so check which one is selected before ordering — the bundle ships in three separate boxes.",
+        "label": "Base and mattress on one listing",
+        "note": "The listing the link opens is the base bundled with a mattress — but the same page also sells the base on its own. Check which configuration is selected before ordering. The bundle ships in three separate boxes.",
         "slugs": [
           "sven-son-adjustable-base-and-mattress"
         ]
