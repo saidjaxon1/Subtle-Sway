@@ -8,16 +8,16 @@ _Last generated: 2026-08-10_
 
 ## At a glance
 
-- **72 products** in the shop
-- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 4 · Mattresses 4 · Bed Sets 1 · Dining Tables 6 · Dining Chairs 1
-- Missing a photo: **72** · missing a price: **72** · no rooms set: **0**
+- **73 products** in the shop
+- By kind: Lighting 7 · Sofas 3 · Storage 4 · Chairs 2 · Rugs 6 · Textiles 12 · Bedding 3 · Greenery 2 · Decor 6 · Window 1 · Mirrors 4 · Throws 3 · Nightstands 3 · Beds 5 · Mattresses 4 · Bed Sets 1 · Dining Tables 6 · Dining Chairs 1
+- Missing a photo: **73** · missing a price: **73** · no rooms set: **0**
 
 ## What each room can be furnished with
 
 | Room | Lighting | Sofas | Storage | Chairs | Rugs | Textiles | Bedding | Greenery | Decor | Window | Mirrors | Throws | Nightstands | Beds | Mattresses | Bed Sets | Dining Tables | Dining Chairs | Total |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Living Room** | 7 | 3 | 4 | 2 | 6 | 12 | — | 2 | 5 | 1 | 4 | 3 | 3 | — | — | — | — | — | 52 |
-| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 4 | 4 | 1 | — | — | 61 |
+| **Bedroom** | 7 | — | 3 | 2 | 6 | 12 | 3 | 2 | 6 | 1 | 4 | 3 | 3 | 5 | 4 | 1 | — | — | 62 |
 | **Dining Room** | — | — | 1 | — | 5 | — | — | — | 4 | 1 | — | — | — | — | — | — | 6 | 1 | 18 |
 | **Entryway** | — | — | 4 | 1 | 2 | — | — | 2 | 2 | — | 4 | — | — | — | — | — | — | — | 15 |
 | **Home Office** | 5 | — | — | 2 | 4 | — | — | 2 | 1 | 1 | — | — | — | — | — | — | — | — | 15 |
@@ -532,6 +532,14 @@ Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _no
 Appears in: Bedroom Inspiration
 
 > A frame with fluted panels across both the headboard and the footboard, and a bench built into the foot of it holding two drawers and two lift-up compartments. Engineered wood over a steel frame; it takes two people to assemble.
+
+**NEW JETO Metal Bed Frame**  
+`new-jeto-metal-bed-frame` · ASIN `B0B8VQLN6Y`  
+Rooms: Bedroom  
+Price: _not set_ · Photo: _none yet_ · Sizes link: _none_ · Colours link: _none_  
+Appears in: Bedroom Inspiration
+
+> A plain steel frame on reinforced rods with centre support legs, raised high enough to keep boxes and cases underneath rather than elsewhere. Steel slats carry the mattress directly, so no box spring is needed, and the edges are polished smooth enough to wipe with a damp cloth.
 
 ### Mattresses
 

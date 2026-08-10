@@ -1464,5 +1464,24 @@
       "Dining Room",
       "Kitchen"
     ]
+  },
+  {
+    "slug": "new-jeto-metal-bed-frame",
+    "name": "NEW JETO Metal Bed Frame",
+    "price": "",
+    "type": "physical",
+    "source": "affiliate",
+    "category": "Home Decor",
+    "subcategory": "Beds",
+    "image": "",
+    "images": [],
+    "affiliateLink": "https://www.amazon.com/NEW-JETO-Frame-Simple-Atmospheric-Platform/dp/B0B8VQLN6Y?pd_rd_w=DGHNG&content-id=amzn1.sym.9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_p=9bef5913-5870-4504-8883-3ba89d7f8e39&pf_rd_r=6D12WCK7R7GV6R3YW9YR&pd_rd_wg=Ud0lx&pd_rd_r=d056aff5-f8e4-47a7-9de1-ed3a943c0d21&pd_rd_i=B0B8VQLN6Y&th=1&linkCode=ll2&tag=homedecorw062-20&linkId=4d28b068e20c67e05ffdb553142f7f1b&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl",
+    "colorsLink": "",
+    "sizesLink": "",
+    "description": "A plain steel frame on reinforced rods with centre support legs, raised high enough to keep boxes and cases underneath rather than elsewhere. Steel slats carry the mattress directly, so no box spring is needed, and the edges are polished smooth enough to wipe with a damp cloth.",
+    "colors": [],
+    "rooms": [
+      "Bedroom"
+    ]
   }
 ]
