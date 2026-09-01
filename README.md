@@ -7,6 +7,12 @@ A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/va
 - `products.json` — all products
 - `posts.json` — all blog posts
 
+> **Before writing anything, read [CONTENT-RULES.md](CONTENT-RULES.md).**
+> This file explains how the site works. That one explains what may go on it —
+> what the copy may and may not claim, how affiliate links must be stored, and
+> what never appears. Every rule in it is there because breaking it would
+> mislead a reader or break the Amazon Associates agreement.
+
 ---
 
 ## How to add a new product

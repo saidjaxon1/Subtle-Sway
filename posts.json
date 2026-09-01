@@ -915,7 +915,16 @@
       },
       {
         "type": "paragraph",
-        "text": "Between meals, a wooden board, a low bowl of whatever fruit is in season, and one simple vase are enough. A table left mostly clear is more inviting than one dressed for a photograph, and it is ready for the next meal without a tidy-up."
+        "text": "Between meals, a board, whatever fruit is in season, and something to hold a few stems are enough. A table left mostly clear is more inviting than one dressed for a photograph, and it is ready for the next meal without a tidy-up."
+      },
+      {
+        "type": "shoplist",
+        "label": "Table styling inspiration",
+        "slugs": [
+          "carrots-den-ceramic-vase-set",
+          "heart-ceramic-vase-set",
+          "fjsperm-ceramic-vase-set"
+        ]
       }
     ]
   }
