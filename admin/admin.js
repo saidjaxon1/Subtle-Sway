@@ -394,12 +394,13 @@ function productEditor(slug) {
       ${(d.pins || []).length ? d.pins.map((p, i) => `<div class="pin"><b>Pin ${i + 1}: ${esc(p.title)}</b><p class="muted">${esc(p.description)}</p></div>`).join("") : `<p class="muted">Pinterest matni yo'q.</p>`}
       <p class="muted" style="margin:.5rem 0 .25rem">Rasm havolalari (Publish qilingandan keyin ishlaydi):</p>
       ${(d.media || []).filter((m) => m.type === "image" && !m.hidden).map((m) => `<div><code class="u">${esc(`${(S.settings.siteUrl || "").replace(/\/$/, "")}/media/products/${d.slug}/${m.file}-1600.jpg`)}</code></div>`).join("")}
-      <p class="muted" style="margin-top:.5rem">Sahifa: <code class="u">${esc(liveUrl)}</code></p>
+      <p class="muted" style="margin-top:.5rem">Sahifa (doimiy havola — hech qachon o'zgarmaydi): <code class="u">${esc(liveUrl)}</code></p>
     </div>
    </div>
    <div class="sticky">
     <div class="card">
       <h2 style="margin-top:0">Etsy havolasi va Publish</h2>
+      <p class="muted" style="font-size:.8rem;margin-bottom:.75rem">Saytdagi doimiy havola:<br><code class="u">${esc(liveUrl)}</code><br>Nomni o'zgartirsangiz ham bu havola o'zgarmaydi. Pinterest'ga shuni qo'ying.</p>
       <label class="f"><span>Etsy listing havolasi</span><input type="url" id="etsy" value="${esc(d.etsyUrl || "")}" placeholder="https://${esc(shopName() || "shop")}.etsy.com/listing/…"></label>
       <div id="etsy-msg" class="msg"></div>
       <div class="row" style="margin-top:.75rem">
@@ -609,7 +610,7 @@ function productEditor(slug) {
   const unpubBtn = document.getElementById("unpublish");
   if (unpubBtn)
     unpubBtn.onclick = async () => {
-      if (!confirm(`"${d.name}" saytdan olinsinmi? Draft va Etsy havolasi saqlanib qoladi.`)) return;
+      if (!confirm(`"${d.name}" saytdan olinsinmi?\n\nDraft va Etsy havolasi saqlanib qoladi. Eski havola (Pinterest'dagi) buzilmaydi — u katalog sahifasiga yo'naltiriladi.`)) return;
       unpubBtn.disabled = true;
       try {
         collect();
@@ -632,9 +633,9 @@ function productEditor(slug) {
 async function publish(d, etsyUrl, progressEl) {
   const say = (s) => progressEl && (progressEl.textContent = s);
   say("Fayllar ro'yxati olinmoqda…");
-  const [draftTree, pubTree, freshProducts] = await Promise.all([S.drafts.tree(), S.pub.tree(), S.pub.json("data/products.json", [])]);
+  const [draftTree, pubTree, freshProducts, retired] = await Promise.all([S.drafts.tree(), S.pub.tree(), S.pub.json("data/products.json", []), S.pub.json("data/retired.json", [])]);
   const draftForPlan = { ...d, publishedAt: d.publishedAt || today() };
-  const plan = planPublish(draftForPlan, etsyUrl, freshProducts, [...pubTree.keys()], today());
+  const plan = planPublish(draftForPlan, etsyUrl, freshProducts, [...pubTree.keys()], today(), retired);
   const changes = [];
   let i = 0;
   for (const c of plan.copy) {
@@ -647,6 +648,7 @@ async function publish(d, etsyUrl, progressEl) {
   }
   for (const p of plan.remove) changes.push({ path: p, delete: true });
   changes.push({ path: "data/products.json", text: JSON.stringify(plan.products, null, 2) + "\n" });
+  if (plan.retired.length !== retired.length) changes.push({ path: "data/retired.json", text: JSON.stringify(plan.retired, null, 2) + "\n" });
   say("Saytga yozilmoqda…");
   await S.pub.commit(changes, `Publish ${d.slug}`);
   S.products = plan.products;
@@ -654,10 +656,11 @@ async function publish(d, etsyUrl, progressEl) {
 }
 
 async function unpublish(d, quiet = false) {
-  const [pubTree, freshProducts] = await Promise.all([S.pub.tree(), S.pub.json("data/products.json", [])]);
-  const plan = planUnpublish(d.slug, freshProducts, [...pubTree.keys()]);
+  const [pubTree, freshProducts, retired] = await Promise.all([S.pub.tree(), S.pub.json("data/products.json", []), S.pub.json("data/retired.json", [])]);
+  const plan = planUnpublish(d.slug, freshProducts, [...pubTree.keys()], retired);
   const changes = plan.remove.map((p) => ({ path: p, delete: true }));
   changes.push({ path: "data/products.json", text: JSON.stringify(plan.products, null, 2) + "\n" });
+  changes.push({ path: "data/retired.json", text: JSON.stringify(plan.retired, null, 2) + "\n" });
   await S.pub.commit(changes, `Unpublish ${d.slug}`);
   S.products = plan.products;
   const updated = { ...d, status: "draft", updatedAt: new Date().toISOString() };

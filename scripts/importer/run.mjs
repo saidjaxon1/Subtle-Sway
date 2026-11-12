@@ -36,10 +36,23 @@ export async function runImport({ root, target, dryRun = false, only = "", water
   const byId = new Map(existing.map((d) => [d.source?.id, d]));
   const taken = new Set(existing.map((d) => d.slug));
   const summary = { at: now(), dryRun, created: [], updated: [], unchanged: [], skipped: [], missing: [] };
+  const claimed = new Set();
 
   for (const src of found) {
     try {
-      const prev = byId.get(src.id);
+      let prev = byId.get(src.id);
+      if (!prev) {
+        // A renamed or moved folder: if a draft whose folder vanished has the same base
+        // address, take it over so the product keeps its permanent URL (pinned links never break).
+        const base = `${slugify(src.name)}-printable`.replace(/^-/, "");
+        const foundIds = new Set(found.map((f) => f.id));
+        const orphan = existing.find((d) => d.slug === base && !foundIds.has(d.source?.id) && !claimed.has(d.slug));
+        if (orphan) {
+          prev = orphan;
+          log(`↪ ${orphan.source?.id} → ${src.id}: papka ko'chirilgan, havola saqlanadi (/products/${orphan.slug}/)`);
+        }
+      }
+      if (prev) claimed.add(prev.slug);
       const listing = src.listingPath ? parseListing(readAllowed(root, src.listingPath, "utf8")) : null;
       const hashes = {};
       for (const m of src.mockups) hashes[m.name] = hashAllowed(root, m.abs);
@@ -125,7 +138,7 @@ export async function runImport({ root, target, dryRun = false, only = "", water
   if (!only) {
     const ids = new Set(found.map((p) => p.id));
     for (const d of existing) {
-      if (ids.has(d.source?.id)) continue;
+      if (ids.has(d.source?.id) || claimed.has(d.slug)) continue;
       summary.missing.push({ id: d.source?.id, slug: d.slug });
       if (!dryRun && !d.sourceMissing) {
         const flagged = { ...d, sourceMissing: true, updatedAt: now() };

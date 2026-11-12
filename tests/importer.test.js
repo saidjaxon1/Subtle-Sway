@@ -118,3 +118,17 @@ test("new drafts are always status draft, even if a draft.json claims otherwise 
   const d = JSON.parse(fs.readFileSync(path.join(out, "drafts", s.created[0].slug, "draft.json"), "utf8"));
   assert.equal(d.status, "draft");
 });
+
+test("renaming the number prefix of a folder keeps the product's permanent URL", { skip }, async () => {
+  const { root, prod, out } = tree();
+  const target = new LocalTarget(out);
+  await runImport({ root, target, log: () => {} });
+  fs.renameSync(prod, path.join(root, "part 5", "07_Quiet_Fern_Study"));
+  const s = await runImport({ root, target, log: () => {} });
+  assert.equal(s.created.length, 0, "no new product");
+  assert.equal(s.missing.length, 0, "nothing flagged missing");
+  const drafts = fs.readdirSync(path.join(out, "drafts"));
+  assert.deepEqual(drafts.sort(), ["only-prints-printable", "quiet-fern-study-printable"]);
+  const d = JSON.parse(fs.readFileSync(path.join(out, "drafts", "quiet-fern-study-printable", "draft.json"), "utf8"));
+  assert.equal(d.source.id, "part 5/07_Quiet_Fern_Study");
+});

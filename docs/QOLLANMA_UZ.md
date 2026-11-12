@@ -98,6 +98,13 @@ npm run import:watch
 
 ## 4. Tahrirlash va saytdan olish
 
+**Mahsulot havolasi hech qachon o'zgarmaydi.** `subtlesway.com/products/<nom>/` havolasi birinchi importda bir marta beriladi. Uni Pinterest'ga bemalol qo'yishingiz mumkin:
+- mahsulot **nomini** o'zgartirsangiz ham havola o'zgarmaydi;
+- papka **raqamini** o'zgartirsangiz yoki uni boshqa `part` ga ko'chirsangiz ham havola saqlanadi. Masalan, `03_Moody_…` papkasi `07_Moody_…` ga aylansa, havola o'sha-o'sha qoladi;
+- mahsulotni **saytdan olsangiz**, eski havola 404 bermaydi va katalog sahifasiga yo'naltiradi. Qayta Publish qilsangiz, o'sha havola yana mahsulotni ochadi.
+
+Faqat papka nomidagi **dizayn nomi** o'zgartirilsa, masalan `Moody_Floral` → `Dark_Roses`, importer uni yangi mahsulot deb hisoblaydi. Bunda eski havola baribir ishlashda davom etadi.
+
 - **Saytdagi mahsulotni tahrirlash:** admin panelda o'zgartiring va **Saqlash** tugmasini bosing. Sayt o'zi yangilanadi.
 - **"✎ admin'da tahrirlangan"** belgisi qo'yilgan maydon importda o'zgarmaydi. Papkadagi matnni qaytarish uchun yonidagi **"folderdagi versiyani olish"** ni bosing va keyin saqlang.
 - **Saytdan olish:** **Saytdan olish** tugmasini bosing. Mahsulot draft bo'lib qoladi, Etsy havolasi ham saqlanadi. Keyin yana Publish qilish mumkin.

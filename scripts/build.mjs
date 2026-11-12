@@ -36,6 +36,7 @@ const r = createRenderer({
   catalogs: readJson("catalogs.json", []),
   pages,
   products: readJson("products.json", []),
+  retired: readJson("retired.json", []),
   // Cache-busting version = hash of the stylesheet and script, so unchanged assets keep their URLs.
   assetVersion: crypto
     .createHash("sha1")
@@ -57,6 +58,7 @@ fs.rmSync(path.join(OUT, "products"), { recursive: true, force: true });
 write("index.html", r.home());
 write("products/index.html", r.productsPage());
 for (const p of r.products) write(`products/${p.slug}/index.html`, r.product(p));
+for (const slug of r.retiredSlugs) write(`products/${slug}/index.html`, r.redirect("/products/"));
 for (const pg of pages) write(`${pg.slug}/index.html`, r.textPage(pg));
 write("404.html", r.notFound());
 for (const [from, to] of Object.entries(r.legacy)) write(from, r.redirect(to));

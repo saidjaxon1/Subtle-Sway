@@ -85,3 +85,18 @@ test("import token cannot publish: the importer refuses a public repository", as
   };
   await assert.rejects(() => t.commit([{ path: "data/products.json", content: "[]" }], "x"), /PUBLIC/);
 });
+
+test("product URLs are permanent: unpublish retires the slug, publish brings it back", () => {
+  const off = planUnpublish("fern", [{ slug: "fern" }], [], ["old"]);
+  assert.deepEqual(off.retired, ["fern", "old"]);
+  const on = planPublish({ ...draft(), slug: "fern" }, LINK, [], [], "2026-11-12", off.retired);
+  assert.deepEqual(on.retired, ["old"]);
+});
+
+test("a retired product URL redirects to the catalogue instead of 404", async () => {
+  const { createRenderer } = await import("../assets/js/lib/render.js");
+  const r = createRenderer({ settings: { siteUrl: "https://x.test" }, products: [], retired: ["fern-wall-art-printable", "../bad"] });
+  assert.deepEqual(r.retiredSlugs, ["fern-wall-art-printable"]);
+  assert.match(r.redirect("/products/"), /url=\/products\//);
+  assert.doesNotMatch(r.sitemap, /fern-wall-art-printable/);
+});

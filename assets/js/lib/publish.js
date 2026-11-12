@@ -75,7 +75,7 @@ export function toPublicProduct(draft, etsyUrl, today) {
  * products: current data/products.json array. publicMediaPaths: paths already in media/products/<slug>/.
  * Returns { products, copy: [{ from, to }], remove: [paths] }.
  */
-export function planPublish(draft, etsyUrl, products, publicMediaPaths, today) {
+export function planPublish(draft, etsyUrl, products, publicMediaPaths, today, retired = []) {
   const product = toPublicProduct(draft, etsyUrl, today);
   const list = products.filter((p) => p.slug !== draft.slug);
   list.push(product);
@@ -90,14 +90,19 @@ export function planPublish(draft, etsyUrl, products, publicMediaPaths, today) {
     }
   }
   const remove = publicMediaPaths.filter((p) => p.startsWith(`media/products/${draft.slug}/`) && !wanted.has(p));
-  return { products: list, product, copy, remove };
+  return { products: list, product, copy, remove, retired: retired.filter((s) => s !== draft.slug) };
 }
 
-/** Plan the public-repo commit for unpublishing. */
-export function planUnpublish(slug, products, publicMediaPaths) {
+/**
+ * Plan the public-repo commit for unpublishing.
+ * The slug goes into data/retired.json so /products/<slug>/ keeps answering
+ * (with a redirect to the catalogue) — links already pinned on Pinterest never break.
+ */
+export function planUnpublish(slug, products, publicMediaPaths, retired = []) {
   return {
     products: products.filter((p) => p.slug !== slug),
     remove: publicMediaPaths.filter((p) => p.startsWith(`media/products/${slug}/`)),
+    retired: [...new Set([...retired, slug])].sort(),
   };
 }
 

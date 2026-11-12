@@ -10,7 +10,7 @@ import { normalizeListingUrl, normalizeSectionUrl, normalizeShopUrl } from "./et
  * mediaUrl(product, fileName) optionally overrides media URLs (the admin preview uses blob: URLs).
  * Only products with status "published" and a valid Etsy link are rendered.
  */
-export function createRenderer({ settings = {}, catalogs: catalogsIn = [], pages = [], products: allProducts = [], assetVersion = "1", mediaUrl = null }) {
+export function createRenderer({ settings = {}, catalogs: catalogsIn = [], pages = [], products: allProducts = [], retired = [], assetVersion = "1", mediaUrl = null }) {
 const catalogs = catalogsIn.map((c) => ({ ...c }));
 const SITE = (settings.siteUrl || "").replace(/\/+$/, "");
 const SITE_NAME = settings.siteName || "Subtle Sway";
@@ -523,8 +523,13 @@ ${urls
 );
 const robotsTxt = `User-agent: *\nDisallow: /admin/\n\nSitemap: ${SITE}/sitemap.xml\n`;
 
+// Product pages that were once public keep their address forever: if a product is
+// unpublished, its old URL redirects to the catalogue instead of returning 404.
+const retiredSlugs = [...new Set(retired)].filter((s) => /^[a-z0-9-]+$/.test(s) && !products.some((p) => p.slug === s));
+
 return {
   products,
+  retiredSlugs,
   activeCatalogs,
   warnings,
   home: homePage,
