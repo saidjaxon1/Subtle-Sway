@@ -51,6 +51,10 @@ http
     if (!fs.existsSync(file)) {
       status = 404;
       file = path.join(ROOT, "404.html");
+      if (!fs.existsSync(file)) {
+        res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" }).end("Not found");
+        return;
+      }
     }
     const type = TYPES[path.extname(file)] || "application/octet-stream";
     const stat = fs.statSync(file);
