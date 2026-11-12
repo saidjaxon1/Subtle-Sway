@@ -8,7 +8,7 @@
 import { GitHubRepo } from "/assets/js/lib/github.js";
 import { esc, slugify, markdown, fill } from "/assets/js/lib/text.js";
 import { normalizeListingUrl, normalizeSectionUrl, normalizeShopUrl, cleanShopName } from "/assets/js/lib/etsy-url.js";
-import { checkPublish, planPublish, planUnpublish, mediaFileNames } from "/assets/js/lib/publish.js";
+import { checkPublish, planPublish, planUnpublish, mediaFileNames, draftHealth } from "/assets/js/lib/publish.js";
 import { createRenderer } from "/assets/js/lib/render.js";
 
 const PUBLIC_REPO = "saidjaxon1/Subtle-Sway";
@@ -562,6 +562,7 @@ function productEditor(slug) {
   const saveDraft = async (extra = {}) => {
     collect();
     Object.assign(d, extra);
+    Object.assign(d, draftHealth(d));
     d.updatedAt = new Date().toISOString();
     if (!extra.etsyUrl) {
       const link = normalizeListingUrl(etsyIn.value, shopName());

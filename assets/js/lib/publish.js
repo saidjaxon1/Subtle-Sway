@@ -100,3 +100,23 @@ export function planUnpublish(slug, products, publicMediaPaths) {
     remove: publicMediaPaths.filter((p) => p.startsWith(`media/products/${slug}/`)),
   };
 }
+
+/**
+ * Recompute a draft's "incomplete" flag and warnings from its current content.
+ * Used by the importer and by the admin panel on every save, so the status
+ * always matches what is actually filled in.
+ */
+export function draftHealth(d) {
+  const w = [];
+  const media = d.media || [];
+  const hasDescription = Boolean(String(d.description || "").trim());
+  const hasImage = media.some((m) => m.type === "image" && !m.hidden);
+  if (!hasDescription) w.push(d.hasListing === false ? "ETSY_LISTING.md topilmadi — tavsifni (va teglarni) admin panelda kiriting" : "Tavsif bo'sh");
+  if (!hasImage) w.push("Mockup rasmlari topilmadi");
+  if (!media.some((m) => m.type === "video" && !m.hidden)) w.push("Mockup video yo'q");
+  const noAlt = media.filter((m) => m.type === "image" && !m.hidden && !String(m.alt || "").trim()).length;
+  if (noAlt) w.push(`${noAlt} ta rasmda alt matn yo'q`);
+  if (String(d.etsyTitle || "").length > 140) w.push("Etsy sarlavhasi 140 belgidan uzun");
+  if (!(d.catalogs || []).length) w.push("Katalog tanlanmagan");
+  return { incomplete: !hasDescription || !hasImage, warnings: w };
+}

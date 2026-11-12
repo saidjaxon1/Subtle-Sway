@@ -6,6 +6,7 @@ import { hashAllowed, readAllowed } from "./allow-list.mjs";
 import { parseListing, guessCatalogs } from "./listing.mjs";
 import { convert } from "./media.mjs";
 import { slugify } from "../../assets/js/lib/text.js";
+import { draftHealth } from "../../assets/js/lib/publish.js";
 
 /** Fields filled from the folder. If edited in admin, the importer leaves them alone. */
 export const IMPORT_FIELDS = ["name", "etsyTitle", "description", "tags", "rooms", "styles", "subjects", "colors", "orientation", "catalogs", "price", "pins", "aiDisclosure"];
@@ -13,18 +14,6 @@ export const IMPORT_FIELDS = ["name", "etsyTitle", "description", "tags", "rooms
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const now = () => new Date().toISOString();
 
-function warningsFor(d) {
-  const w = [];
-  if (!d.hasListing) w.push("ETSY_LISTING.md topilmadi — tavsif, teglar va atributlarni admin panelda kiriting");
-  if (!d.media.some((m) => m.type === "image")) w.push("Mockup rasmlari topilmadi");
-  if (!d.media.some((m) => m.type === "video")) w.push("Mockup video yo'q");
-  const noAlt = d.media.filter((m) => m.type === "image" && !m.alt).length;
-  if (noAlt) w.push(`${noAlt} ta rasmda alt matn yo'q`);
-  if ((d.etsyTitle || "").length > 140) w.push("Etsy sarlavhasi 140 belgidan uzun");
-  if (!d.catalogs?.length) w.push("Katalog tanlanmagan");
-  if (!d.description) w.push("Tavsif bo'sh");
-  return w;
-}
 
 function uniqueSlug(base, taken) {
   let slug = base || "print";
@@ -108,8 +97,7 @@ export async function runImport({ root, target, dryRun = false, only = "", water
       }
       if (!draft.edited?.cover || !draft.media.some((m) => m.file === draft.cover)) draft.cover = draft.media.find((m) => m.type === "image")?.file || "";
       draft.sourceHashes = hashes;
-      draft.incomplete = !listing || !draft.media.some((m) => m.type === "image");
-      draft.warnings = warningsFor(draft);
+      Object.assign(draft, draftHealth(draft));
 
       const before = prev ? JSON.stringify({ ...prev, importedAt: 0, updatedAt: 0 }) : "";
       const after = JSON.stringify({ ...draft, importedAt: 0, updatedAt: 0 });
