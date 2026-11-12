@@ -48,5 +48,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "Rebuild pages [skip ci]"
+            # An admin save may have landed while we built: rebase onto it, then push.
+            git pull --rebase --autostash origin main || true
             git push
           fi

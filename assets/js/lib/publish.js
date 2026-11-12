@@ -73,7 +73,9 @@ export function toPublicProduct(draft, etsyUrl, today) {
 /**
  * Plan the public-repo commit for publishing (or re-publishing) a draft.
  * products: current data/products.json array. publicMediaPaths: paths already in media/products/<slug>/.
- * Returns { products, copy: [{ from, to }], remove: [paths] }.
+ * Returns { products, copy: [{ from, to }], remove: [] }.
+ * Media files are NEVER removed from the public site: an image or video address
+ * that anyone copied or shared keeps working forever.
  */
 export function planPublish(draft, etsyUrl, products, publicMediaPaths, today, retired = []) {
   const product = toPublicProduct(draft, etsyUrl, today);
@@ -89,7 +91,7 @@ export function planPublish(draft, etsyUrl, products, publicMediaPaths, today, r
       copy.push({ from: `drafts/${draft.slug}/media/${name}`, to });
     }
   }
-  const remove = publicMediaPaths.filter((p) => p.startsWith(`media/products/${draft.slug}/`) && !wanted.has(p));
+  const remove = [];
   return { products: list, product, copy, remove, retired: retired.filter((s) => s !== draft.slug) };
 }
 
@@ -101,7 +103,7 @@ export function planPublish(draft, etsyUrl, products, publicMediaPaths, today, r
 export function planUnpublish(slug, products, publicMediaPaths, retired = []) {
   return {
     products: products.filter((p) => p.slug !== slug),
-    remove: publicMediaPaths.filter((p) => p.startsWith(`media/products/${slug}/`)),
+    remove: [], // media stays online so shared image links never break
     retired: [...new Set([...retired, slug])].sort(),
   };
 }

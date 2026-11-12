@@ -103,6 +103,11 @@ npm run import:watch
 - papka **raqamini** o'zgartirsangiz yoki uni boshqa `part` ga ko'chirsangiz ham havola saqlanadi. Masalan, `03_Moody_…` papkasi `07_Moody_…` ga aylansa, havola o'sha-o'sha qoladi;
 - mahsulotni **saytdan olsangiz**, eski havola 404 bermaydi va katalog sahifasiga yo'naltiradi. Qayta Publish qilsangiz, o'sha havola yana mahsulotni ochadi.
 
+Bu kafolat faqat admin uchun emas, **saytdan olingan har qanday havola** uchun ham amal qiladi:
+- **sahifalar** (Home, Products, About, FAQ, Contact, Privacy, Terms, Disclaimer, katalog havolalari): sayt bir marta chiqargan har bir sahifa manzili `data/urls.json` fayliga yoziladi. Sahifa keyinroq yo'qolsa, uning manzili yo'naltirish bo'lib ishlayveradi. Bu ro'yxat faqat o'sadi, undan hech narsa o'chirilmaydi;
+- **rasm va video** havolalari (masalan, rasmni o'ng tugma → "Copy image address" bilan nusxalasa): media fayllar saytdan **hech qachon o'chirilmaydi**. Mahsulot saytdan olinsa yoki rasm yashirilsa ham, fayl joyida qoladi;
+- **katalog havolasi** (`/products/?collection=…`): katalog o'chirilsa ham sahifa ochiladi va barcha mahsulotlarni ko'rsatadi.
+
 Faqat papka nomidagi **dizayn nomi** o'zgartirilsa, masalan `Moody_Floral` → `Dark_Roses`, importer uni yangi mahsulot deb hisoblaydi. Bunda eski havola baribir ishlashda davom etadi.
 
 - **Saytdagi mahsulotni tahrirlash:** admin panelda o'zgartiring va **Saqlash** tugmasini bosing. Sayt o'zi yangilanadi.

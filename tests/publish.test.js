@@ -68,13 +68,13 @@ test("publish plan copies only visible media and replaces the old entry", () => 
   assert.ok(targets.includes("media/products/moody-floral-still-life-printable/1-1600.jpg"));
   assert.ok(targets.includes("media/products/moody-floral-still-life-printable/2.webm"));
   assert.ok(!targets.some((t) => t.includes("/3-")), "hidden image not copied");
-  assert.deepEqual(plan.remove, ["media/products/moody-floral-still-life-printable/3-640.webp"]);
+  assert.deepEqual(plan.remove, [], "public media is never deleted");
 });
 
-test("unpublish removes the product and only its media", () => {
-  const plan = planUnpublish("a", [{ slug: "a" }, { slug: "b" }], ["media/products/a/1-640.webp", "media/products/b/1-640.webp", "media/products/ab/1.webp"]);
+test("unpublish removes the product from the list but keeps its media online", () => {
+  const plan = planUnpublish("a", [{ slug: "a" }, { slug: "b" }], ["media/products/a/1-640.webp", "media/products/b/1-640.webp"]);
   assert.deepEqual(plan.products, [{ slug: "b" }]);
-  assert.deepEqual(plan.remove, ["media/products/a/1-640.webp"]);
+  assert.deepEqual(plan.remove, []);
 });
 
 test("import token cannot publish: the importer refuses a public repository", async () => {

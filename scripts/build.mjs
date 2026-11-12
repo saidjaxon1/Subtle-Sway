@@ -62,6 +62,22 @@ for (const slug of r.retiredSlugs) write(`products/${slug}/index.html`, r.redire
 for (const pg of pages) write(`${pg.slug}/index.html`, r.textPage(pg));
 write("404.html", r.notFound());
 for (const [from, to] of Object.entries(r.legacy)) write(from, r.redirect(to));
+// Permanent URLs: every page address the site has ever had is recorded in
+// data/urls.json. If a page disappears (unpublished product, removed page), its
+// address is kept alive as a redirect, so no link anyone saved ever breaks.
+const generated = new Set(["/", "/products/", ...r.products.map((p) => `/products/${p.slug}/`), ...r.retiredSlugs.map((s) => `/products/${s}/`), ...pages.map((pg) => `/${pg.slug}/`)]);
+const known = new Set(readJson("urls.json", []));
+let kept = 0;
+for (const url of known) {
+  if (generated.has(url) || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?\/$/.test(url)) continue;
+  write(`${url.slice(1)}index.html`, r.redirect(url.startsWith("/products/") ? "/products/" : "/"));
+  kept++;
+}
+const allUrls = [...new Set([...known, ...generated])].sort();
+fs.mkdirSync(DATA, { recursive: true });
+fs.writeFileSync(path.join(DATA, "urls.json"), JSON.stringify(allUrls, null, 2) + "\n");
+if (kept) console.log(`Kept ${kept} old address(es) alive as redirects.`);
+
 write("sitemap.xml", r.sitemap);
 write("robots.txt", r.robots);
 
