@@ -56,6 +56,12 @@ export class GitHubTarget {
     });
     if (!res.ok) {
       const text = await res.text();
+      if (res.status === 401) {
+        throw new Error("GitHub tokeni ishlamayapti: muddati tugagan yoki noto'g'ri. GitHub'da yangi token yarating va .env faylidagi IMPORT_TOKEN ni almashtiring (docs/QOLLANMA_UZ.md).");
+      }
+      if (res.status === 403 || res.status === 404) {
+        throw new Error(`GitHub ruxsat bermadi (${res.status}). Token Subtle-Sway-drafts repozitoriyasiga "Contents: Read and write" ruxsati bilan berilganini tekshiring.`);
+      }
       const err = new Error(`GitHub ${method} ${url} → ${res.status}: ${text.slice(0, 300)}`);
       err.status = res.status;
       throw err;
