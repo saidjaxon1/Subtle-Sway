@@ -39,6 +39,7 @@ Admin panelga **alohida** token kerak, chunki u ikkala repoga yoza olishi kerak.
    - **Expiration:** eng uzun ruxsat etilgan muddat (masalan, 90 kun)
    - **Repository access:** **Only select repositories** ni tanlang va **Subtle-Sway** bilan **Subtle-Sway-drafts** ni belgilang (ikkalasini ham)
    - **Permissions → Contents:** **Read and write**
+   - **Permissions → Workflows:** **Read and write**. Bu ruxsat faqat kompyuterdan `git push` qilganda kerak, chunki loyihada GitHub Actions fayli bor
 3. **Generate token** tugmasini bosing va tokenni nusxalang. Uni parol menejeringizga (masalan, Bitwarden) saqlab qo'ying.
 4. `subtlesway.com/admin/` sahifasini oching va tokenni joylab, **Kirish** tugmasini bosing.
    - Shu kompyuterda doim kirib turish uchun **"eslab qolish"** belgisini qo'ying.
