@@ -42,3 +42,16 @@ test("summary trims to a sentence", () => {
   const s = summary("A ".repeat(100) + "end.", 158);
   assert.ok(s.length <= 159);
 });
+
+test("description that opens with a header uses that section as the intro", async () => {
+  const { createRenderer } = await import("../assets/js/lib/render.js");
+  const r = createRenderer({
+    settings: { siteUrl: "https://x.test", etsyShopUrl: "https://subtleswaystore.etsy.com" },
+    catalogs: [],
+    products: [{ slug: "f", name: "F", status: "published", etsyUrl: "https://subtleswaystore.etsy.com/listing/4584329707/f", media: [{ type: "image", file: "1" }], description: "🌿 BOTANICAL FERN\n\nCalm fern print.\n\n✨ DIGITAL DOWNLOAD\n\nNo physical item." }],
+  });
+  const html = r.product(r.products[0]);
+  assert.match(html, /<div class="desc-intro"><p>Calm fern print\.<\/p>/);
+  assert.match(html, /<meta name="description" content="Calm fern print\.">/);
+  assert.doesNotMatch(html, /Botanical fern<\/summary>/);
+});

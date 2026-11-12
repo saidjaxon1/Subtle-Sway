@@ -86,7 +86,6 @@ function statusOf(d) {
   if (d.sourceMissing) return "missing";
   if (d.status === "published") return "published";
   if (d.status === "archived") return "archived";
-  if (d.incomplete) return "incomplete";
   return "draft";
 }
 const badge = (st) => `<span class="badge b-${st}">${esc(t(st))}</span>`;
@@ -224,7 +223,7 @@ function shell(active, inner) {
 
 // ---------------------------------------------------------------- dashboard
 function dashboard() {
-  const counts = { draft: 0, published: 0, incomplete: 0, missing: 0, archived: 0 };
+  const counts = { draft: 0, published: 0, missing: 0, archived: 0 };
   for (const d of S.draftList) counts[statusOf(d)]++;
   const warn = [];
   for (const d of S.draftList) {
@@ -244,7 +243,6 @@ function dashboard() {
   <div class="stats">
     <a class="stat" href="#/products?s=draft"><b>${counts.draft}</b><span>${t("draft")}</span></a>
     <a class="stat" href="#/products?s=published"><b>${counts.published}</b><span>${t("published")}</span></a>
-    <a class="stat" href="#/products?s=incomplete"><b>${counts.incomplete}</b><span>${t("incomplete")}</span></a>
     <a class="stat" href="#/products?s=missing"><b>${counts.missing}</b><span>${t("missing")}</span></a>
     <a class="stat" href="#/products?s=archived"><b>${counts.archived}</b><span>${t("archived")}</span></a>
   </div>
@@ -273,7 +271,7 @@ function productsList(params) {
     <input type="search" id="q" placeholder="${esc(t("search"))}" style="max-width:280px">
     <select id="st" style="max-width:200px">
       <option value="">${t("all")}</option>
-      ${["draft", "published", "incomplete", "missing", "archived"].map((s) => `<option value="${s}"${s === filter ? " selected" : ""}>${t(s)}</option>`).join("")}
+      ${["draft", "published", "missing", "archived"].map((s) => `<option value="${s}"${s === filter ? " selected" : ""}>${t(s)}</option>`).join("")}
     </select>
     <span class="grow"></span>
     <button class="btn small" id="bulk-unpub" disabled>${t("unpublish")}</button>

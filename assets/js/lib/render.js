@@ -340,6 +340,9 @@ function attrRow(label, value) {
 
 function productPage(p) {
   const desc = parseEtsyDescription(p.description);
+// Some Etsy descriptions open straight with an emoji header ("🌿 BOTANICAL …").
+// Then the first section is the introduction: show it next to the gallery.
+if (!desc.intro.length && desc.sections.length) desc.intro = desc.sections.shift().blocks;
   const cats = (p.catalogs || []).map((s) => catalogBySlug[s]).filter(Boolean);
   const primary = cats[0];
   const metaDesc = p.metaDescription || summary(desc.intro[0]?.text || p.description || p.name);
