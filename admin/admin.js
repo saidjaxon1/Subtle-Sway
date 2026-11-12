@@ -10,6 +10,7 @@ import { esc, slugify, markdown, fill } from "/assets/js/lib/text.js";
 import { normalizeListingUrl, normalizeSectionUrl, normalizeShopUrl, cleanShopName } from "/assets/js/lib/etsy-url.js";
 import { checkPublish, planPublish, planUnpublish, mediaFileNames, draftHealth } from "/assets/js/lib/publish.js";
 import { createRenderer } from "/assets/js/lib/render.js";
+import { forSite, SITE_MAX_IMAGES } from "/assets/js/lib/site-media.js";
 
 const PUBLIC_REPO = "saidjaxon1/Subtle-Sway";
 const DRAFTS_REPO = "saidjaxon1/Subtle-Sway-drafts";
@@ -387,14 +388,14 @@ function productEditor(slug) {
     </div>
     <div class="card">
       <h2 style="margin-top:0">Rasmlar va video</h2>
-      <p class="muted" style="margin-bottom:.75rem">Tartibni sudrab yoki ↑↓ bilan o'zgartiring. Muqova — katalog va Pinterest uchun asosiy rasm.</p>
+      <p class="muted" style="margin-bottom:.75rem">Saytga faqat <b>eng yuqoridagi ${SITE_MAX_IMAGES} ta rasm</b> chiqadi, video saytda ko'rsatilmaydi. Eng yaxshi 3 tasini tepaga sudrang yoki ↑↓ bilan joylang. Muqova — katalog va Pinterest uchun asosiy rasm (shu 3 tadan biri bo'lsin).</p>
       <ul class="media-list" id="media"></ul>
     </div>
     <div class="card">
       <h2 style="margin-top:0">Pinterest (faqat ko'rish uchun)</h2>
       ${(d.pins || []).length ? d.pins.map((p, i) => `<div class="pin"><b>Pin ${i + 1}: ${esc(p.title)}</b><p class="muted">${esc(p.description)}</p></div>`).join("") : `<p class="muted">Pinterest matni yo'q.</p>`}
       <p class="muted" style="margin:.5rem 0 .25rem">Rasm havolalari (Publish qilingandan keyin ishlaydi):</p>
-      ${(d.media || []).filter((m) => m.type === "image" && !m.hidden).map((m) => `<div><code class="u">${esc(`${(S.settings.siteUrl || "").replace(/\/$/, "")}/media/products/${d.slug}/${m.file}-1600.jpg`)}</code></div>`).join("")}
+      ${forSite(d).media.map((m) => `<div><code class="u">${esc(`${(S.settings.siteUrl || "").replace(/\/$/, "")}/media/products/${d.slug}/${m.file}-1600.jpg`)}</code></div>`).join("")}
       <p class="muted" style="margin-top:.5rem">Sahifa (doimiy havola — hech qachon o'zgarmaydi): <code class="u">${esc(liveUrl)}</code></p>
     </div>
    </div>
@@ -471,6 +472,14 @@ function productEditor(slug) {
 
   // media editor
   const mediaEl = document.getElementById("media");
+  const siteTag = (m) => {
+    if (m.type === "video") return `<span class="badge b-archived" style="margin-bottom:.3rem">faqat draftda — saytga chiqmaydi</span><br>`;
+    if (m.hidden) return "";
+    const rank = d.media.filter((x) => x.type === "image" && !x.hidden).indexOf(m);
+    return rank < SITE_MAX_IMAGES
+      ? `<span class="badge b-published" style="margin-bottom:.3rem">saytda · ${rank + 1}/${SITE_MAX_IMAGES}</span><br>`
+      : `<span class="badge b-draft" style="margin-bottom:.3rem">faqat draftda</span><br>`;
+  };
   const drawMedia = () => {
     mediaEl.innerHTML = (d.media || [])
       .map((m, i) => {
@@ -478,7 +487,7 @@ function productEditor(slug) {
         return `<li class="media-item${m.hidden ? " is-hidden" : ""}" draggable="true" data-i="${i}">
         <span class="handle" title="Sudrang">⋮⋮</span>
         <img alt="" data-draft="${esc(d.slug)}|${esc(img)}">
-        <div>${
+        <div>${siteTag(m)}${
           m.type === "video"
             ? `<b>Video</b> <span class="muted">(${esc(m.file)}.mp4)</span>`
             : `<input type="text" class="alt" data-i="${i}" value="${esc(m.alt || "")}" placeholder="Alt matn — rasmda nima ko'rinadi (ingliz tilida)">`
@@ -635,7 +644,8 @@ async function publish(d, etsyUrl, progressEl) {
   const say = (s) => progressEl && (progressEl.textContent = s);
   say("Fayllar ro'yxati olinmoqda…");
   const [draftTree, pubTree, freshProducts, retired] = await Promise.all([S.drafts.tree(), S.pub.tree(), S.pub.json("data/products.json", []), S.pub.json("data/retired.json", [])]);
-  const draftForPlan = { ...d, publishedAt: d.publishedAt || today() };
+  // Only what the site shows is copied: no videos, at most SITE_MAX_IMAGES images.
+  const draftForPlan = forSite({ ...d, publishedAt: d.publishedAt || today() });
   const plan = planPublish(draftForPlan, etsyUrl, freshProducts, [...pubTree.keys()], today(), retired);
   const changes = [];
   let i = 0;
@@ -648,6 +658,8 @@ async function publish(d, etsyUrl, progressEl) {
     changes.push({ path: c.to, base64: await S.drafts.blobBase64BySha(srcSha) });
   }
   for (const p of plan.remove) changes.push({ path: p, delete: true });
+  // Videos never belong on the public site (Cloudflare/GitHub hosting terms): remove any left from earlier publishes.
+  for (const p of pubTree.keys()) if (p.startsWith(`media/products/${d.slug}/`) && /(\.mp4|\.webm|-poster\.jpg)$/.test(p)) changes.push({ path: p, delete: true });
   changes.push({ path: "data/products.json", text: JSON.stringify(plan.products, null, 2) + "\n" });
   if (plan.retired.length !== retired.length) changes.push({ path: "data/retired.json", text: JSON.stringify(plan.retired, null, 2) + "\n" });
   say("Saytga yozilmoqda…");

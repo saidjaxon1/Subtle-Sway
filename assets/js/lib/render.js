@@ -4,6 +4,7 @@
 
 import { esc, fill, markdown, parseEtsyDescription, renderBlocks, summary } from "./text.js";
 import { normalizeListingUrl, normalizeSectionUrl, normalizeShopUrl } from "./etsy-url.js";
+import { siteMedia } from "./site-media.js";
 
 /**
  * createRenderer({ settings, catalogs, pages, products, assetVersion, mediaUrl })
@@ -35,7 +36,7 @@ const products = allProducts
   })
   .map((p) => ({
     ...p,
-    media: (p.media || []).filter((m) => !m.hidden),
+    media: siteMedia(p.media),
   }))
   .sort((a, b) => String(b.publishedAt || "").localeCompare(String(a.publishedAt || "")));
 
