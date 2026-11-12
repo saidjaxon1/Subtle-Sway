@@ -55,3 +55,18 @@ test("description that opens with a header uses that section as the intro", asyn
   assert.match(html, /<meta name="description" content="Calm fern print\.">/);
   assert.doesNotMatch(html, /Botanical fern<\/summary>/);
 });
+
+test("home page: verification meta tags, and no duplicate 'All products' section", async () => {
+  const { createRenderer } = await import("../assets/js/lib/render.js");
+  const product = { slug: "f", name: "F", status: "published", catalogs: ["c"], etsyUrl: "https://subtleswaystore.etsy.com/listing/4584329707/f", media: [{ type: "image", file: "1" }], description: "x" };
+  const r = createRenderer({
+    settings: { siteUrl: "https://x.test", etsyShopUrl: "https://subtleswaystore.etsy.com", pinterestVerify: "a1b2c3d4e5f6", googleVerify: "bad code<script>" },
+    catalogs: [{ slug: "c", name: "C" }],
+    products: [product],
+  });
+  const home = r.home();
+  assert.match(home, /<meta name="p:domain_verify" content="a1b2c3d4e5f6">/);
+  assert.doesNotMatch(home, /google-site-verification/, "invalid code is ignored");
+  assert.doesNotMatch(home, /id="all-products"/, "every product already appears in a catalogue section");
+  assert.doesNotMatch(r.product(r.products[0]), /p:domain_verify/, "only on the home page");
+});

@@ -153,6 +153,6 @@ export function summary(text, max = 158) {
   if (first.length <= max) return first;
   const cut = first.slice(0, max);
   const stop = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("; "));
-  if (stop > 80) return cut.slice(0, stop + 1);
+  if (stop >= max * 0.75) return cut.slice(0, stop + 1);
   return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:]$/, "") + "…";
 }

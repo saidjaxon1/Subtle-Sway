@@ -21,7 +21,7 @@ const app = document.getElementById("app");
 // ---------------------------------------------------------------- i18n
 const STR = {
   uz: {
-    dashboard: "Bosh panel", products: "Mahsulotlar", catalogs: "Kataloglar", pages: "Sahifalar", settings: "Sozlamalar", history: "Tarix",
+    dashboard: "Bosh panel", products: "Mahsulotlar", catalogs: "Kataloglar", pages: "Sahifalar", settings: "Sozlamalar", history: "Tarix", alts: "Alt matnlar",
     logout: "Chiqish", openSite: "Saytni ochish", save: "Saqlash", saving: "Saqlanmoqda…", saved: "Saqlandi.", cancel: "Bekor qilish",
     draft: "Draft", published: "Saytda", incomplete: "To'liq emas", missing: "Manba topilmadi", archived: "Arxiv",
     search: "Qidirish…", all: "Hammasi", name: "Nomi", folder: "Papka", status: "Holat", etsy: "Etsy", warnings: "Ogohlantirishlar",
@@ -29,7 +29,7 @@ const STR = {
     resync: "folderdagi versiyani olish", editedMark: "admin'da tahrirlangan",
   },
   en: {
-    dashboard: "Dashboard", products: "Products", catalogs: "Catalogues", pages: "Pages", settings: "Settings", history: "History",
+    dashboard: "Dashboard", products: "Products", catalogs: "Catalogues", pages: "Pages", settings: "Settings", history: "History", alts: "Alt texts",
     logout: "Log out", openSite: "Open site", save: "Save", saving: "Saving…", saved: "Saved.", cancel: "Cancel",
     draft: "Draft", published: "Published", incomplete: "Incomplete", missing: "Source missing", archived: "Archived",
     search: "Search…", all: "All", name: "Name", folder: "Folder", status: "Status", etsy: "Etsy", warnings: "Warnings",
@@ -197,6 +197,7 @@ function shell(active, inner) {
     ["catalogs", "#/catalogs"],
     ["pages", "#/pages"],
     ["settings", "#/settings"],
+    ["alts", "#/alts"],
     ["history", "#/history"],
   ];
   app.innerHTML = `<div class="shell">
@@ -874,6 +875,14 @@ function pageEditor(slug) {
   };
 }
 
+/** Accepts a full <meta … content="CODE"> tag or the bare code; returns the code or "". */
+function extractVerifyCode(v) {
+  const raw = String(v || "").trim();
+  const m = raw.match(/content\s*=\s*["']([^"']+)["']/i);
+  const code = (m ? m[1] : raw).trim();
+  return /^[A-Za-z0-9_-]{8,100}$/.test(code) ? code : "";
+}
+
 // ---------------------------------------------------------------- settings
 function settingsView() {
   const s = structuredClone(S.settings);
@@ -894,6 +903,12 @@ function settingsView() {
       <label class="f"><span>Kirish matni</span><textarea data-k="heroText">${esc(s.heroText || "")}</textarea></label>
       <label class="f"><span>Meta tavsif ${counter("metaD", 160)}</span><input type="text" id="metaD" data-k="metaDescription" value="${esc(s.metaDescription || "")}"></label>
       <label class="f"><span>Har bir katalogdan bosh sahifada nechta mahsulot</span><input type="number" min="2" max="12" data-k="homeProductsPerCatalog" value="${esc(s.homeProductsPerCatalog || 4)}" style="max-width:120px"></label>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Saytni tasdiqlash (Pinterest, Google)</h2>
+      <p class="muted" style="margin-bottom:.75rem;font-size:.85rem">Pinterest: Settings → Claimed accounts → Websites → Claim → "Add HTML tag". Google Search Console: Add property → URL prefix → "HTML tag". Butun meta tegni yoki faqat kodni joylashtiring.</p>
+      <label class="f"><span>Pinterest kodi (p:domain_verify)</span><input type="text" data-verify="pinterestVerify" value="${esc(s.pinterestVerify || "")}" placeholder='&lt;meta name="p:domain_verify" content="…"/&gt;'></label>
+      <label class="f"><span>Google kodi (google-site-verification)</span><input type="text" data-verify="googleVerify" value="${esc(s.googleVerify || "")}" placeholder='&lt;meta name="google-site-verification" content="…" /&gt;'></label>
+      <div class="msg" id="verifymsg"></div>
     </div>
     <div class="card"><h2 style="margin-top:0">Rasmlar</h2>
       <label class="row"><input type="checkbox" id="wm"${s.watermark ? " checked" : ""}> Eng katta (1600 px) rasmlarga kichik do'kon nomi yozilsin (watermark)</label>
@@ -917,6 +932,11 @@ function settingsView() {
     s.social = s.social || {};
     app.querySelectorAll("[data-social]").forEach((el) => (s.social[el.dataset.social] = el.value.trim()));
     s.watermark = document.getElementById("wm").checked;
+    for (const el of app.querySelectorAll("[data-verify]")) {
+      const code = extractVerifyCode(el.value);
+      if (el.value.trim() && !code) return toast("Tasdiqlash kodi noto'g'ri. Pinterest/Google bergan meta tegni to'liq joylashtiring.", true);
+      s[el.dataset.verify] = code;
+    }
     if (s.etsyShopUrl) {
       const r = normalizeShopUrl(s.etsyShopUrl);
       if (!r.ok) return toast(r.error, true);
@@ -933,6 +953,90 @@ function settingsView() {
     }
     e.target.disabled = false;
   };
+}
+
+// ---------------------------------------------------------------- alt texts (all products in one place)
+function altsView() {
+  const list = S.draftList.filter((d) => statusOf(d) !== "archived" && (d.media || []).some((m) => m.type === "image"));
+  const missing = (d) => (d.media || []).filter((m) => m.type === "image" && !m.hidden && !String(m.alt || "").trim()).length;
+  const total = list.reduce((n, d) => n + missing(d), 0);
+  shell(
+    "alts",
+    `<h1>${esc(t("alts"))}</h1>
+    <p class="sub">Har bir rasmda nima ko'rinishini qisqa, bitta gap bilan <b>ingliz tilida</b> yozing (masalan: <i>"A framed fern print hangs above a cream sofa in a bright living room."</i>). Alt matn Google rasm qidiruvi, Pinterest va ko'zi ojiz foydalanuvchilar uchun kerak. Bo'sh qolsa, saytda mahsulot nomi ishlatiladi.</p>
+    <div class="row" style="margin-bottom:1rem"><label class="row"><input type="checkbox" id="only"${total ? " checked" : ""}> Faqat alt matni bo'sh rasmlar</label><span class="muted">Jami bo'sh: <b id="total">${total}</b></span></div>
+    <div id="alt-list">${list
+      .map(
+        (d) => `<div class="card" data-slug="${esc(d.slug)}">
+        <div class="spread"><div><b>${esc(d.name)}</b> ${badge(statusOf(d))} <span class="muted">${missing(d)} ta bo'sh</span></div>
+        <div class="row"><a class="btn small" href="#/product/${esc(d.slug)}">Mahsulotni ochish</a><button class="btn small primary" data-save="${esc(d.slug)}">${t("save")}</button></div></div>
+        <ul class="media-list" style="margin-top:.75rem">${(d.media || [])
+          .map((m, i) =>
+            m.type !== "image"
+              ? ""
+              : `<li class="media-item alt-row${String(m.alt || "").trim() ? " has-alt" : ""}${m.hidden ? " is-hidden" : ""}" style="grid-template-columns:96px 1fr">
+              <img alt="" data-draft="${esc(d.slug)}|${esc(m.file)}-640.webp" style="width:96px;height:96px">
+              <label class="f" style="margin:0"><span>Rasm ${esc(m.file)}${m.hidden ? " (yashirilgan)" : ""} <span class="count" data-len></span></span>
+              <textarea rows="2" data-i="${i}" maxlength="250" style="min-height:3.2rem" placeholder="A framed … print hangs above … in a … room.">${esc(m.alt || "")}</textarea></label>
+            </li>`
+          )
+          .join("")}</ul></div>`
+      )
+      .join("") || '<p class="muted">Rasmli mahsulot yo\'q.</p>'}</div>`
+  );
+  const root = document.getElementById("alt-list");
+  const applyFilter = () => {
+    const only = document.getElementById("only").checked;
+    root.querySelectorAll(".alt-row").forEach((r) => (r.hidden = only && r.classList.contains("has-alt") && !r.classList.contains("editing")));
+    root.querySelectorAll(".card[data-slug]").forEach((c) => (c.hidden = only && !c.querySelector(".alt-row:not([hidden])")));
+  };
+  const len = (ta) => {
+    const c = ta.closest("label").querySelector("[data-len]");
+    c.textContent = `${ta.value.length}/125`;
+    c.classList.toggle("over", ta.value.length > 125);
+  };
+  root.querySelectorAll("textarea").forEach(len);
+  root.addEventListener("input", (e) => {
+    if (e.target.tagName !== "TEXTAREA") return;
+    e.target.closest(".alt-row").classList.add("editing");
+    len(e.target);
+  });
+  document.getElementById("only").onchange = applyFilter;
+  applyFilter();
+  root.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-save]");
+    if (!btn) return;
+    const slug = btn.dataset.save;
+    const original = S.draftList.find((x) => x.slug === slug);
+    const d = structuredClone(original);
+    let changed = 0;
+    btn.closest(".card").querySelectorAll("textarea[data-i]").forEach((ta) => {
+      const m = d.media[Number(ta.dataset.i)];
+      const v = ta.value.trim().replace(/\s+/g, " ");
+      if ((m.alt || "") !== v) {
+        m.alt = v;
+        changed++;
+      }
+    });
+    if (!changed) return toast("O'zgarish yo'q.");
+    btn.disabled = true;
+    try {
+      d.edited = { ...(d.edited || {}), media: true };
+      Object.assign(d, draftHealth(d));
+      d.updatedAt = new Date().toISOString();
+      if (d.status === "published") {
+        const r = checkPublish(d, d.etsyUrl, shopName());
+        if (r.ok) await publish(d, r.url, null);
+      }
+      await S.drafts.commit([{ path: `drafts/${d.slug}/draft.json`, text: JSON.stringify(d, null, 2) + "\n" }], `Admin: alt texts for ${d.slug}`);
+      Object.assign(original, d);
+      toast(`${changed} ta alt matn saqlandi.${d.status === "published" ? " " + t("rebuildNote") : ""}`);
+      altsView();
+    } catch (err) {
+      toast("Xato: " + err.message, true);
+      btn.disabled = false;
+    }
+  });
 }
 
 // ---------------------------------------------------------------- history (audit log)
@@ -965,6 +1069,7 @@ function route() {
   if (seg[0] === "page" && seg[1]) return pageEditor(decodeURIComponent(seg[1]));
   if (seg[0] === "settings") return settingsView();
   if (seg[0] === "history") return historyView();
+  if (seg[0] === "alts") return altsView();
   dashboard();
 }
 window.addEventListener("hashchange", route);

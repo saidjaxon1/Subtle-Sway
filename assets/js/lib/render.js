@@ -83,6 +83,15 @@ function etsyLabel() {
   return `Etsy shop <span aria-hidden="true">↗</span>`;
 }
 
+// Site ownership checks (Pinterest "Claim website", Google Search Console), home page only.
+function verificationMeta() {
+  const code = (v) => (/^[A-Za-z0-9_-]{8,100}$/.test(String(v || "")) ? v : "");
+  const out = [];
+  if (code(settings.pinterestVerify)) out.push(`<meta name="p:domain_verify" content="${code(settings.pinterestVerify)}">`);
+  if (code(settings.googleVerify)) out.push(`<meta name="google-site-verification" content="${code(settings.googleVerify)}">`);
+  return out.length ? out.join("\n") + "\n" : "";
+}
+
 function layout({ title, description, canonical, body, pageClass = "", ogImage, ogType = "website", jsonLd = [], noindex = false, head = "" }) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — ${settings.tagline || ""}`;
   const og = ogImage ? absolute(ogImage) : "";
@@ -194,6 +203,8 @@ function homePage() {
   const per = Number(settings.homeProductsPerCatalog) || 4;
   const heroProduct = products.find((p) => p.featured) || products[0];
   const heroImg = heroProduct ? cover(heroProduct) : null;
+  // "All products" is shown only when it adds something the catalogue sections above do not.
+  const shownOnHome = new Set(activeCatalogs.flatMap((c) => c.products.slice(0, per).map((p) => p.slug)));
   const sections = activeCatalogs
     .map(
       (c) => `<section class="home-section reveal" aria-labelledby="cat-${esc(c.slug)}">
@@ -241,7 +252,7 @@ function homePage() {
 ${empty}
 ${sections}
 ${
-  products.length
+  products.some((p) => !shownOnHome.has(p.slug))
     ? `<section class="home-section reveal" aria-labelledby="all-products">
   <div class="section-head">
     <div><span class="eyebrow">Everything</span><h2 id="all-products">All products</h2></div>
@@ -269,6 +280,7 @@ ${
     pageClass: "page-home",
     ogImage: heroProduct && heroImg ? imgSrc(heroProduct, heroImg.file, 1600, "jpg") : "",
     jsonLd: [org, website],
+    head: verificationMeta(),
   });
 }
 
@@ -345,13 +357,14 @@ function productPage(p) {
 if (!desc.intro.length && desc.sections.length) desc.intro = desc.sections.shift().blocks;
   const cats = (p.catalogs || []).map((s) => catalogBySlug[s]).filter(Boolean);
   const primary = cats[0];
-  const metaDesc = p.metaDescription || summary(desc.intro[0]?.text || p.description || p.name);
+  const introText = desc.intro.map((b) => (b.type === "p" ? b.text : b.items.join(". "))).join(" ");
+  const metaDesc = p.metaDescription || summary(introText || p.description || p.name, 155);
   const items = p.media;
 
   const slides = items
     .map((m, i) => {
       if (m.type === "video") {
-        return `<figure class="slide" data-index="${i}"${i ? " hidden" : ""}><video controls muted playsinline loop preload="none" poster="${mediaFile(p, `${m.file}-poster.jpg`)}" width="${m.width || 1080}" height="${m.height || 1080}" aria-label="${esc(m.alt || `${p.name} mockup video`)}"><source src="${mediaFile(p, `${m.file}.webm`)}" type="video/webm"><source src="${mediaFile(p, `${m.file}.mp4`)}" type="video/mp4"></video></figure>`;
+        return `<figure class="slide" data-index="${i}"${i ? " hidden" : ""}><video controls muted playsinline loop preload="none" poster="${mediaFile(p, `${m.file}-poster.jpg`)}" width="${m.width || 1080}" height="${m.height || 1080}" aria-label="${esc(m.alt || `${p.name} mockup video`)}"><source src="${mediaFile(p, `${m.file}.mp4`)}" type="video/mp4"><source src="${mediaFile(p, `${m.file}.webm`)}" type="video/webm"></video></figure>`;
       }
       return `<figure class="slide" data-index="${i}"${i ? " hidden" : ""}><button class="zoom" type="button" data-full="${imgSrc(p, m.file, 1600)}" aria-label="Enlarge image ${i + 1}">${imageTag(p, m, { sizes: "(max-width: 860px) 100vw, 600px", loading: i ? "lazy" : "eager", fetchpriority: i ? undefined : "high" })}</button></figure>`;
     })
@@ -362,7 +375,7 @@ if (!desc.intro.length && desc.sections.length) desc.intro = desc.sections.shift
       ? `<div class="thumbs" role="tablist" aria-label="Product images">${items
           .map((m, i) => {
             const poster = m.type === "video" ? `${mediaFile(p, `${m.file}-poster.jpg`)}` : imgSrc(p, m.file, 640);
-            return `<button type="button" role="tab" class="thumb${m.type === "video" ? " is-video" : ""}" data-go="${i}" aria-selected="${i === 0}" aria-label="${m.type === "video" ? "Play video" : `Show image ${i + 1}`}"><img src="${poster}" alt="" width="120" height="120" loading="lazy" decoding="async"></button>`;
+            return `<button type="button" role="tab" class="thumb${m.type === "video" ? " is-video" : ""}" data-go="${i}" aria-selected="${i === 0}" aria-label="${m.type === "video" ? "Play video" : `Show image ${i + 1}`}"><img src="${poster}" alt="" width="120" height="120" decoding="async"></button>`;
           })
           .join("")}</div>`
       : "";
