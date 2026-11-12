@@ -13,5 +13,6 @@
     "pinterest": "",
     "instagram": ""
   },
-  "homeProductsPerCatalog": 4
+  "homeProductsPerCatalog": 4,
+  "watermark": false
 }
