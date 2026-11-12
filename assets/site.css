@@ -220,6 +220,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; let
 .product-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.75rem; }
 .buy { padding: 1.25rem; background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); margin-bottom: 1.75rem; }
 .buy-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; text-align: center; }
+.pin-btn { display: flex; align-items: center; justify-content: center; gap: 0.45rem; margin-top: 0.85rem; padding: 0.6rem 1rem; border: 1px solid var(--hairline); border-radius: var(--radius); color: var(--ink); text-decoration: none; font-size: 0.9rem; transition: border-color 0.2s, color 0.2s; }
+.pin-btn:hover { border-color: var(--brass); color: var(--brass); }
 .attrs { display: grid; gap: 0.6rem; margin-bottom: 1.75rem; font-size: 0.9rem; }
 .attrs div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--hairline); }
 .attrs dt { color: var(--muted); }

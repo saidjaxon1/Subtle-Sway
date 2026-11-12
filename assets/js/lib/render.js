@@ -54,6 +54,7 @@ const vars = {
   siteName: SITE_NAME,
   etsyShopUrl: SHOP_URL || "/products/",
   contactEmail: settings.contactEmail || "",
+  analyticsNotice: CF_TOKEN_NOTICE(),
 };
 
 // ---------- media helpers ----------
@@ -81,6 +82,31 @@ const absolute = (u) => (u.startsWith("http") ? u : SITE + u);
 
 function etsyLabel() {
   return `Etsy shop <span aria-hidden="true">↗</span>`;
+}
+
+// "Save to Pinterest": a plain link to Pinterest's pin-create page (no Pinterest script,
+// no cookies, nothing loads until the visitor clicks).
+function pinButton(p) {
+  const c = cover(p);
+  if (!c || !SITE) return "";
+  const q = new URLSearchParams({
+    url: `${SITE}/products/${p.slug}/`,
+    media: absolute(imgSrc(p, c.file, 1600, "jpg")),
+    description: [p.name, p.etsyTitle].filter(Boolean).join(" — ").slice(0, 480),
+  });
+  return `<a class="pin-btn" href="https://www.pinterest.com/pin/create/button/?${esc(q.toString())}" target="_blank" rel="noopener" aria-label="Save ${esc(p.name)} to Pinterest (opens in a new tab)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 4.9 7 13 7 13s7-8.1 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Save to Pinterest</a>`;
+}
+
+function CF_TOKEN_NOTICE() {
+  return /^[a-f0-9]{32}$/i.test(String(settings.cfAnalyticsToken || ""))
+    ? "We count visits with Cloudflare Web Analytics, a privacy-first service that uses no cookies, does not fingerprint visitors and does not collect personal data. It records anonymous page views, the referring site (for example Pinterest), the country and the browser type. See the [Cloudflare Privacy Policy](https://www.cloudflare.com/privacypolicy/)."
+    : "This site does not run any analytics or tracking scripts.";
+}
+
+// Cookieless visitor statistics (Cloudflare Web Analytics), only when a token is set in admin.
+const CF_TOKEN = /^[a-f0-9]{32}$/i.test(String(settings.cfAnalyticsToken || "")) ? settings.cfAnalyticsToken : "";
+function analyticsTag() {
+  return CF_TOKEN ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_TOKEN}"}'></script>\n` : "";
 }
 
 // Site ownership checks (Pinterest "Claim website", Google Search Console), home page only.
@@ -159,7 +185,7 @@ ${body}
     <p>${esc(SITE_NAME)} is an independent shop. This site is not operated, sponsored or endorsed by Etsy, Inc.</p>
   </div>
 </footer>
-</body>
+${noindex ? "" : analyticsTag()}</body>
 </html>
 `;
 }
@@ -414,6 +440,7 @@ if (!desc.intro.length && desc.sections.length) desc.intro = desc.sections.shift
     <div class="buy">
       ${etsyButton(p.etsyUrl, "View price &amp; buy on Etsy", "btn btn-buy")}
       <p class="buy-note">Instant digital download. No physical item is shipped.</p>
+      ${pinButton(p)}
     </div>
     <dl class="attrs">
       ${attrRow("Format", "Digital download · 300 DPI JPG")}

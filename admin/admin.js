@@ -910,6 +910,10 @@ function settingsView() {
       <label class="f"><span>Google kodi (google-site-verification)</span><input type="text" data-verify="googleVerify" value="${esc(s.googleVerify || "")}" placeholder='&lt;meta name="google-site-verification" content="…" /&gt;'></label>
       <div class="msg" id="verifymsg"></div>
     </div>
+    <div class="card"><h2 style="margin-top:0">Statistika (Cloudflare Web Analytics)</h2>
+      <p class="muted" style="margin-bottom:.75rem;font-size:.85rem">Bepul va cookie'siz. dash.cloudflare.com → Analytics &amp; Logs → Web Analytics → Add a site → subtlesway.com → "Manage site" bo'limidagi JS snippetni to'liq joylashtiring (yoki faqat token). Bo'sh qoldirsangiz, statistika o'chadi. Privacy sahifasi o'zi moslashadi.</p>
+      <label class="f"><span>JS snippet yoki token</span><input type="text" id="cftoken" value="${esc(s.cfAnalyticsToken || "")}" placeholder="&lt;script defer src=&quot;https://static.cloudflareinsights.com/beacon.min.js&quot; data-cf-beacon='{&quot;token&quot;: &quot;…&quot;}'&gt;&lt;/script&gt;"></label>
+    </div>
     <div class="card"><h2 style="margin-top:0">Rasmlar</h2>
       <label class="row"><input type="checkbox" id="wm"${s.watermark ? " checked" : ""}> Eng katta (1600 px) rasmlarga kichik do'kon nomi yozilsin (watermark)</label>
       <p class="muted" style="margin-top:.4rem;font-size:.8rem">Faqat keyingi importlarda yangi rasmlarga ta'sir qiladi.</p>
@@ -937,6 +941,10 @@ function settingsView() {
       if (el.value.trim() && !code) return toast("Tasdiqlash kodi noto'g'ri. Pinterest/Google bergan meta tegni to'liq joylashtiring.", true);
       s[el.dataset.verify] = code;
     }
+    const cfRaw = document.getElementById("cftoken").value.trim();
+    const cfMatch = cfRaw.match(/[a-f0-9]{32}/i);
+    if (cfRaw && !cfMatch) return toast("Cloudflare tokeni topilmadi. Snippetni to'liq joylashtiring.", true);
+    s.cfAnalyticsToken = cfMatch ? cfMatch[0].toLowerCase() : "";
     if (s.etsyShopUrl) {
       const r = normalizeShopUrl(s.etsyShopUrl);
       if (!r.ok) return toast(r.error, true);

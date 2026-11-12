@@ -70,3 +70,21 @@ test("home page: verification meta tags, and no duplicate 'All products' section
   assert.doesNotMatch(home, /id="all-products"/, "every product already appears in a catalogue section");
   assert.doesNotMatch(r.product(r.products[0]), /p:domain_verify/, "only on the home page");
 });
+
+test("Pin button and optional analytics", async () => {
+  const { createRenderer } = await import("../assets/js/lib/render.js");
+  const product = { slug: "f", name: "Fern", etsyTitle: "Fern Print", status: "published", catalogs: [], etsyUrl: "https://subtleswaystore.etsy.com/listing/4584329707/f", media: [{ type: "image", file: "1" }], description: "x" };
+  const base = { siteUrl: "https://x.test", etsyShopUrl: "https://subtleswaystore.etsy.com" };
+  const privacy = [{ slug: "privacy", title: "Privacy", body: "{{analyticsNotice}}" }];
+  let r = createRenderer({ settings: base, products: [product], pages: privacy });
+  const page = r.product(r.products[0]);
+  assert.match(page, /href="https:\/\/www\.pinterest\.com\/pin\/create\/button\/\?url=https%3A%2F%2Fx\.test%2Fproducts%2Ff%2F&amp;media=https%3A%2F%2Fx\.test%2Fmedia%2Fproducts%2Ff%2F1-1600\.jpg/);
+  assert.doesNotMatch(page, /cloudflareinsights/);
+  assert.match(r.textPage(privacy[0]), /does not run any analytics/);
+  r = createRenderer({ settings: { ...base, cfAnalyticsToken: "0123456789abcdef0123456789abcdef" }, products: [product], pages: privacy });
+  assert.match(r.home(), /static\.cloudflareinsights\.com\/beacon\.min\.js" data-cf-beacon='\{"token": "0123456789abcdef0123456789abcdef"\}'/);
+  assert.match(r.textPage(privacy[0]), /Cloudflare Web Analytics/);
+  assert.doesNotMatch(r.notFound(), /cloudflareinsights/, "not on noindex pages");
+  r = createRenderer({ settings: { ...base, cfAnalyticsToken: "x'><script>alert(1)</script>" }, products: [product] });
+  assert.doesNotMatch(r.home(), /cloudflareinsights|alert/);
+});
