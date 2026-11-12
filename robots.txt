@@ -1,6 +1,4 @@
 User-agent: *
-Allow: /
-Disallow: /admin.html
-Disallow: /go.html
+Disallow: /admin/
 
 Sitemap: https://subtlesway.com/sitemap.xml

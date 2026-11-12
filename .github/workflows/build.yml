@@ -1,0 +1,49 @@
+name: Build site
+
+# Rebuilds every page whenever the data or the generator changes,
+# including saves made from the admin panel (which commits data/*.json
+# through the GitHub API). Generated files are committed back.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - "assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build pages
+        run: node scripts/build.mjs
+
+      - name: Commit generated pages if they changed
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Pages already up to date."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Rebuild pages [skip ci]"
+            git push
+          fi

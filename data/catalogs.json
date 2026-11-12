@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "landscapes-seascapes",
+    "name": "Landscapes & Seascapes",
+    "description": "Painterly countryside, winter rivers, mountains and quiet coastlines.",
+    "etsySectionUrl": ""
+  },
+  {
+    "slug": "botanical-floral",
+    "name": "Botanical & Floral",
+    "description": "Moody still lifes, flower markets and vintage botanical studies.",
+    "etsySectionUrl": ""
+  },
+  {
+    "slug": "kitchen-food",
+    "name": "Kitchen & Food",
+    "description": "Lemons, coffee and still lifes made for kitchens and breakfast nooks.",
+    "etsySectionUrl": ""
+  },
+  {
+    "slug": "abstract-modern",
+    "name": "Abstract & Modern",
+    "description": "Mid-century shapes, arches and calm geometric compositions.",
+    "etsySectionUrl": ""
+  },
+  {
+    "slug": "signs-typography",
+    "name": "Signs & Typography",
+    "description": "Vintage-style signs for laundry rooms, utility rooms and kitchens.",
+    "etsySectionUrl": ""
+  }
+]

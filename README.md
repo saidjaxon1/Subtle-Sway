@@ -1,139 +1,37 @@
 # Subtle Sway
 
-A static website for Pinterest affiliate marketing with a blog. Pure HTML/CSS/vanilla JS — no build step, no frameworks. Hosted on GitHub Pages.
+subtlesway.com: a catalogue of Subtle Sway printable wall art. Every product links to its Etsy listing, and nothing is sold on the site itself.
 
-**You never need to touch HTML.** All content lives in two files:
+The site is plain static HTML generated from JSON and hosted on GitHub Pages. It has no framework and no server.
 
-- `products.json` — all products
-- `posts.json` — all blog posts
+## How it fits together
 
-> **Before writing anything, read [CONTENT-RULES.md](CONTENT-RULES.md).**
-> This file explains how the site works. That one explains what may go on it —
-> what the copy may and may not claim, how affiliate links must be stored, and
-> what never appears. Every rule in it is there because breaking it would
-> mislead a reader or break the Amazon Associates agreement.
-
----
-
-## How to add a new product
-
-1. Open `products.json`.
-2. Copy one existing product object — everything from one `{` to its matching `},` — and paste it after the last product (add a comma after the previous `}` if needed).
-3. Edit the values:
-
-```json
-{
-  "slug": "my-new-lamp",
-  "name": "My New Lamp",
-  "price": "$129",
-  "type": "physical",
-  "source": "affiliate",
-  "category": "Home Decor",
-  "subcategory": "Lighting",
-  "image": "https://link-to-the-product-photo.jpg",
-  "affiliateLink": "https://your-affiliate-link-here",
-  "description": "One short paragraph about the product.",
-  "colors": ["#D8CFC0", "#5C594F", "#23211D"]
-}
-```
-
-Rules:
-- `slug` must be **unique** and use only lowercase letters, numbers, and dashes. It becomes the URL: `product.html?slug=my-new-lamp`.
-- `type` is `"physical"`, `"digital"`, or `""`. If set, the product page shows a "Digital product" or "Physical product" tag (digital items also get a small "Digital" note on cards). If left `""`, no tag is shown.
-- `source` is `"affiliate"` or `"own"`. Affiliate products show the disclosure line next to the Buy Now button; `"own"` (your own product) shows no affiliate wording anywhere and uses a plain link.
-- `category` is the top-level group (e.g. `"Home Decor"`, `"Fashion"`, `"Digital"`). Categories become the filter tabs in the shop and the category cards on the home page — automatically, based on whatever categories your products use.
-- `subcategory` is **optional** (e.g. `"Living Room"`, `"Lighting"`, `"T-Shirts"`). Subcategories become the second filter row inside a category, and the small label above the product name.
-- `price` is **optional** plain text — write it exactly how you want it shown (e.g. `"$1,249"`), or leave it `""` to show the product without a price.
-- `colors` is **optional** — 3–4 hex color codes shown as small circles on the product page. Use `[]` for none (e.g. digital products).
-
-Save the file — the product appears in the shop (and its category in the filters) automatically.
-
-## How to add a new blog post
-
-1. Open `posts.json`.
-2. Copy one existing post object and paste it after the last post (mind the comma between objects).
-3. Edit the values:
-
-```json
-{
-  "slug": "my-new-post",
-  "title": "My New Post Title",
-  "date": "2026-07-04",
-  "cover": "https://link-to-cover-image.jpg",
-  "excerpt": "One or two sentences shown in the blog list.",
-  "content": [
-    { "type": "paragraph", "text": "First paragraph of the post." },
-    { "type": "heading", "text": "A section heading" },
-    { "type": "paragraph", "text": "More text..." },
-    { "type": "image", "src": "https://an-image.jpg", "alt": "Describe the image" },
-    { "type": "product", "slug": "arden-sofa" }
-  ]
-}
-```
-
-Rules:
-- `slug` must be **unique**, lowercase-with-dashes. URL becomes `post.html?slug=my-new-post`.
-- `date` must be in `YYYY-MM-DD` format — the blog list sorts newest first by this date.
-- `content` is a list of blocks rendered top to bottom. Four block types:
-  - `paragraph` — a paragraph of text
-  - `heading` — a section heading
-  - `image` — an image with alt text
-  - `product` — embeds a product card with a Buy Now button. The `slug` must match a product in `products.json` — the name, price, image, and affiliate link are pulled from there automatically.
-
-Save the file — the post appears in the Journal automatically.
-
-## Admin panel (edit the site from the browser)
-
-Open `admin.html` on your live site (e.g. `https://your-domain/admin.html`). It lets you add, edit, and delete products and posts without touching any files — every save is committed to GitHub automatically and goes live in about a minute.
-
-The **Categories** tab shows every category and subcategory with product counts, and can rename one everywhere in a single step. Categories are created simply by typing a new name on a product (existing names appear as suggestions while typing), and a category disappears on its own when no product uses it.
-
-Two conveniences worth knowing:
-
-- **Photos can be uploaded straight from your computer** — every photo field has an Upload button that stores the file in the repo (`images/` folder) and fills the link in for you. Pasting an outside URL still works too.
-- **URLs are automatic** — the address of a product or article is generated from its name the first time you save it; there is no technical field to fill in. (In the JSON files this is the `slug` value, which the admin now manages for you.)
-
-First-time setup (once per browser):
-
-1. On GitHub go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-2. Repository access: **Only select repositories** → choose **Subtle-Sway**.
-3. Permissions: **Contents → Read and write**. Generate the token and copy it.
-4. Open `admin.html`, paste the token, press **Connect**.
-
-The token is stored only in your browser (localStorage) — never on a server. Anyone else who opens `admin.html` sees only the connect screen and can change nothing without a valid token. Use **Disconnect** to remove the token from a shared computer. When the token expires, generate a new one the same way.
-
-## Tips
-
-- **Validate your JSON** after editing: paste the file into https://jsonlint.com. A missing comma or quote is the only thing that can break the site.
-- Commas go **between** objects, never after the last one.
-
-## Files
-
-| File | Purpose |
+| Path | What it is |
 |---|---|
-| `products.json` / `posts.json` | **All content — the only files you edit** |
-| `index.html` | Home — animated editorial landing page |
-| `shop.html` | Shop (full product grid) |
-| `product.html` | Product page template (`?slug=...`) |
-| `blog.html` | Journal (blog list) |
-| `post.html` | Post page template (`?slug=...`) |
-| `style.css` | All styling |
-| `main.js` | Loads the JSON and renders the pages |
-| `admin.html` / `admin.js` / `admin.css` | Browser admin panel — edits the JSON via the GitHub API |
-| `CNAME` | Your custom domain for GitHub Pages — replace `example.com` with your real domain |
+| `data/settings.json` | Shop name, Etsy shop link, home page text, contact email |
+| `data/catalogs.json` | Catalogues, which mirror the Etsy shop sections. Each catalogue has an optional Etsy section link |
+| `data/products.json` | Published products only. Drafts never come into this public repo |
+| `data/pages.json` | About, FAQ, Contact, Privacy, Terms and Disclaimer texts, in simple markdown |
+| `media/products/<slug>/` | Mockup images as WebP at 640/1080/1600 px plus a 1600 px JPG, and the mockup video |
+| `scripts/build.mjs` | Generates every HTML page, `sitemap.xml` and `robots.txt` from `data/` |
+| `assets/` | Stylesheet, small scripts, self-hosted fonts, and the shared Etsy-link and text helpers |
+| `.github/workflows/build.yml` | On every push to `data/`, `scripts/` or `assets/`, runs the tests, rebuilds the pages and commits them |
 
-## Running locally
+The generated files are `index.html`, `products/`, `about/`, `faq/`, `contact/`, `privacy/`, `terms/`, `disclaimer/`, `404.html`, `sitemap.xml`, `robots.txt` and the old `*.html` redirect stubs. Never edit them by hand.
 
-Pages load content with `fetch`, so opening the files directly (`file://`) won't work. Run any static server from this folder, e.g.:
+## Commands
 
+```bash
+npm test          # unit tests
+npm run build     # regenerate the pages
+npm run dev       # build, then serve at http://localhost:8080
 ```
-python -m http.server 8000
-```
 
-then open http://localhost:8000
+Building requires Node 20 or newer. The build and the tests have no npm dependencies.
 
-## Deploying to GitHub Pages
+## Rules the code enforces
 
-1. Create a GitHub repository and push all files in this folder to it.
-2. In the repo: **Settings → Pages → Source → Deploy from a branch**, pick `main` and `/ (root)`.
-3. Done. All paths are relative, so the site works both at `username.github.io/repo/` and on a custom domain.
+- A product is written to the site only when it has a valid Etsy listing link on this shop (`assets/js/lib/etsy-url.js`).
+- Etsy links use the Share & Save form `https://<shop>.etsy.com/listing/<id>/…`, with tracking parameters stripped.
+- Prices are never shown on the site, because Etsy is the single source of truth for prices.
+- The site has no cookies and no third-party scripts or fonts.
