@@ -48,7 +48,7 @@ export function nameFromFolder(folder) {
 function nameFromPartFiles(partAbs) {
   for (const e of listDir(partAbs)) {
     if (!e.isFile()) continue;
-    const m = e.name.match(/^(.+?)_(?:wall_art_)?download_guide\.pdf$/i);
+    const m = e.name.match(/^(.+?)_download_guide\.pdf$/i);
     if (m) return m[1].replace(/_/g, " ").trim();
   }
   return "";
