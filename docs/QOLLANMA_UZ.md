@@ -108,7 +108,7 @@ Bu kafolat faqat admin uchun emas, **saytdan olingan har qanday havola** uchun h
 - **rasm va video** havolalari (masalan, rasmni o'ng tugma → "Copy image address" bilan nusxalasa): media fayllar saytdan **hech qachon o'chirilmaydi**. Mahsulot saytdan olinsa yoki rasm yashirilsa ham, fayl joyida qoladi;
 - **katalog havolasi** (`/products/?collection=…`): katalog o'chirilsa ham sahifa ochiladi va barcha mahsulotlarni ko'rsatadi.
 
-Faqat papka nomidagi **dizayn nomi** o'zgartirilsa, masalan `Moody_Floral` → `Dark_Roses`, importer uni yangi mahsulot deb hisoblaydi. Bunda eski havola baribir ishlashda davom etadi.
+Papka nomidagi **dizayn nomini** o'zgartirsangiz ham havola saqlanadi (masalan, `Moody_Floral` → `Dark_Roses`). Importer papkani nomidan emas, ichidagi **mockup fayllaridan** taniydi. Faqat bitta holatda papka tanilmaydi: nomi ham, barcha mockuplari ham bir vaqtda almashtirilsa. Bunda u yangi mahsulot bo'lib keladi, lekin eski havola baribir yo'naltirish sifatida ishlashda davom etadi.
 
 - **Saytdagi mahsulotni tahrirlash:** admin panelda o'zgartiring va **Saqlash** tugmasini bosing. Sayt o'zi yangilanadi.
 - **"✎ admin'da tahrirlangan"** belgisi qo'yilgan maydon importda o'zgarmaydi. Papkadagi matnni qaytarish uchun yonidagi **"folderdagi versiyani olish"** ni bosing va keyin saqlang.

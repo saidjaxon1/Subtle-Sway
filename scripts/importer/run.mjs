@@ -40,23 +40,34 @@ export async function runImport({ root, target, dryRun = false, only = "", water
 
   for (const src of found) {
     try {
-      let prev = byId.get(src.id);
-      if (!prev) {
-        // A renamed or moved folder: if a draft whose folder vanished has the same base
-        // address, take it over so the product keeps its permanent URL (pinned links never break).
-        const base = `${slugify(src.name)}-printable`.replace(/^-/, "");
-        const foundIds = new Set(found.map((f) => f.id));
-        const orphan = existing.find((d) => d.slug === base && !foundIds.has(d.source?.id) && !claimed.has(d.slug));
-        if (orphan) {
-          prev = orphan;
-          log(`↪ ${orphan.source?.id} → ${src.id}: papka ko'chirilgan, havola saqlanadi (/products/${orphan.slug}/)`);
-        }
-      }
-      if (prev) claimed.add(prev.slug);
       const listing = src.listingPath ? parseListing(readAllowed(root, src.listingPath, "utf8")) : null;
       const hashes = {};
       for (const m of src.mockups) hashes[m.name] = hashAllowed(root, m.abs);
       if (src.listingPath) hashes["ETSY_LISTING.md"] = hashAllowed(root, src.listingPath);
+
+      let prev = byId.get(src.id);
+      if (!prev) {
+        // A renamed, renumbered or moved folder must keep its permanent URL (links pinned
+        // on Pinterest never break). Recognise it by CONTENT, not by name: an existing draft
+        // whose folder vanished and that shares the same mockup files (or listing file).
+        const foundIds = new Set(found.map((f) => f.id));
+        const mine = new Set(Object.values(hashes));
+        const orphans = existing.filter((d) => !foundIds.has(d.source?.id) && !claimed.has(d.slug));
+        const score = (d) => {
+          const theirs = Object.values(d.sourceHashes || {});
+          if (!theirs.length || !mine.size) return 0;
+          return theirs.filter((h) => mine.has(h)).length / Math.min(theirs.length, mine.size);
+        };
+        const base = `${slugify(src.name)}-printable`.replace(/^-/, "");
+        const orphan =
+          orphans.map((d) => [d, score(d)]).filter(([, sc]) => sc >= 0.5).sort((a, b) => b[1] - a[1])[0]?.[0] ||
+          orphans.find((d) => d.slug === base);
+        if (orphan) {
+          prev = orphan;
+          log(`↪ ${orphan.source?.id} → ${src.id}: papka nomi/joyi o'zgargan, havola saqlanadi (/products/${orphan.slug}/)`);
+        }
+      }
+      if (prev) claimed.add(prev.slug);
 
       const imported = {
         name: src.name,

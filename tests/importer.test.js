@@ -132,3 +132,17 @@ test("renaming the number prefix of a folder keeps the product's permanent URL",
   const d = JSON.parse(fs.readFileSync(path.join(out, "drafts", "quiet-fern-study-printable", "draft.json"), "utf8"));
   assert.equal(d.source.id, "part 5/07_Quiet_Fern_Study");
 });
+
+test("renaming the design name of a folder still keeps the product's permanent URL", { skip }, async () => {
+  const { root, prod, out } = tree();
+  const target = new LocalTarget(out);
+  await runImport({ root, target, log: () => {} });
+  fs.renameSync(prod, path.join(root, "part 6", "02_Green_Leaf_Study").replace("part 6", "part 5"));
+  const s = await runImport({ root, target, log: () => {} });
+  assert.equal(s.created.length, 0, "no new product");
+  assert.equal(s.missing.length, 0);
+  const d = JSON.parse(fs.readFileSync(path.join(out, "drafts", "quiet-fern-study-printable", "draft.json"), "utf8"));
+  assert.equal(d.source.id, "part 5/02_Green_Leaf_Study");
+  assert.equal(d.slug, "quiet-fern-study-printable", "URL unchanged");
+  assert.equal(d.name, "Green Leaf Study", "the new folder name is offered as the name; the URL stays");
+});
