@@ -11,6 +11,9 @@ on:
       - "data/**"
       - "scripts/**"
       - "assets/**"
+      - "tests/**"
+      - "package.json"
+      - ".github/workflows/build.yml"
   workflow_dispatch:
 
 permissions:
