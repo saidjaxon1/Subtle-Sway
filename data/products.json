@@ -55,73 +55,9 @@
         "hidden": false
       },
       {
-        "type": "video",
-        "file": "2",
-        "alt": "Short video of the watercolor fern print shown in room mockups.",
-        "width": 1080,
-        "height": 1080,
-        "hidden": false
-      },
-      {
         "type": "image",
         "file": "3",
         "alt": "A framed green fern print hangs above a cream sofa with fern-patterned cushions in a bright living room with a fiddle-leaf fig and bookshelf.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "4",
-        "alt": "A green fern print in a light wood frame hangs above a beige sofa with an olive cushion, next to a side table with a eucalyptus vase.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "5",
-        "alt": "A framed fern print beside a digital download guide showing three steps: purchase, download the PDF and open the Google Drive link.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "6",
-        "alt": "A large-format printer prints the green watercolor fern artwork onto cream paper in a sunny studio.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "7",
-        "alt": "A framed fern print hangs above a cream sofa with a sage green cushion and a side table with dried eucalyptus.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "8",
-        "alt": "A wood-framed fern print beside a printer printing the same fern artwork, with icons for high-resolution 300 DPI files.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "9",
-        "alt": "A size guide listing the A-series, 2:3, 3:4, 4:5 and 11x14 print sizes and the four steps from purchase to printing.",
-        "width": 2000,
-        "height": 2000,
-        "hidden": false
-      },
-      {
-        "type": "image",
-        "file": "10",
-        "alt": "A wood-framed fern print hangs above a rustic wooden console with clay vases and dried pampas grass.",
         "width": 2000,
         "height": 2000,
         "hidden": false
