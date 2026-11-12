@@ -36,19 +36,28 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build pages
-        run: node scripts/build.mjs
-
-      - name: Commit generated pages if they changed
+      - name: Build pages and commit them
+        # Always build from the LATEST main, so a save that landed while this job
+        # was running is included; retry if another push wins the race.
         run: |
-          git add -A
-          if git diff --cached --quiet; then
-            echo "Pages already up to date."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Rebuild pages [skip ci]"
-            # An admin save may have landed while we built: rebase onto it, then push.
-            git pull --rebase --autostash origin main || true
-            git push
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            node scripts/build.mjs
+            git add -A
+            if git diff --cached --quiet; then
+              echo "Pages already up to date."
+              exit 0
+            fi
+            git commit -q -m "Rebuild pages [skip ci]"
+            if git push -q origin HEAD:main; then
+              echo "Pushed rebuilt pages."
+              exit 0
+            fi
+            echo "Push lost a race (attempt $attempt), rebuilding on the newest main…"
+            sleep $((attempt * 3))
+          done
+          echo "Could not push after 5 attempts." >&2
+          exit 1
